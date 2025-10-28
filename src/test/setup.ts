@@ -1,5 +1,22 @@
 import '@testing-library/jest-dom'
 
+// Mock webidl-conversions module before any imports
+const mockWebIDLConversions = {
+	get: () => ({}),
+	set: () => ({}),
+	has: () => false,
+	delete: () => false,
+	entries: () => [],
+	keys: () => [],
+	values: () => [],
+	forEach: () => {},
+	size: 0
+}
+
+// Mock webidl-conversions module using vi
+import { vi } from 'vitest'
+vi.mock('webidl-conversions', () => mockWebIDLConversions)
+
 // Polyfills for Node.js environment
 import { TextDecoder, TextEncoder } from 'util'
 
@@ -14,84 +31,65 @@ Object.defineProperty(global, 'TextDecoder', {
 	value: TextDecoder
 })
 
-// Mock URL constructor for webidl-conversions
-if (typeof global.URL === 'undefined') {
-	Object.defineProperty(global, 'URL', {
-		writable: true,
-		value: class URL {
-			constructor(url: string, _base?: string) {
-				// Simple URL mock
-				this.href = url
-				this.origin = ''
-				this.protocol = ''
-				this.host = ''
-				this.hostname = ''
-				this.port = ''
-				this.pathname = ''
-				this.search = ''
-				this.hash = ''
-			}
-			href: string
-			origin: string
-			protocol: string
-			host: string
-			hostname: string
-			port: string
-			pathname: string
-			search: string
-			hash: string
+// Mock URL constructor
+Object.defineProperty(global, 'URL', {
+	writable: true,
+	value: class URL {
+		constructor(url: string, _base?: string) {
+			this.href = url
+			this.origin = ''
+			this.protocol = ''
+			this.host = ''
+			this.hostname = ''
+			this.port = ''
+			this.pathname = ''
+			this.search = ''
+			this.hash = ''
 		}
-	})
-}
+		href: string
+		origin: string
+		protocol: string
+		host: string
+		hostname: string
+		port: string
+		pathname: string
+		search: string
+		hash: string
+	}
+})
 
 // Mock URLSearchParams
-if (typeof global.URLSearchParams === 'undefined') {
-	Object.defineProperty(global, 'URLSearchParams', {
-		writable: true,
-		value: class URLSearchParams {
-			constructor(init?: string | string[][] | Record<string, string>) {
-				this.params = new Map()
-				if (init) {
-					if (typeof init === 'string') {
-						// Simple parsing
-						init.split('&').forEach(pair => {
-							const [key, value] = pair.split('=')
-							if (key) this.params.set(key, value || '')
-						})
-					}
+Object.defineProperty(global, 'URLSearchParams', {
+	writable: true,
+	value: class URLSearchParams {
+		constructor(init?: string | string[][] | Record<string, string>) {
+			this.params = new Map()
+			if (init) {
+				if (typeof init === 'string') {
+					init.split('&').forEach(pair => {
+						const [key, value] = pair.split('=')
+						if (key) this.params.set(key, value || '')
+					})
 				}
 			}
-			private params: Map<string, string>
-			get(name: string) {
-				return this.params.get(name) || null
-			}
-			set(name: string, value: string) {
-				this.params.set(name, value)
-			}
-			has(name: string) {
-				return this.params.has(name)
-			}
-			delete(name: string) {
-				this.params.delete(name)
-			}
-			toString() {
-				return Array.from(this.params.entries())
-					.map(([key, value]) => `${key}=${value}`)
-					.join('&')
-			}
 		}
-	})
-}
-
-// Mock webidl-conversions
-const mockWebIDLConversions = {
-	get: () => ({}),
-	set: () => ({}),
-	has: () => false,
-	delete: () => false
-}
-
-Object.defineProperty(global, 'webidl-conversions', {
-	writable: true,
-	value: mockWebIDLConversions
+		private params: Map<string, string>
+		get(name: string) {
+			return this.params.get(name) || null
+		}
+		set(name: string, value: string) {
+			this.params.set(name, value)
+		}
+		has(name: string) {
+			return this.params.has(name)
+		}
+		delete(name: string) {
+			this.params.delete(name)
+		}
+		toString() {
+			return Array.from(this.params.entries())
+				.map(([key, value]) => `${key}=${value}`)
+				.join('&')
+		}
+	}
 })
