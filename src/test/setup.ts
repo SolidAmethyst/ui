@@ -1,22 +1,5 @@
 import '@testing-library/jest-dom'
 
-// Mock webidl-conversions module before any imports
-const mockWebIDLConversions = {
-	get: () => ({}),
-	set: () => ({}),
-	has: () => false,
-	delete: () => false,
-	entries: () => [],
-	keys: () => [],
-	values: () => [],
-	forEach: () => {},
-	size: 0
-}
-
-// Mock webidl-conversions module using vi
-import { vi } from 'vitest'
-vi.mock('webidl-conversions', () => mockWebIDLConversions)
-
 // Polyfills for Node.js environment
 import { TextDecoder, TextEncoder } from 'util'
 

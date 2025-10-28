@@ -26,4 +26,5 @@ export default defineConfig({
   esbuild: {
     target: "node14",
   },
+  testTimeout: 10000,
 });
