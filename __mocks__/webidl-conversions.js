@@ -8,5 +8,5 @@ module.exports = {
   keys: () => [],
   values: () => [],
   forEach: () => {},
-  size: 0
+  size: 0,
 };
