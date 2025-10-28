@@ -143,4 +143,118 @@ interface BaseComponentProps {
 type ScrollbarDirection = "vertical" | "horizontal";
 type ScrollbarTheme = "default" | "minimal" | "modern";
 
-export { type BaseComponentProps, Scrollbar, ScrollbarArrows, type ScrollbarConfig, ScrollbarControls, type ScrollbarDirection, type ScrollbarProps, ScrollbarProvider, type ScrollbarTheme, ScrollbarThumb, cn, scrollbarConfig, scrollbarStyles, useScrollbarConfig, useScrollbarHandlers, useScrollbarLogic, useScrollbarObservers, useScrollbarState };
+interface UIEngine {
+    createPhysicsObject(x: number, y: number): Promise<number>;
+    updatePhysicsObject(id: number, x: number, y: number): Promise<void>;
+    destroyPhysicsObject(id: number): Promise<void>;
+    updateZoomLevel(zoom: number): Promise<void>;
+    screenToWorld(screenX: number, screenY: number): Promise<{
+        x: number;
+        y: number;
+    }>;
+    worldToScreen(worldX: number, worldY: number): Promise<{
+        x: number;
+        y: number;
+    }>;
+    getEngineState(): Promise<EngineState>;
+    isAvailable(): Promise<boolean>;
+}
+interface EngineState {
+    physicsObjectId?: number;
+    velocity: number;
+    acceleration: number;
+    zoomLevel: number;
+    isInitialized: boolean;
+}
+interface EngineConfig {
+    enabled: boolean;
+    autoDetect: boolean;
+    fallbackToJS: boolean;
+    physicsEnabled: boolean;
+    zoomEnabled: boolean;
+}
+
+declare class EngineManager {
+    private currentEngine;
+    private config;
+    private isInitialized;
+    constructor(config: EngineConfig);
+    initialize(): Promise<void>;
+    getEngine(): Promise<UIEngine>;
+    private detectTauriEngine;
+    private loadTauriEngine;
+    updateConfig(newConfig: Partial<EngineConfig>): void;
+    getConfig(): EngineConfig;
+}
+declare function getEngineManager(config?: EngineConfig): EngineManager;
+declare function getCurrentEngine(): Promise<UIEngine>;
+
+declare class MockEngine implements UIEngine {
+    private physicsObjectId;
+    private velocity;
+    private acceleration;
+    private zoomLevel;
+    private isInitialized;
+    createPhysicsObject(_x: number, _y: number): Promise<number>;
+    updatePhysicsObject(id: number, _x: number, _y: number): Promise<void>;
+    destroyPhysicsObject(id: number): Promise<void>;
+    updateZoomLevel(zoom: number): Promise<void>;
+    screenToWorld(screenX: number, screenY: number): Promise<{
+        x: number;
+        y: number;
+    }>;
+    worldToScreen(worldX: number, worldY: number): Promise<{
+        x: number;
+        y: number;
+    }>;
+    getEngineState(): Promise<EngineState>;
+    isAvailable(): Promise<boolean>;
+}
+declare const mockEngine: MockEngine;
+
+declare global {
+    interface Window {
+        __TAURI__?: {
+            invoke: (command: string, args?: any) => Promise<any>;
+        };
+    }
+}
+interface ScrollbarPhysicsConfig {
+    damping: number;
+    stiffness: number;
+    mass: number;
+    max_velocity: number;
+}
+interface ScrollbarPhysicsState {
+    position: number;
+    velocity: number;
+    acceleration: number;
+}
+declare class TauriEngine implements UIEngine {
+    private physicsObjectId;
+    private velocity;
+    private acceleration;
+    private zoomLevel;
+    private isInitialized;
+    createPhysicsObject(x: number, y: number): Promise<number>;
+    updatePhysicsObject(id: number, x: number, y: number): Promise<void>;
+    destroyPhysicsObject(id: number): Promise<void>;
+    updateZoomLevel(zoom: number): Promise<void>;
+    screenToWorld(screenX: number, screenY: number): Promise<{
+        x: number;
+        y: number;
+    }>;
+    worldToScreen(worldX: number, worldY: number): Promise<{
+        x: number;
+        y: number;
+    }>;
+    getEngineState(): Promise<EngineState>;
+    isAvailable(): Promise<boolean>;
+    initPhysicsEngine(): Promise<void>;
+    calculateScrollbarPhysics(config: ScrollbarPhysicsConfig, currentState: ScrollbarPhysicsState, targetPosition: number, deltaTime: number): Promise<ScrollbarPhysicsState>;
+    getPhysicsEngineInfo(): Promise<string>;
+    private isTauriAvailable;
+}
+declare const tauriEngine: TauriEngine;
+
+export { type BaseComponentProps, type EngineConfig, EngineManager, type EngineState, MockEngine, Scrollbar, ScrollbarArrows, type ScrollbarConfig, ScrollbarControls, type ScrollbarDirection, type ScrollbarProps, ScrollbarProvider, type ScrollbarTheme, ScrollbarThumb, TauriEngine, type UIEngine, cn, getCurrentEngine, getEngineManager, mockEngine, scrollbarConfig, scrollbarStyles, tauriEngine, useScrollbarConfig, useScrollbarHandlers, useScrollbarLogic, useScrollbarObservers, useScrollbarState };
