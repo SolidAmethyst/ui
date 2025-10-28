@@ -22,107 +22,103 @@ src/test/
 ## 🧪 Test Helpers
 
 ### `testComponentProps`
+
 Tests component prop validation with valid/invalid values.
 
 ```typescript
-testComponentProps(
-  Component,
-  defaultProps,
-  {
-    propName: 'direction',
-    validValues: ['horizontal', 'vertical'],
-    invalidValues: ['invalid', null],
-    renderFn: renderComponent
-  }
-)
+testComponentProps(Component, defaultProps, {
+  propName: "direction",
+  validValues: ["horizontal", "vertical"],
+  invalidValues: ["invalid", null],
+  renderFn: renderComponent,
+});
 ```
 
 ### `testComponentEvents`
+
 Tests component event handling.
 
 ```typescript
-testComponentEvents(
-  Component,
-  defaultProps,
-  [
-    {
-      eventName: 'click',
-      triggerFn: (element) => element.click(),
-      expectedBehavior: (container) => expect(container).toBeInTheDocument()
-    }
-  ]
-)
+testComponentEvents(Component, defaultProps, [
+  {
+    eventName: "click",
+    triggerFn: (element) => element.click(),
+    expectedBehavior: (container) => expect(container).toBeInTheDocument(),
+  },
+]);
 ```
 
 ### `testAccessibility`
+
 Tests basic accessibility requirements.
 
 ```typescript
-testAccessibility(Component, defaultProps, renderFn)
+testAccessibility(Component, defaultProps, renderFn);
 ```
 
 ### `testResponsiveBehavior`
+
 Tests component behavior across different screen sizes.
 
 ```typescript
-testResponsiveBehavior(
-  Component,
-  defaultProps,
-  renderFn,
-  [
-    { name: 'mobile', width: 375, height: 667 },
-    { name: 'desktop', width: 1920, height: 1080 }
-  ]
-)
+testResponsiveBehavior(Component, defaultProps, renderFn, [
+  { name: "mobile", width: 375, height: 667 },
+  { name: "desktop", width: 1920, height: 1080 },
+]);
 ```
 
 ### `testStateChanges`
+
 Tests component state transitions.
 
 ```typescript
-testStateChanges(
-  Component,
-  defaultProps,
-  renderFn,
-  [
-    {
-      description: 'State change test',
-      initialAssertions: (container) => { /* ... */ },
-      stateChange: (container) => { /* ... */ },
-      finalAssertions: (container) => { /* ... */ }
-    }
-  ]
-)
+testStateChanges(Component, defaultProps, renderFn, [
+  {
+    description: "State change test",
+    initialAssertions: (container) => {
+      /* ... */
+    },
+    stateChange: (container) => {
+      /* ... */
+    },
+    finalAssertions: (container) => {
+      /* ... */
+    },
+  },
+]);
 ```
 
 ## 🎭 Mock Data
 
 ### `createScrollbarTestData`
+
 Creates test data for Scrollbar component with overrides.
 
 ```typescript
 const data = createScrollbarTestData({
   width: 800,
-  direction: 'vertical',
-  showArrows: true
-})
+  direction: "vertical",
+  showArrows: true,
+});
 ```
 
 ### `mockContentGenerators`
+
 Pre-built content generators for different scenarios.
 
 ```typescript
-const shortContent = mockContentGenerators.short()
-const longContent = mockContentGenerators.long()
-const mixedContent = mockContentGenerators.mixed()
+const shortContent = mockContentGenerators.short();
+const longContent = mockContentGenerators.long();
+const mixedContent = mockContentGenerators.mixed();
 ```
 
 ### `mockEvents`
+
 Pre-built event objects for testing.
 
 ```typescript
-fireEvent.mouseDown(element, mockEvents.mouseDown)
-fireEvent.click(element, mockEvents.click)
+fireEvent.mouseDown(element, mockEvents.mouseDown);
+fireEvent.click(element, mockEvents.click);
 ```
 
 ## 🚀 Running Tests
@@ -147,16 +143,22 @@ npm run test:run
 ## 📝 Writing Tests for New Components
 
 1. **Create component test file:**
+
    ```
    src/components/ui/your-component/__tests__/your-component.test.tsx
    ```
 
 2. **Use test helpers:**
+
    ```typescript
-   import { testComponentProps, testAccessibility } from '../../../test/utils/component-test-helpers'
+   import {
+     testComponentProps,
+     testAccessibility,
+   } from "../../../test/utils/component-test-helpers";
    ```
 
 3. **Create mock data:**
+
    ```
    src/test/mocks/your-component-mocks.ts
    ```
@@ -181,6 +183,7 @@ npm run test:run
 ## 🔧 Configuration
 
 Tests are configured in `vitest.config.ts` with:
+
 - jsdom environment for DOM testing
 - Global test utilities
 - Path aliases for imports

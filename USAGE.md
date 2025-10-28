@@ -15,14 +15,14 @@ node scripts/add-component.js scrollbar "F:\Workspace\L2_Dev\Luminary_V2\lineage
 ### 2. Использовать в коде
 
 ```tsx
-import { Scrollbar } from './shared/ui/scrollbar'
+import { Scrollbar } from "./shared/ui/scrollbar";
 
 function MyComponent() {
   return (
     <Scrollbar direction="horizontal" showArrows={false}>
       <div>Your content here</div>
     </Scrollbar>
-  )
+  );
 }
 ```
 

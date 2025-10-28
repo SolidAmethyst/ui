@@ -1,3 +1,3 @@
 // Re-export the main Scrollbar component
-export { Scrollbar } from './scrollbar'
-export type { ScrollbarProps } from './model/types'
+export type { ScrollbarProps } from "./model/types";
+export { Scrollbar } from "./scrollbar";

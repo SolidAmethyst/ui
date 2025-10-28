@@ -5,47 +5,49 @@
 ## 🚀 Быстрый старт
 
 ### 1. Обернуть приложение в Provider
+
 ```tsx
-import { ScrollbarProvider } from '@/shared/ui/scrollbar'
+import { ScrollbarProvider } from "@/shared/ui/scrollbar";
 
 function App() {
-  return (
-    <ScrollbarProvider>
-      {/* Ваше приложение */}
-    </ScrollbarProvider>
-  )
+  return <ScrollbarProvider>{/* Ваше приложение */}</ScrollbarProvider>;
 }
 ```
 
 ### 2. Использовать компонент
+
 ```tsx
-import { Scrollbar } from '@/shared/ui/scrollbar'
+import { Scrollbar } from "@/shared/ui/scrollbar";
 
 <Scrollbar>
   <div>Ваш контент</div>
-</Scrollbar>
+</Scrollbar>;
 ```
 
 ## ⚙️ Централизованное управление
 
 ### Глобальное отключение движка
+
 ```tsx
-import { scrollbarConfig } from '@/shared/ui/scrollbar'
+import { scrollbarConfig } from "@/shared/ui/scrollbar";
 
 // Отключить движок для всего приложения
-scrollbarConfig.setEngineEnabled(false)
+scrollbarConfig.setEngineEnabled(false);
 
 // Включить обратно
-scrollbarConfig.setEngineEnabled(true)
+scrollbarConfig.setEngineEnabled(true);
 ```
 
 ### Настройка через Provider
+
 ```tsx
-<ScrollbarProvider config={{
-  engine: { enabled: false },
-  theme: { name: 'minimal' },
-  performance: { debounceMs: 32 }
-}}>
+<ScrollbarProvider
+  config={{
+    engine: { enabled: false },
+    theme: { name: "minimal" },
+    performance: { debounceMs: 32 },
+  }}
+>
   <App />
 </ScrollbarProvider>
 ```
@@ -53,70 +55,79 @@ scrollbarConfig.setEngineEnabled(true)
 ## 🎨 Темы и стили
 
 ### Встроенные темы
+
 - `default` - Стандартная тема
 - `minimal` - Минималистичная
 - `modern` - Современная
 
 ### Переключение темы
-```tsx
-import { useScrollbarSettings } from '@/shared/ui/scrollbar'
 
-const { setTheme } = useScrollbarSettings()
-setTheme('minimal')
+```tsx
+import { useScrollbarSettings } from "@/shared/ui/scrollbar";
+
+const { setTheme } = useScrollbarSettings();
+setTheme("minimal");
 ```
 
 ## 🎛️ Панель управления
 
 ### Добавить кнопку настроек
-```tsx
-import { ScrollbarControls } from '@/shared/ui/scrollbar'
 
-<ScrollbarControls class="fixed top-4 right-4" />
+```tsx
+import { ScrollbarControls } from "@/shared/ui/scrollbar";
+
+<ScrollbarControls class="fixed top-4 right-4" />;
 ```
 
 ## 🔧 Продвинутое использование
 
 ### Хуки для управления
+
 ```tsx
-import { useScrollbarControl, useScrollbarState } from '@/shared/ui/scrollbar'
+import { useScrollbarControl, useScrollbarState } from "@/shared/ui/scrollbar";
 
 function MyComponent() {
-  let containerRef: HTMLDivElement | undefined
-  
-  const { scrollTo, scrollToTop, scrollToBottom } = useScrollbarControl(() => containerRef)
-  const { scrollPosition, isAtTop, isAtBottom } = useScrollbarState(() => containerRef)
-  
+  let containerRef: HTMLDivElement | undefined;
+
+  const { scrollTo, scrollToTop, scrollToBottom } = useScrollbarControl(
+    () => containerRef,
+  );
+  const { scrollPosition, isAtTop, isAtBottom } = useScrollbarState(
+    () => containerRef,
+  );
+
   return (
     <div>
       <button onClick={scrollToTop}>В начало</button>
       <button onClick={scrollToBottom}>В конец</button>
       <div>Позиция: {scrollPosition()}</div>
     </div>
-  )
+  );
 }
 ```
 
 ### Программное управление
+
 ```tsx
-import { scrollbarConfig } from '@/shared/ui/scrollbar'
+import { scrollbarConfig } from "@/shared/ui/scrollbar";
 
 // Настройка производительности
 scrollbarConfig.updateConfig({
   performance: {
     useRequestAnimationFrame: true,
     debounceMs: 16,
-    throttleMs: 8
-  }
-})
+    throttleMs: 8,
+  },
+});
 
 // Настройка доступности
 scrollbarConfig.updateConfig({
   accessibility: {
     keyboardNavigation: true,
     screenReaderSupport: true,
-    highContrast: false
-  }
-})
+    highContrast: false,
+  },
+});
 ```
 
 ## 🎯 Приоритет настроек
@@ -150,10 +161,10 @@ src/shared/ui/scrollbar/
 ```tsx
 // Автоматическое определение (по умолчанию)
 scrollbarConfig.updateConfig({
-  engine: { 
+  engine: {
     enabled: true,
-    autoDetect: true,  // ← Автоматически определяет движок
-    fallbackToJS: true // ← Fallback на JS если движок недоступен
-  }
-})
+    autoDetect: true, // ← Автоматически определяет движок
+    fallbackToJS: true, // ← Fallback на JS если движок недоступен
+  },
+});
 ```

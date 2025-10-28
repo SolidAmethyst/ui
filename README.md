@@ -60,14 +60,14 @@ Components use Tailwind CSS with CSS variables for theming. Make sure to include
 After adding a component, import it in your project:
 
 ```tsx
-import { Scrollbar } from './shared/ui/scrollbar'
+import { Scrollbar } from "./shared/ui/scrollbar";
 
 function App() {
   return (
     <Scrollbar direction="horizontal" showArrows={false}>
       <div>Your content here</div>
     </Scrollbar>
-  )
+  );
 }
 ```
 
