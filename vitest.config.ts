@@ -8,6 +8,12 @@ export default defineConfig({
     transformMode: {
       web: [/\.[jt]sx?$/],
     },
+    pool: "forks",
+    poolOptions: {
+      forks: {
+        singleFork: true,
+      },
+    },
   },
   resolve: {
     alias: {
@@ -16,5 +22,8 @@ export default defineConfig({
   },
   define: {
     "import.meta.vitest": "undefined",
+  },
+  esbuild: {
+    target: "node14",
   },
 });
