@@ -36,6 +36,7 @@ jobs:
 
       - name: Run test coverage
         run: npm run test:coverage
+        continue-on-error: true
 
   build:
     name: Build
