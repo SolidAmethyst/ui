@@ -8,7 +8,10 @@ export default defineConfig({
 		pool: 'forks',
 		mockReset: true,
 		clearMocks: true,
-		testTimeout: 10000
+		testTimeout: 10000,
+		coverage: {
+			provider: 'c8'
+		}
 	},
 	resolve: {
 		alias: {
