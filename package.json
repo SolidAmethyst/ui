@@ -1,6 +1,7 @@
 {
-	"name": "@sapphiresolid/ui",
-	"version": "1.0.0",
+  "name": "@sapphiresolid/ui",
+  "version": "1.0.0",
+  "type": "module",
 	"description": "Beautiful Solid.js components built with Tailwind CSS",
 	"main": "dist/index.js",
 	"module": "dist/index.esm.js",
