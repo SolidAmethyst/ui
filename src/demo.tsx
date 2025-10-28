@@ -19,30 +19,30 @@ function App() {
 
 	return (
 		<ScrollbarProvider>
-			<div style='padding: 40px; font-family: Arial, sans-serif; background: #f5f5f5; min-height: 100vh;'>
-				<h1 style='margin-bottom: 30px; color: #333;'>Scrollbar Demo</h1>
+			<div style={{"padding":"40px","font-family":"Arial, sans-serif","background":"#f5f5f5","min-height":"100vh"}}>
+				<h1 style={{"margin-bottom":"30px","color":"#333"}}>Scrollbar Demo</h1>
 
-				<div style='background: white; padding: 30px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
-					<h2 style='margin-bottom: 15px; color: #555;'>
+				<div style={{"background":"white","padding":"30px","margin":"20px 0","border-radius":"8px","box-shadow":"0 2px 10px rgba(0,0,0,0.1)"}}>
+					<h2 style={{"margin-bottom":"15px","color":"#555"}}>
 						Horizontal Scrollbar
 					</h2>
-					<div style='border: 2px solid #ddd; border-radius: 4px; width: 400px; height: 80px;'>
+					<div style={{"border":"2px solid #ddd","border-radius":"4px","width":"400px","height":"80px"}}>
 						<Scrollbar
 							direction='horizontal'
 							showArrows={true}
 							autoHide={false}
 							style={{ width: '100%', height: '100%' }}
 						>
-							<div style='padding: 15px; white-space: nowrap; background: #f9f9f9;'>
+							<div style={{"padding":"15px","white-space":"nowrap","background":"#f9f9f9"}}>
 								{longText}
 							</div>
 						</Scrollbar>
 					</div>
 				</div>
 
-				<div style='background: white; padding: 30px; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);'>
-					<h2 style='margin-bottom: 15px; color: #555;'>Vertical Scrollbar</h2>
-					<div style='border: 2px solid #ddd; border-radius: 4px; width: 300px; height: 250px;'>
+				<div style={{"background":"white","padding":"30px","margin":"20px 0","border-radius":"8px","box-shadow":"0 2px 10px rgba(0,0,0,0.1)"}}>
+					<h2 style={{"margin-bottom":"15px","color":"#555"}}>Vertical Scrollbar</h2>
+					<div style={{"border":"2px solid #ddd","border-radius":"4px","width":"300px","height":"250px"}}>
 						<Scrollbar
 							direction='vertical'
 							showArrows={true}
@@ -50,7 +50,7 @@ function App() {
 							minThumbSize={20}
 							style={{ width: '100%', height: '100%' }}
 						>
-							<div style='background: #f9f9f9;' innerHTML={verticalContent} />
+							<div style={{"background":"#f9f9f9"}} innerHTML={verticalContent} />
 						</Scrollbar>
 					</div>
 				</div>
