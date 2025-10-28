@@ -4,12 +4,18 @@ export interface UIEngine {
   createPhysicsObject(x: number, y: number): Promise<number>;
   updatePhysicsObject(id: number, x: number, y: number): Promise<void>;
   destroyPhysicsObject(id: number): Promise<void>;
-  
+
   // Zoom and viewport
   updateZoomLevel(zoom: number): Promise<void>;
-  screenToWorld(screenX: number, screenY: number): Promise<{ x: number; y: number }>;
-  worldToScreen(worldX: number, worldY: number): Promise<{ x: number; y: number }>;
-  
+  screenToWorld(
+    screenX: number,
+    screenY: number,
+  ): Promise<{ x: number; y: number }>;
+  worldToScreen(
+    worldX: number,
+    worldY: number,
+  ): Promise<{ x: number; y: number }>;
+
   // Engine state
   getEngineState(): Promise<EngineState>;
   isAvailable(): Promise<boolean>;

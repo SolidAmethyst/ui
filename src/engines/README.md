@@ -19,14 +19,16 @@ engines/
 ## 🎯 Usage
 
 ### Basic Usage (Mock Engine)
+
 ```typescript
-import { getCurrentEngine } from '@sapphiresolid/ui';
+import { getCurrentEngine } from "@sapphiresolid/ui";
 
 const engine = await getCurrentEngine();
 const physicsId = await engine.createPhysicsObject(100, 200);
 ```
 
 ### With Tauri Integration
+
 ```typescript
 // Install Tauri plugin
 npm install @sapphiresolid/ui-tauri
@@ -39,8 +41,9 @@ const engine = await getCurrentEngine();
 ```
 
 ### Custom Engine Configuration
+
 ```typescript
-import { getEngineManager } from '@sapphiresolid/ui';
+import { getEngineManager } from "@sapphiresolid/ui";
 
 const manager = getEngineManager({
   enabled: true,
@@ -64,12 +67,18 @@ interface UIEngine {
   createPhysicsObject(x: number, y: number): Promise<number>;
   updatePhysicsObject(id: number, x: number, y: number): Promise<void>;
   destroyPhysicsObject(id: number): Promise<void>;
-  
+
   // Viewport
   updateZoomLevel(zoom: number): Promise<void>;
-  screenToWorld(screenX: number, screenY: number): Promise<{x: number, y: number}>;
-  worldToScreen(worldX: number, worldY: number): Promise<{x: number, y: number}>;
-  
+  screenToWorld(
+    screenX: number,
+    screenY: number,
+  ): Promise<{ x: number; y: number }>;
+  worldToScreen(
+    worldX: number,
+    worldY: number,
+  ): Promise<{ x: number; y: number }>;
+
   // State
   getEngineState(): Promise<EngineState>;
   isAvailable(): Promise<boolean>;
@@ -79,12 +88,14 @@ interface UIEngine {
 ## 🎨 Available Engines
 
 ### Mock Engine (Default)
+
 - ✅ Always available
 - ✅ No external dependencies
 - ✅ Perfect for testing
 - ❌ No real physics
 
 ### Tauri Engine (Plugin)
+
 - ✅ Real physics integration
 - ✅ Zoom level support
 - ✅ Screen/world coordinate conversion
@@ -101,13 +112,13 @@ interface UIEngine {
 ## 🚀 Creating Custom Engines
 
 ```typescript
-import { UIEngine } from '@sapphiresolid/ui';
+import { UIEngine } from "@sapphiresolid/ui";
 
 export class CustomEngine implements UIEngine {
   async createPhysicsObject(x: number, y: number): Promise<number> {
     // Your implementation
   }
-  
+
   // ... implement other methods
 }
 ```

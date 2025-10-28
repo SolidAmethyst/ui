@@ -1,5 +1,5 @@
 // Mock engine implementation for Solid UI Toolkit
-import type { UIEngine, EngineState, EngineConfig } from '../types/engine-interface';
+import type { UIEngine, EngineState } from "../types/engine-interface";
 
 export class MockEngine implements UIEngine {
   private physicsObjectId: number | null = null;
@@ -8,14 +8,14 @@ export class MockEngine implements UIEngine {
   private zoomLevel = 1;
   private isInitialized = false;
 
-  async createPhysicsObject(x: number, y: number): Promise<number> {
+  async createPhysicsObject(_x: number, _y: number): Promise<number> {
     // Mock implementation - just return random ID
     const id = Math.random() * 1000;
     this.physicsObjectId = id;
     return id;
   }
 
-  async updatePhysicsObject(id: number, x: number, y: number): Promise<void> {
+  async updatePhysicsObject(id: number, _x: number, _y: number): Promise<void> {
     // Mock implementation - just update internal state
     if (this.physicsObjectId === id) {
       // Simulate some physics
@@ -35,12 +35,18 @@ export class MockEngine implements UIEngine {
     this.zoomLevel = zoom;
   }
 
-  async screenToWorld(screenX: number, screenY: number): Promise<{ x: number; y: number }> {
+  async screenToWorld(
+    screenX: number,
+    screenY: number,
+  ): Promise<{ x: number; y: number }> {
     // Mock implementation - no transformation
     return { x: screenX, y: screenY };
   }
 
-  async worldToScreen(worldX: number, worldY: number): Promise<{ x: number; y: number }> {
+  async worldToScreen(
+    worldX: number,
+    worldY: number,
+  ): Promise<{ x: number; y: number }> {
     // Mock implementation - no transformation
     return { x: worldX, y: worldY };
   }
