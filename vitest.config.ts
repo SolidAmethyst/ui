@@ -19,6 +19,6 @@ export default defineConfig({
 		'import.meta.vitest': 'undefined'
 	},
 	esbuild: {
-		target: 'node14'
+		target: 'node18'
 	}
 })
