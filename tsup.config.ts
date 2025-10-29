@@ -8,10 +8,7 @@ export default defineConfig({
 	sourcemap: true,
 	clean: true,
 	external: ['solid-js'],
-	treeshake: true,
-	minify: true,
 	esbuildOptions(options) {
-		options.jsx = 'automatic'
-		options.jsxImportSource = 'solid-js'
+		options.jsx = 'preserve'
 	}
 })
