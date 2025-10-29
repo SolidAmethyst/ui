@@ -11,8 +11,7 @@ export default defineConfig({
 	treeshake: true,
 	minify: true,
 	esbuildOptions(options) {
-		options.jsx = 'transform'
-		options.jsxFactory = '_$createComponent'
-		options.jsxFragment = '_$Fragment'
+		options.jsx = 'automatic'
+		options.jsxImportSource = 'solid-js'
 	}
 })
