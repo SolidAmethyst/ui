@@ -10,7 +10,7 @@ export interface ScrollbarProps {
   direction?: ScrollbarDirection;
   theme?: ScrollbarTheme;
   class?: string;
-  style?: JSX.CSSProperties;
+  style?: any;
   showArrows?: boolean;
   autoHide?: boolean;
   minThumbSize?: number;

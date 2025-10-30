@@ -1,114 +1,110 @@
 // Scrollbar controls component
 // Global settings panel for scrollbar configuration
 
-import { createSignal } from 'solid-js'
-import type { ScrollbarConfig } from './scrollbar-config'
-import { useScrollbarConfig } from './scrollbar-provider'
+import { createSignal } from "solid-js";
+import type { ScrollbarConfig } from "./scrollbar-config";
+import { useScrollbarConfig } from "./scrollbar-provider";
 
 export const ScrollbarControls = (props: { class?: string }) => {
-	const config = useScrollbarConfig()
-	const [isOpen, setIsOpen] = createSignal(false)
+  const config = useScrollbarConfig();
+  const [isOpen, setIsOpen] = createSignal(false);
 
-	const handleEngineToggle = () => {
-		config.setEngineEnabled(!config.config.engine.enabled)
-	}
+  const handleEngineToggle = () => {
+    config.setEngineEnabled(!config.config.engine.enabled);
+  };
 
-	const handleThemeChange = (theme: ScrollbarConfig['theme']['name']) => {
-		config.setTheme({ name: theme })
-	}
+  const handleThemeChange = (theme: ScrollbarConfig["theme"]["name"]) => {
+    config.setTheme({ name: theme });
+  };
 
-	return (
-		<div class={`scrollbar-controls ${props.class || ''}`}>
-			<button
-				onClick={() => setIsOpen(!isOpen())}
-				class='scrollbar-controls-toggle'
-				title='Scrollbar Settings'
-			>
-				<svg
-					width='14'
-					height='14'
-					viewBox='0 0 24 24'
-					fill='none'
-					stroke='currentColor'
-					stroke-width='2'
-					stroke-linecap='round'
-					stroke-linejoin='round'
-				>
-					<circle cx='12' cy='12' r='3' />
-					<path d='M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z' />
-				</svg>
-			</button>
+  return (
+    <div class={`scrollbar-controls ${props.class || ""}`}>
+      <button
+        onClick={() => setIsOpen(!isOpen())}
+        class="scrollbar-controls-toggle"
+        title="Scrollbar Settings"
+      >
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+        </svg>
+      </button>
 
-			{isOpen() && (
-				<div class='scrollbar-controls-panel'>
-					<h3 class='scrollbar-controls-title'>Scrollbar Settings</h3>
+      {isOpen() && (
+        <div class="scrollbar-controls-panel">
+          <h3 class="scrollbar-controls-title">Scrollbar Settings</h3>
 
-					<div class='control-group'>
-						<label>
-							<input
-								type='checkbox'
-								checked={config.config.engine.enabled}
-								onChange={handleEngineToggle}
-							/>
-							Enable Engine
-						</label>
-					</div>
+          <div class="control-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={config.config.engine.enabled}
+                onChange={handleEngineToggle}
+              />
+              Enable Engine
+            </label>
+          </div>
 
-					<div class='control-group'>
-						<label>Theme:</label>
-						<select
-							value={config.config.theme.name}
-							onChange={e =>
-								handleThemeChange(
-									e.currentTarget.value as ScrollbarConfig['theme']['name']
-								)
-							}
-						>
-							<option value='default'>Default</option>
-							<option value='minimal'>Minimal</option>
-							<option value='modern'>Modern</option>
-						</select>
-					</div>
+          <div class="control-group">
+            <label>Theme:</label>
+            <select
+              value={config.config.theme.name}
+              onChange={(e) => handleThemeChange(e.currentTarget.value as any)}
+            >
+              <option value="default">Default</option>
+              <option value="minimal">Minimal</option>
+              <option value="modern">Modern</option>
+            </select>
+          </div>
 
-					<div class='control-group'>
-						<label>
-							<input
-								type='checkbox'
-								checked={config.config.engine.autoDetect}
-								onChange={e =>
-									config.updateConfig({
-										engine: {
-											...config.config.engine,
-											autoDetect: e.currentTarget.checked
-										}
-									})
-								}
-							/>
-							Auto-detect Engine
-						</label>
-					</div>
+          <div class="control-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={config.config.engine.autoDetect}
+                onChange={(e) =>
+                  config.updateConfig({
+                    engine: {
+                      ...config.config.engine,
+                      autoDetect: e.currentTarget.checked,
+                    },
+                  })
+                }
+              />
+              Auto-detect Engine
+            </label>
+          </div>
 
-					<div class='control-group'>
-						<label>
-							<input
-								type='checkbox'
-								checked={config.config.accessibility.keyboardNavigation}
-								onChange={e =>
-									config.updateConfig({
-										accessibility: {
-											...config.config.accessibility,
-											keyboardNavigation: e.currentTarget.checked
-										}
-									})
-								}
-							/>
-							Keyboard Navigation
-						</label>
-					</div>
-				</div>
-			)}
+          <div class="control-group">
+            <label>
+              <input
+                type="checkbox"
+                checked={config.config.accessibility.keyboardNavigation}
+                onChange={(e) =>
+                  config.updateConfig({
+                    accessibility: {
+                      ...config.config.accessibility,
+                      keyboardNavigation: e.currentTarget.checked,
+                    },
+                  })
+                }
+              />
+              Keyboard Navigation
+            </label>
+          </div>
+        </div>
+      )}
 
-			<style>{`
+      <style>{`
         .scrollbar-controls {
           position: relative;
           display: inline-block;
@@ -213,6 +209,6 @@ export const ScrollbarControls = (props: { class?: string }) => {
           color: #f9fafb;
         }
       `}</style>
-		</div>
-	)
-}
+    </div>
+  );
+};
