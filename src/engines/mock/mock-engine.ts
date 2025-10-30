@@ -8,15 +8,19 @@ export class MockEngine implements UIEngine {
   private zoomLevel = 1;
   private isInitialized = false;
 
-  async createPhysicsObject(_x: number, _y: number): Promise<number> {
+  async createPhysicsObject(x: number, y: number): Promise<number> {
     // Mock implementation - just return random ID
+    // x and y parameters are logged for debugging
+    console.debug("Mock createPhysicsObject:", x, y);
     const id = Math.random() * 1000;
     this.physicsObjectId = id;
     return id;
   }
 
-  async updatePhysicsObject(id: number, _x: number, _y: number): Promise<void> {
+  async updatePhysicsObject(id: number, x: number, y: number): Promise<void> {
     // Mock implementation - just update internal state
+    // x and y parameters are logged for debugging
+    console.debug("Mock updatePhysicsObject:", id, x, y);
     if (this.physicsObjectId === id) {
       // Simulate some physics
       this.velocity = Math.random() * 0.1;
