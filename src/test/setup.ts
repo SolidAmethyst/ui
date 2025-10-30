@@ -1,18 +1,7 @@
-import "@testing-library/jest-dom";
-import { vi } from "vitest";
-
-// Mock webidl-conversions before any imports
-const mockWebIDLConversions = {
-  get: () => ({}),
-  set: () => ({}),
-  has: () => false,
-  delete: () => false,
-  entries: () => [],
-  keys: () => [],
-  values: () => [],
-  forEach: () => {},
-  size: 0,
-};
+import '@testing-library/jest-dom'
+import { vi } from 'vitest'
 
 // Mock webidl-conversions
-vi.mock("webidl-conversions", () => mockWebIDLConversions);
+vi.mock('webidl-conversions', () => ({
+	default: new Map()
+}))
