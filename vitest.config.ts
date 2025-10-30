@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
 	plugins: [solid({ ssr: false })],
 	test: {
-		environment: 'jsdom',
+		environment: 'happy-dom',
 		globals: true,
 		setupFiles: ['./src/test/setup.ts'],
 		pool: 'forks',
