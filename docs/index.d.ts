@@ -4,6 +4,11 @@ import { Component } from 'solid-js';
 import { JSX } from 'solid-js';
 import { Setter } from 'solid-js';
 
+/**
+ * Keyframe animations
+ */
+export declare const animations = "\n@keyframes pulse {\n\t0%, 100% {\n\t\topacity: 1;\n\t\ttransform: scale(1);\n\t}\n\t50% {\n\t\topacity: 0.5;\n\t\ttransform: scale(0.8);\n\t}\n}\n\n@keyframes blink {\n\t0%, 100% {\n\t\topacity: 1;\n\t}\n\t50% {\n\t\topacity: 0.3;\n\t}\n}\n";
+
 export declare interface BaseComponentProps {
     class?: string;
     style?: any;
@@ -218,6 +223,64 @@ export declare class TauriEngine implements UIEngine {
 }
 
 export declare const tauriEngine: TauriEngine;
+
+export declare const TechChip: Component<TechChipProps>;
+
+export declare interface TechChipProps {
+    /**
+     * Display label for the chip
+     */
+    label: string;
+    /**
+     * Material Symbols icon name
+     */
+    icon: string;
+    /**
+     * Current status of the technology
+     */
+    status: TechChipStatus;
+    /**
+     * Visual variant (color scheme)
+     */
+    variant: TechChipVariant;
+    /**
+     * Optional class name for custom styling
+     */
+    class?: string;
+    /**
+     * Click handler
+     */
+    onClick?: () => void;
+}
+
+/**
+ * Tech Chip Component Types
+ * Status indicator chip for technology stack display
+ */
+export declare type TechChipStatus = 'loading' | 'ready' | 'error';
+
+/**
+ * Tech Chip Styles
+ * Material 3 inspired status chip styles
+ */
+export declare const techChipStyles: {
+    base: string;
+    variants: {
+        frontend: string;
+        backend: string;
+        engine: string;
+    };
+    hover: string;
+    indicator: string;
+    icon: string;
+    status: {
+        loading: string;
+        ready: string;
+        error: string;
+    };
+};
+
+export declare type TechChipVariant = 'frontend' | 'backend' | 'engine';
 
 export declare interface UIEngine {
     createPhysicsObject(x: number, y: number): Promise<number>;
