@@ -1,12 +1,12 @@
 // Common types for the UI toolkit
-import type { JSX } from 'solid-js'
-export type { JSX }
+import type { JSX } from "solid-js";
+export type { JSX };
 
 export interface BaseComponentProps {
-	class?: string
-	style?: JSX.CSSProperties | string
-	children?: JSX.Element
+  class?: string;
+  style?: JSX.CSSProperties | string;
+  children?: JSX.Element;
 }
 
-export type ScrollbarDirection = 'vertical' | 'horizontal'
-export type ScrollbarTheme = 'default' | 'minimal' | 'modern'
+export type ScrollbarDirection = "vertical" | "horizontal";
+export type ScrollbarTheme = "default" | "minimal" | "modern";

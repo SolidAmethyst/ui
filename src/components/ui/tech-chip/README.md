@@ -15,28 +15,28 @@ Status indicator chip for displaying technology stack with real-time status upda
 ## Usage
 
 ```tsx
-import { TechChip } from '@sapphiresolid/ui'
+import { TechChip } from "@sapphiresolid/ui";
 
 function App() {
-	return (
-		<div class='flex gap-2'>
-			<TechChip
-				label='TypeScript'
-				icon='code'
-				status='ready'
-				variant='frontend'
-			/>
+  return (
+    <div class="flex gap-2">
+      <TechChip
+        label="TypeScript"
+        icon="code"
+        status="ready"
+        variant="frontend"
+      />
 
-			<TechChip label='Rust' icon='memory' status='loading' variant='backend' />
+      <TechChip label="Rust" icon="memory" status="loading" variant="backend" />
 
-			<TechChip
-				label='Engine'
-				icon='precision_manufacturing'
-				status='error'
-				variant='engine'
-			/>
-		</div>
-	)
+      <TechChip
+        label="Engine"
+        icon="precision_manufacturing"
+        status="error"
+        variant="engine"
+      />
+    </div>
+  );
 }
 ```
 
@@ -94,11 +94,11 @@ The component uses Tailwind CSS utility classes and can be customized:
 
 ```tsx
 <TechChip
-	label='Custom'
-	icon='code'
-	status='ready'
-	variant='frontend'
-	class='my-custom-class'
+  label="Custom"
+  icon="code"
+  status="ready"
+  variant="frontend"
+  class="my-custom-class"
 />
 ```
 
@@ -115,8 +115,8 @@ Requires Material Symbols Rounded font:
 
 ```html
 <link
-	href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
-	rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded"
+  rel="stylesheet"
 />
 ```
 
@@ -125,29 +125,29 @@ Requires Material Symbols Rounded font:
 ### Tech Stack Display
 
 ```tsx
-import { createSignal } from 'solid-js'
-import { TechChip } from '@sapphiresolid/ui'
+import { createSignal } from "solid-js";
+import { TechChip } from "@sapphiresolid/ui";
 
 function TechStack() {
-	const [frontendStatus, setFrontendStatus] = createSignal('ready')
-	const [backendStatus, setBackendStatus] = createSignal('loading')
+  const [frontendStatus, setFrontendStatus] = createSignal("ready");
+  const [backendStatus, setBackendStatus] = createSignal("loading");
 
-	return (
-		<div class='flex gap-2 p-4'>
-			<TechChip
-				label='TypeScript'
-				icon='code'
-				status={frontendStatus()}
-				variant='frontend'
-			/>
-			<TechChip
-				label='Rust'
-				icon='memory'
-				status={backendStatus()}
-				variant='backend'
-			/>
-		</div>
-	)
+  return (
+    <div class="flex gap-2 p-4">
+      <TechChip
+        label="TypeScript"
+        icon="code"
+        status={frontendStatus()}
+        variant="frontend"
+      />
+      <TechChip
+        label="Rust"
+        icon="memory"
+        status={backendStatus()}
+        variant="backend"
+      />
+    </div>
+  );
 }
 ```
 
@@ -155,11 +155,11 @@ function TechStack() {
 
 ```tsx
 <TechChip
-	label='Debug'
-	icon='bug_report'
-	status='ready'
-	variant='engine'
-	onClick={() => console.log('Chip clicked!')}
+  label="Debug"
+  icon="bug_report"
+  status="ready"
+  variant="engine"
+  onClick={() => console.log("Chip clicked!")}
 />
 ```
 
