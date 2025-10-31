@@ -128,22 +128,28 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
           >
             <div
               style={{
-                padding: "15px",
+                padding: "0 16px",
                 color: "#f6f6f6",
                 "white-space": "nowrap",
                 "min-width": "100%",
                 height: "100%",
                 "box-sizing": "border-box",
+                display: "flex",
+                gap: "16px",
+                "align-items": "center",
               }}
             >
               {Array.from({ length: 30 }, (_, i) => (
                 <div
                   style={{
-                    padding: "12px 15px",
-                    "border-bottom": "1px solid rgba(255, 255, 255, 0.1)",
-                    display: "inline-block",
-                    "min-width": "300px",
-                    "vertical-align": "top",
+                    padding: "12px 16px",
+                    width: "144px",
+                    display: "flex",
+                    "flex-direction": "column",
+                    "justify-content": "center",
+                    background: "rgba(255, 255, 255, 0.05)",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    "flex-shrink": "0",
                   }}
                 >
                   <h3
