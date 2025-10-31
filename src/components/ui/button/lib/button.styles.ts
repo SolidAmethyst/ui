@@ -87,8 +87,8 @@ export const buttonStyles = {
 
   // Icon sizes
   iconSizes: {
-    small: '12px',
-    normal: '14px',
-    large: '20px'
-  }
-}
+    small: "12px",
+    normal: "14px",
+    large: "20px",
+  },
+};

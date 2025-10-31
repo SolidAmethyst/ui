@@ -4,15 +4,15 @@
  */
 
 // Main component
-export { Button } from './ui/button'
+export { Button } from "./ui/button";
 
 // Types
 export type {
   ButtonIconPosition,
   ButtonProps,
   ButtonSize,
-  ButtonVariant
-} from './model/types'
+  ButtonVariant,
+} from "./model/types";
 
 // Styles (for advanced usage)
-export { buttonStyles } from './lib/button.styles'
+export { buttonStyles } from "./lib/button.styles";
