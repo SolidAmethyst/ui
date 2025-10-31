@@ -9,6 +9,7 @@ on:
         develop,
         feature/tech-chip-component,
         feature/button-component,
+        feature/scrollbar,
         fix/type-errors
       ]
   pull_request:

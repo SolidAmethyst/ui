@@ -142,8 +142,8 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = (props) => (
             <div
               style={{
                 width: "100%",
-                height: "120px",
-                padding: "12px",
+                height: "87px",
+                padding: "12px 14px",
                 "box-sizing": "border-box",
               }}
             >
@@ -155,19 +155,23 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = (props) => (
                 <div
                   style={{
                     display: "flex",
-                    gap: "16px",
+                    gap: "14px",
                     "white-space": "nowrap",
+                    padding: "0",
+                    "box-sizing": "border-box",
+                    "align-items": "center",
                   }}
                 >
                   {Array.from({ length: 30 }, (_, i) => (
                     <div
                       style={{
-                        padding: "12px 16px",
-                        "min-width": "200px",
+                        padding: "8px 16px",
+                        width: "129px",
                         display: "flex",
                         "align-items": "center",
                         "justify-content": "center",
                         height: "100%",
+                        "flex-shrink": "0",
                         background: props.isDark()
                           ? "rgba(255, 255, 255, 0.05)"
                           : "rgba(0, 0, 0, 0.05)",
