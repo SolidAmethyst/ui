@@ -3,65 +3,73 @@
  * Reusable button component with multiple variants and states
  */
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success' | 'warning';
+import type { JSX } from 'solid-js'
 
-export type ButtonSize = 'sm' | 'md' | 'lg';
+export type ButtonVariant =
+	| 'primary'
+	| 'secondary'
+	| 'ghost'
+	| 'danger'
+	| 'success'
+	| 'warning'
 
-export type ButtonIconPosition = 'left' | 'right' | 'only';
+export type ButtonSize = 'sm' | 'md' | 'lg'
+
+export type ButtonIconPosition = 'left' | 'right' | 'only'
 
 export interface ButtonProps {
 	/**
 	 * Visual variant of the button
 	 */
-	variant?: ButtonVariant;
+	variant?: ButtonVariant
 
 	/**
 	 * Size of the button
 	 */
-	size?: ButtonSize;
+	size?: ButtonSize
 
 	/**
 	 * Whether the button is disabled
 	 */
-	disabled?: boolean;
+	disabled?: boolean
 
 	/**
 	 * Whether the button is in loading state
 	 */
-	loading?: boolean;
+	loading?: boolean
 
 	/**
 	 * Material Symbols icon name
 	 */
-	icon?: string;
+	icon?: string
 
 	/**
 	 * Position of the icon relative to text
 	 */
-	iconPosition?: ButtonIconPosition;
+	iconPosition?: ButtonIconPosition
 
 	/**
 	 * Click handler function
 	 */
-	onClick?: () => void;
+	onClick?: () => void
 
 	/**
 	 * Additional CSS class names
 	 */
-	class?: string;
+	class?: string
 
 	/**
 	 * Button content (text or JSX elements)
 	 */
-	children?: JSX.Element;
+	children?: JSX.Element
 
 	/**
 	 * Tooltip text
 	 */
-	title?: string;
+	title?: string
 
 	/**
 	 * HTML button type
 	 */
-	type?: 'button' | 'submit' | 'reset';
+	type?: 'button' | 'submit' | 'reset'
 }
