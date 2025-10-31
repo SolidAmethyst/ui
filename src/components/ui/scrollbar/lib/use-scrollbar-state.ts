@@ -51,17 +51,11 @@ export function useScrollbarState(props: ScrollbarProps) {
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    // No need to hide scrollbar immediately - CSS transition handles fade-out
-    // The scrollbar stays in DOM but becomes invisible via CSS class
-    // Only set isVisible to false if autoHide is disabled (but that shouldn't happen)
     if (autoHide()) {
-      // CSS transition will handle the fade-out animation
-      // Track will remain in DOM but opacity goes to 0 via CSS
+      // Smooth fade-out with delay
       const timeout = setTimeout(() => {
-        // After transition completes, we can optionally hide it from DOM
-        // But keeping it in DOM is fine for smoother animations
         setState((prev) => ({ ...prev, isVisible: false }));
-      }, 400); // Delay to allow CSS transition to complete (250ms) + buffer
+      }, 800); // Increased delay for smoothness
       setHideTimeout(timeout);
     }
   };

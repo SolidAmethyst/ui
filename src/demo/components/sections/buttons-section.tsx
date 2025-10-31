@@ -1,4 +1,4 @@
-import { Component, Accessor } from "solid-js";
+import { Accessor, Component } from "solid-js";
 import { Button } from "../../../components/ui/button";
 import { DemoSection } from "../common/demo-section";
 import { SubsectionTitle } from "../common/subsection-title";
@@ -65,18 +65,33 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
           iconPosition="only"
           title="Debug"
         />
-        <Button
-          variant="small"
-          icon="push_pin"
-          iconPosition="only"
-          title="Pin"
-        />
+        <Button variant="pin" iconPosition="only" title="Pin" />
         <Button
           variant="small"
           icon="settings"
           iconPosition="only"
           title="Settings"
         />
+      </div>
+    </div>
+
+    {/* Action Buttons */}
+    <div style={{ "margin-bottom": "12px", width: "100%" }}>
+      <SubsectionTitle title="Action buttons" isDark={props.isDark} />
+      <div
+        style={{
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "8px",
+          "justify-content": "center",
+          "align-items": "center",
+          width: "100%",
+          padding: "10px 0",
+        }}
+      >
+        <Button variant="expand" iconPosition="only" title="Expand" />
+        <Button variant="copy" iconPosition="only" title="Copy" />
+        <Button variant="attach" iconPosition="only" title="Attach" />
       </div>
     </div>
 
@@ -184,6 +199,152 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
         <Button maximized>Maximized</Button>
         <Button loading>Loading</Button>
         <Button disabled>Disabled</Button>
+      </div>
+    </div>
+
+    {/* Navigation & Basic Actions */}
+    <div style={{ "margin-bottom": "12px", width: "100%" }}>
+      <SubsectionTitle
+        title="Navigation & Basic Actions"
+        isDark={props.isDark}
+      />
+      <div
+        style={{
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "8px",
+          "justify-content": "center",
+          "align-items": "center",
+          width: "100%",
+          padding: "10px 0",
+        }}
+      >
+        <Button variant="back" iconPosition="only" title="Back" />
+        <Button variant="forward" iconPosition="only" title="Forward" />
+        <Button variant="refresh" iconPosition="only" title="Refresh" />
+        <Button variant="home" iconPosition="only" title="Home" />
+      </div>
+    </div>
+
+    {/* Files & Documents */}
+    <div style={{ "margin-bottom": "12px", width: "100%" }}>
+      <SubsectionTitle title="Files & Documents" isDark={props.isDark} />
+      <div
+        style={{
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "8px",
+          "justify-content": "center",
+          "align-items": "center",
+          width: "100%",
+          padding: "10px 0",
+        }}
+      >
+        <Button variant="save" iconPosition="only" title="Save" />
+        <Button variant="download" iconPosition="only" title="Download" />
+        <Button variant="upload" iconPosition="only" title="Upload" />
+        <Button variant="edit" iconPosition="only" title="Edit" />
+      </div>
+    </div>
+
+    {/* Delete & Cancel */}
+    <div style={{ "margin-bottom": "12px", width: "100%" }}>
+      <SubsectionTitle title="Delete & Cancel" isDark={props.isDark} />
+      <div
+        style={{
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "8px",
+          "justify-content": "center",
+          "align-items": "center",
+          width: "100%",
+          padding: "10px 0",
+        }}
+      >
+        <Button variant="delete" iconPosition="only" title="Delete" />
+        <Button variant="cancel" iconPosition="only" title="Cancel" />
+      </div>
+    </div>
+
+    {/* Media Controls */}
+    <div style={{ "margin-bottom": "12px", width: "100%" }}>
+      <SubsectionTitle title="Media Controls" isDark={props.isDark} />
+      <div
+        style={{
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "8px",
+          "justify-content": "center",
+          "align-items": "center",
+          width: "100%",
+          padding: "10px 0",
+        }}
+      >
+        <Button variant="stop" iconPosition="only" title="Stop" />
+        <Button
+          variant="skip-previous"
+          iconPosition="only"
+          title="Skip Previous"
+        />
+        <Button variant="skip-next" iconPosition="only" title="Skip Next" />
+      </div>
+    </div>
+
+    {/* View Controls */}
+    <div style={{ "margin-bottom": "12px", width: "100%" }}>
+      <SubsectionTitle title="View Controls" isDark={props.isDark} />
+      <div
+        style={{
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "8px",
+          "justify-content": "center",
+          "align-items": "center",
+          width: "100%",
+          padding: "10px 0",
+        }}
+      >
+        <Button variant="fullscreen" iconPosition="only" title="Fullscreen" />
+        <Button variant="view-list" iconPosition="only" title="View List" />
+        <Button variant="view-grid" iconPosition="only" title="View Grid" />
+      </div>
+    </div>
+
+    {/* Search & Filters */}
+    <div style={{ "margin-bottom": "12px", width: "100%" }}>
+      <SubsectionTitle title="Search & Filters" isDark={props.isDark} />
+      <div
+        style={{
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "8px",
+          "justify-content": "center",
+          "align-items": "center",
+          width: "100%",
+          padding: "10px 0",
+        }}
+      >
+        <Button variant="search" iconPosition="only" title="Search" />
+        <Button variant="filter" iconPosition="only" title="Filter" />
+      </div>
+    </div>
+
+    {/* Social Actions */}
+    <div style={{ "margin-bottom": "12px", width: "100%" }}>
+      <SubsectionTitle title="Social Actions" isDark={props.isDark} />
+      <div
+        style={{
+          display: "flex",
+          "flex-wrap": "wrap",
+          gap: "8px",
+          "justify-content": "center",
+          "align-items": "center",
+          width: "100%",
+          padding: "10px 0",
+        }}
+      >
+        <Button variant="share" iconPosition="only" title="Share" />
+        <Button variant="favorite" iconPosition="only" title="Favorite" />
       </div>
     </div>
   </DemoSection>
