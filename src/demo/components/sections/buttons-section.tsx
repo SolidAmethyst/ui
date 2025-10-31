@@ -62,22 +62,37 @@ export const ButtonsSection: Component<ButtonsSectionProps> = props => (
 					iconPosition='only'
 					title='Debug'
 				/>
-				<Button
-					variant='small'
-					icon='push_pin'
-					iconPosition='only'
-					title='Pin'
-				/>
-				<Button
-					variant='small'
-					icon='settings'
-					iconPosition='only'
-					title='Settings'
-				/>
-			</div>
+			<Button variant='pin' iconPosition='only' title='Pin' />
+			<Button
+				variant='small'
+				icon='settings'
+				iconPosition='only'
+				title='Settings'
+			/>
 		</div>
+	</div>
 
-		{/* Play/Pause Button */}
+	{/* Action Buttons */}
+	<div style={{ 'margin-bottom': '12px', width: '100%' }}>
+		<SubsectionTitle title='Action buttons' isDark={props.isDark} />
+		<div
+			style={{
+				display: 'flex',
+				'flex-wrap': 'wrap',
+				gap: '8px',
+				'justify-content': 'center',
+				'align-items': 'center',
+				width: '100%',
+				padding: '10px 0'
+			}}
+		>
+			<Button variant='expand' iconPosition='only' title='Expand' />
+			<Button variant='copy' iconPosition='only' title='Copy' />
+			<Button variant='attach' iconPosition='only' title='Attach' />
+		</div>
+	</div>
+
+	{/* Play/Pause Button */}
 		<div style={{ 'margin-bottom': '12px', width: '100%' }}>
 			<SubsectionTitle title='Play/Pause button' isDark={props.isDark} />
 			<div

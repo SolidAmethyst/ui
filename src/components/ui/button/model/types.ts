@@ -18,6 +18,10 @@ export type ButtonVariant =
 	| 'close'
 	| 'minimize'
 	| 'maximize'
+	| 'pin'
+	| 'expand'
+	| 'copy'
+	| 'attach'
 
 export type ButtonSize = 'sm' | 'md' | 'lg'
 

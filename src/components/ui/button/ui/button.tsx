@@ -20,6 +20,14 @@ export const Button: Component<ButtonProps> = props => {
 			baseClass = 'control-btn minimize-btn'
 		} else if (props.variant === 'maximize') {
 			baseClass = 'control-btn maximize-btn'
+		} else if (props.variant === 'pin') {
+			baseClass = 'control-btn pin-btn'
+		} else if (props.variant === 'expand') {
+			baseClass = 'control-btn expand-btn'
+		} else if (props.variant === 'copy') {
+			baseClass = 'control-btn copy-btn'
+		} else if (props.variant === 'attach') {
+			baseClass = 'control-btn attach-btn'
 		}
 
 		if (props.active) {
@@ -40,12 +48,44 @@ export const Button: Component<ButtonProps> = props => {
 	const getIconSize = () => {
 		if (props.variant === 'small') return '12px'
 		if (props.variant === 'play-pause') return '20px'
+		if (
+			props.variant === 'expand' ||
+			props.variant === 'copy' ||
+			props.variant === 'attach'
+		)
+			return '16px'
 		return '14px'
 	}
 
-	const isIconOnly = () =>
-		props.iconPosition === 'only' || (props.icon && !props.children)
-	const hasIcon = () => props.icon && props.iconPosition !== 'only'
+	const getDefaultIcon = () => {
+		if (props.variant === 'pin' && !props.icon) return 'push_pin'
+		if (props.variant === 'expand' && !props.icon) return 'open_in_full'
+		if (props.variant === 'copy' && !props.icon) return 'content_copy'
+		if (props.variant === 'attach' && !props.icon) return 'attach_file'
+		return props.icon
+	}
+
+	const isIconOnly = () => {
+		if (props.iconPosition === 'only') return true
+		const defaultIcon = getDefaultIcon()
+		const hasIconContent = defaultIcon || props.icon
+		const isIconVariant =
+			props.variant === 'pin' ||
+			props.variant === 'expand' ||
+			props.variant === 'copy' ||
+			props.variant === 'attach' ||
+			props.variant === 'close' ||
+			props.variant === 'minimize' ||
+			props.variant === 'maximize' ||
+			props.variant === 'play-pause'
+		return (
+			(hasIconContent && !props.children) || (isIconVariant && !props.children)
+		)
+	}
+	const hasIcon = () => {
+		const defaultIcon = getDefaultIcon()
+		return (defaultIcon || props.icon) && props.iconPosition !== 'only'
+	}
 	const showLeftIcon = () =>
 		hasIcon() && (props.iconPosition === 'left' || !props.iconPosition)
 	const showRightIcon = () => hasIcon() && props.iconPosition === 'right'
@@ -76,7 +116,7 @@ export const Button: Component<ButtonProps> = props => {
 					aria-hidden='true'
 					style={{ 'font-size': getIconSize() }}
 				>
-					{props.icon}
+					{getDefaultIcon()}
 				</span>
 			</Show>
 
@@ -88,7 +128,7 @@ export const Button: Component<ButtonProps> = props => {
 					aria-hidden='true'
 					style={{ 'font-size': getIconSize() }}
 				>
-					{props.icon}
+					{getDefaultIcon()}
 				</span>
 			</Show>
 		</button>
