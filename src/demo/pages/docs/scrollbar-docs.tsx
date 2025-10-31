@@ -93,7 +93,7 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = (props) => (
                 showArrows={true}
                 style={{ width: "100%", height: "100%" }}
               >
-                {Array.from({ length: 15 }, (_, i) => (
+                {Array.from({ length: 30 }, (_, i) => (
                   <div
                     style={{
                       padding: "12px",
@@ -159,7 +159,7 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = (props) => (
                     "white-space": "nowrap",
                   }}
                 >
-                  {Array.from({ length: 10 }, (_, i) => (
+                  {Array.from({ length: 30 }, (_, i) => (
                     <div
                       style={{
                         padding: "12px 16px",

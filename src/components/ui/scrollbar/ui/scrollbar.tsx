@@ -1,4 +1,4 @@
-import { createSignal, onCleanup, onMount } from "solid-js";
+import { createSignal, onCleanup, onMount, createEffect } from "solid-js";
 import { ScrollbarProvider } from "../lib/scrollbar-provider";
 import { scrollbarStyles } from "../lib/scrollbar.styles";
 import { useScrollbarHandlers } from "../lib/use-scrollbar-handlers";
@@ -65,11 +65,35 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
     updateScrollbar,
   );
 
+  // Determine if scrollbar should be rendered (when content needs scrolling)
+  const shouldRenderScrollbar = () => state().isVisible;
+
+  // Track visibility state for smooth animation
+  const [shouldBeVisible, setShouldBeVisible] = createSignal(false);
+
+  // Determine if scrollbar should be visible (opacity animation)
   const shouldShowScrollbar = () => {
-    return (
-      state().isVisible && (isHovered() || !autoHide() || state().isDragging)
-    );
+    return isHovered() || !autoHide() || state().isDragging;
   };
+
+  // Handle smooth appearance - ensure transition works on first render
+  createEffect(() => {
+    const needsToShow = shouldShowScrollbar();
+    const isRendered = shouldRenderScrollbar();
+
+    if (needsToShow && isRendered) {
+      // Use requestAnimationFrame to ensure DOM is ready before adding class
+      // This allows CSS transition to work properly
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setShouldBeVisible(true);
+        });
+      });
+    } else {
+      // Hide immediately - fade-out transition works fine
+      setShouldBeVisible(false);
+    }
+  });
 
   onMount(() => {
     // Wait for full content load - multiple attempts
@@ -134,14 +158,14 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
           {props.children}
         </div>
 
-        {shouldShowScrollbar() && (
+        {shouldRenderScrollbar() && (
           <div
             ref={setTrackRef}
             class={`scrollbar-track ${
               direction() === "horizontal"
                 ? "scrollbar-track-horizontal"
                 : "scrollbar-track-vertical"
-            } visible`}
+            } ${shouldBeVisible() ? "visible" : ""}`}
             onClick={handleTrackClick}
           >
             {/* Arrow buttons */}
