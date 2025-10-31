@@ -6,17 +6,17 @@ export function useScrollbarObservers(
   const setupObservers = () => {
     if (!containerRef() || !contentRef()) return;
 
-    // ResizeObserver для обновления при изменении размера
+    // ResizeObserver to update on size changes
     const resizeObserver = new ResizeObserver(() => {
       updateCallback();
     });
     resizeObserver.observe(contentRef()!);
     resizeObserver.observe(containerRef()!);
 
-    // MutationObserver для отслеживания изменений в содержимом
+    // MutationObserver to track content changes
     const mutationObserver = new MutationObserver(() => {
       updateCallback();
-      // Дополнительное обновление для полной загрузки
+      // Additional update for full content load
       setTimeout(updateCallback, 10);
     });
     mutationObserver.observe(contentRef()!, {

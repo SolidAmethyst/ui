@@ -1,0 +1,94 @@
+/**
+ * Button Styles
+ * Exact copy from Tauri project styles
+ */
+
+export const buttonStyles = {
+  // Control button (основная кнопка)
+  control: `
+    height: var(--normal-btn-height);
+    padding: var(--normal-btn-padding);
+    border: none;
+    background: transparent;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-app-region: no-drag;
+    font-size: 12px;
+    border-radius: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: none;
+    outline: none;
+    position: relative;
+    z-index: 2;
+  `,
+
+  // Play/Pause button
+  playPause: `
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 2px solid transparent;
+    background: transparent;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+  `,
+
+  // Small button (для иконок в заголовке)
+  small: `
+    width: var(--small-btn-size);
+    height: var(--small-btn-size);
+    padding: 0;
+    margin: 0 2px;
+    align-self: center;
+    pointer-events: auto;
+  `,
+
+  // Hover effects
+  hover: `
+    background: transparent;
+    color: #3b82f6;
+    box-shadow: none;
+  `,
+
+  // Active state
+  active: `
+    color: #3b82f6;
+  `,
+
+  // Close button hover
+  closeHover: `
+    background: transparent;
+    color: #e81123;
+  `,
+
+  // Close button active
+  closeActive: `
+    background: #c50e1f;
+  `,
+
+  // Disabled state
+  disabled: `
+    opacity: 0.3;
+    cursor: not-allowed;
+  `,
+
+  // Icon sizes
+  iconSizes: {
+    small: '12px',
+    normal: '14px',
+    large: '20px'
+  }
+}

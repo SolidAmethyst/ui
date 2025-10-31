@@ -4,43 +4,57 @@
  */
 
 import { Component } from 'solid-js'
-import { techChipStyles } from '../lib/tech-chip.styles'
 import type { TechChipProps } from '../model/types'
 
 export const TechChip: Component<TechChipProps> = props => (
 	<span
-		class={
-			props.class
-				? `${techChipStyles.base} ${techChipStyles.variants[props.variant]} ${
-						techChipStyles.hover
-				  } ${props.class}`
-				: `${techChipStyles.base} ${techChipStyles.variants[props.variant]} ${
-						techChipStyles.hover
-				  }`
-		}
-		onClick={() => (props.onClick ? props.onClick() : undefined)}
+		class={props.class}
+		onClick={() => props.onClick?.()}
+		style={{
+			display: 'inline-flex',
+			'align-items': 'center',
+			gap: '4px',
+			height: '40px',
+			padding: '0 8px',
+			background: 'transparent',
+			color: 'white',
+			'font-size': '14px',
+			'line-height': '1',
+			'vertical-align': 'middle',
+			cursor: props.onClick ? 'pointer' : 'default'
+		}}
 		data-status={props.status}
 		data-variant={props.variant}
 		role='status'
 		aria-label={`${props.label} status: ${props.status}`}
 	>
-		{/* Status Indicator */}
-		<span
-			class={`${techChipStyles.indicator} ${
-				techChipStyles.status[props.status]
-			}`.trim()}
-			aria-hidden='true'
-		/>
-
 		{/* Icon */}
 		<span
-			class={`material-symbols-rounded ${techChipStyles.icon}`}
+			class='material-symbols-rounded'
+			style={{
+				color: 'white',
+				'font-size': '16px',
+				'line-height': '1',
+				width: '16px',
+				height: '16px',
+				display: 'flex',
+				'align-items': 'center',
+				'justify-content': 'center'
+			}}
 			aria-hidden='true'
 		>
 			{props.icon}
 		</span>
 
 		{/* Label */}
-		<span>{props.label}</span>
+		<span
+			style={{
+				color: 'white',
+				'font-size': '14px',
+				'line-height': '1'
+			}}
+		>
+			{props.label}
+		</span>
 	</span>
 )
