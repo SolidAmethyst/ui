@@ -1,67 +1,34 @@
 /**
  * Button Component Types
- * Reusable button component with multiple variants and states
+ * Based on Tauri project button styles
  */
 
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger' | 'success' | 'warning';
+import type { JSX } from 'solid-js'
 
-export type ButtonSize = 'sm' | 'md' | 'lg';
-
-export type ButtonIconPosition = 'left' | 'right' | 'only';
+export type ButtonVariant =
+	| 'control'
+	| 'play-pause'
+	| 'small'
+	| 'close'
+	| 'minimize'
+	| 'maximize'
+export type ButtonSize = 'sm' | 'md' | 'lg'
+export type ButtonIconPosition = 'left' | 'right' | 'only'
 
 export interface ButtonProps {
-	/**
-	 * Visual variant of the button
-	 */
-	variant?: ButtonVariant;
-
-	/**
-	 * Size of the button
-	 */
-	size?: ButtonSize;
-
-	/**
-	 * Whether the button is disabled
-	 */
-	disabled?: boolean;
-
-	/**
-	 * Whether the button is in loading state
-	 */
-	loading?: boolean;
-
-	/**
-	 * Material Symbols icon name
-	 */
-	icon?: string;
-
-	/**
-	 * Position of the icon relative to text
-	 */
-	iconPosition?: ButtonIconPosition;
-
-	/**
-	 * Click handler function
-	 */
-	onClick?: () => void;
-
-	/**
-	 * Additional CSS class names
-	 */
-	class?: string;
-
-	/**
-	 * Button content (text or JSX elements)
-	 */
-	children?: JSX.Element;
-
-	/**
-	 * Tooltip text
-	 */
-	title?: string;
-
-	/**
-	 * HTML button type
-	 */
-	type?: 'button' | 'submit' | 'reset';
+	variant?: ButtonVariant
+	size?: ButtonSize
+	disabled?: boolean
+	loading?: boolean
+	icon?: string
+	iconPosition?: ButtonIconPosition
+	iconFilled?: boolean
+	onClick?: () => void
+	class?: string
+	children?: JSX.Element
+	title?: string
+	type?: 'button' | 'submit' | 'reset'
+	active?: boolean
+	pinned?: boolean
+	maximized?: boolean
 }

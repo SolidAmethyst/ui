@@ -1,49 +1,94 @@
 /**
- * Button Component Styles
- * Tailwind CSS classes for button variants and states
+ * Button Styles
+ * Exact copy from Tauri project styles
  */
 
 export const buttonStyles = {
-	base: 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed',
+  // Control button (основная кнопка)
+  control: `
+    height: var(--normal-btn-height);
+    padding: var(--normal-btn-padding);
+    border: none;
+    background: transparent;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-app-region: no-drag;
+    font-size: 12px;
+    border-radius: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: none;
+    outline: none;
+    position: relative;
+    z-index: 2;
+  `,
 
-	variants: {
-		primary:
-			'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 active:bg-blue-800',
-		secondary:
-			'bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500 active:bg-gray-400 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 dark:active:bg-gray-500',
-		ghost:
-			'bg-transparent text-gray-700 hover:bg-gray-100 focus:ring-gray-500 active:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-800 dark:active:bg-gray-700',
-		danger:
-			'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 active:bg-red-800',
-		success:
-			'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 active:bg-green-800',
-		warning:
-			'bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500 active:bg-yellow-800'
-	},
+  // Play/Pause button
+  playPause: `
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border: 2px solid transparent;
+    background: transparent;
+    color: hsl(var(--foreground));
+    cursor: pointer;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+  `,
 
-	sizes: {
-		sm: 'px-2 py-1 text-xs rounded-md',
-		md: 'px-3 py-2 text-sm rounded-md',
-		lg: 'px-4 py-3 text-base rounded-lg'
-	},
+  // Small button (для иконок в заголовке)
+  small: `
+    width: var(--small-btn-size);
+    height: var(--small-btn-size);
+    padding: 0;
+    margin: 0 2px;
+    align-self: center;
+    pointer-events: auto;
+  `,
 
-	iconSizes: {
-		sm: 'w-3 h-3',
-		md: 'w-4 h-4',
-		lg: 'w-5 h-5'
-	},
+  // Hover effects
+  hover: `
+    background: transparent;
+    color: #3b82f6;
+    box-shadow: none;
+  `,
 
-	iconOnly: {
-		sm: 'p-1',
-		md: 'p-2',
-		lg: 'p-3'
-	},
+  // Active state
+  active: `
+    color: #3b82f6;
+  `,
 
-	loading: 'animate-spin',
+  // Close button hover
+  closeHover: `
+    background: transparent;
+    color: #e81123;
+  `,
 
-	iconGap: {
-		sm: 'gap-1',
-		md: 'gap-1.5',
-		lg: 'gap-2'
-	}
+  // Close button active
+  closeActive: `
+    background: #c50e1f;
+  `,
+
+  // Disabled state
+  disabled: `
+    opacity: 0.3;
+    cursor: not-allowed;
+  `,
+
+  // Icon sizes
+  iconSizes: {
+    small: '12px',
+    normal: '14px',
+    large: '20px'
+  }
 }
