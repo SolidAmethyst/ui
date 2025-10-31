@@ -8,6 +8,8 @@ import type { TechChipProps } from '../model/types'
 
 export const TechChip: Component<TechChipProps> = props => (
 	<span
+		class={props.class}
+		onClick={() => props.onClick?.()}
 		style={{
 			display: 'inline-flex',
 			'align-items': 'center',
@@ -18,7 +20,8 @@ export const TechChip: Component<TechChipProps> = props => (
 			color: 'white',
 			'font-size': '14px',
 			'line-height': '1',
-			'vertical-align': 'middle'
+			'vertical-align': 'middle',
+			cursor: props.onClick ? 'pointer' : 'default'
 		}}
 		data-status={props.status}
 		data-variant={props.variant}
