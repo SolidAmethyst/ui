@@ -21,10 +21,12 @@ export const scrollbarStyles = `
   z-index: 999;
   background: transparent;
   opacity: 0;
-  transition: opacity 300ms ease-in-out;
+  transform: scale(0.95);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .scrollbar-track.visible {
   opacity: 1;
+  transform: scale(1);
 }
 .scrollbar-track-vertical {
   top: 0;
@@ -40,16 +42,16 @@ export const scrollbarStyles = `
 }
 .scrollbar-thumb {
   position: absolute;
-  background: rgba(59, 130, 246, 0.8);
+  background: rgba(59, 130, 246, 0.6);
   border-radius: 2px;
   cursor: grab;
-  transition: background 100ms ease;
+  transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 99999;
   min-width: 1px;
   min-height: 1px;
 }
 .scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.8);
+  background: rgba(59, 130, 246, 0.9);
 }
 .scrollbar-thumb:active,
 .scrollbar-thumb.dragging {
@@ -69,13 +71,14 @@ export const scrollbarStyles = `
   font-size: 12px;
   font-weight: bold;
   color: #6b7280;
-  transition: color 150ms ease;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 100ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   padding: 0;
   margin: 0;
 }
 .scrollbar-arrow:hover {
   color: #3b82f6;
+  transform: scale(1.1);
 }
 .scrollbar-arrow:active {
   color: #1d4ed8;

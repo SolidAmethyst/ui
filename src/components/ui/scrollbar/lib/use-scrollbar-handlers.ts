@@ -19,11 +19,21 @@ export function useScrollbarHandlers(
   const scrollBy = (amount: number) => {
     if (!contentRef()) return;
     const fastAmount = amount * 3;
-    if (direction() === "horizontal") {
-      contentRef()!.scrollLeft += fastAmount;
-    } else {
-      contentRef()!.scrollTop += fastAmount;
-    }
+    const currentScroll =
+      direction() === "horizontal"
+        ? contentRef()!.scrollLeft
+        : contentRef()!.scrollTop;
+    const targetScroll = currentScroll + fastAmount;
+
+    // Use smooth scrolling for better UX
+    contentRef()!.scrollTo({
+      left: direction() === "horizontal" ? targetScroll : undefined,
+      top: direction() === "horizontal" ? undefined : targetScroll,
+      behavior: "smooth",
+    });
+
+    // handleScroll will be called automatically during smooth scroll
+    // No need to manually update here
   };
 
   const handleWheel = (e: WheelEvent) => {
@@ -43,8 +53,31 @@ export function useScrollbarHandlers(
       isHorizontal = e.shiftKey;
     }
 
-    const scrollAmount = delta * 0.5; // Lower sensitivity
+    // Handle delta based on deltaMode for standard scroll behavior
+    let scrollAmount: number;
+    if (e.deltaMode === WheelEvent.DOM_DELTA_LINE) {
+      // Delta is in lines - standard is about 16-20px per line
+      scrollAmount = delta * 16;
+    } else if (e.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
+      // Delta is in pages - use container height/width
+      const containerSize = isHorizontal
+        ? contentRef()!.clientWidth
+        : contentRef()!.clientHeight;
+      scrollAmount = delta * containerSize;
+    } else {
+      // DOM_DELTA_PIXEL - use delta directly but normalize for standard behavior
+      // Standard browsers typically scroll ~40-50px per tick
+      // For hyper-scroll, scale down proportionally
+      if (Math.abs(delta) > 100) {
+        // Hyper-scroll: scale down to reasonable amount
+        scrollAmount = delta * 0.2;
+      } else {
+        // Normal scroll: use delta as-is (browser already provides pixel values)
+        scrollAmount = delta;
+      }
+    }
 
+    // Direct scroll - standard browser behavior (no smooth for wheel)
     if (isHorizontal) {
       contentRef()!.scrollLeft += scrollAmount;
     } else {

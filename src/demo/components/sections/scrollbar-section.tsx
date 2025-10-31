@@ -1,4 +1,4 @@
-import { Component, Accessor } from "solid-js";
+import { Accessor, Component } from "solid-js";
 import { Scrollbar } from "../../../components/ui/scrollbar";
 import { DemoSection } from "../common/demo-section";
 import { ScrollbarGlowEffect } from "../effects";
@@ -64,7 +64,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
                 color: "#f6f6f6",
               }}
             >
-              {Array.from({ length: 20 }, (_, i) => (
+              {Array.from({ length: 30 }, (_, i) => (
                 <div
                   style={{
                     padding: "10px",
@@ -136,7 +136,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
                 "box-sizing": "border-box",
               }}
             >
-              {Array.from({ length: 20 }, (_, i) => (
+              {Array.from({ length: 30 }, (_, i) => (
                 <div
                   style={{
                     padding: "12px 15px",
