@@ -7,7 +7,6 @@ on:
         main,
         dev,
         develop,
-        feature/plugin-architecture,
         feature/tech-chip-component,
         feature/button-component,
         fix/type-errors
