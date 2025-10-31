@@ -1,6 +1,6 @@
 /**
  * Button Component Types
- * Reusable button component with multiple variants and states
+ * Based on Tauri project button styles
  */
 
 import type { JSX } from 'solid-js'
@@ -12,6 +12,12 @@ export type ButtonVariant =
 	| 'danger'
 	| 'success'
 	| 'warning'
+	| 'control'
+	| 'play-pause'
+	| 'small'
+	| 'close'
+	| 'minimize'
+	| 'maximize'
 
 export type ButtonSize = 'sm' | 'md' | 'lg'
 
@@ -49,6 +55,11 @@ export interface ButtonProps {
 	iconPosition?: ButtonIconPosition
 
 	/**
+	 * Whether the icon is filled (for Material Symbols)
+	 */
+	iconFilled?: boolean
+
+	/**
 	 * Click handler function
 	 */
 	onClick?: () => void
@@ -72,4 +83,19 @@ export interface ButtonProps {
 	 * HTML button type
 	 */
 	type?: 'button' | 'submit' | 'reset'
+
+	/**
+	 * Whether the button is in active state
+	 */
+	active?: boolean
+
+	/**
+	 * Whether the button is pinned (for pin buttons)
+	 */
+	pinned?: boolean
+
+	/**
+	 * Whether the button is maximized (for maximize buttons)
+	 */
+	maximized?: boolean
 }

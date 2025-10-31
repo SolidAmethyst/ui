@@ -1,113 +1,111 @@
-/**
- * Button Component Tests
- * Comprehensive test suite for Button component
- */
-
-import { fireEvent, render, screen } from '@solidjs/testing-library'
-import { describe, expect, it, vi } from 'vitest'
+import { render, screen } from '@solidjs/testing-library'
 import { Button } from '../ui/button'
+import { describe, expect, it, vi } from 'vitest'
 
 describe('Button', () => {
-	it('renders with default props', () => {
-		render(() => <Button>Click me</Button>)
+  it('renders with default props', () => {
+    render(() => <Button>Click Me</Button>)
+    const button = screen.getByRole('button', { name: /click me/i })
+    expect(button).toBeInTheDocument()
+    expect(button).toHaveClass('control-btn')
+  })
 
-		const button = screen.getByRole('button', { name: /click me/i })
-		expect(button).toBeInTheDocument()
-		expect(button).toHaveAttribute('type', 'button')
-	})
+  it('renders control button variant', () => {
+    render(() => <Button variant='control'>Control</Button>)
+    const button = screen.getByRole('button', { name: /control/i })
+    expect(button).toHaveClass('control-btn')
+  })
 
-	it('renders with custom variant', () => {
-		render(() => <Button variant='danger'>Delete</Button>)
+  it('renders play-pause button variant', () => {
+    render(() => <Button variant='play-pause'>Play</Button>)
+    const button = screen.getByRole('button', { name: /play/i })
+    expect(button).toHaveClass('play-pause-btn')
+  })
 
-		const button = screen.getByRole('button', { name: /delete/i })
-		expect(button).toHaveClass('bg-red-600')
-	})
+  it('renders small button variant', () => {
+    render(() => <Button variant='small' icon='settings' iconPosition='only' title='Settings' />)
+    const button = screen.getByRole('button', { name: /settings/i })
+    expect(button).toHaveClass('control-btn', 'small-btn')
+  })
 
-	it('renders with custom size', () => {
-		render(() => <Button size='lg'>Large Button</Button>)
+  it('renders close button variant', () => {
+    render(() => <Button variant='close' icon='close' iconPosition='only' title='Close' />)
+    const button = screen.getByRole('button', { name: /close/i })
+    expect(button).toHaveClass('control-btn', 'close-btn')
+  })
 
-		const button = screen.getByRole('button', { name: /large button/i })
-		expect(button).toHaveClass('px-4', 'py-3', 'text-base')
-	})
+  it('handles click events', () => {
+    const onClick = vi.fn()
+    render(() => <Button onClick={onClick}>Click Me</Button>)
+    const button = screen.getByRole('button', { name: /click me/i })
+    button.click()
+    expect(onClick).toHaveBeenCalledTimes(1)
+  })
 
-	it('handles click events', () => {
-		const handleClick = vi.fn()
-		render(() => <Button onClick={handleClick}>Click me</Button>)
+  it('disables button when disabled prop is true', () => {
+    render(() => <Button disabled>Click Me</Button>)
+    const button = screen.getByRole('button', { name: /click me/i })
+    expect(button).toBeDisabled()
+  })
 
-		const button = screen.getByRole('button', { name: /click me/i })
-		fireEvent.click(button)
+  it('shows loading state', () => {
+    render(() => <Button loading>Loading</Button>)
+    const button = screen.getByRole('button', { name: /loading/i })
+    expect(button.querySelector('.material-symbols-rounded')).toBeInTheDocument()
+    expect(button).toBeDisabled()
+  })
 
-		expect(handleClick).toHaveBeenCalledTimes(1)
-	})
+  it('renders with icon on left', () => {
+    render(() => <Button icon='add' iconPosition='left'>Add Item</Button>)
+    const button = screen.getByRole('button', { name: /add item/i })
+    expect(button.querySelector('.material-symbols-rounded')).toBeInTheDocument()
+  })
 
-	it('disables button when disabled prop is true', () => {
-		render(() => <Button disabled>Disabled Button</Button>)
+  it('renders with icon on right', () => {
+    render(() => <Button icon='arrow_forward' iconPosition='right'>Next</Button>)
+    const button = screen.getByRole('button', { name: /next/i })
+    expect(button.querySelector('.material-symbols-rounded')).toBeInTheDocument()
+  })
 
-		const button = screen.getByRole('button', { name: /disabled button/i })
-		expect(button).toBeDisabled()
-		expect(button).toHaveClass('disabled:opacity-50')
-	})
+  it('renders icon-only button', () => {
+    render(() => <Button icon='close' iconPosition='only' title='Close' />)
+    const button = screen.getByRole('button', { name: /close/i })
+    expect(button.querySelector('.material-symbols-rounded')).toBeTruthy()
+  })
 
-	it('shows loading state', () => {
-		render(() => <Button loading>Loading Button</Button>)
+  it('applies custom class names', () => {
+    render(() => <Button class='custom-class'>Custom Button</Button>)
+    const button = screen.getByRole('button', { name: /custom button/i })
+    expect(button).toHaveClass('custom-class')
+  })
 
-		const button = screen.getByRole('button', { name: /loading button/i })
-		expect(button).toBeDisabled()
-		expect(button.querySelector('svg')).toBeInTheDocument()
-	})
+  it('renders with different button types', () => {
+    render(() => <Button type='submit'>Submit</Button>)
+    const button = screen.getByRole('button', { name: /submit/i })
+    expect(button).toHaveAttribute('type', 'submit')
+  })
 
-	it('renders with icon on left', () => {
-		render(() => (
-			<Button icon='add' iconPosition='left'>
-				Add Item
-			</Button>
-		))
+  it('shows tooltip when title is provided', () => {
+    render(() => <Button title='Tooltip Text'>Hover Me</Button>)
+    const button = screen.getByRole('button', { name: /hover me/i })
+    expect(button).toHaveAttribute('title', 'Tooltip Text')
+  })
 
-		const button = screen.getByRole('button', { name: /add item/i })
-		const icon = button.querySelector('.material-symbols-rounded')
-		expect(icon).toBeInTheDocument()
-		expect(icon).toHaveTextContent('add')
-	})
+  it('shows active state', () => {
+    render(() => <Button active>Active Button</Button>)
+    const button = screen.getByRole('button', { name: /active button/i })
+    expect(button).toHaveClass('active')
+  })
 
-	it('renders with icon on right', () => {
-		render(() => (
-			<Button icon='arrow_forward' iconPosition='right'>
-				Next
-			</Button>
-		))
+  it('shows pinned state', () => {
+    render(() => <Button pinned>Pinned Button</Button>)
+    const button = screen.getByRole('button', { name: /pinned button/i })
+    expect(button).toHaveClass('pinned')
+  })
 
-		const button = screen.getByRole('button', { name: /next/i })
-		const icon = button.querySelector('.material-symbols-rounded')
-		expect(icon).toBeInTheDocument()
-		expect(icon).toHaveTextContent('arrow_forward')
-	})
-
-	it('renders icon-only button', () => {
-		render(() => <Button icon='close' iconPosition='only' title='Close' />)
-
-		const button = screen.getByRole('button', { name: /close/i })
-		expect(button).toHaveClass('p-2') // icon-only padding
-		expect(button.querySelector('.material-symbols-rounded')).toBeTruthy()
-	})
-
-	it('applies custom class names', () => {
-		render(() => <Button class='custom-class'>Custom Button</Button>)
-
-		const button = screen.getByRole('button', { name: /custom button/i })
-		expect(button).toHaveClass('custom-class')
-	})
-
-	it('renders with different button types', () => {
-		render(() => <Button type='submit'>Submit</Button>)
-
-		const button = screen.getByRole('button', { name: /submit/i })
-		expect(button).toHaveAttribute('type', 'submit')
-	})
-
-	it('shows tooltip when title is provided', () => {
-		render(() => <Button title='Tooltip text'>Button</Button>)
-
-		const button = screen.getByRole('button', { name: /button/i })
-		expect(button).toHaveAttribute('title', 'Tooltip text')
-	})
+  it('shows maximized state', () => {
+    render(() => <Button maximized>Maximized Button</Button>)
+    const button = screen.getByRole('button', { name: /maximized button/i })
+    expect(button).toHaveClass('maximized')
+  })
 })

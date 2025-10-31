@@ -5,42 +5,56 @@
 
 export const techChipStyles = {
 	base: `
-		inline-flex items-center gap-1.5 px-3 py-1
-		text-xs font-medium
-		backdrop-blur-md border border-solid
-		transition-all duration-200 ease-in-out
-		relative
+		display: inline-flex
+		align-items: center
+		gap: 4px
+		height: 24px
+		padding: 0 8px
+		background: transparent
+		color: white
+		font-size: 12px
+		line-height: 1
+		vertical-align: middle
+	`,
+
+	text: `
+		color: white
+		font-size: 12px
+		line-height: 1
 	`,
 
 	variants: {
 		frontend: `
-			bg-[rgba(49,120,198,0.15)]
-			border-[rgba(49,120,198,0.3)]
-			text-[#3178c6]
+			color: white
 		`,
 		backend: `
-			bg-[rgba(206,66,43,0.15)]
-			border-[rgba(206,66,43,0.3)]
-			text-[#ce422b]
+			color: white
 		`,
 		engine: `
-			bg-[rgba(206,66,43,0.15)]
-			border-[rgba(206,66,43,0.3)]
-			text-[#ce422b]
-		`,
+			color: white
+		`
 	},
 
 	hover: `
-		hover:-translate-y-0.5
-		hover:shadow-[0_2px_8px_rgba(0,0,0,0.2)]
+		opacity: 0.8
 	`,
 
 	indicator: `
-		w-1.5 h-1.5 rounded-full flex-shrink-0 relative
+		width: 6px
+		height: 6px
+		border-radius: 50%
+		flex-shrink: 0
 	`,
 
 	icon: `
-		text-sm leading-none h-3.5 -mt-px
+		color: white
+		font-size: 12px
+		line-height: 1
+		width: 12px
+		height: 12px
+		display: flex
+		align-items: center
+		justify-content: center
 	`,
 
 	status: {
@@ -55,9 +69,9 @@ export const techChipStyles = {
 		error: `
 			bg-[#f44336]
 			animate-pulse
-		`,
-	},
-};
+		`
+	}
+}
 
 /**
  * Keyframe animations
@@ -82,5 +96,4 @@ export const animations = `
 		opacity: 0.3;
 	}
 }
-`;
-
+`
