@@ -5,7 +5,7 @@
  */
 
 import { Component } from 'solid-js'
-import { Drawer } from '../../drawer'
+import { Drawer } from '../../../components/ui/drawer'
 import type { SettingsProps } from '../model/types'
 import { settingsStyles } from '../lib/settings.styles'
 

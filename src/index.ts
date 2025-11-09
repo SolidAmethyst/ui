@@ -5,7 +5,7 @@ export * from './components/ui/glass'
 export * from './components/ui/grid'
 export * from './components/ui/menu'
 export * from './components/ui/number-input'
-export * from './components/ui/settings'
+// Settings moved to composites
 export * from './components/ui/sidebar'
 export * from './components/ui/slider'
 export * from './components/ui/scrollbar'

@@ -4,7 +4,7 @@
  */
 
 import { Component, createMemo, createSignal, For, Show } from 'solid-js'
-import { Settings } from '../../../components/ui/settings'
+import { Settings } from './settings'
 import { Slider } from '../../../components/ui/slider'
 import { settingsCompositeStyles } from '../lib/settings-composite.styles'
 import type {

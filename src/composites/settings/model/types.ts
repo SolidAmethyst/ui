@@ -1,61 +1,11 @@
 /**
- * Settings Composite Types
- * Full-featured settings panel with sections for different components
+ * Settings Component Types
+ * Universal settings panel component
  */
 
 import type { JSX } from 'solid-js'
 
-export interface GlassSettings {
-	/**
-	 * Whether glass effect is enabled
-	 */
-	enabled: boolean
-
-	/**
-	 * Blur intensity (0-50)
-	 */
-	blur: number
-
-	/**
-	 * Opacity (0-1)
-	 */
-	opacity: number
-
-	/**
-	 * Darkness level (0-1, where 1 is darkest)
-	 */
-	darkness: number
-
-	/**
-	 * Saturation level (0-2, where 1 is normal)
-	 */
-	saturation: number
-}
-
-export interface FontSettings {
-	/**
-	 * Font family
-	 */
-	fontFamily?: string
-
-	/**
-	 * Font size
-	 */
-	fontSize?: string
-
-	/**
-	 * Font weight
-	 */
-	fontWeight?: string
-}
-
-export type MainCategory = 'appearance' | 'fonts'
-
-export type AppearanceSubcategory = 'glass' | 'theme'
-
-export type SettingsCategory = MainCategory | AppearanceSubcategory
-
-export interface SettingsCompositeProps {
+export interface SettingsProps {
 	/**
 	 * Whether the settings panel is open
 	 */
@@ -69,32 +19,27 @@ export interface SettingsCompositeProps {
 	/**
 	 * Whether dark theme is active
 	 */
-	isDark?: boolean | (() => boolean)
+	isDark?: boolean
 
 	/**
-	 * Glass effect settings
+	 * Panel width (default: 320px)
 	 */
-	glassSettings?: GlassSettings
+	width?: string
 
 	/**
-	 * Callback when glass settings change
+	 * Panel title
 	 */
-	onGlassSettingsChange?: (settings: GlassSettings) => void
+	title?: string
 
 	/**
-	 * Font settings (placeholder for future implementation)
-	 */
-	fontSettings?: FontSettings
-
-	/**
-	 * Callback when font settings change
-	 */
-	onFontSettingsChange?: (settings: FontSettings) => void
-
-	/**
-	 * Additional CSS class name
+	 * Additional CSS class names
 	 */
 	class?: string
+
+	/**
+	 * Settings sections/content
+	 */
+	children?: JSX.Element
 
 	/**
 	 * Inline CSS styles

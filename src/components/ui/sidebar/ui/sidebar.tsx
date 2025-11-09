@@ -1,12 +1,11 @@
 /**
  * Sidebar Component
  * Navigation sidebar component with support for overlay and shift modes
- * Overlay mode now uses Drawer for consistent behavior
+ * Overlay mode renders inside container (not via portal) for proper positioning within Window
  */
 
 import type { JSX } from 'solid-js'
 import { Component, For, Show } from 'solid-js'
-import { Drawer } from '../../drawer'
 import { sidebarStyles } from '../lib/sidebar.styles'
 import type { SidebarItem, SidebarProps } from '../model/types'
 
@@ -70,23 +69,34 @@ export const Sidebar: Component<SidebarProps> = props => {
 	const open = () => props.open
 	const isDark = () => props.isDark ?? true
 
-	// Overlay mode: use Drawer
-	if (overlayMode()) {
-		return (
-			<Drawer
-				isOpen={open()}
-				onClose={() => {
-					// Close sidebar when backdrop is clicked
-					props.onItemClick?.({} as SidebarItem)
+	return (
+		<>
+			{/* Backdrop for overlay mode */}
+			<Show when={overlayMode() && open()}>
+				<div
+					onClick={() => props.onItemClick?.({} as SidebarItem)}
+					style={{
+						position: 'absolute',
+						top: '0',
+						left: '0',
+						right: '0',
+						bottom: '0',
+						background: 'rgba(0, 0, 0, 0.3)',
+						'backdrop-filter': 'blur(2px)',
+						'-webkit-backdrop-filter': 'blur(2px)',
+						'z-index': '999',
+						cursor: 'pointer'
+					}}
+				/>
+			</Show>
+
+			{/* Sidebar panel */}
+			<aside
+				class={`sidebar ${props.class || ''}`}
+				style={{
+					...sidebarStyles.container(open(), overlayMode(), isDark()),
+					...(props.style as JSX.CSSProperties)
 				}}
-				isDark={isDark()}
-				position='left'
-				size='250px'
-				showBackdrop={true}
-				closeOnBackdropClick={true}
-				zIndex={1000}
-				class={props.class}
-				style={props.style}
 			>
 				<Show when={open()}>
 					<SidebarContent
@@ -95,26 +105,7 @@ export const Sidebar: Component<SidebarProps> = props => {
 						onItemClick={props.onItemClick}
 					/>
 				</Show>
-			</Drawer>
-		)
-	}
-
-	// Shift mode: keep original implementation for layout compatibility
-	return (
-		<aside
-			class={`sidebar ${props.class || ''}`}
-			style={{
-				...sidebarStyles.container(open(), false, isDark()),
-				...(props.style as JSX.CSSProperties)
-			}}
-		>
-			<Show when={open()}>
-				<SidebarContent
-					items={props.items}
-					isDark={isDark()}
-					onItemClick={props.onItemClick}
-				/>
-			</Show>
-		</aside>
+			</aside>
+		</>
 	)
 }

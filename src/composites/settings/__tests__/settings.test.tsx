@@ -62,20 +62,23 @@ describe('Settings', () => {
 		expect(onClose).toHaveBeenCalledTimes(1)
 	})
 
-	it('calls onClose when backdrop is clicked', () => {
+	it('calls onClose when backdrop is clicked', async () => {
 		const onClose = vi.fn()
 		render(() => (
 			<Settings isOpen={true} onClose={onClose} isDark={false}>
 				<div>Content</div>
 			</Settings>
 		))
-		// Backdrop is the first div in the fragment
+		// Backdrop is handled by Drawer and rendered in portal
+		// Wait for backdrop to be rendered
+		await new Promise(resolve => setTimeout(resolve, 100))
 		const backdrop = document.querySelector(
 			'div[style*="backdrop-filter"]'
 		) as HTMLElement
 		expect(backdrop).toBeInTheDocument()
 		if (backdrop) {
 			backdrop.click()
+			await new Promise(resolve => setTimeout(resolve, 100))
 		}
 		expect(onClose).toHaveBeenCalledTimes(1)
 	})
@@ -90,13 +93,16 @@ describe('Settings', () => {
 		expect(screen.getByText('Test Content')).toBeInTheDocument()
 	})
 
-	it('applies custom width', () => {
+	it('applies custom width', async () => {
 		render(() => (
 			<Settings isOpen={true} onClose={vi.fn()} width='400px' isDark={false}>
 				<div>Content</div>
 			</Settings>
 		))
-		const panel = screen.getByText('Settings').closest('aside')
+		// Wait for portal to render
+		await new Promise(resolve => setTimeout(resolve, 100))
+		const panel = document.querySelector('.drawer-panel')
+		expect(panel).toBeInTheDocument()
 		expect(panel).toHaveStyle({ width: '400px' })
 	})
 
