@@ -20,7 +20,7 @@ export const TechChipSection: Component<TechChipSectionProps> = (props) => (
         "justify-content": "center",
         "align-items": "center",
         width: "100%",
-        padding: "10px 0",
+        padding: "20px 0",
       }}
     >
       <TechChip

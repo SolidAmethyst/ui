@@ -17,7 +17,7 @@ export const DemoSection: Component<DemoSectionProps> = (props) => (
       "backdrop-filter": "blur(20px) saturate(180%)",
       "-webkit-backdrop-filter": "blur(20px) saturate(180%)",
       border: "1px solid rgba(255, 255, 255, 0.1)",
-      padding: "16px",
+      padding: "10px",
       "border-radius": "0px",
       "box-shadow": props.isDark()
         ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)"

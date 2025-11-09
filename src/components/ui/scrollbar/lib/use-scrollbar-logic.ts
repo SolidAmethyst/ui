@@ -32,42 +32,18 @@ export function useScrollbarLogic(
         ? contentRef()!.scrollLeft
         : contentRef()!.scrollTop;
     const maxScroll = contentSize - containerSize;
-
-    // Get track size - if trackRef is not ready yet, use containerSize as fallback
     const trackSize =
-      trackRef() && trackRef()!.clientWidth > 0 && trackRef()!.clientHeight > 0
-        ? direction() === "horizontal"
-          ? trackRef()!.clientWidth
-          : trackRef()!.clientHeight
-        : direction() === "horizontal"
-          ? containerRef()!.clientWidth
-          : containerRef()!.clientHeight;
-
-    // Ensure trackSize is valid (greater than 0)
-    if (trackSize <= 0) {
-      setState((prev) => ({ ...prev, isVisible: false }));
-      return;
-    }
+      direction() === "horizontal"
+        ? (trackRef()?.clientWidth ?? 0)
+        : (trackRef()?.clientHeight ?? 0);
 
     const arrowSpace = state().showArrows ? 12 : 0;
-    const availableTrackSize = Math.max(0, trackSize - arrowSpace * 2);
-
-    // Ensure we have valid values for calculation
-    if (availableTrackSize <= 0 || contentSize <= 0 || containerSize <= 0) {
-      setState((prev) => ({ ...prev, isVisible: false }));
-      return;
-    }
+    const availableTrackSize = trackSize - arrowSpace * 2;
 
     // Calculate thumb size proportionally to content
-    // Ensure we don't get invalid sizes when trackSize is still initializing
-    const calculatedThumbSize =
-      (availableTrackSize * containerSize) / contentSize;
     const thumbSize = Math.max(
       20,
-      Math.min(
-        availableTrackSize - 4, // Leave some padding to prevent thumb from touching edges
-        calculatedThumbSize,
-      ),
+      (availableTrackSize * containerSize) / contentSize,
     );
 
     // Calculate thumb position - only if NOT dragging
