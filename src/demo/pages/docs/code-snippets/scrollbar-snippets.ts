@@ -3,10 +3,11 @@
  * Separated from the main docs file for better readability and maintainability
  */
 
-export const scrollbarExamples = {
-	installation: `import { Scrollbar, ScrollbarProvider } from '@sapphiresolid/ui'`,
+export const scrollbarSnippets = {
+	imports: `import { Scrollbar, ScrollbarProvider } from '@sapphiresolid/ui'`,
 
-	verticalScrollbar: `<ScrollbarProvider>
+	usage: {
+		verticalScrollbar: `<ScrollbarProvider>
   <Scrollbar direction="vertical" showArrows={true}>
     <div>Item 1</div>
     <div>Item 2</div>
@@ -15,7 +16,7 @@ export const scrollbarExamples = {
   </Scrollbar>
 </ScrollbarProvider>`,
 
-	horizontalScrollbar: `<ScrollbarProvider>
+		horizontalScrollbar: `<ScrollbarProvider>
   <Scrollbar direction="horizontal" showArrows={true}>
     <div style={{ display: 'flex', gap: '16px' }}>
       <div>Card 1</div>
@@ -25,5 +26,5 @@ export const scrollbarExamples = {
     </div>
   </Scrollbar>
 </ScrollbarProvider>`
+	}
 } as const
-

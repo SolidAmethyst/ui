@@ -1,6 +1,6 @@
 import { Accessor, Component, createSignal, For, Show } from 'solid-js'
 import type { MenuItem } from '../../components/ui/menu'
-import { TitleBar } from '../../components/ui/title-bar'
+import { TitleBar } from '../../composites/title-bar'
 import { Window } from '../../components/ui/window'
 
 interface AppDemoProps {

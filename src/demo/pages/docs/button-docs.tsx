@@ -4,7 +4,7 @@ import { NumberInput } from '../../../components/ui/number-input'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
-import { buttonExamples } from './code-snippets/button-snippets'
+import { buttonSnippets } from './code-snippets/button-snippets'
 
 interface ButtonDocsProps {
 	isDark: Accessor<boolean>
@@ -25,10 +25,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 			{/* Installation */}
 			<section style={docsStyles.section()}>
 				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
-				<CodeHighlight
-					code={buttonExamples.installation}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={buttonSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
@@ -51,7 +48,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							<Button variant='ghost'>Ghost</Button>
 						</div>
 					}
-					code={buttonExamples.basicUsage}
+					code={buttonSnippets.usage.basicUsage}
 				/>
 			</section>
 
@@ -74,7 +71,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							<Button icon='bug_report'>Debug</Button>
 						</div>
 					}
-					code={buttonExamples.controlButtons}
+					code={buttonSnippets.usage.controlButtons}
 				/>
 			</section>
 
@@ -112,7 +109,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							/>
 						</div>
 					}
-					code={buttonExamples.smallButtons}
+					code={buttonSnippets.usage.smallButtons}
 				/>
 			</section>
 
@@ -134,7 +131,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							<Button variant='play-pause' icon='pause' title='Pause' />
 						</div>
 					}
-					code={buttonExamples.playPause}
+					code={buttonSnippets.usage.playPause}
 				/>
 			</section>
 
@@ -172,7 +169,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							/>
 						</div>
 					}
-					code={buttonExamples.windowControls}
+					code={buttonSnippets.usage.windowControls}
 				/>
 			</section>
 
@@ -222,7 +219,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							/>
 						</div>
 					}
-					code={buttonExamples.actionButtons}
+					code={buttonSnippets.usage.actionButtons}
 				/>
 			</section>
 
@@ -247,7 +244,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							<Button disabled>Disabled</Button>
 						</div>
 					}
-					code={buttonExamples.buttonStates}
+					code={buttonSnippets.usage.buttonStates}
 				/>
 			</section>
 
@@ -285,7 +282,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								<NumberInput
 									value={columnsValue()}
 									onChange={val => {
-										const num = typeof val === 'number' ? val : parseInt(String(val), 10)
+										const num =
+											typeof val === 'number' ? val : parseInt(String(val), 10)
 										if (!isNaN(num) && num >= 1 && num <= 6) {
 											setColumnsValue(num)
 										}
@@ -300,8 +298,41 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							</div>
 						</div>
 					}
-					code={buttonExamples.numberInputControls}
+					code={buttonSnippets.usage.numberInputControls}
 				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
+				<p style={docsStyles.description(theme())}>
+					The button component uses CSS custom properties for theming. These
+					variables are already defined in the library, but you can override
+					them in your application's stylesheet to match your design system.
+				</p>
+				<CodeHighlight
+					code={`@layer base {
+  :root {
+    --button-hover: 221.2 83.2% 53.3%;
+    --button-close-hover: 0 84.2% 60.2%;
+    --button-close-active: 0 62.8% 30.6%;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    --button-hover: 217.2 91.2% 59.8%;
+    --button-close-hover: 0 62.8% 30.6%;
+    --button-close-active: 0 84.2% 60.2%;
+  }
+}`}
+					isDark={props.isDark}
+				/>
+				<p style={docsStyles.description(theme())}>
+					The button component automatically uses these CSS variables. You can
+					override them in your application to match your design system. All
+					colors use HSL format without the `hsl()` wrapper, allowing for easy
+					opacity adjustments.
+				</p>
 			</section>
 		</article>
 	)

@@ -115,7 +115,10 @@ export const Button: Component<ButtonProps> = props => {
 				<span
 					class={`material-symbols-rounded ${props.iconFilled ? 'filled' : ''}`}
 					aria-hidden='true'
-					style={{ 'font-size': getIconSize() }}
+					style={{
+						'font-size': getIconSize(),
+						color: props.style?.color || 'inherit'
+					}}
 				>
 					{getDefaultIcon()}
 				</span>
@@ -127,7 +130,10 @@ export const Button: Component<ButtonProps> = props => {
 				<span
 					class={`material-symbols-rounded ${props.iconFilled ? 'filled' : ''}`}
 					aria-hidden='true'
-					style={{ 'font-size': getIconSize() }}
+					style={{
+						'font-size': getIconSize(),
+						color: props.style?.color || 'inherit'
+					}}
 				>
 					{getDefaultIcon()}
 				</span>

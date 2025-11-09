@@ -3,7 +3,10 @@ import { Scrollbar, ScrollbarProvider } from '../../../components/ui/scrollbar'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
-import { scrollbarExamples } from './code-snippets/scrollbar-snippets'
+import {
+	scrollbarImports,
+	scrollbarUsage
+} from './code-snippets/scrollbar-snippets'
 
 interface ScrollbarDocsProps {
 	isDark: Accessor<boolean>
@@ -23,10 +26,7 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 			{/* Installation */}
 			<section style={docsStyles.section()}>
 				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
-				<CodeHighlight
-					code={scrollbarExamples.installation}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={scrollbarSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Vertical Scrollbar */}
@@ -67,7 +67,7 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 							</div>
 						</ScrollbarProvider>
 					}
-					code={scrollbarExamples.verticalScrollbar}
+					code={scrollbarSnippets.usage.verticalScrollbar}
 				/>
 			</section>
 
@@ -129,8 +129,49 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 							</div>
 						</ScrollbarProvider>
 					}
-					code={scrollbarExamples.horizontalScrollbar}
+					code={scrollbarSnippets.usage.horizontalScrollbar}
 				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
+				<p style={docsStyles.description(theme())}>
+					The scrollbar component uses CSS custom properties for theming. These
+					variables are already defined in the library, but you can override
+					them in your application's stylesheet to match your design system.
+				</p>
+				<CodeHighlight
+					code={`@layer base {
+  :root {
+    --scrollbar-thumb: 0 0% 100% / 0.3;
+    --scrollbar-thumb-hover: 0 0% 100% / 0.5;
+    --scrollbar-thumb-active: 0 0% 100% / 0.7;
+    --scrollbar-arrow: 0 0% 100%;
+    --scrollbar-arrow-hover: 221.2 83.2% 53.3%;
+    --scrollbar-arrow-active: 221.2 83.2% 53.3%;
+    --scrollbar-arrow-disabled: 0 0% 100% / 0.3;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    --scrollbar-thumb: 0 0% 100% / 0.3;
+    --scrollbar-thumb-hover: 0 0% 100% / 0.5;
+    --scrollbar-thumb-active: 0 0% 100% / 0.7;
+    --scrollbar-arrow: 0 0% 100%;
+    --scrollbar-arrow-hover: 217.2 91.2% 59.8%;
+    --scrollbar-arrow-active: 217.2 91.2% 59.8%;
+    --scrollbar-arrow-disabled: 0 0% 100% / 0.3;
+  }
+}`}
+					isDark={props.isDark}
+				/>
+				<p style={docsStyles.description(theme())}>
+					The scrollbar component automatically uses these CSS variables. You
+					can override them in your application to match your design system. All
+					colors use HSL format without the `hsl()` wrapper, allowing for easy
+					opacity adjustments.
+				</p>
 			</section>
 		</article>
 	)

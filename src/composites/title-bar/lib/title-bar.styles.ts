@@ -2,14 +2,16 @@
  * TitleBar Component Styles
  */
 
+import type { JSX } from 'solid-js'
+
 export const titleBarStyles = {
-	container: {
+	container: (isDark: boolean): JSX.CSSProperties => ({
 		display: 'flex',
 		'align-items': 'center',
 		'justify-content': 'space-between',
 		width: '100%',
 		height: '32px',
-		'background-color': 'rgba(30, 30, 30, 1)',
+		'background-color': isDark ? 'rgba(30, 30, 30, 1)' : 'rgba(248, 248, 248, 1)',
 		'user-select': 'none',
 		'-webkit-app-region': 'drag' as const,
 		'box-sizing': 'border-box',
@@ -18,14 +20,14 @@ export const titleBarStyles = {
 		position: 'relative' as const,
 		'z-index': '1000',
 		border: 'none'
-	},
+	}),
 	leftSection: {
 		display: 'flex',
 		'align-items': 'center',
 		height: '100%',
 		'flex-shrink': '0'
 	},
-	burgerButton: {
+	burgerButton: (isDark: boolean): JSX.CSSProperties => ({
 		'-webkit-app-region': 'no-drag' as const,
 		width: '32px',
 		height: '32px',
@@ -37,10 +39,10 @@ export const titleBarStyles = {
 		background: 'transparent',
 		padding: '0',
 		margin: '0',
-		color: 'rgba(255, 255, 255, 0.9)',
+		color: isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 26, 26, 0.9)',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
-	},
-	titleArea: {
+	}),
+	titleArea: (isDark: boolean): JSX.CSSProperties => ({
 		display: 'flex',
 		'align-items': 'center',
 		flex: '1',
@@ -49,11 +51,11 @@ export const titleBarStyles = {
 		overflow: 'hidden',
 		'text-overflow': 'ellipsis',
 		'white-space': 'nowrap',
-		color: 'rgba(255, 255, 255, 0.9)',
+		color: isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 26, 26, 0.9)',
 		'font-size': '13px',
 		'font-weight': '400',
 		'letter-spacing': '0.01em'
-	},
+	}),
 	rightSection: {
 		display: 'flex',
 		'align-items': 'center',
@@ -67,12 +69,12 @@ export const titleBarStyles = {
 		height: '100%',
 		gap: '0'
 	},
-	separator: {
+	separator: (isDark: boolean): JSX.CSSProperties => ({
 		width: '1px',
 		height: '20px',
-		'background-color': 'rgba(255, 255, 255, 0.1)',
+		'background-color': isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
 		margin: '0 4px'
-	},
+	}),
 	controlButton: {
 		width: '32px',
 		height: '32px',

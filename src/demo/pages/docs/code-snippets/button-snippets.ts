@@ -3,29 +3,30 @@
  * Separated from the main docs file for better readability and maintainability
  */
 
-export const buttonExamples = {
-	installation: `import { Button } from '@sapphiresolid/ui'`,
+export const buttonSnippets = {
+	imports: `import { Button } from '@sapphiresolid/ui'`,
 
-	basicUsage: `<Button variant="primary">Primary</Button>
+	usage: {
+		basicUsage: `<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="danger">Danger</Button>
 <Button variant="ghost">Ghost</Button>`,
 
-	controlButtons: `<Button icon="menu">Menu</Button>
+		controlButtons: `<Button icon="menu">Menu</Button>
 <Button icon="settings">Settings</Button>
 <Button icon="bug_report">Debug</Button>`,
 
-	smallButtons: `<Button
+		smallButtons: `<Button
   variant="small"
   icon="settings"
   iconPosition="only"
   title="Settings"
 />`,
 
-	playPause: `<Button variant="play-pause" icon="play_arrow" title="Play" />
+		playPause: `<Button variant="play-pause" icon="play_arrow" title="Play" />
 <Button variant="play-pause" icon="pause" title="Pause" />`,
 
-	windowControls: `<Button
+		windowControls: `<Button
   variant="minimize"
   icon="remove"
   iconPosition="only"
@@ -44,19 +45,19 @@ export const buttonExamples = {
   title="Close"
 />`,
 
-	actionButtons: `<Button variant="back" iconPosition="only" title="Back" />
+		actionButtons: `<Button variant="back" iconPosition="only" title="Back" />
 <Button variant="save" iconPosition="only" title="Save" />
 <Button variant="delete" iconPosition="only" title="Delete" />
 <Button variant="search" iconPosition="only" title="Search" />
 <Button variant="share" iconPosition="only" title="Share" />`,
 
-	buttonStates: `<Button active>Active</Button>
+		buttonStates: `<Button active>Active</Button>
 <Button pinned>Pinned</Button>
 <Button maximized>Maximized</Button>
 <Button loading>Loading</Button>
 <Button disabled>Disabled</Button>`,
 
-	numberInputControls: `<div style={{ position: "relative", display: "inline-flex" }}>
+		numberInputControls: `<div style={{ position: "relative", display: "inline-flex" }}>
   <input
     type="number"
     value={value}
@@ -79,4 +80,5 @@ export const buttonExamples = {
     />
   </div>
 </div>`
+	}
 } as const

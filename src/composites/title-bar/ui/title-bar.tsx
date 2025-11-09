@@ -5,16 +5,18 @@
 
 import type { JSX } from 'solid-js'
 import { Component, Show } from 'solid-js'
-import { Button } from '../../button'
+import { Button } from '../../../components/ui/button'
 import { titleBarStyles } from '../lib/title-bar.styles'
 import type { TitleBarProps } from '../model/types'
 
 export const TitleBar: Component<TitleBarProps> = props => {
+	const isDark = () => props.isDark ?? true
+
 	return (
 		<div
 			class={`title-bar ${props.class || ''}`}
 			style={{
-				...(titleBarStyles.container as JSX.CSSProperties),
+				...titleBarStyles.container(isDark()),
 				'-webkit-app-region': props.draggable !== false ? 'drag' : 'no-drag'
 			}}
 		>
@@ -27,10 +29,12 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							e.stopPropagation()
 							props.onBurgerClick?.()
 						}}
-						style={titleBarStyles.burgerButton}
+						style={titleBarStyles.burgerButton(isDark())}
 						title='Menu'
 						onMouseEnter={e => {
-							e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'
+							e.currentTarget.style.backgroundColor = isDark()
+								? 'rgba(255, 255, 255, 0.1)'
+								: 'rgba(0, 0, 0, 0.05)'
 						}}
 						onMouseLeave={e => {
 							e.currentTarget.style.backgroundColor = 'transparent'
@@ -40,7 +44,7 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							class='material-symbols-rounded'
 							style={{
 								'font-size': '18px',
-								color: 'rgba(255, 255, 255, 0.9)'
+								color: isDark() ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 26, 26, 0.9)'
 							}}
 						>
 							menu
@@ -52,7 +56,7 @@ export const TitleBar: Component<TitleBarProps> = props => {
 			{/* Center Section: Title (Draggable Area) */}
 			<div
 				style={{
-					...titleBarStyles.titleArea,
+					...titleBarStyles.titleArea(isDark()),
 					'-webkit-app-region': props.draggable !== false ? 'drag' : 'no-drag'
 				}}
 			>
@@ -68,11 +72,14 @@ export const TitleBar: Component<TitleBarProps> = props => {
 					<Show when={props.onThemeToggle}>
 						<Button
 							variant='small'
-							icon={props.isDark ? 'light_mode' : 'dark_mode'}
+							icon={isDark() ? 'light_mode' : 'dark_mode'}
 							iconPosition='only'
 							onClick={() => props.onThemeToggle?.()}
-							title={props.isDark ? 'Light mode' : 'Dark mode'}
+							title={isDark() ? 'Light mode' : 'Dark mode'}
 							class='title-bar-control-btn'
+							style={{
+								color: isDark() ? 'rgba(255, 255, 255, 0.8)' : 'rgba(26, 26, 26, 0.8)'
+							}}
 						/>
 					</Show>
 
@@ -84,6 +91,9 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							onClick={() => props.onDebugClick?.()}
 							title='Debug'
 							class='title-bar-control-btn'
+							style={{
+								color: isDark() ? 'rgba(255, 255, 255, 0.8)' : 'rgba(26, 26, 26, 0.8)'
+							}}
 						/>
 					</Show>
 
@@ -96,6 +106,9 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							title='Pin'
 							pinned={props.pinned}
 							class='title-bar-control-btn'
+							style={{
+								color: isDark() ? 'rgba(255, 255, 255, 0.8)' : 'rgba(26, 26, 26, 0.8)'
+							}}
 						/>
 					</Show>
 
@@ -107,6 +120,9 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							onClick={() => props.onSettingsClick?.()}
 							title='Settings'
 							class='title-bar-control-btn'
+							style={{
+								color: isDark() ? 'rgba(255, 255, 255, 0.8)' : 'rgba(26, 26, 26, 0.8)'
+							}}
 						/>
 					</Show>
 				</div>
@@ -123,7 +139,7 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							props.onCloseClick)
 					}
 				>
-					<div style={titleBarStyles.separator} />
+					<div style={titleBarStyles.separator(isDark())} />
 				</Show>
 
 				{/* Window Controls Group */}
@@ -136,6 +152,9 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							onClick={() => props.onMinimizeClick?.()}
 							title='Minimize'
 							class='title-bar-control-btn'
+							style={{
+								color: isDark() ? 'rgba(255, 255, 255, 0.8)' : 'rgba(26, 26, 26, 0.8)'
+							}}
 						/>
 					</Show>
 
@@ -148,6 +167,9 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							onClick={() => props.onMaximizeClick?.()}
 							title={props.maximized ? 'Restore' : 'Maximize'}
 							class='title-bar-control-btn'
+							style={{
+								color: isDark() ? 'rgba(255, 255, 255, 0.8)' : 'rgba(26, 26, 26, 0.8)'
+							}}
 						/>
 					</Show>
 
@@ -159,6 +181,9 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							onClick={() => props.onCloseClick?.()}
 							title='Close'
 							class='title-bar-control-btn'
+							style={{
+								color: isDark() ? 'rgba(255, 255, 255, 0.8)' : 'rgba(26, 26, 26, 0.8)'
+							}}
 						/>
 					</Show>
 				</div>

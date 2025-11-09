@@ -3,10 +3,11 @@
  * Separated from the main docs file for better readability and maintainability
  */
 
-export const techchipExamples = {
-	installation: `import { TechChip } from '@sapphiresolid/ui'`,
+export const techchipSnippets = {
+	imports: `import { TechChip } from '@sapphiresolid/ui'`,
 
-	basicUsage: `<TechChip
+	usage: {
+		basicUsage: `<TechChip
   label="TypeScript"
   icon="code"
   status="ready"
@@ -48,7 +49,7 @@ export const techchipExamples = {
   variant="engine"
 />`,
 
-	statusStates: `<TechChip
+		statusStates: `<TechChip
   label="Loading"
   icon="hourglass_empty"
   status="loading"
@@ -68,4 +69,5 @@ export const techchipExamples = {
   status="error"
   variant="engine"
 />`
+	}
 } as const

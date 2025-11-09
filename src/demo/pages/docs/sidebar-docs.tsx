@@ -5,6 +5,7 @@ import { Sidebar } from '../../../components/ui/sidebar'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
+import { sidebarSnippets } from './code-snippets/sidebar-snippets'
 
 interface SidebarDocsProps {
 	isDark: Accessor<boolean>
@@ -55,11 +56,7 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 			{/* Installation */}
 			<section style={docsStyles.section()}>
 				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
-				<CodeHighlight
-					code={`import { Sidebar } from '@sapphiresolid/ui'
-import type { SidebarItem } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={sidebarSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Your First Sidebar */}
@@ -122,10 +119,14 @@ import type { SidebarItem } from '@sapphiresolid/ui'`}
 									<Button
 										icon='menu'
 										variant='ghost'
+										iconPosition='only'
 										onClick={() => setSidebarOpen(!sidebarOpen())}
-									>
-										Menu
-									</Button>
+										style={{
+											width: '40px',
+											height: '40px',
+											'font-size': '24px'
+										}}
+									/>
 									<h2
 										style={{
 											'font-size': '1.25rem',
@@ -225,49 +226,7 @@ import type { SidebarItem } from '@sapphiresolid/ui'`}
 							</div>
 						</div>
 					}
-					code={`import { createSignal } from 'solid-js'
-import { Sidebar } from '@sapphiresolid/ui'
-import type { SidebarItem } from '@sapphiresolid/ui'
-import { Button } from '@sapphiresolid/ui'
-
-export function App() {
-	const [sidebarOpen, setSidebarOpen] = createSignal(false)
-
-	const sidebarItems: SidebarItem[] = [
-		{ label: 'Home', icon: 'home', onClick: () => {} },
-		{ label: 'Dashboard', icon: 'dashboard', onClick: () => {} },
-		{ label: 'Settings', icon: 'settings', onClick: () => {} },
-		{ separator: true },
-		{ label: 'Documents', icon: 'description', onClick: () => {} },
-		{ label: 'Images', icon: 'image', onClick: () => {} },
-		{ label: 'Videos', icon: 'video_library', onClick: () => {} },
-		{ separator: true },
-		{ label: 'Help', icon: 'help', onClick: () => {} },
-		{ label: 'About', icon: 'info', onClick: () => {} }
-	]
-
-	return (
-		<div style={{ display: 'flex', height: '100vh' }}>
-			<Sidebar
-				open={sidebarOpen()}
-				items={sidebarItems}
-				isDark={isDark}
-				overlayMode={false}
-				onItemClick={() => setSidebarOpen(false)}
-			/>
-			<div style={{ flex: '1', display: 'flex', 'flex-direction': 'column' }}>
-				<div style={{ padding: '16px', 'border-bottom': '1px solid rgba(0,0,0,0.1)' }}>
-					<Button icon="menu" onClick={() => setSidebarOpen(!sidebarOpen())}>
-						Menu
-					</Button>
-				</div>
-				<div style={{ flex: '1', padding: '24px', overflow: 'auto' }}>
-					{/* Your content */}
-				</div>
-			</div>
-		</div>
-	)
-}`}
+					code={sidebarSnippets.usage.yourFirstSidebarComplete}
 				/>
 			</section>
 
@@ -280,24 +239,7 @@ export function App() {
 					them in your application's stylesheet to match your design system.
 				</p>
 				<CodeHighlight
-					code={`@layer base {
-  :root {
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-  }
-
-  .dark,
-  [data-theme="dark"] {
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-  }
-}`}
+					code={sidebarSnippets.usage.customization}
 					isDark={props.isDark}
 				/>
 				<p style={docsStyles.description(theme())}>

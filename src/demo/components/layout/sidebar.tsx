@@ -26,13 +26,15 @@ const componentGroups: ComponentGroup[] = [
 			{ name: 'Grid', id: 'grid' },
 			{ name: 'Sidebar', id: 'sidebar' },
 			{ name: 'TechChip', id: 'techchip' },
-			{ name: 'Scrollbar', id: 'scrollbar' },
-			{ name: 'TitleBar', id: 'titlebar' }
+			{ name: 'Scrollbar', id: 'scrollbar' }
 		]
 	},
 	{
 		title: 'Composites',
-		items: [{ name: 'App', id: 'app' }]
+		items: [
+			{ name: 'App', id: 'app' },
+			{ name: 'TitleBar', id: 'titlebar' }
+		]
 	}
 ]
 

@@ -3,10 +3,11 @@
  * Separated from the main docs file for better readability and maintainability
  */
 
-export const gridExamples = {
-	installation: `import { Grid } from '@sapphiresolid/ui'`,
+export const gridSnippets = {
+	imports: `import { Grid } from '@sapphiresolid/ui'`,
 
-	basicUsage: `<Grid columns={3} gap="16px">
+	usage: {
+		basicUsage: `<Grid columns={3} gap="16px">
   <div>
     <h3>Title</h3>
     <div>KPI 1</div>
@@ -29,7 +30,7 @@ export const gridExamples = {
   </div>
 </Grid>`,
 
-	responsiveBreakpoints: `<Grid
+		responsiveBreakpoints: `<Grid
   columns={4}
   breakpoints={[
     { maxWidth: 768, columns: 1 },
@@ -41,7 +42,7 @@ export const gridExamples = {
   {/* Grid items */}
 </Grid>`,
 
-	autoFitMinMax: `<Grid
+		autoFitMinMax: `<Grid
   columns={3}
   minColumnWidth="150px"
   maxColumnWidth="1fr"
@@ -51,14 +52,14 @@ export const gridExamples = {
   {/* Grid items */}
 </Grid>`,
 
-	separateGap: `<Grid
+		separateGap: `<Grid
   columns={3}
   gap={{ row: "24px", column: "12px" }}
 >
   {/* Grid items */}
 </Grid>`,
 
-	customCSSTemplate: `<Grid
+		customCSSTemplate: `<Grid
   columns="200px 1fr auto"
   rows="auto 1fr auto"
   gap="16px"
@@ -69,4 +70,5 @@ export const gridExamples = {
   <div>Actions</div>
   <div style={{ gridColumn: "1 / -1" }}>Footer</div>
 </Grid>`
+	}
 } as const

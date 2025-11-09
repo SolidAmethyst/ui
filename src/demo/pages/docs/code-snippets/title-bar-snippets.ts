@@ -3,10 +3,11 @@
  * Separated from the main docs file for better readability and maintainability
  */
 
-export const titleBarExamples = {
-	installation: `import { TitleBar } from '@sapphiresolid/ui'`,
+export const titleBarSnippets = {
+	imports: `import { TitleBar } from '@sapphiresolid/ui'`,
 
-	basicUsage: `<TitleBar
+	usage: {
+		basicUsage: `<TitleBar
   title="Physics Engine Demo"
   onBurgerClick={() => console.log('Menu')}
   onThemeToggle={() => toggleTheme()}
@@ -21,14 +22,14 @@ export const titleBarExamples = {
   pinned={pinned}
 />`,
 
-	minimalExample: `<TitleBar title="My Application" />`,
+		minimalExample: `<TitleBar title="My Application" />`,
 
-	windowControls: `<TitleBar
+		windowControls: `<TitleBar
   title="Window Title"
   onMinimizeClick={() => handleMinimize()}
   onMaximizeClick={() => handleMaximize()}
   onCloseClick={() => handleClose()}
   maximized={maximized}
 />`
+	}
 } as const
-

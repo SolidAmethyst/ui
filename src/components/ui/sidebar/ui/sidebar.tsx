@@ -11,12 +11,13 @@ import type { SidebarProps } from '../model/types'
 export const Sidebar: Component<SidebarProps> = props => {
 	const overlayMode = () => props.overlayMode ?? false
 	const open = () => props.open
+	const isDark = () => props.isDark ?? true
 
 	return (
 		<aside
 			class={`sidebar ${props.class || ''}`}
 			style={{
-				...sidebarStyles.container(open(), overlayMode()),
+				...sidebarStyles.container(open(), overlayMode(), isDark()),
 				...(props.style as JSX.CSSProperties)
 			}}
 		>
@@ -27,7 +28,7 @@ export const Sidebar: Component<SidebarProps> = props => {
 							{item => (
 								<>
 									<Show when={item.separator}>
-										<li style={sidebarStyles.separator()} />
+										<li style={sidebarStyles.separator(isDark())} />
 									</Show>
 									<Show when={!item.separator}>
 										<li>
@@ -39,11 +40,12 @@ export const Sidebar: Component<SidebarProps> = props => {
 													props.onItemClick?.(item)
 												}}
 												disabled={item.disabled}
-												style={sidebarStyles.button(item.disabled ?? false)}
+												style={sidebarStyles.button(item.disabled ?? false, isDark())}
 												onMouseEnter={e => {
 													if (!item.disabled) {
-														e.currentTarget.style.backgroundColor =
-															'hsl(var(--sidebar-accent))'
+														e.currentTarget.style.backgroundColor = isDark()
+															? 'hsla(240, 3.7%, 15.9%, 1)'
+															: 'hsla(240, 4.8%, 95.9%, 1)'
 													}
 												}}
 												onMouseLeave={e => {

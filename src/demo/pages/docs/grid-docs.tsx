@@ -4,7 +4,7 @@ import { NumberInput } from '../../../components/ui/number-input'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
-import { gridExamples } from './code-snippets/grid-snippets'
+import { gridSnippets } from './code-snippets/grid-snippets'
 
 interface GridDocsProps {
 	isDark: Accessor<boolean>
@@ -48,7 +48,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 			{/* Installation */}
 			<section style={docsStyles.section()}>
 				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
-				<CodeHighlight code={gridExamples.installation} isDark={props.isDark} />
+				<CodeHighlight code={gridSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
@@ -224,7 +224,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={gridExamples.basicUsage}
+					code={gridSnippets.usage.basicUsage}
 				/>
 			</section>
 
@@ -335,7 +335,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={gridExamples.responsiveBreakpoints}
+					code={gridSnippets.usage.responsiveBreakpoints}
 				/>
 			</section>
 
@@ -517,7 +517,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={gridExamples.autoFitMinMax}
+					code={gridSnippets.usage.autoFitMinMax}
 				/>
 			</section>
 
@@ -745,7 +745,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={gridExamples.separateGap}
+					code={gridSnippets.usage.separateGap}
 				/>
 			</section>
 
@@ -890,8 +890,40 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={gridExamples.customCSSTemplate}
+					code={gridSnippets.usage.customCSSTemplate}
 				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
+				<p style={docsStyles.description(theme())}>
+					The Grid component is a layout component and doesn't use CSS custom
+					properties for theming. Instead, it uses standard CSS Grid properties
+					that can be customized through inline styles or CSS classes. The Grid
+					component accepts standard CSS Grid properties like `columns`, `rows`,
+					`gap`, and `style` props.
+				</p>
+				<CodeHighlight
+					code={`// Grid component accepts standard CSS Grid properties
+<Grid
+  columns="repeat(3, 1fr)"
+  rows="auto 1fr auto"
+  gap="16px"
+  style={{
+    width: '100%',
+    minHeight: '400px'
+  }}
+>
+  {/* Your grid items */}
+</Grid>`}
+					isDark={props.isDark}
+				/>
+				<p style={docsStyles.description(theme())}>
+					You can customize the Grid component by passing CSS Grid properties
+					directly through props or by using the `style` prop for additional
+					customization.
+				</p>
 			</section>
 		</article>
 	)

@@ -5,7 +5,7 @@
 import type { JSX } from 'solid-js'
 
 export const sidebarStyles = {
-	container: (isOpen: boolean, isOverlay: boolean): JSX.CSSProperties => {
+	container: (isOpen: boolean, isOverlay: boolean, isDark: boolean): JSX.CSSProperties => {
 		return {
 			...(isOverlay
 				? {
@@ -25,7 +25,9 @@ export const sidebarStyles = {
 						position: 'relative' as const,
 						'z-index': '100'
 				  }),
-			background: 'hsl(var(--sidebar-background) / 0.95)',
+			background: isDark
+				? 'hsla(240, 5.9%, 10%, 0.95)'
+				: 'hsla(0, 0%, 98%, 0.95)',
 			'backdrop-filter': 'blur(20px) saturate(180%)',
 			'-webkit-backdrop-filter': 'blur(20px) saturate(180%)',
 			border: 'none',
@@ -48,12 +50,14 @@ export const sidebarStyles = {
 		'flex-direction': 'column',
 		gap: '4px'
 	}),
-	separator: (): JSX.CSSProperties => ({
+	separator: (isDark: boolean): JSX.CSSProperties => ({
 		height: '1px',
-		'background-color': 'hsl(var(--sidebar-border))',
+		'background-color': isDark
+			? 'hsla(240, 3.7%, 15.9%, 1)'
+			: 'hsla(220, 13%, 91%, 1)',
 		margin: '8px 12px'
 	}),
-	button: (disabled: boolean): JSX.CSSProperties => ({
+	button: (disabled: boolean, isDark: boolean): JSX.CSSProperties => ({
 		width: '100%',
 		display: 'flex',
 		'align-items': 'center',
@@ -63,8 +67,12 @@ export const sidebarStyles = {
 		cursor: disabled ? 'not-allowed' : 'pointer',
 		'font-size': '14px',
 		color: disabled
-			? 'hsl(var(--sidebar-foreground) / 0.4)'
-			: 'hsl(var(--sidebar-foreground))',
+			? isDark
+				? 'hsla(240, 4.8%, 95.9%, 0.4)'
+				: 'hsla(240, 5.3%, 26.1%, 0.4)'
+			: isDark
+				? 'hsla(240, 4.8%, 95.9%, 1)'
+				: 'hsla(240, 5.3%, 26.1%, 1)',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
 		'background-color': 'transparent',
 		border: 'none',
