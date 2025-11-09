@@ -2,7 +2,7 @@ import type { Accessor } from 'solid-js'
 import { Component, For, createSignal, createEffect } from 'solid-js'
 import type { SidebarItem } from '../../../components/ui/sidebar'
 import { App } from '../../../composites/app'
-import { CodeHighlight } from '../../components/common/code-highlight'
+import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { appSnippets } from './code-snippets/app-snippets'
 
