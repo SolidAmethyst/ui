@@ -25,6 +25,75 @@ const highlightCode = (code: string): string => {
 		(match: string) => `<span class="code-string">${match}</span>`
 	)
 
+	// CSS-specific highlighting (before keywords to avoid conflicts)
+	// Process CSS at-rules first (must be before operators to avoid conflicts)
+	const cssAtRules = [
+		'@layer',
+		'@media',
+		'@keyframes',
+		'@import',
+		'@charset',
+		'@supports',
+		'@font-face'
+	]
+	const cssParts = highlighted.split(/(<span[^>]*>.*?<\/span>)/g)
+	highlighted = cssParts
+		.map(part => {
+			if (part.startsWith('<span')) {
+				return part
+			}
+			// Highlight CSS at-rules (@layer, @media, etc.)
+			// Process in reverse order to avoid conflicts (longer rules first)
+			cssAtRules
+				.sort((a, b) => b.length - a.length)
+				.forEach(atRule => {
+					// Simple approach: match @layer at start or after whitespace
+					const escaped = atRule.replace('@', '\\@')
+					// Match @layer followed by space, {, or end of line
+					const regex = new RegExp(`(${escaped})(?=\\s|\\{|$)`, 'g')
+					part = part.replace(regex, (match: string) => {
+						// Skip if already inside a span
+						if (part.includes(`<span class="code-keyword">${match}</span>`)) {
+							return match
+						}
+						return `<span class="code-keyword">${match}</span>`
+					})
+				})
+			// Highlight CSS selectors (:root, [data-theme], .class, #id)
+			// Only match if not already inside a span
+			const selectorParts = part.split(/(<span[^>]*>.*?<\/span>)/g)
+			part = selectorParts
+				.map(selPart => {
+					if (selPart.startsWith('<span')) {
+						return selPart
+					}
+					return selPart.replace(
+						/(:root|:hover|:active|:focus|:disabled|\[data-theme[^\]]*\]|\.\w+|#\w+)/g,
+						(match: string) => {
+							return `<span class="code-attr">${match}</span>`
+						}
+					)
+				})
+				.join('')
+			// Highlight CSS custom properties (--variable-name:)
+			const propParts = part.split(/(<span[^>]*>.*?<\/span>)/g)
+			part = propParts
+				.map(propPart => {
+					if (propPart.startsWith('<span')) {
+						return propPart
+					}
+					return propPart.replace(
+						/(--[\w-]+)(\s*:)/g,
+						(_m: string, prop: string, colon: string) => {
+							return `<span class="code-attr">${prop}</span><span class="code-operator">${colon}</span>`
+						}
+					)
+				})
+				.join('')
+			return part
+		})
+		.join('')
+
 	// Keywords - process only outside of existing spans
 	const keywords = [
 		'import',
@@ -110,6 +179,56 @@ const highlightCode = (code: string): string => {
 							} else if (innerValue === 'true' || innerValue === 'false') {
 								// Boolean - highlight as keyword (purple)
 								return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span><span class="code-operator">{</span><span class="code-keyword">${innerValue}</span><span class="code-operator">}</span>`
+							} else if (name === 'style' && innerValue.includes(':')) {
+								// CSS object in style prop - highlight CSS properties
+								const cssProps = [
+									'width',
+									'height',
+									'minWidth',
+									'minHeight',
+									'maxWidth',
+									'maxHeight',
+									'padding',
+									'margin',
+									'display',
+									'position',
+									'top',
+									'left',
+									'right',
+									'bottom',
+									'background',
+									'color',
+									'border',
+									'borderRadius',
+									'gridColumn',
+									'gridRow',
+									'flex',
+									'alignItems',
+									'justifyContent',
+									'gap',
+									'gridGap',
+									'columnGap',
+									'rowGap'
+								]
+								let highlightedCSS = innerValue
+								// Highlight CSS property names
+								cssProps.forEach(prop => {
+									const regex = new RegExp(`\\b(${prop})\\s*:`, 'g')
+									highlightedCSS = highlightedCSS.replace(
+										regex,
+										(_match: string, propName: string) => {
+											return `<span class="code-attr">${propName}</span><span class="code-operator">:</span>`
+										}
+									)
+								})
+								// Highlight string values in CSS
+								highlightedCSS = highlightedCSS.replace(
+									/(['"])([^'"]*?)\1/g,
+									(_m: string, quote: string, strValue: string) => {
+										return `${quote}<span class="code-string">${strValue}</span>${quote}`
+									}
+								)
+								return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span><span class="code-operator">{</span>${highlightedCSS}<span class="code-operator">}</span>`
 							} else {
 								// Other expression - keep as is but highlight braces
 								return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span><span class="code-operator">{</span>${innerValue}<span class="code-operator">}</span>`
@@ -152,13 +271,23 @@ const highlightCode = (code: string): string => {
 		.join('')
 
 	// Operators - apply only to plain text parts
+	// Exclude @ symbol to avoid overwriting CSS at-rules
 	const operatorParts = highlighted.split(/(<span[^>]*>.*?<\/span>)/g)
 	highlighted = operatorParts
 		.map(part => {
 			if (part.startsWith('<span')) {
 				return part
 			}
+			// Don't highlight @ as operator (it's already highlighted as CSS at-rule)
 			return part.replace(/([={}()[\].,:;])/g, (match: string) => {
+				// Skip if @ is part of an at-rule (already highlighted)
+				if (
+					(match === '@' && part.includes('@layer')) ||
+					part.includes('@media') ||
+					part.includes('@keyframes')
+				) {
+					return match
+				}
 				return `<span class="code-operator">${match}</span>`
 			})
 		})

@@ -3,10 +3,7 @@ import { Scrollbar, ScrollbarProvider } from '../../../components/ui/scrollbar'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
-import {
-	scrollbarImports,
-	scrollbarUsage
-} from './code-snippets/scrollbar-snippets'
+import { scrollbarSnippets } from './code-snippets/scrollbar-snippets'
 
 interface ScrollbarDocsProps {
 	isDark: Accessor<boolean>
