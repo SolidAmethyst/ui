@@ -143,6 +143,7 @@ export const AppDocs: Component<AppDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div
+							data-app-preview
 							style={{
 								width: '100%',
 								height: '600px',
@@ -152,7 +153,7 @@ export const AppDocs: Component<AppDocsProps> = props => {
 										? 'rgba(255, 255, 255, 0.1)'
 										: 'rgba(0, 0, 0, 0.1)'
 								}`,
-								'border-radius': '8px',
+								'border-radius': '0',
 								overflow: 'hidden',
 								position: 'relative'
 							}}
@@ -201,6 +202,7 @@ export const AppDocs: Component<AppDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div
+							data-app-preview
 							style={{
 								width: '100%',
 								height: '600px',
@@ -210,7 +212,7 @@ export const AppDocs: Component<AppDocsProps> = props => {
 										? 'rgba(255, 255, 255, 0.1)'
 										: 'rgba(0, 0, 0, 0.1)'
 								}`,
-								'border-radius': '8px',
+								'border-radius': '0',
 								overflow: 'hidden',
 								position: 'relative'
 							}}
@@ -272,7 +274,7 @@ export const AppDocs: Component<AppDocsProps> = props => {
 													<div
 														style={{
 															padding: '24px',
-															'border-radius': '8px',
+															'border-radius': '0',
 															background: adaptiveLayoutDark()
 																? 'rgba(30, 30, 30, 0.5)'
 																: 'rgba(255, 255, 255, 0.8)',
@@ -346,6 +348,7 @@ export const AppDocs: Component<AppDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div
+							data-app-preview
 							style={{
 								width: '100%',
 								height: '600px',
@@ -355,7 +358,7 @@ export const AppDocs: Component<AppDocsProps> = props => {
 										? 'rgba(255, 255, 255, 0.1)'
 										: 'rgba(0, 0, 0, 0.1)'
 								}`,
-								'border-radius': '8px',
+								'border-radius': '0',
 								overflow: 'hidden',
 								position: 'relative'
 							}}
@@ -418,7 +421,7 @@ export const AppDocs: Component<AppDocsProps> = props => {
 													<div
 														style={{
 															padding: '24px',
-															'border-radius': '8px',
+															'border-radius': '0',
 															background: overlayModeDark()
 																? 'rgba(30, 30, 30, 0.5)'
 																: 'rgba(255, 255, 255, 0.8)',
