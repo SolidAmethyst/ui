@@ -85,30 +85,8 @@ export const App: Component<AppProps> = props => {
 				)
 			}
 		>
-			{/* Overlay mode: backdrop + sidebar */}
+			{/* Overlay mode: Sidebar now uses Drawer internally with its own backdrop */}
 			<Show when={props.overlayMode}>
-				{/* Backdrop */}
-				<div
-					onClick={() => setSidebarOpen(false)}
-					style={{
-						position: 'absolute',
-						top: '0',
-						left: '0',
-						right: '0',
-						bottom: '0',
-						background: isDark()
-							? 'rgba(0, 0, 0, 0.5)'
-							: 'rgba(0, 0, 0, 0.3)',
-						'backdrop-filter': 'blur(4px)',
-						'z-index': '999',
-						opacity: sidebarOpen() ? '1' : '0',
-						visibility: sidebarOpen() ? 'visible' : 'hidden',
-						transition:
-							'opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), visibility 300ms cubic-bezier(0.4, 0, 0.2, 1)',
-						'pointer-events': sidebarOpen() ? 'auto' : 'none'
-					}}
-				/>
-				{/* Overlay Sidebar */}
 				<Sidebar
 					open={sidebarOpen()}
 					items={sidebarItems}

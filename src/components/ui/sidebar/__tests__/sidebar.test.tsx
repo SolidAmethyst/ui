@@ -74,7 +74,7 @@ describe('Sidebar', () => {
 	})
 
 	it('applies overlay mode styles', () => {
-		const { container } = render(() => (
+		render(() => (
 			<Sidebar
 				open={true}
 				items={mockItems}
@@ -83,8 +83,10 @@ describe('Sidebar', () => {
 			/>
 		))
 
-		const sidebar = container.querySelector('aside')
-		expect(sidebar).toHaveStyle({ position: 'absolute' })
+		// In overlay mode, Sidebar uses Drawer which renders in portal
+		const drawerPanel = document.querySelector('.drawer-panel')
+		expect(drawerPanel).toBeInTheDocument()
+		expect(drawerPanel).toHaveStyle({ width: '250px' })
 	})
 
 	it('applies shift mode styles when overlayMode is false', () => {
