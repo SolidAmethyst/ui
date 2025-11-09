@@ -46,12 +46,12 @@ const calculateColumns = (
 	if (typeof columns === 'number') {
 		const minWidth = minColumnWidth || '1fr'
 		const maxWidth = maxColumnWidth || '1fr'
-		
+
 		// If minColumnWidth/maxColumnWidth are provided, use auto-fill
 		if (minColumnWidth || maxColumnWidth) {
 			return `repeat(auto-fill, minmax(${minWidth}, ${maxWidth}))`
 		}
-		
+
 		// Otherwise, use fixed repeat count
 		return `repeat(${columns}, 1fr)`
 	}
