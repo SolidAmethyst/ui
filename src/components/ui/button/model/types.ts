@@ -3,7 +3,7 @@
  * Based on Tauri project button styles
  */
 
-import type { JSX } from "solid-js";
+import type { JSX } from "solid-js"
 
 export type ButtonVariant =
   | "primary"
@@ -122,4 +122,9 @@ export interface ButtonProps {
    * Whether the button is maximized (for maximize buttons)
    */
   maximized?: boolean;
+
+  /**
+   * Inline CSS styles
+   */
+  style?: JSX.CSSProperties;
 }
