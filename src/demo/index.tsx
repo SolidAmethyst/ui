@@ -3,7 +3,7 @@ import { createSignal, Show } from 'solid-js'
 import { render } from 'solid-js/web'
 import { ScrollbarProvider } from '../components/ui/scrollbar'
 import '../styles/globals.css'
-import { Footer, Sidebar, TopNav } from './components/layout'
+import { Footer, SettingsPanel, Sidebar, TopNav } from './components/layout'
 import { DemoPage } from './pages/demo-page'
 import {
 	AppDocs,
@@ -24,6 +24,14 @@ function App() {
 	const [currentComponent, setCurrentComponent] = createSignal<string | null>(
 		'introduction'
 	)
+
+	// Glass settings state
+	const [glassEnabled, setGlassEnabled] = createSignal(true)
+	const [glassBlur, setGlassBlur] = createSignal(20)
+	const [glassOpacity, setGlassOpacity] = createSignal(0.4)
+	const [glassDarkness, setGlassDarkness] = createSignal(0.0)
+	const [glassSaturation, setGlassSaturation] = createSignal(1.0)
+	const [glassSettingsOpen, setGlassSettingsOpen] = createSignal(false)
 
 	const toggleTheme = () => {
 		setIsDark(!isDark())
@@ -62,6 +70,28 @@ function App() {
 					toggleTheme={toggleTheme}
 					currentPage={currentPage()}
 					onPageChange={handlePageChange}
+					onSettingsClick={() => setGlassSettingsOpen(!glassSettingsOpen())}
+					glassEnabled={glassEnabled()}
+					glassBlur={glassBlur()}
+					glassOpacity={glassOpacity()}
+					glassDarkness={glassDarkness()}
+					glassSaturation={glassSaturation()}
+				/>
+
+				<SettingsPanel
+					isDark={isDark}
+					isOpen={glassSettingsOpen()}
+					onClose={() => setGlassSettingsOpen(false)}
+					enabled={glassEnabled()}
+					onEnabledChange={setGlassEnabled}
+					blur={glassBlur()}
+					onBlurChange={setGlassBlur}
+					opacity={glassOpacity()}
+					onOpacityChange={setGlassOpacity}
+					darkness={glassDarkness()}
+					onDarknessChange={setGlassDarkness}
+					saturation={glassSaturation()}
+					onSaturationChange={setGlassSaturation}
 				/>
 
 				<Show when={currentPage() === 'demo'}>

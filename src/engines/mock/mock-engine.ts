@@ -1,5 +1,9 @@
 // Mock engine implementation for Solid UI Toolkit
-import type { EngineState, UIEngine } from "../types/engine-interface";
+import type {
+  EngineState,
+  UIEngine,
+  GlassEffectConfig,
+} from "../types/engine-interface";
 
 export class MockEngine implements UIEngine {
   private physicsObjectId: number | null = null;
@@ -65,6 +69,22 @@ export class MockEngine implements UIEngine {
     // Mock engine is always available
     this.isInitialized = true;
     return true;
+  }
+
+  // Glass effects (mock - no-op, CSS fallback will be used)
+  async applyGlassEffect(config: GlassEffectConfig): Promise<void> {
+    // Mock implementation - no-op, component will use CSS fallback
+    console.log("[MockEngine] Glass effect requested (using CSS fallback):", config);
+  }
+
+  async updateGlassEffect(config: Partial<GlassEffectConfig>): Promise<void> {
+    // Mock implementation - no-op, component will use CSS fallback
+    console.log("[MockEngine] Glass effect update requested (using CSS fallback):", config);
+  }
+
+  async removeGlassEffect(): Promise<void> {
+    // Mock implementation - no-op, component will use CSS fallback
+    console.log("[MockEngine] Glass effect removal requested (using CSS fallback)");
   }
 }
 

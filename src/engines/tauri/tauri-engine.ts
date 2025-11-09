@@ -1,5 +1,9 @@
 // Tauri engine implementation for Solid UI Toolkit with DLL integration
-import type { EngineState, UIEngine } from "../types/engine-interface";
+import type {
+  EngineState,
+  UIEngine,
+  GlassEffectConfig,
+} from "../types/engine-interface";
 
 // Tauri API types (will be available when @tauri-apps/api is installed)
 declare global {
@@ -178,6 +182,90 @@ export class TauriEngine implements UIEngine {
       this.isInitialized = true;
     }
     return available;
+  }
+
+  // Glass effects
+  async applyGlassEffect(config: GlassEffectConfig): Promise<void> {
+    if (!this.isTauriAvailable()) {
+      throw new Error("Tauri is not available");
+    }
+
+    try {
+      switch (config.type) {
+        case "mica":
+          await window.__TAURI__!.invoke("apply_mica_effect", {
+            tintColor: config.tintColor,
+            tintOpacity: config.tintOpacity ?? 0.8,
+          });
+          break;
+        case "acrylic":
+          await window.__TAURI__!.invoke("apply_acrylic_effect", {
+            blur: config.blur ?? 20,
+            tintColor: config.tintColor,
+            tintOpacity: config.tintOpacity ?? 0.6,
+          });
+          break;
+        case "blur":
+          await window.__TAURI__!.invoke("set_blur_intensity", {
+            intensity: config.blur ?? 10,
+          });
+          break;
+        case "matte":
+          await window.__TAURI__!.invoke("apply_matte_glass", {
+            blur: config.blur ?? 15,
+            opacity: config.opacity ?? 0.9,
+            tintColor: config.tintColor,
+            tintOpacity: config.tintOpacity ?? 0.7,
+            saturation: config.saturation ?? 1.0,
+            darkness: config.darkness ?? 0.5,
+          });
+          break;
+      }
+    } catch (error) {
+      console.error("Failed to apply glass effect:", error);
+      throw error;
+    }
+  }
+
+  async updateGlassEffect(config: Partial<GlassEffectConfig>): Promise<void> {
+    if (!this.isTauriAvailable()) {
+      throw new Error("Tauri is not available");
+    }
+
+    try {
+      if (config.blur !== undefined) {
+        await window.__TAURI__!.invoke("set_blur_intensity", {
+          intensity: config.blur,
+        });
+      }
+      if (config.tintColor !== undefined || config.tintOpacity !== undefined) {
+        await window.__TAURI__!.invoke("apply_tint_color", {
+          color: config.tintColor,
+          opacity: config.tintOpacity,
+        });
+      }
+      if (config.opacity !== undefined) {
+        await window.__TAURI__!.invoke("set_window_transparency", {
+          opacity: config.opacity,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to update glass effect:", error);
+      throw error;
+    }
+  }
+
+  async removeGlassEffect(): Promise<void> {
+    if (!this.isTauriAvailable()) {
+      throw new Error("Tauri is not available");
+    }
+
+    try {
+      await window.__TAURI__!.invoke("remove_window_blur");
+    } catch (error) {
+      console.error("Failed to remove glass effect:", error);
+      throw error;
+    }
   }
 
   // Physics Engine DLL methods
