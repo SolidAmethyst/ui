@@ -31,14 +31,15 @@ export const Window: Component<WindowProps> = props => {
 
 			{/* Content Area */}
 			<Grid
-				columns='auto 1fr'
+				columns={props.sidebar ? 'auto 1fr' : '1fr'}
 				style={{
 					'grid-row': '2',
 					'grid-column': '1 / -1',
 					overflow: 'hidden',
 					position: 'relative',
 					width: '100%',
-					height: '100%'
+					height: '100%',
+					'min-height': '0'
 				}}
 			>
 				{/* Sidebar Slot */}
@@ -47,7 +48,23 @@ export const Window: Component<WindowProps> = props => {
 				</Show>
 
 				{/* Main Content Slot */}
-				<main style={windowStyles.mainSlot}>{props.children}</main>
+				<main
+					style={{
+						...(props.sidebar
+							? windowStyles.mainSlot
+							: {
+									'grid-column': '1',
+									'box-sizing': 'border-box' as const,
+									width: '100%',
+									height: '100%',
+									position: 'relative' as const,
+									display: 'flex',
+									'flex-direction': 'column'
+							  })
+					}}
+				>
+					{props.children}
+				</main>
 			</Grid>
 		</Grid>
 	)

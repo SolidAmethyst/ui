@@ -42,9 +42,11 @@ export const windowStyles = {
 	} as JSX.CSSProperties,
 	mainSlot: {
 		'grid-column': '2',
-		overflow: 'auto',
 		'box-sizing': 'border-box' as const,
 		width: '100%',
-		height: '100%'
+		height: '100%',
+		position: 'relative' as const,
+		display: 'flex',
+		'flex-direction': 'column'
 	} as JSX.CSSProperties
 }

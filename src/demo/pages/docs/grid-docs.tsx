@@ -3,7 +3,8 @@ import { Grid } from '../../../components/ui/grid'
 import { NumberInput } from '../../../components/ui/number-input'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
-import { gridExamples } from './examples/grid-examples'
+import { docsStyles } from '../../lib/docs.styles'
+import { gridExamples } from './code-snippets/grid-snippets'
 
 interface GridDocsProps {
 	isDark: Accessor<boolean>
@@ -34,72 +35,25 @@ export const GridDocs: Component<GridDocsProps> = props => {
 	// Custom CSS Template signals
 	const [customGap, setCustomGap] = createSignal('12px')
 
+	const theme = () => ({ isDark: props.isDark() })
+
 	return (
-		<article
-			style={{
-				width: '100%',
-				'max-width': '700px',
-				'box-sizing': 'border-box',
-				margin: '0 auto',
-				padding: '24px 0',
-				color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-				overflow: 'hidden',
-				'overflow-x': 'hidden'
-			}}
-		>
-			<h1
-				style={{
-					'font-size': '1.75rem',
-					'font-weight': '700',
-					'margin-bottom': '12px',
-					'line-height': '1.2'
-				}}
-			>
-				Grid
-			</h1>
-			<p
-				style={{
-					'font-size': '0.95rem',
-					color: props.isDark()
-						? 'rgba(246, 246, 246, 0.7)'
-						: 'rgba(26, 26, 26, 0.7)',
-					'margin-bottom': '24px',
-					'line-height': '1.6'
-				}}
-			>
+		<article style={docsStyles.article(theme())}>
+			<h1 style={docsStyles.title(theme())}>Grid</h1>
+			<p style={docsStyles.description(theme())}>
 				Full-featured responsive CSS Grid container component with resize
 				observation, breakpoints, and auto-fit/auto-fill support.
 			</p>
 
 			{/* Installation */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
-					Installation
-				</h2>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
 				<CodeHighlight code={gridExamples.installation} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
-					Basic Usage
-				</h2>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -209,49 +163,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										onChange={val => setBasicGap(String(val))}
 										type='text'
 										step={1}
+										min={0}
+										defaultUnit='px'
 										enableWheel={true}
 										showArrows={true}
-										onInput={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												setBasicGap(target.value)
-											}
-										}}
-										style={{
-											border: `1px solid ${
-												props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}`,
-											background: props.isDark()
-												? 'rgba(255, 255, 255, 0.05)'
-												: 'rgba(0, 0, 0, 0.02)',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
-										onFocus={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												target.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}
-										}}
-										onBlur={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												const val = target.value.trim()
-												if (val && /^\d+px$/.test(val)) {
-													setBasicGap(val)
-												} else if (val && /^\d+$/.test(val)) {
-													setBasicGap(`${val}px`)
-												} else if (!val) {
-													setBasicGap('12px')
-												}
-												target.style.borderColor = props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}
-										}}
+										themeAware={true}
+										autoValidate={true}
 									/>
 								</label>
 							</div>
@@ -312,18 +229,8 @@ export const GridDocs: Component<GridDocsProps> = props => {
 			</section>
 
 			{/* Responsive Breakpoints */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
-					Responsive Breakpoints
-				</h2>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Responsive Breakpoints</h2>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -352,49 +259,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										onChange={val => setResponsiveGap(String(val))}
 										type='text'
 										step={1}
+										min={0}
+										defaultUnit='px'
 										enableWheel={true}
 										showArrows={true}
-										onInput={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												setResponsiveGap(target.value)
-											}
-										}}
-										style={{
-											border: `1px solid ${
-												props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}`,
-											background: props.isDark()
-												? 'rgba(255, 255, 255, 0.05)'
-												: 'rgba(0, 0, 0, 0.02)',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
-										onFocus={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												target.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}
-										}}
-										onBlur={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												const val = target.value.trim()
-												if (val && /^\d+px$/.test(val)) {
-													setResponsiveGap(val)
-												} else if (val && /^\d+$/.test(val)) {
-													setResponsiveGap(`${val}px`)
-												} else if (!val) {
-													setResponsiveGap('12px')
-												}
-												target.style.borderColor = props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}
-										}}
+										themeAware={true}
+										autoValidate={true}
 									/>
 								</label>
 							</div>
@@ -470,16 +340,8 @@ export const GridDocs: Component<GridDocsProps> = props => {
 			</section>
 
 			{/* Auto-fit with Min/Max Width */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>
 					Auto-fit with Min/Max Width
 				</h2>
 				<Tabs
@@ -591,49 +453,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										onChange={val => setGap(String(val))}
 										type='text'
 										step={1}
+										min={0}
+										defaultUnit='px'
 										enableWheel={true}
 										showArrows={true}
-										onInput={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												setGap(target.value)
-											}
-										}}
-										style={{
-											border: `1px solid ${
-												props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}`,
-											background: props.isDark()
-												? 'rgba(255, 255, 255, 0.05)'
-												: 'rgba(0, 0, 0, 0.02)',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
-										onFocus={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												target.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}
-										}}
-										onBlur={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												const val = target.value.trim()
-												if (val && /^\d+px$/.test(val)) {
-													setGap(val)
-												} else if (val && /^\d+$/.test(val)) {
-													setGap(`${val}px`)
-												} else if (!val) {
-													setGap('16px')
-												}
-												target.style.borderColor = props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}
-										}}
+										themeAware={true}
+										autoValidate={true}
 									/>
 								</label>
 							</div>
@@ -697,16 +522,8 @@ export const GridDocs: Component<GridDocsProps> = props => {
 			</section>
 
 			{/* Gap as Object */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>
 					Separate Row and Column Gap
 				</h2>
 				<Tabs
@@ -822,7 +639,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											} else {
 												// Number from wheel/arrows - preserve unit
 												const current = separateGap().row
-												const unit = current.replace(/^\d+/, '') || 'px'
+												const unit = current.replace(/^-?\d+/, '') || 'px'
 												setSeparateGap({
 													...separateGap(),
 													row: `${val}${unit}`
@@ -831,50 +648,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										}}
 										type='text'
 										step={1}
+										min={0}
+										defaultUnit='px'
 										enableWheel={true}
 										showArrows={true}
-										onInput={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												const val = target.value.trim()
-												setSeparateGap({ ...separateGap(), row: val })
-											}
-										}}
-										style={{
-											border: `1px solid ${
-												props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}`,
-											background: props.isDark()
-												? 'rgba(255, 255, 255, 0.05)'
-												: 'rgba(0, 0, 0, 0.02)',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
-										onFocus={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												target.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}
-										}}
-										onBlur={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												const val = target.value.trim()
-												if (val && /^\d+px$/.test(val)) {
-													setSeparateGap({ ...separateGap(), row: val })
-												} else if (val && /^\d+$/.test(val)) {
-													setSeparateGap({ ...separateGap(), row: `${val}px` })
-												} else if (!val) {
-													setSeparateGap({ ...separateGap(), row: '16px' })
-												}
-												target.style.borderColor = props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}
-										}}
+										themeAware={true}
+										autoValidate={true}
 									/>
 								</label>
 								<label
@@ -896,7 +675,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											} else {
 												// Number from wheel/arrows - preserve unit
 												const current = separateGap().column
-												const unit = current.replace(/^\d+/, '') || 'px'
+												const unit = current.replace(/^-?\d+/, '') || 'px'
 												setSeparateGap({
 													...separateGap(),
 													column: `${val}${unit}`
@@ -905,53 +684,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										}}
 										type='text'
 										step={1}
+										min={0}
+										defaultUnit='px'
 										enableWheel={true}
 										showArrows={true}
-										onInput={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												const val = target.value.trim()
-												setSeparateGap({ ...separateGap(), column: val })
-											}
-										}}
-										style={{
-											border: `1px solid ${
-												props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}`,
-											background: props.isDark()
-												? 'rgba(255, 255, 255, 0.05)'
-												: 'rgba(0, 0, 0, 0.02)',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
-										onFocus={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												target.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}
-										}}
-										onBlur={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												const val = target.value.trim()
-												if (val && /^\d+px$/.test(val)) {
-													setSeparateGap({ ...separateGap(), column: val })
-												} else if (val && /^\d+$/.test(val)) {
-													setSeparateGap({
-														...separateGap(),
-														column: `${val}px`
-													})
-												} else if (!val) {
-													setSeparateGap({ ...separateGap(), column: '12px' })
-												}
-												target.style.borderColor = props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}
-										}}
+										themeAware={true}
+										autoValidate={true}
 									/>
 								</label>
 							</div>
@@ -1012,18 +750,8 @@ export const GridDocs: Component<GridDocsProps> = props => {
 			</section>
 
 			{/* Custom CSS Template */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
-					Custom CSS Template
-				</h2>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Custom CSS Template</h2>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -1052,49 +780,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										onChange={val => setCustomGap(String(val))}
 										type='text'
 										step={1}
+										min={0}
+										defaultUnit='px'
 										enableWheel={true}
 										showArrows={true}
-										onInput={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												setCustomGap(target.value)
-											}
-										}}
-										style={{
-											border: `1px solid ${
-												props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}`,
-											background: props.isDark()
-												? 'rgba(255, 255, 255, 0.05)'
-												: 'rgba(0, 0, 0, 0.02)',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
-										onFocus={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												target.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}
-										}}
-										onBlur={e => {
-											const target = e.currentTarget as HTMLInputElement
-											if (target) {
-												const val = target.value.trim()
-												if (val && /^\d+px$/.test(val)) {
-													setCustomGap(val)
-												} else if (val && /^\d+$/.test(val)) {
-													setCustomGap(`${val}px`)
-												} else if (!val) {
-													setCustomGap('12px')
-												}
-												target.style.borderColor = props.isDark()
-													? 'rgba(255, 255, 255, 0.1)'
-													: 'rgba(0, 0, 0, 0.1)'
-											}
-										}}
+										themeAware={true}
+										autoValidate={true}
 									/>
 								</label>
 							</div>
