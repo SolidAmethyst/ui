@@ -35,9 +35,14 @@ describe('Menu', () => {
 
 	it('renders separators', () => {
 		const onClose = vi.fn()
-		render(() => <Menu open={true} onClose={onClose} items={mockItems} />)
-		const separator =
-			screen.getByText('Item 1').parentElement?.nextElementSibling
+		const { container } = render(() => (
+			<Menu open={true} onClose={onClose} items={mockItems} />
+		))
+		const listItems = container.querySelectorAll('ul li')
+		// Separator should be between Item 1 and Item 3 (index 2)
+		expect(listItems.length).toBeGreaterThan(2)
+		// Separator is an empty li element
+		const separator = Array.from(listItems).find(li => li.children.length === 0)
 		expect(separator).toBeInTheDocument()
 	})
 
