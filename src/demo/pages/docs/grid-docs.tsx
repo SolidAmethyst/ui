@@ -3,6 +3,7 @@ import { Grid } from '../../../components/ui/grid'
 import { NumberInput } from '../../../components/ui/number-input'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
+import { gridExamples } from './examples/grid-examples'
 
 interface GridDocsProps {
 	isDark: Accessor<boolean>
@@ -83,10 +84,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 				>
 					Installation
 				</h2>
-				<CodeHighlight
-					code={`import { Grid } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={gridExamples.installation} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
@@ -309,28 +307,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={`<Grid columns={3} gap="16px">
-  <div>
-    <h3>Title</h3>
-    <div>KPI 1</div>
-  </div>
-  <div>
-    <h3>Title</h3>
-    <div>KPI 2</div>
-  </div>
-  <div>
-    <h3>Title</h3>
-    <div>KPI 3</div>
-  </div>
-  <div>
-    <h3>Title</h3>
-    <div>KPI 4</div>
-  </div>
-  <div>
-    <h3>Title</h3>
-    <div>KPI 5</div>
-  </div>
-</Grid>`}
+					code={gridExamples.basicUsage}
 				/>
 			</section>
 
@@ -488,17 +465,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={`<Grid
-  columns={4}
-  breakpoints={[
-    { maxWidth: 768, columns: 1 },
-    { minWidth: 769, maxWidth: 1024, columns: 2 },
-    { minWidth: 1025, columns: 4 }
-  ]}
-  gap="16px"
->
-  {/* Grid items */}
-</Grid>`}
+					code={gridExamples.responsiveBreakpoints}
 				/>
 			</section>
 
@@ -725,15 +692,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={`<Grid
-  columns={3}
-  minColumnWidth="150px"
-  maxColumnWidth="1fr"
-  autoFit={false}
-  gap="16px"
->
-  {/* Grid items */}
-</Grid>`}
+					code={gridExamples.autoFitMinMax}
 				/>
 			</section>
 
@@ -1048,12 +1007,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={`<Grid
-  columns={3}
-  gap={{ row: "24px", column: "12px" }}
->
-  {/* Grid items */}
-</Grid>`}
+					code={gridExamples.separateGap}
 				/>
 			</section>
 
@@ -1245,17 +1199,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							</Grid>
 						</div>
 					}
-					code={`<Grid
-  columns="200px 1fr auto"
-  rows="auto 1fr auto"
-  gap="16px"
->
-  <div style={{ gridColumn: "1 / -1" }}>Header</div>
-  <div>Sidebar</div>
-  <div>Main Content</div>
-  <div>Actions</div>
-  <div style={{ gridColumn: "1 / -1" }}>Footer</div>
-</Grid>`}
+					code={gridExamples.customCSSTemplate}
 				/>
 			</section>
 		</article>
