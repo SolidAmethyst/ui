@@ -16,8 +16,9 @@ describe('SettingsComposite', () => {
 	it('does not render settings panel when closed', () => {
 		render(() => <SettingsComposite isOpen={false} onClose={() => {}} />)
 
-		// Settings component should still render but be hidden
-		const settings = document.querySelector('.settings-panel')
+		// Settings component uses Drawer which renders in portal
+		// Panel should still be in DOM but off-screen
+		const settings = document.querySelector('.drawer-panel')
 		expect(settings).toBeInTheDocument()
 	})
 
@@ -86,12 +87,13 @@ describe('SettingsComposite', () => {
 
 	it('calls onClose when close button is clicked', () => {
 		const onClose = vi.fn()
-		const { container } = render(() => (
+		render(() => (
 			<SettingsComposite isOpen={true} onClose={onClose} />
 		))
 
-		// Find close button by the close icon span
-		const closeButton = container.querySelector(
+		// Find close button by the close icon span in drawer panel (rendered in portal)
+		const drawerPanel = document.querySelector('.drawer-panel')
+		const closeButton = drawerPanel?.querySelector(
 			'button:has(span.material-symbols-rounded)'
 		) as HTMLButtonElement
 		expect(closeButton).toBeInTheDocument()
@@ -213,7 +215,8 @@ describe('SettingsComposite', () => {
 			<SettingsComposite isOpen={true} onClose={() => {}} isDark={true} />
 		))
 
-		const settings = document.querySelector('.settings-panel')
+		// Settings uses Drawer which renders in portal
+		const settings = document.querySelector('.drawer-panel')
 		expect(settings).toBeInTheDocument()
 	})
 
@@ -222,7 +225,8 @@ describe('SettingsComposite', () => {
 			<SettingsComposite isOpen={true} onClose={() => {}} isDark={false} />
 		))
 
-		const settings = document.querySelector('.settings-panel')
+		// Settings uses Drawer which renders in portal
+		const settings = document.querySelector('.drawer-panel')
 		expect(settings).toBeInTheDocument()
 	})
 
@@ -237,7 +241,7 @@ describe('SettingsComposite', () => {
 	})
 
 	it('accepts custom class name', () => {
-		const { container } = render(() => (
+		render(() => (
 			<SettingsComposite
 				isOpen={true}
 				onClose={() => {}}
@@ -245,7 +249,8 @@ describe('SettingsComposite', () => {
 			/>
 		))
 
-		const settings = container.querySelector('.custom-settings')
+		// Settings uses Drawer which renders in portal, class is applied to drawer panel
+		const settings = document.querySelector('.drawer-panel.custom-settings')
 		expect(settings).toBeInTheDocument()
 	})
 })

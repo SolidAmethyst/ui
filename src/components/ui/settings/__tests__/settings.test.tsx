@@ -100,13 +100,6 @@ describe('Settings', () => {
 		expect(panel).toHaveStyle({ width: '400px' })
 	})
 
-	it('applies custom top position', () => {
-		render(() => (
-			<Settings isOpen={true} onClose={vi.fn()} top='80px' isDark={false}>
-				<div>Content</div>
-			</Settings>
-		))
-		const panel = screen.getByText('Settings').closest('aside')
-		expect(panel).toHaveStyle({ top: '80px' })
-	})
+	// Note: 'top' prop is no longer supported as Drawer renders in portal
+	// and always positions relative to viewport (top: 0)
 })
