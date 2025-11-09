@@ -25,6 +25,7 @@ const componentGroups: ComponentGroup[] = [
 			{ name: 'Button', id: 'button' },
 			{ name: 'Grid', id: 'grid' },
 			{ name: 'Menu', id: 'menu' },
+			{ name: 'Sidebar', id: 'sidebar' },
 			{ name: 'TechChip', id: 'techchip' },
 			{ name: 'Scrollbar', id: 'scrollbar' },
 			{ name: 'TitleBar', id: 'titlebar' }

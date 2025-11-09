@@ -9,19 +9,14 @@ import { sidebarStyles } from '../lib/sidebar.styles'
 import type { SidebarProps } from '../model/types'
 
 export const Sidebar: Component<SidebarProps> = props => {
-	const isDark = () => props.isDark ?? false
 	const overlayMode = () => props.overlayMode ?? false
 	const open = () => props.open
 
 	return (
 		<aside
-			class={props.class}
+			class={`sidebar ${props.class || ''}`}
 			style={{
-				...sidebarStyles.container({
-					isDark: isDark(),
-					overlayMode: overlayMode(),
-					open: open()
-				}),
+				...sidebarStyles.container(open(), overlayMode()),
 				...(props.style as JSX.CSSProperties)
 			}}
 		>
@@ -32,23 +27,23 @@ export const Sidebar: Component<SidebarProps> = props => {
 							{item => (
 								<>
 									<Show when={item.separator}>
-										<li style={sidebarStyles.separator(isDark())} />
+										<li style={sidebarStyles.separator()} />
 									</Show>
 									<Show when={!item.separator}>
 										<li>
 											<button
 												type='button'
+												class='sidebar-item'
 												onClick={() => {
 													item.onClick?.()
 													props.onItemClick?.(item)
 												}}
 												disabled={item.disabled}
-												style={sidebarStyles.button(isDark(), item.disabled ?? false)}
+												style={sidebarStyles.button(item.disabled ?? false)}
 												onMouseEnter={e => {
 													if (!item.disabled) {
-														e.currentTarget.style.backgroundColor = isDark()
-															? 'rgba(255, 255, 255, 0.1)'
-															: 'rgba(0, 0, 0, 0.05)'
+														e.currentTarget.style.backgroundColor =
+															'hsl(var(--sidebar-accent))'
 													}
 												}}
 												onMouseLeave={e => {
@@ -56,7 +51,10 @@ export const Sidebar: Component<SidebarProps> = props => {
 												}}
 											>
 												<Show when={item.icon}>
-													<span class='material-symbols-rounded' style={sidebarStyles.icon()}>
+													<span
+														class='material-symbols-rounded'
+														style={sidebarStyles.icon()}
+													>
 														{item.icon}
 													</span>
 												</Show>

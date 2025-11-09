@@ -12,6 +12,7 @@ import {
 	IntroductionDocs,
 	MenuDocs,
 	ScrollbarDocs,
+	SidebarDocs,
 	TechChipDocs,
 	TitleBarDocs
 } from './pages/docs'
@@ -161,9 +162,12 @@ function App() {
 										<Show when={currentComponent() === 'scrollbar'}>
 											<ScrollbarDocs isDark={isDark} />
 										</Show>
-										<Show when={currentComponent() === 'titlebar'}>
-											<TitleBarDocs isDark={isDark} />
-										</Show>
+									<Show when={currentComponent() === 'titlebar'}>
+										<TitleBarDocs isDark={isDark} />
+									</Show>
+									<Show when={currentComponent() === 'sidebar'}>
+										<SidebarDocs isDark={isDark} />
+									</Show>
 									</div>
 								</main>
 								{/* Invisible spacer for symmetry with sidebar */}
