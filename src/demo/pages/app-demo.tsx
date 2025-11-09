@@ -1,11 +1,13 @@
-import { Accessor, Component, createSignal, For, Show } from 'solid-js'
-import type { MenuItem } from '../../components/ui/menu'
+import { Accessor, Component, createSignal, Show } from 'solid-js'
+import type { SidebarItem } from '../../components/ui/sidebar'
+import { Sidebar } from '../../components/ui/sidebar'
 import { TitleBar } from '../../components/ui/title-bar'
 import { Window } from '../../components/ui/window'
 
 interface AppDemoProps {
 	isDark: Accessor<boolean>
 	toggleTheme: () => void
+	overlayMode?: boolean
 }
 
 export const AppDemo: Component<AppDemoProps> = props => {
@@ -13,7 +15,7 @@ export const AppDemo: Component<AppDemoProps> = props => {
 	const [maximized, setMaximized] = createSignal(false)
 	const [pinned, setPinned] = createSignal(false)
 
-	const sidebarItems: MenuItem[] = [
+	const sidebarItems: SidebarItem[] = [
 		{ label: 'Home', icon: 'home', onClick: () => console.log('Home') },
 		{
 			label: 'Dashboard',
@@ -80,137 +82,46 @@ export const AppDemo: Component<AppDemoProps> = props => {
 					onCloseClick={handleClose}
 				/>
 			}
-			sidebar={
-				<aside
-					style={{
-						width: sidebarOpen() ? '250px' : '0',
-						height: '100%',
-						background: props.isDark()
-							? 'rgba(30, 30, 30, 0.95)'
-							: 'rgba(255, 255, 255, 0.95)',
-						'backdrop-filter': 'blur(20px) saturate(180%)',
-						'-webkit-backdrop-filter': 'blur(20px) saturate(180%)',
-						border: `1px solid ${
-							props.isDark() ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
-						}`,
-						'border-top': 'none',
-						'border-left': 'none',
-						'border-bottom': 'none',
-						overflow: 'hidden',
-						transition: 'width 300ms cubic-bezier(0.4, 0, 0.2, 1)',
-						'box-sizing': 'border-box',
-						position: 'relative',
-						'z-index': '100'
-					}}
-				>
-					<Show when={sidebarOpen()}>
-						<div
-							style={{
-								width: '250px',
-								height: '100%',
-								padding: '16px 0',
-								'box-sizing': 'border-box',
-								overflow: 'auto'
-							}}
-						>
-							<ul
-								style={{
-									'list-style': 'none',
-									margin: '0',
-									padding: '0',
-									display: 'flex',
-									'flex-direction': 'column',
-									gap: '4px'
-								}}
-							>
-								<For each={sidebarItems}>
-									{item => (
-										<>
-											<Show when={item.separator}>
-												<li
-													style={{
-														height: '1px',
-														'background-color': props.isDark()
-															? 'rgba(255, 255, 255, 0.1)'
-															: 'rgba(0, 0, 0, 0.1)',
-														margin: '8px 12px'
-													}}
-												/>
-											</Show>
-											<Show when={!item.separator}>
-												<li>
-													<button
-														type='button'
-														onClick={() => {
-															item.onClick?.()
-															setSidebarOpen(false)
-														}}
-														disabled={item.disabled}
-														style={{
-															width: '100%',
-															display: 'flex',
-															'align-items': 'center',
-															gap: '12px',
-															padding: '10px 16px',
-															'border-radius': '0',
-															cursor: item.disabled ? 'not-allowed' : 'pointer',
-															'font-size': '14px',
-															color: item.disabled
-																? props.isDark()
-																	? 'rgba(255, 255, 255, 0.4)'
-																	: 'rgba(0, 0, 0, 0.4)'
-																: props.isDark()
-																? 'rgba(255, 255, 255, 0.9)'
-																: 'rgba(0, 0, 0, 0.9)',
-															transition:
-																'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
-															'background-color': 'transparent',
-															border: 'none',
-															'text-align': 'left',
-															'box-sizing': 'border-box',
-															opacity: item.disabled ? 0.5 : 1
-														}}
-														onMouseEnter={e => {
-															if (!item.disabled) {
-																e.currentTarget.style.backgroundColor =
-																	props.isDark()
-																		? 'rgba(255, 255, 255, 0.1)'
-																		: 'rgba(0, 0, 0, 0.05)'
-															}
-														}}
-														onMouseLeave={e => {
-															e.currentTarget.style.backgroundColor =
-																'transparent'
-														}}
-													>
-														<Show when={item.icon}>
-															<span
-																class='material-symbols-rounded'
-																style={{
-																	'font-size': '20px',
-																	width: '20px',
-																	height: '20px',
-																	display: 'flex',
-																	'align-items': 'center',
-																	'justify-content': 'center'
-																}}
-															>
-																{item.icon}
-															</span>
-														</Show>
-														<span style={{ flex: '1' }}>{item.label}</span>
-													</button>
-												</li>
-											</Show>
-										</>
-									)}
-								</For>
-							</ul>
-						</div>
-					</Show>
-				</aside>
-			}
+			sidebar={props.overlayMode ? undefined : (
+				<Sidebar
+					open={sidebarOpen()}
+					items={sidebarItems}
+					isDark={props.isDark()}
+					overlayMode={false}
+					onItemClick={() => setSidebarOpen(false)}
+				/>
+			)}
 		>
+			{/* Overlay mode: backdrop + sidebar */}
+			<Show when={props.overlayMode}>
+				{/* Backdrop */}
+				<div
+					onClick={() => setSidebarOpen(false)}
+					style={{
+						position: 'absolute',
+						top: '0',
+						left: '0',
+						right: '0',
+						bottom: '0',
+						background: 'rgba(0, 0, 0, 0.5)',
+						'backdrop-filter': 'blur(4px)',
+						'z-index': '999',
+						opacity: sidebarOpen() ? '1' : '0',
+						visibility: sidebarOpen() ? 'visible' : 'hidden',
+						transition:
+							'opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), visibility 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+						'pointer-events': sidebarOpen() ? 'auto' : 'none'
+					}}
+				/>
+				{/* Overlay Sidebar */}
+				<Sidebar
+					open={sidebarOpen()}
+					items={sidebarItems}
+					isDark={props.isDark()}
+					overlayMode={true}
+					onItemClick={() => setSidebarOpen(false)}
+				/>
+			</Show>
 			<div
 				style={{
 					width: '100%',
