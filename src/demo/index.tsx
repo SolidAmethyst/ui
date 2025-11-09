@@ -150,12 +150,12 @@ function App() {
 										<Show when={currentComponent() === 'button'}>
 											<ButtonDocs isDark={isDark} />
 										</Show>
-									<Show when={currentComponent() === 'grid'}>
-										<GridDocs isDark={isDark} />
-									</Show>
-									<Show when={currentComponent() === 'sidebar'}>
-										<SidebarDocs isDark={isDark} />
-									</Show>
+										<Show when={currentComponent() === 'grid'}>
+											<GridDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'sidebar'}>
+											<SidebarDocs isDark={isDark} />
+										</Show>
 										<Show when={currentComponent() === 'techchip'}>
 											<TechChipDocs isDark={isDark} />
 										</Show>
