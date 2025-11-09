@@ -27,7 +27,8 @@ describe("TitleBar", () => {
   it("renders theme toggle button when onThemeToggle is provided", () => {
     const onThemeToggle = vi.fn();
     render(() => <TitleBar title="Test" onThemeToggle={onThemeToggle} />);
-    const themeButton = screen.getByTitle("Dark mode");
+    // By default isDark=true, so it shows light_mode icon with "Light mode" title
+    const themeButton = screen.getByTitle("Light mode");
     expect(themeButton).toBeInTheDocument();
   });
 
@@ -96,7 +97,8 @@ describe("TitleBar", () => {
   it("handles theme toggle click", () => {
     const onThemeToggle = vi.fn();
     render(() => <TitleBar title="Test" onThemeToggle={onThemeToggle} />);
-    const themeButton = screen.getByTitle("Dark mode");
+    // By default isDark=true, so it shows light_mode icon with "Light mode" title
+    const themeButton = screen.getByTitle("Light mode");
     themeButton.click();
     expect(onThemeToggle).toHaveBeenCalledTimes(1);
   });
@@ -174,7 +176,8 @@ describe("TitleBar", () => {
       />
     ));
     // Separator is a div with specific styling, we can check if controls are rendered
-    const themeButton = screen.getByTitle("Dark mode");
+    // By default isDark=true, so it shows light_mode icon with "Light mode" title
+    const themeButton = screen.getByTitle("Light mode");
     const closeButton = screen.getByTitle("Close");
     expect(themeButton).toBeInTheDocument();
     expect(closeButton).toBeInTheDocument();

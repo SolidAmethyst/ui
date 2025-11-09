@@ -5,8 +5,8 @@ import { Glass } from '../../../components/ui/glass'
 interface TopNavProps {
 	isDark: () => boolean
 	toggleTheme: () => void
-	currentPage: 'demo' | 'docs'
-	onPageChange: (page: 'demo' | 'docs') => void
+	currentPage: 'demo' | 'docs' | 'settings'
+	onPageChange: (page: 'demo' | 'docs' | 'settings') => void
 	onSettingsClick: () => void
 	glassEnabled: boolean
 	glassBlur: number
@@ -123,6 +123,27 @@ export const TopNav: Component<TopNavProps> = props => (
 							}}
 						>
 							Docs
+						</button>
+						<button
+							onClick={() => props.onPageChange('settings')}
+							style={{
+								padding: '8px 16px',
+								'font-size': '14px',
+								'font-weight': '500',
+								border: 'none',
+								background:
+									props.currentPage === 'settings'
+										? props.isDark()
+											? 'rgba(255, 255, 255, 0.1)'
+											: 'rgba(0, 0, 0, 0.05)'
+										: 'transparent',
+								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								cursor: 'pointer',
+								'border-radius': '6px',
+								transition: 'all 0.2s ease'
+							}}
+						>
+							Settings
 						</button>
 					</nav>
 
@@ -264,6 +285,27 @@ export const TopNav: Component<TopNavProps> = props => (
 							}}
 						>
 							Docs
+						</button>
+						<button
+							onClick={() => props.onPageChange('settings')}
+							style={{
+								padding: '8px 16px',
+								'font-size': '14px',
+								'font-weight': '500',
+								border: 'none',
+								background:
+									props.currentPage === 'settings'
+										? props.isDark()
+											? 'rgba(255, 255, 255, 0.1)'
+											: 'rgba(0, 0, 0, 0.05)'
+										: 'transparent',
+								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								cursor: 'pointer',
+								'border-radius': '6px',
+								transition: 'all 0.2s ease'
+							}}
+						>
+							Settings
 						</button>
 					</nav>
 

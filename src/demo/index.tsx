@@ -2,9 +2,11 @@ import type { JSX } from 'solid-js'
 import { createSignal, Show } from 'solid-js'
 import { render } from 'solid-js/web'
 import { ScrollbarProvider } from '../components/ui/scrollbar'
+import { SettingsComposite } from '../composites/settings'
 import '../styles/globals.css'
-import { Footer, SettingsPanel, Sidebar, TopNav } from './components/layout'
+import { Footer, Sidebar, TopNav } from './components/layout'
 import { DemoPage } from './pages/demo-page'
+import { SettingsPage } from './pages/settings-page'
 import {
 	AppDocs,
 	ButtonDocs,
@@ -21,7 +23,7 @@ import './styles.css'
 
 function App() {
 	const [isDark, setIsDark] = createSignal(true)
-	const [currentPage, setCurrentPage] = createSignal<'demo' | 'docs'>('demo')
+	const [currentPage, setCurrentPage] = createSignal<'demo' | 'docs' | 'settings'>('demo')
 	const [currentComponent, setCurrentComponent] = createSignal<string | null>(
 		'introduction'
 	)
@@ -38,7 +40,7 @@ function App() {
 		setIsDark(!isDark())
 	}
 
-	const handlePageChange = (page: 'demo' | 'docs') => {
+	const handlePageChange = (page: 'demo' | 'docs' | 'settings') => {
 		setCurrentPage(page)
 		if (page === 'docs') {
 			setCurrentComponent('introduction')
@@ -79,20 +81,24 @@ function App() {
 					glassSaturation={glassSaturation()}
 				/>
 
-				<SettingsPanel
-					isDark={isDark}
+				<SettingsComposite
 					isOpen={glassSettingsOpen()}
 					onClose={() => setGlassSettingsOpen(false)}
-					enabled={glassEnabled()}
-					onEnabledChange={setGlassEnabled}
-					blur={glassBlur()}
-					onBlurChange={setGlassBlur}
-					opacity={glassOpacity()}
-					onOpacityChange={setGlassOpacity}
-					darkness={glassDarkness()}
-					onDarknessChange={setGlassDarkness}
-					saturation={glassSaturation()}
-					onSaturationChange={setGlassSaturation}
+					isDark={isDark}
+					glassSettings={{
+						enabled: glassEnabled(),
+						blur: glassBlur(),
+						opacity: glassOpacity(),
+						darkness: glassDarkness(),
+						saturation: glassSaturation()
+					}}
+					onGlassSettingsChange={settings => {
+						setGlassEnabled(settings.enabled)
+						setGlassBlur(settings.blur)
+						setGlassOpacity(settings.opacity)
+						setGlassDarkness(settings.darkness)
+						setGlassSaturation(settings.saturation)
+					}}
 				/>
 
 				<Show when={currentPage() === 'demo'}>
@@ -105,6 +111,76 @@ function App() {
 						}}
 					>
 						<DemoPage isDark={isDark} toggleTheme={toggleTheme} />
+					</div>
+				</Show>
+
+				<Show when={currentPage() === 'settings'}>
+					<div
+						style={{
+							'padding-top': '60px',
+							width: '100%',
+							'min-height': 'calc(100vh - 60px)',
+							'box-sizing': 'border-box',
+							position: 'relative',
+							display: 'flex',
+							'flex-direction': 'column'
+						}}
+					>
+						<div
+							style={{
+								width: '100%',
+								'max-width': '1400px',
+								margin: '0 auto',
+								flex: '1',
+								'box-sizing': 'border-box',
+								padding: '0',
+								display: 'flex',
+								'flex-direction': 'column',
+								height: 'calc(100vh - 60px)'
+							}}
+						>
+							<div
+								style={{
+									display: 'flex',
+									width: '100%',
+									flex: '1',
+									'box-sizing': 'border-box',
+									gap: '32px',
+									position: 'relative',
+									padding: '0 32px',
+									overflow: 'hidden'
+								}}
+							>
+								<SettingsPage
+									isDark={isDark}
+									glassSettings={{
+										enabled: glassEnabled(),
+										blur: glassBlur(),
+										opacity: glassOpacity(),
+										darkness: glassDarkness(),
+										saturation: glassSaturation()
+									}}
+									onGlassSettingsChange={settings => {
+										setGlassEnabled(settings.enabled)
+										setGlassBlur(settings.blur)
+										setGlassOpacity(settings.opacity)
+										setGlassDarkness(settings.darkness)
+										setGlassSaturation(settings.saturation)
+									}}
+								/>
+								{/* Invisible spacer for symmetry with sidebar */}
+								<div
+									style={{
+										width: '220px',
+										'min-width': '220px',
+										'max-width': '220px',
+										'flex-shrink': '0',
+										visibility: 'hidden',
+										'pointer-events': 'none'
+									}}
+								/>
+							</div>
+						</div>
 					</div>
 				</Show>
 

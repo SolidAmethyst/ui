@@ -45,8 +45,8 @@ describe('Grid', () => {
 	it('applies custom columns as number', () => {
 		const { container } = render(() => <Grid columns={3}>Content</Grid>)
 		const grid = container.querySelector('.grid') as HTMLElement
-		expect(grid?.style.gridTemplateColumns).toContain('repeat')
-		expect(grid?.style.gridTemplateColumns).toContain('auto-fill')
+		// When columns is a number without minColumnWidth/maxColumnWidth, it uses repeat(3, 1fr)
+		expect(grid?.style.gridTemplateColumns).toBe('repeat(3, 1fr)')
 	})
 
 	it('applies custom rows', () => {

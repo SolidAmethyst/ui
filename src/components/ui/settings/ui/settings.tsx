@@ -10,7 +10,7 @@ import { settingsStyles } from '../lib/settings.styles'
 export const Settings: Component<SettingsProps> = props => {
 	const isDark = () => props.isDark ?? true
 	const width = () => props.width ?? '320px'
-	const top = () => props.top ?? '60px'
+	const top = () => props.top ?? '0'
 	const title = () => props.title ?? 'Settings'
 
 	return (
@@ -18,7 +18,7 @@ export const Settings: Component<SettingsProps> = props => {
 			{/* Backdrop */}
 			<div
 				onClick={() => props.onClose()}
-				style={settingsStyles.backdrop(props.isOpen, isDark())}
+				style={settingsStyles.backdrop(props.isOpen, width())}
 			/>
 
 			{/* Settings Panel */}
@@ -53,7 +53,9 @@ export const Settings: Component<SettingsProps> = props => {
 				</div>
 
 				{/* Settings Content */}
-				{props.children}
+				<div style={{ flex: '1', overflow: 'hidden', display: 'flex', 'flex-direction': 'column' }}>
+					{props.children}
+				</div>
 			</aside>
 		</>
 	)
