@@ -53,19 +53,7 @@ const highlightCode = (code: string): string => {
 		'true',
 		'false',
 		'null',
-		'undefined',
-		// CSS keywords
-		'@layer',
-		'@media',
-		'@keyframes',
-		'@import',
-		'@charset',
-		'@namespace',
-		'@supports',
-		'@container',
-		'@page',
-		'@font-face',
-		'!important'
+		'undefined'
 	]
 
 	// Process keywords only in plain text parts (not inside spans)
@@ -110,18 +98,45 @@ const highlightCode = (code: string): string => {
 				) => {
 					let attrsHighlighted = attrs
 
-					// Highlight attributes with string values
+					// First, highlight JSX expressions {value} - must be before string values
+					attrsHighlighted = attrsHighlighted.replace(
+						/(\w+)(=)(\{[^}]*?\})/g,
+						(_m: string, name: string, eq: string, value: string) => {
+							const innerValue = value.slice(1, -1).trim()
+							// Check if it's a number
+							if (/^\d+$/.test(innerValue)) {
+								// Number - highlight as string (yellow)
+								return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span><span class="code-operator">{</span><span class="code-string">${innerValue}</span><span class="code-operator">}</span>`
+							} else if (innerValue === 'true' || innerValue === 'false') {
+								// Boolean - highlight as keyword (purple)
+								return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span><span class="code-operator">{</span><span class="code-keyword">${innerValue}</span><span class="code-operator">}</span>`
+							} else {
+								// Other expression - keep as is but highlight braces
+								return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span><span class="code-operator">{</span>${innerValue}<span class="code-operator">}</span>`
+							}
+						}
+					)
+
+					// Then highlight attributes with string values (quoted)
 					attrsHighlighted = attrsHighlighted.replace(
 						/(\w+)(=)(&quot;[^&]*?&quot;|&apos;[^&]*?&apos;)/g,
 						(_m: string, name: string, eq: string, value: string) => {
+							// Skip if already processed (inside a span)
+							if (name.includes('<span') || value.includes('<span')) {
+								return _m
+							}
 							return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span><span class="code-string">${value}</span>`
 						}
 					)
 
-					// Highlight attributes with boolean/other values
+					// Finally, highlight remaining attributes without values or with plain values
 					attrsHighlighted = attrsHighlighted.replace(
-						/(\w+)(=)(\{[^}]*?\}|\w+)/g,
+						/(\w+)(=)(\w+)/g,
 						(_m: string, name: string, eq: string, value: string) => {
+							// Skip if already processed
+							if (name.includes('<span') || value.includes('<span')) {
+								return _m
+							}
 							return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span>${value}`
 						}
 					)
@@ -133,51 +148,6 @@ const highlightCode = (code: string): string => {
 					}<span class="code-tag">${close}</span>`
 				}
 			)
-		})
-		.join('')
-
-	// CSS-specific highlighting (before operators to avoid conflicts)
-	const cssParts = highlighted.split(/(<span[^>]*>.*?<\/span>)/g)
-	highlighted = cssParts
-		.map(part => {
-			if (part.startsWith('<span')) {
-				return part
-			}
-			// CSS selectors (:root, .class, #id, [attr])
-			let processed = part.replace(
-				/(:root|:hover|:active|:focus|:disabled|:before|:after|::before|::after|:first-child|:last-child|:nth-child\([^)]+\))/g,
-				(match: string) => `<span class="code-keyword">${match}</span>`
-			)
-			// CSS custom properties (--variable-name)
-			processed = processed.replace(
-				/(--[\w-]+)/g,
-				(match: string) => `<span class="code-attr">${match}</span>`
-			)
-			// CSS property names (before colon)
-			processed = processed.replace(
-				/([\w-]+)(\s*:)/g,
-				(match: string, prop: string, colon: string) => {
-					// Skip if already in a span or if it's a CSS variable reference
-					if (match.includes('<span') || prop.startsWith('--')) {
-						return match
-					}
-					// Skip common non-property words
-					if (
-						['and', 'or', 'not', 'only', 'all', 'screen', 'print'].includes(
-							prop
-						)
-					) {
-						return match
-					}
-					return `<span class="code-attr">${prop}</span>${colon}`
-				}
-			)
-			// CSS at-rules
-			processed = processed.replace(
-				/(@[\w-]+)/g,
-				(match: string) => `<span class="code-keyword">${match}</span>`
-			)
-			return processed
 		})
 		.join('')
 
@@ -221,16 +191,18 @@ export const CodeHighlight: Component<CodeHighlightProps> = props => {
 		<div
 			style={{
 				position: 'relative',
-				background: props.isDark()
-					? 'rgba(255, 255, 255, 0.03)'
-					: 'rgba(0, 0, 0, 0.03)',
+				background: props.isDark() ? '#1a1a1f' : '#f8f9fa',
 				border: `1px solid ${
-					props.isDark() ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+					props.isDark() ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)'
 				}`,
+				'border-radius': '8px',
 				overflow: 'hidden',
 				'margin-bottom': '20px',
 				'word-wrap': 'break-word',
-				'overflow-wrap': 'break-word'
+				'overflow-wrap': 'break-word',
+				'box-shadow': props.isDark()
+					? '0 2px 8px rgba(0, 0, 0, 0.3)'
+					: '0 1px 3px rgba(0, 0, 0, 0.1)'
 			}}
 		>
 			<button
@@ -266,11 +238,11 @@ export const CodeHighlight: Component<CodeHighlightProps> = props => {
 			<pre
 				style={{
 					margin: '0',
-					padding: '12px',
+					padding: '16px',
 					overflow: 'auto',
 					'overflow-x': 'auto',
-					'font-size': '12px',
-					'line-height': '1.5',
+					'font-size': '13px',
+					'line-height': '1.6',
 					'font-family': 'Monaco, Menlo, "Ubuntu Mono", monospace',
 					background: 'transparent',
 					'word-wrap': 'break-word',

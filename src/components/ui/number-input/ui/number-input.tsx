@@ -13,17 +13,39 @@ export const NumberInput: Component<NumberInputProps> = props => {
 	// Parse value to number (handles both number and string like "12px")
 	const parseValue = (value: number | string): number => {
 		if (typeof value === 'number') return value
-		const match = String(value).match(/^(\d+)/)
+		const match = String(value).match(/^-?(\d+)/)
 		return match ? parseInt(match[1], 10) : 0
 	}
 
 	// Format number back to original format (preserves units if string was provided)
 	const formatValue = (num: number): number | string => {
 		if (props.type === 'text' && typeof props.value === 'string') {
-			const unit = props.value.replace(/^\d+/, '')
+			const unit = props.value.replace(/^-?\d+/, '') || props.defaultUnit || ''
 			return `${num}${unit}`
 		}
 		return num
+	}
+
+	// Validate and format string value with units (for onBlur)
+	const validateAndFormat = (value: string): string | null => {
+		if (!value.trim()) return null
+
+		const trimmed = value.trim()
+		// Check if it's a number with unit (e.g., "12px", "-5px")
+		if (/^-?\d+px$/.test(trimmed)) {
+			const num = parseInt(trimmed, 10)
+			const minValue = props.min !== undefined ? props.min : 0
+			return `${Math.max(minValue, num)}px`
+		}
+		// Check if it's just a number
+		if (/^-?\d+$/.test(trimmed)) {
+			const num = parseInt(trimmed, 10)
+			const minValue = props.min !== undefined ? props.min : 0
+			const unit = props.defaultUnit || ''
+			return `${Math.max(minValue, num)}${unit}`
+		}
+
+		return null
 	}
 
 	// Modify value by delta
@@ -33,10 +55,10 @@ export const NumberInput: Component<NumberInputProps> = props => {
 		const newValue = current + delta * step
 
 		// Apply min/max constraints
-		let constrainedValue = newValue
-		if (props.min !== undefined) {
-			constrainedValue = Math.max(constrainedValue, props.min)
-		}
+		// Default min is 0 if not specified (prevent negative values)
+		const minValue = props.min !== undefined ? props.min : 0
+		let constrainedValue = Math.max(newValue, minValue)
+
 		if (props.max !== undefined) {
 			constrainedValue = Math.min(constrainedValue, props.max)
 		}
@@ -55,8 +77,8 @@ export const NumberInput: Component<NumberInputProps> = props => {
 
 	// Check if value is at min/max
 	const isAtMin = () => {
-		if (props.min === undefined) return false
-		return parseValue(props.value) <= props.min
+		const minValue = props.min !== undefined ? props.min : 0
+		return parseValue(props.value) <= minValue
 	}
 
 	const isAtMax = () => {
@@ -80,12 +102,47 @@ export const NumberInput: Component<NumberInputProps> = props => {
 				step={props.step || 1}
 				placeholder={props.placeholder}
 				disabled={props.disabled}
-				onInput={props.onInput}
+				onInput={e => {
+					if (props.onInput) props.onInput(e)
+				}}
 				onWheel={handleWheel}
-				onFocus={props.onFocus}
-				onBlur={props.onBlur}
+				onFocus={e => {
+					const target = e.currentTarget
+					// Apply focus styles
+					if (props.themeAware) {
+						target.style.borderColor =
+							'var(--number-input-border-focus, rgba(59, 130, 246, 0.5))'
+					} else {
+						target.style.borderColor = 'rgba(59, 130, 246, 0.5)'
+					}
+					if (props.onFocus) props.onFocus(e)
+				}}
+				onBlur={e => {
+					const target = e.currentTarget
+					// Reset border color
+					if (props.themeAware) {
+						target.style.borderColor =
+							'var(--number-input-border, rgba(255, 255, 255, 0.1))'
+					} else {
+						target.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+					}
+
+					// Auto-validate if enabled (for string values with units)
+					if (
+						props.autoValidate !== false &&
+						props.type === 'text' &&
+						typeof props.value === 'string'
+					) {
+						const validated = validateAndFormat(target.value)
+						if (validated !== null) {
+							props.onChange(validated)
+						}
+					}
+
+					if (props.onBlur) props.onBlur(e)
+				}}
 				style={{
-					...numberInputStyles.input,
+					...numberInputStyles.input(props.themeAware),
 					...(props.style as JSX.CSSProperties)
 				}}
 			/>

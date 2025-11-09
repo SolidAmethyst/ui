@@ -92,4 +92,22 @@ export interface NumberInputProps {
 	 * Input handler (for direct text input)
 	 */
 	onInput?: (e: Event) => void
+
+	/**
+	 * Whether to auto-validate and format value on blur (for string values with units)
+	 * Default: true
+	 */
+	autoValidate?: boolean
+
+	/**
+	 * Default unit to append if value is a number without unit (e.g., "px")
+	 * Only used when type="text" and autoValidate is true
+	 */
+	defaultUnit?: string
+
+	/**
+	 * Whether the component should use theme-aware styles
+	 * If true, uses CSS variables for colors based on data-theme attribute
+	 */
+	themeAware?: boolean
 }

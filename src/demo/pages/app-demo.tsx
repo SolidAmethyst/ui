@@ -1,6 +1,5 @@
-import { Accessor, Component, createSignal, Show } from 'solid-js'
-import type { SidebarItem } from '../../components/ui/sidebar'
-import { Sidebar } from '../../components/ui/sidebar'
+import { Accessor, Component, createSignal, For, Show } from 'solid-js'
+import type { MenuItem } from '../../components/ui/menu'
 import { TitleBar } from '../../components/ui/title-bar'
 import { Window } from '../../components/ui/window'
 
@@ -15,7 +14,7 @@ export const AppDemo: Component<AppDemoProps> = props => {
 	const [maximized, setMaximized] = createSignal(false)
 	const [pinned, setPinned] = createSignal(false)
 
-	const sidebarItems: SidebarItem[] = [
+	const sidebarItems: MenuItem[] = [
 		{ label: 'Home', icon: 'home', onClick: () => console.log('Home') },
 		{
 			label: 'Dashboard',
@@ -60,6 +59,144 @@ export const AppDemo: Component<AppDemoProps> = props => {
 		setPinned(!pinned())
 	}
 
+	const renderSidebar = () => (
+		<aside
+			style={{
+				...(props.overlayMode
+					? {
+							position: 'absolute' as const,
+							top: '0',
+							left: sidebarOpen() ? '0' : '-250px',
+							width: '250px',
+							height: '100%',
+							'z-index': '1000',
+							transition: 'left 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+					  }
+					: {
+							width: sidebarOpen() ? '250px' : '0',
+							height: '100%',
+							overflow: 'hidden',
+							transition: 'width 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+							position: 'relative' as const,
+							'z-index': '100'
+					  }),
+				background: props.isDark()
+					? 'rgba(30, 30, 30, 0.95)'
+					: 'rgba(255, 255, 255, 0.95)',
+				'backdrop-filter': 'blur(20px) saturate(180%)',
+				'-webkit-backdrop-filter': 'blur(20px) saturate(180%)',
+				border: 'none',
+				'box-sizing': 'border-box' as const,
+				overflow: props.overlayMode ? ('auto' as const) : ('hidden' as const)
+			}}
+		>
+			<Show when={sidebarOpen()}>
+				<div
+					style={{
+						width: '250px',
+						height: '100%',
+						padding: '16px 0',
+						'box-sizing': 'border-box',
+						overflow: 'auto'
+					}}
+				>
+					<ul
+						style={{
+							'list-style': 'none',
+							margin: '0',
+							padding: '0',
+							display: 'flex',
+							'flex-direction': 'column',
+							gap: '4px'
+						}}
+					>
+						<For each={sidebarItems}>
+							{item => (
+								<>
+									<Show when={item.separator}>
+										<li
+											style={{
+												height: '1px',
+												'background-color': props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)',
+												margin: '8px 12px'
+											}}
+										/>
+									</Show>
+									<Show when={!item.separator}>
+										<li>
+											<button
+												type='button'
+												onClick={() => {
+													item.onClick?.()
+													setSidebarOpen(false)
+												}}
+												disabled={item.disabled}
+												style={{
+													width: '100%',
+													display: 'flex',
+													'align-items': 'center',
+													gap: '12px',
+													padding: '10px 16px',
+													'border-radius': '0',
+													cursor: item.disabled ? 'not-allowed' : 'pointer',
+													'font-size': '14px',
+													color: item.disabled
+														? props.isDark()
+															? 'rgba(255, 255, 255, 0.4)'
+															: 'rgba(0, 0, 0, 0.4)'
+														: props.isDark()
+														? 'rgba(255, 255, 255, 0.9)'
+														: 'rgba(0, 0, 0, 0.9)',
+													transition:
+														'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+													'background-color': 'transparent',
+													border: 'none',
+													'text-align': 'left',
+													'box-sizing': 'border-box',
+													opacity: item.disabled ? 0.5 : 1
+												}}
+												onMouseEnter={e => {
+													if (!item.disabled) {
+														e.currentTarget.style.backgroundColor =
+															props.isDark()
+																? 'rgba(255, 255, 255, 0.1)'
+																: 'rgba(0, 0, 0, 0.05)'
+													}
+												}}
+												onMouseLeave={e => {
+													e.currentTarget.style.backgroundColor = 'transparent'
+												}}
+											>
+												<Show when={item.icon}>
+													<span
+														class='material-symbols-rounded'
+														style={{
+															'font-size': '20px',
+															width: '20px',
+															height: '20px',
+															display: 'flex',
+															'align-items': 'center',
+															'justify-content': 'center'
+														}}
+													>
+														{item.icon}
+													</span>
+												</Show>
+												<span style={{ flex: '1' }}>{item.label}</span>
+											</button>
+										</li>
+									</Show>
+								</>
+							)}
+						</For>
+					</ul>
+				</div>
+			</Show>
+		</aside>
+	)
+
 	return (
 		<Window
 			style={{
@@ -82,15 +219,7 @@ export const AppDemo: Component<AppDemoProps> = props => {
 					onCloseClick={handleClose}
 				/>
 			}
-			sidebar={props.overlayMode ? undefined : (
-				<Sidebar
-					open={sidebarOpen()}
-					items={sidebarItems}
-					isDark={props.isDark()}
-					overlayMode={false}
-					onItemClick={() => setSidebarOpen(false)}
-				/>
-			)}
+			sidebar={props.overlayMode ? undefined : renderSidebar()}
 		>
 			{/* Overlay mode: backdrop + sidebar */}
 			<Show when={props.overlayMode}>
@@ -114,30 +243,29 @@ export const AppDemo: Component<AppDemoProps> = props => {
 					}}
 				/>
 				{/* Overlay Sidebar */}
-				<Sidebar
-					open={sidebarOpen()}
-					items={sidebarItems}
-					isDark={props.isDark()}
-					overlayMode={true}
-					onItemClick={() => setSidebarOpen(false)}
-				/>
+				{renderSidebar()}
 			</Show>
 			<div
 				style={{
+					flex: '1',
+					'min-height': '0',
 					width: '100%',
-					height: '100%',
-					padding: '24px',
+					'max-width': '100%',
+					padding: '32px',
 					'box-sizing': 'border-box',
-					overflow: 'auto',
 					background: props.isDark()
 						? 'hsl(240 20% 10%)'
-						: 'rgba(248, 248, 248, 1)'
+						: 'rgba(248, 248, 248, 1)',
+					overflow: 'auto'
 				}}
 			>
 				<div
 					style={{
-						'max-width': '1200px',
-						margin: '0 auto'
+						width: '100%',
+						'max-width': 'min(100%, 1200px)',
+						'min-width': '0',
+						margin: '0 auto',
+						'box-sizing': 'border-box'
 					}}
 				>
 					<h1
@@ -167,9 +295,13 @@ export const AppDemo: Component<AppDemoProps> = props => {
 					<div
 						style={{
 							display: 'grid',
-							'grid-template-columns': 'repeat(auto-fit, minmax(300px, 1fr))',
+							'grid-template-columns': 'repeat(auto-fit, minmax(280px, 1fr))',
 							gap: '16px',
-							margin: '24px 0'
+							margin: '24px 0',
+							width: '100%',
+							'max-width': '100%',
+							'min-width': '0',
+							'box-sizing': 'border-box'
 						}}
 					>
 						<For each={Array.from({ length: 6 })}>
@@ -188,7 +320,14 @@ export const AppDemo: Component<AppDemoProps> = props => {
 										}`,
 										'box-shadow': props.isDark()
 											? '0 2px 8px rgba(0, 0, 0, 0.3)'
-											: '0 2px 8px rgba(0, 0, 0, 0.1)'
+											: '0 2px 8px rgba(0, 0, 0, 0.1)',
+										width: '100%',
+										'max-width': '100%',
+										'min-width': '0',
+										'box-sizing': 'border-box',
+										overflow: 'hidden',
+										'word-wrap': 'break-word',
+										'overflow-wrap': 'break-word'
 									}}
 								>
 									<h3

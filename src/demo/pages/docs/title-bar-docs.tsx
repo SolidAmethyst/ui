@@ -2,6 +2,8 @@ import { Accessor, Component, createSignal } from 'solid-js'
 import { TitleBar } from '../../../components/ui/title-bar'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
+import { titleBarExamples } from './code-snippets/title-bar-snippets'
+import { docsStyles } from '../../lib/docs.styles'
 
 interface TitleBarDocsProps {
 	isDark: Accessor<boolean>
@@ -31,75 +33,28 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 		setPinned(!pinned())
 	}
 
+	const theme = () => ({ isDark: props.isDark() })
+
 	return (
-		<article
-			style={{
-				width: '100%',
-				'max-width': '700px',
-				'box-sizing': 'border-box',
-				margin: '0 auto',
-				padding: '24px 0',
-				color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-				overflow: 'hidden',
-				'overflow-x': 'hidden'
-			}}
-		>
-			<h1
-				style={{
-					'font-size': '1.75rem',
-					'font-weight': '700',
-					'margin-bottom': '12px',
-					'line-height': '1.2'
-				}}
-			>
-				TitleBar
-			</h1>
-			<p
-				style={{
-					'font-size': '0.95rem',
-					color: props.isDark()
-						? 'rgba(246, 246, 246, 0.7)'
-						: 'rgba(26, 26, 26, 0.7)',
-					'margin-bottom': '24px',
-					'line-height': '1.6'
-				}}
-			>
+		<article style={docsStyles.article(theme())}>
+			<h1 style={docsStyles.title(theme())}>TitleBar</h1>
+			<p style={docsStyles.description(theme())}>
 				Composite component for application title bar with controls, burger
 				menu, and window management buttons.
 			</p>
 
 			{/* Installation */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
-					Installation
-				</h2>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
 				<CodeHighlight
-					code={`import { TitleBar } from '@sapphiresolid/ui'`}
+					code={titleBarExamples.installation}
 					isDark={props.isDark}
 				/>
 			</section>
 
 			{/* Basic Usage */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
-					Basic Usage
-				</h2>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -135,36 +90,13 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 							/>
 						</div>
 					}
-					code={`<TitleBar
-  title="Physics Engine Demo"
-  onBurgerClick={() => console.log('Menu')}
-  onThemeToggle={() => toggleTheme()}
-  onDebugClick={() => console.log('Debug')}
-  onPinClick={() => setPinned(!pinned)}
-  onSettingsClick={() => console.log('Settings')}
-  onMinimizeClick={() => console.log('Minimize')}
-  onMaximizeClick={() => setMaximized(!maximized)}
-  onCloseClick={() => console.log('Close')}
-  isDark={isDark}
-  maximized={maximized}
-  pinned={pinned}
-/>`}
+					code={titleBarExamples.basicUsage}
 				/>
 			</section>
 
 			{/* Minimal Example */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
-					Minimal Example
-				</h2>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Minimal Example</h2>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -187,23 +119,13 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 							<TitleBar title='My Application' />
 						</div>
 					}
-					code={`<TitleBar title="My Application" />`}
+					code={titleBarExamples.minimalExample}
 				/>
 			</section>
 
 			{/* With Window Controls Only */}
-			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
-					With Window Controls
-				</h2>
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>With Window Controls</h2>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -232,13 +154,7 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 							/>
 						</div>
 					}
-					code={`<TitleBar
-  title="Window Title"
-  onMinimizeClick={() => handleMinimize()}
-  onMaximizeClick={() => handleMaximize()}
-  onCloseClick={() => handleClose()}
-  maximized={maximized}
-/>`}
+					code={titleBarExamples.windowControls}
 				/>
 			</section>
 		</article>
