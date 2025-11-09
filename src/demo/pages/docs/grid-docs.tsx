@@ -194,6 +194,15 @@ export const GridDocs: Component<GridDocsProps> = props => {
 													setBasicColumns(val)
 												}
 											}}
+											onWheel={e => {
+												e.preventDefault()
+												const delta = e.deltaY > 0 ? -1 : 1
+												const newValue = Math.max(
+													1,
+													Math.min(6, basicColumns() + delta)
+												)
+												setBasicColumns(newValue)
+											}}
 											style={{
 												width: '60px',
 												padding: '4px 20px 4px 8px',
@@ -782,6 +791,15 @@ export const GridDocs: Component<GridDocsProps> = props => {
 													setColumns(val)
 												}
 											}}
+											onWheel={e => {
+												e.preventDefault()
+												const delta = e.deltaY > 0 ? -1 : 1
+												const newValue = Math.max(
+													1,
+													Math.min(6, columns() + delta)
+												)
+												setColumns(newValue)
+											}}
 											style={{
 												width: '60px',
 												padding: '4px 20px 4px 8px',
@@ -1125,6 +1143,15 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												if (!isNaN(val) && val >= 1 && val <= 6) {
 													setSeparateColumns(val)
 												}
+											}}
+											onWheel={e => {
+												e.preventDefault()
+												const delta = e.deltaY > 0 ? -1 : 1
+												const newValue = Math.max(
+													1,
+													Math.min(6, separateColumns() + delta)
+												)
+												setSeparateColumns(newValue)
 											}}
 											style={{
 												width: '60px',
