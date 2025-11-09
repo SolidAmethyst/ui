@@ -59,24 +59,24 @@ export const buttonStyles = {
   // Hover effects
   hover: `
     background: transparent;
-    color: #3b82f6;
+    color: hsl(var(--button-hover));
     box-shadow: none;
   `,
 
   // Active state
   active: `
-    color: #3b82f6;
+    color: hsl(var(--button-hover));
   `,
 
   // Close button hover
   closeHover: `
     background: transparent;
-    color: #e81123;
+    color: hsl(var(--button-close-hover));
   `,
 
   // Close button active
   closeActive: `
-    background: #c50e1f;
+    background: hsl(var(--button-close-active));
   `,
 
   // Disabled state

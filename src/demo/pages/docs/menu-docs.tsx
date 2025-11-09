@@ -203,6 +203,55 @@ const sidebarItems: SidebarItem[] = [
 </Window>`}
 				/>
 			</section>
+
+			{/* Customization */}
+			<section style={{ 'margin-bottom': '32px' }}>
+				<h2
+					style={{
+						'font-size': '1.25rem',
+						'font-weight': '600',
+						'margin-bottom': '12px',
+						'line-height': '1.3',
+						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+					}}
+				>
+					Customization
+				</h2>
+				<p
+					style={{
+						'font-size': '0.9rem',
+						color: props.isDark()
+							? 'rgba(246, 246, 246, 0.7)'
+							: 'rgba(26, 26, 26, 0.7)',
+						'margin-bottom': '16px',
+						'line-height': '1.6'
+					}}
+				>
+					You can customize menu colors by overriding CSS variables in your
+					application's stylesheet.
+				</p>
+				<CodeHighlight
+					code={`@layer base {
+  :root {
+    --menu-background: 0 0% 98%;
+    --menu-foreground: 240 5.3% 26.1%;
+    --menu-accent: 240 4.8% 95.9%;
+    --menu-border: 220 13% 91%;
+    --menu-shadow: 0 0% 0%;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    --menu-background: 240 5.9% 10%;
+    --menu-foreground: 240 4.8% 95.9%;
+    --menu-accent: 240 3.7% 15.9%;
+    --menu-border: 240 3.7% 15.9%;
+    --menu-shadow: 0 0% 0%;
+  }
+}`}
+					isDark={props.isDark}
+				/>
+			</section>
 		</article>
 	)
 }

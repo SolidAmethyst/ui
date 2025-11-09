@@ -222,7 +222,7 @@ export const Menu: Component<MenuProps> = props => {
 															onMouseEnter={e => {
 																if (!item.disabled) {
 																	e.currentTarget.style.backgroundColor =
-																		'rgba(255, 255, 255, 0.1)'
+																		'hsl(var(--menu-accent))'
 																}
 															}}
 															onMouseLeave={e => {
@@ -297,7 +297,7 @@ export const Menu: Component<MenuProps> = props => {
 															onMouseEnter={e => {
 																if (!item.disabled) {
 																	e.currentTarget.style.backgroundColor =
-																		'rgba(255, 255, 255, 0.1)'
+																		'hsl(var(--menu-accent))'
 																}
 															}}
 															onMouseLeave={e => {

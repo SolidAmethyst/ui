@@ -42,7 +42,7 @@ export const scrollbarStyles = `
 }
 .scrollbar-thumb {
   position: absolute;
-  background: rgba(59, 130, 246, 0.6);
+  background: hsl(var(--scrollbar-thumb) / 0.6);
   border-radius: 2px;
   cursor: grab;
   transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -51,11 +51,11 @@ export const scrollbarStyles = `
   min-height: 1px;
 }
 .scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.9);
+  background: hsl(var(--scrollbar-thumb-hover) / 0.9);
 }
 .scrollbar-thumb:active,
 .scrollbar-thumb.dragging {
-  background: rgba(59, 130, 246, 1);
+  background: hsl(var(--scrollbar-thumb-active));
   cursor: grabbing;
 }
 .scrollbar-arrow {
@@ -70,21 +70,21 @@ export const scrollbarStyles = `
   justify-content: center;
   font-size: 12px;
   font-weight: bold;
-  color: #6b7280;
+  color: hsl(var(--scrollbar-arrow));
   transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1), transform 100ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
   padding: 0;
   margin: 0;
 }
 .scrollbar-arrow:hover {
-  color: #3b82f6;
+  color: hsl(var(--scrollbar-arrow-hover));
   transform: scale(1.1);
 }
 .scrollbar-arrow:active {
-  color: #1d4ed8;
+  color: hsl(var(--scrollbar-arrow-active));
 }
 .scrollbar-arrow:disabled {
-  color: #9ca3af;
+  color: hsl(var(--scrollbar-arrow-disabled));
   cursor: not-allowed;
 }
 .scrollbar-arrow-up {

@@ -16,13 +16,13 @@ export const menuStyles = {
 	container: {
 		position: 'absolute' as const,
 		'min-width': '200px',
-		'background-color': 'rgba(30, 30, 30, 0.95)',
+		'background-color': 'hsl(var(--menu-background) / 0.95)',
 		'backdrop-filter': 'blur(20px) saturate(180%)',
 		'-webkit-backdrop-filter': 'blur(20px) saturate(180%)',
 		'border-radius': '8px',
 		'box-shadow':
-			'0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.05) inset',
-		border: '1px solid rgba(255, 255, 255, 0.1)',
+			'0 4px 16px hsl(var(--menu-shadow) / 0.4), 0 1px 0 hsl(var(--menu-foreground) / 0.05) inset',
+		border: '1px solid hsl(var(--menu-border))',
 		'box-sizing': 'border-box',
 		padding: '4px',
 		'z-index': '10000',
@@ -45,7 +45,7 @@ export const menuStyles = {
 		'border-radius': '6px',
 		cursor: 'pointer',
 		'font-size': '13px',
-		color: 'rgba(255, 255, 255, 0.9)',
+		color: 'hsl(var(--menu-foreground) / 0.9)',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
 		'background-color': 'transparent',
 		border: 'none',
@@ -54,7 +54,7 @@ export const menuStyles = {
 		'box-sizing': 'border-box'
 	},
 	itemHover: {
-		'background-color': 'rgba(255, 255, 255, 0.1)'
+		'background-color': 'hsl(var(--menu-accent))'
 	},
 	itemDisabled: {
 		opacity: '0.5',
@@ -67,7 +67,7 @@ export const menuStyles = {
 		width: '20px',
 		height: '20px',
 		'font-size': '18px',
-		color: 'rgba(255, 255, 255, 0.8)',
+		color: 'hsl(var(--menu-foreground) / 0.8)',
 		'flex-shrink': '0'
 	},
 	itemLabel: {
@@ -78,7 +78,7 @@ export const menuStyles = {
 	},
 	separator: {
 		height: '1px',
-		'background-color': 'rgba(255, 255, 255, 0.1)',
+		'background-color': 'hsl(var(--menu-border))',
 		margin: '4px 0',
 		'flex-shrink': '0'
 	}

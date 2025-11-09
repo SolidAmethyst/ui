@@ -9,7 +9,7 @@ export const titleBarStyles = {
 		'justify-content': 'space-between',
 		width: '100%',
 		height: '32px',
-		'background-color': 'rgba(30, 30, 30, 1)',
+		'background-color': 'hsl(var(--titlebar-background))',
 		'user-select': 'none',
 		'-webkit-app-region': 'drag' as const,
 		'box-sizing': 'border-box',
@@ -37,7 +37,7 @@ export const titleBarStyles = {
 		background: 'transparent',
 		padding: '0',
 		margin: '0',
-		color: 'rgba(255, 255, 255, 0.9)',
+		color: 'hsl(var(--titlebar-foreground) / 0.9)',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
 	},
 	titleArea: {
@@ -49,7 +49,7 @@ export const titleBarStyles = {
 		overflow: 'hidden',
 		'text-overflow': 'ellipsis',
 		'white-space': 'nowrap',
-		color: 'rgba(255, 255, 255, 0.9)',
+		color: 'hsl(var(--titlebar-foreground) / 0.9)',
 		'font-size': '13px',
 		'font-weight': '400',
 		'letter-spacing': '0.01em'
@@ -70,7 +70,7 @@ export const titleBarStyles = {
 	separator: {
 		width: '1px',
 		height: '20px',
-		'background-color': 'rgba(255, 255, 255, 0.1)',
+		'background-color': 'hsl(var(--titlebar-separator))',
 		margin: '0 4px'
 	},
 	controlButton: {
@@ -84,13 +84,13 @@ export const titleBarStyles = {
 		background: 'transparent',
 		padding: '0',
 		margin: '0',
-		color: 'rgba(255, 255, 255, 0.8)',
+		color: 'hsl(var(--titlebar-foreground) / 0.8)',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
 	},
 	controlButtonHover: {
-		'background-color': 'rgba(255, 255, 255, 0.1)'
+		'background-color': 'hsl(var(--titlebar-accent))'
 	},
 	closeButtonHover: {
-		'background-color': 'rgba(232, 17, 35, 0.2)'
+		'background-color': 'hsl(var(--titlebar-close-hover) / 0.2)'
 	}
 }

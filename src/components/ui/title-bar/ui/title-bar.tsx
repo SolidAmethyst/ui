@@ -30,7 +30,7 @@ export const TitleBar: Component<TitleBarProps> = props => {
 						style={titleBarStyles.burgerButton}
 						title='Menu'
 						onMouseEnter={e => {
-							e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)'
+							e.currentTarget.style.backgroundColor = 'hsl(var(--titlebar-accent))'
 						}}
 						onMouseLeave={e => {
 							e.currentTarget.style.backgroundColor = 'transparent'
@@ -40,7 +40,7 @@ export const TitleBar: Component<TitleBarProps> = props => {
 							class='material-symbols-rounded'
 							style={{
 								'font-size': '18px',
-								color: 'rgba(255, 255, 255, 0.9)'
+								color: 'hsl(var(--titlebar-foreground) / 0.9)'
 							}}
 						>
 							menu

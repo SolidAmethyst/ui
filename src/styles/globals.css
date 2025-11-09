@@ -30,6 +30,35 @@
 		--sidebar-accent: 240 4.8% 95.9%;
 		--sidebar-accent-foreground: 240 5.9% 10%;
 		--sidebar-border: 220 13% 91%;
+		/* Button colors */
+		--button-hover: 217.2 91.2% 59.8%;
+		--button-close-hover: 0 84.2% 60.2%;
+		--button-close-active: 0 72% 50%;
+		/* Scrollbar colors */
+		--scrollbar-thumb: 217.2 91.2% 59.8%;
+		--scrollbar-thumb-hover: 217.2 91.2% 59.8%;
+		--scrollbar-thumb-active: 217.2 91.2% 59.8%;
+		--scrollbar-arrow: 215 16.2% 46.9%;
+		--scrollbar-arrow-hover: 217.2 91.2% 59.8%;
+		--scrollbar-arrow-active: 217.2 91.2% 47.1%;
+		--scrollbar-arrow-disabled: 215 20.2% 65.1%;
+		/* Menu colors */
+		--menu-background: 0 0% 98%;
+		--menu-foreground: 240 5.3% 26.1%;
+		--menu-accent: 240 4.8% 95.9%;
+		--menu-border: 220 13% 91%;
+		--menu-shadow: 0 0% 0%;
+		/* TitleBar colors */
+		--titlebar-background: 0 0% 98%;
+		--titlebar-foreground: 240 5.3% 26.1%;
+		--titlebar-accent: 240 4.8% 95.9%;
+		--titlebar-separator: 220 13% 91%;
+		--titlebar-close-hover: 0 84.2% 60.2%;
+		/* TechChip colors */
+		--techchip-foreground: 0 0% 100%;
+		--techchip-loading: 25 95% 53%;
+		--techchip-ready: 142 76% 36%;
+		--techchip-error: 0 72% 51%;
 	}
 
 	.dark,
@@ -59,6 +88,35 @@
 		--sidebar-accent: 240 3.7% 15.9%;
 		--sidebar-accent-foreground: 240 4.8% 95.9%;
 		--sidebar-border: 240 3.7% 15.9%;
+		/* Button colors */
+		--button-hover: 217.2 91.2% 59.8%;
+		--button-close-hover: 0 84.2% 60.2%;
+		--button-close-active: 0 72% 50%;
+		/* Scrollbar colors */
+		--scrollbar-thumb: 217.2 91.2% 59.8%;
+		--scrollbar-thumb-hover: 217.2 91.2% 59.8%;
+		--scrollbar-thumb-active: 217.2 91.2% 59.8%;
+		--scrollbar-arrow: 215 20.2% 65.1%;
+		--scrollbar-arrow-hover: 217.2 91.2% 59.8%;
+		--scrollbar-arrow-active: 217.2 91.2% 47.1%;
+		--scrollbar-arrow-disabled: 215 20.2% 65.1%;
+		/* Menu colors */
+		--menu-background: 240 5.9% 10%;
+		--menu-foreground: 240 4.8% 95.9%;
+		--menu-accent: 240 3.7% 15.9%;
+		--menu-border: 240 3.7% 15.9%;
+		--menu-shadow: 0 0% 0%;
+		/* TitleBar colors */
+		--titlebar-background: 240 5.9% 10%;
+		--titlebar-foreground: 240 4.8% 95.9%;
+		--titlebar-accent: 240 3.7% 15.9%;
+		--titlebar-separator: 240 3.7% 15.9%;
+		--titlebar-close-hover: 0 84.2% 60.2%;
+		/* TechChip colors */
+		--techchip-foreground: 240 4.8% 95.9%;
+		--techchip-loading: 25 95% 53%;
+		--techchip-ready: 142 76% 36%;
+		--techchip-error: 0 72% 51%;
 	}
 }
 
@@ -520,6 +578,19 @@
 	100% {
 		background-position: 0% 0%;
 	}
+}
+
+/* TechChip status colors */
+span[data-status='loading'] {
+	background-color: hsl(var(--techchip-loading));
+}
+
+span[data-status='ready'] {
+	background-color: hsl(var(--techchip-ready));
+}
+
+span[data-status='error'] {
+	background-color: hsl(var(--techchip-error));
 }
 
 /* TechChip light theme adaptation */

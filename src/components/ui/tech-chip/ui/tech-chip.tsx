@@ -17,7 +17,7 @@ export const TechChip: Component<TechChipProps> = (props) => (
       height: "40px",
       padding: "0 8px",
       background: "transparent",
-      color: "white",
+      color: "hsl(var(--techchip-foreground))",
       "font-size": "14px",
       "line-height": "1",
       "vertical-align": "middle",
@@ -32,7 +32,7 @@ export const TechChip: Component<TechChipProps> = (props) => (
     <span
       class="material-symbols-rounded"
       style={{
-        color: "white",
+        color: "hsl(var(--techchip-foreground))",
         "font-size": "16px",
         "line-height": "1",
         width: "16px",
@@ -49,7 +49,7 @@ export const TechChip: Component<TechChipProps> = (props) => (
     {/* Label */}
     <span
       style={{
-        color: "white",
+        color: "hsl(var(--techchip-foreground))",
         "font-size": "14px",
         "line-height": "1",
       }}

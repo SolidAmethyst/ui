@@ -241,6 +241,55 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 />`}
 				/>
 			</section>
+
+			{/* Customization */}
+			<section style={{ 'margin-bottom': '32px' }}>
+				<h2
+					style={{
+						'font-size': '1.25rem',
+						'font-weight': '600',
+						'margin-bottom': '12px',
+						'line-height': '1.3',
+						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+					}}
+				>
+					Customization
+				</h2>
+				<p
+					style={{
+						'font-size': '0.9rem',
+						color: props.isDark()
+							? 'rgba(246, 246, 246, 0.7)'
+							: 'rgba(26, 26, 26, 0.7)',
+						'margin-bottom': '16px',
+						'line-height': '1.6'
+					}}
+				>
+					You can customize titlebar colors by overriding CSS variables in your
+					application's stylesheet.
+				</p>
+				<CodeHighlight
+					code={`@layer base {
+  :root {
+    --titlebar-background: 0 0% 98%;
+    --titlebar-foreground: 240 5.3% 26.1%;
+    --titlebar-accent: 240 4.8% 95.9%;
+    --titlebar-separator: 220 13% 91%;
+    --titlebar-close-hover: 0 84.2% 60.2%;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    --titlebar-background: 240 5.9% 10%;
+    --titlebar-foreground: 240 4.8% 95.9%;
+    --titlebar-accent: 240 3.7% 15.9%;
+    --titlebar-separator: 240 3.7% 15.9%;
+    --titlebar-close-hover: 0 84.2% 60.2%;
+  }
+}`}
+					isDark={props.isDark}
+				/>
+			</section>
 		</article>
 	)
 }

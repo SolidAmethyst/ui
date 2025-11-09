@@ -202,5 +202,58 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = (props) => (
 </ScrollbarProvider>`}
       />
     </section>
+
+    {/* Customization */}
+    <section style={{ 'margin-bottom': '32px' }}>
+      <h2
+        style={{
+          'font-size': '1.25rem',
+          'font-weight': '600',
+          'margin-bottom': '12px',
+          'line-height': '1.3',
+          color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+        }}
+      >
+        Customization
+      </h2>
+      <p
+        style={{
+          'font-size': '0.9rem',
+          color: props.isDark()
+            ? 'rgba(246, 246, 246, 0.7)'
+            : 'rgba(26, 26, 26, 0.7)',
+          'margin-bottom': '16px',
+          'line-height': '1.6'
+        }}
+      >
+        You can customize scrollbar colors by overriding CSS variables in your
+        application's stylesheet.
+      </p>
+      <CodeHighlight
+        code={`@layer base {
+  :root {
+    --scrollbar-thumb: 217.2 91.2% 59.8%;
+    --scrollbar-thumb-hover: 217.2 91.2% 59.8%;
+    --scrollbar-thumb-active: 217.2 91.2% 59.8%;
+    --scrollbar-arrow: 215 16.2% 46.9%;
+    --scrollbar-arrow-hover: 217.2 91.2% 59.8%;
+    --scrollbar-arrow-active: 217.2 91.2% 47.1%;
+    --scrollbar-arrow-disabled: 215 20.2% 65.1%;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    --scrollbar-thumb: 217.2 91.2% 59.8%;
+    --scrollbar-thumb-hover: 217.2 91.2% 59.8%;
+    --scrollbar-thumb-active: 217.2 91.2% 59.8%;
+    --scrollbar-arrow: 215 20.2% 65.1%;
+    --scrollbar-arrow-hover: 217.2 91.2% 59.8%;
+    --scrollbar-arrow-active: 217.2 91.2% 47.1%;
+    --scrollbar-arrow-disabled: 215 20.2% 65.1%;
+  }
+}`}
+        isDark={props.isDark}
+      />
+    </section>
   </article>
 );
