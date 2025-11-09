@@ -14,7 +14,8 @@ export const Grid: Component<GridProps> = props => {
 	let containerRef: HTMLDivElement | undefined
 
 	onMount(() => {
-		if (containerRef && responsive.setupResizeObserver) {
+		// Always setup ResizeObserver for accurate width tracking (works with zoom)
+		if (containerRef) {
 			responsive.setupResizeObserver(containerRef)
 		}
 	})

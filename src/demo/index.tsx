@@ -2,6 +2,7 @@ import type { JSX } from 'solid-js'
 import { createSignal, Show } from 'solid-js'
 import { render } from 'solid-js/web'
 import { ScrollbarProvider } from '../components/ui/scrollbar'
+import type { GlassSettings } from '../composites/settings'
 import { SettingsComposite } from '../composites/settings'
 import '../styles/globals.css'
 import { Footer, Sidebar, TopNav } from './components/layout'
@@ -95,7 +96,7 @@ function App() {
 						darkness: glassDarkness(),
 						saturation: glassSaturation()
 					}}
-					onGlassSettingsChange={settings => {
+					onGlassSettingsChange={(settings: GlassSettings) => {
 						setGlassEnabled(settings.enabled)
 						setGlassBlur(settings.blur)
 						setGlassOpacity(settings.opacity)
@@ -163,7 +164,7 @@ function App() {
 										darkness: glassDarkness(),
 										saturation: glassSaturation()
 									}}
-									onGlassSettingsChange={settings => {
+									onGlassSettingsChange={(settings: GlassSettings) => {
 										setGlassEnabled(settings.enabled)
 										setGlassBlur(settings.blur)
 										setGlassOpacity(settings.opacity)
@@ -218,11 +219,25 @@ function App() {
 									width: '100%',
 									flex: '1',
 									'box-sizing': 'border-box',
-									gap: '32px',
+									gap: '0',
 									position: 'relative',
-									padding: '0 32px'
+									padding: '24px 32px 0 32px',
+									'align-items': 'flex-start'
 								}}
 							>
+								{/* Debug line to check alignment */}
+								{/* <div
+									style={{
+										position: 'absolute',
+										top: '24px',
+										left: '32px',
+										right: '32px',
+										height: '2px',
+										background: 'red',
+										'z-index': '9999',
+										'pointer-events': 'none'
+									}}
+								/> */}
 								<Sidebar
 									isDark={isDark}
 									currentComponent={currentComponent()}
@@ -237,7 +252,8 @@ function App() {
 										padding: '0',
 										display: 'flex',
 										'flex-direction': 'column',
-										position: 'relative'
+										position: 'relative',
+										margin: '0'
 									}}
 								>
 									<div

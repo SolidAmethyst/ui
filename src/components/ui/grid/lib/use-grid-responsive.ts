@@ -3,7 +3,7 @@
  * Handles responsive breakpoints and resize observation
  */
 
-import { createSignal, onMount, onCleanup, type Accessor } from 'solid-js'
+import { createSignal, onCleanup, onMount, type Accessor } from 'solid-js'
 import type { GridBreakpoint, GridProps } from '../model/types'
 
 export interface GridResponsiveState {
@@ -16,7 +16,9 @@ export interface GridResponsiveState {
 /**
  * Calculate gap CSS value from gap prop
  */
-const calculateGap = (gap?: string | { row?: string; column?: string }): string => {
+const calculateGap = (
+	gap?: string | { row?: string; column?: string }
+): string => {
 	if (!gap) return '0'
 	if (typeof gap === 'string') return gap
 	const row = gap.row || '0'
@@ -78,36 +80,45 @@ const findBreakpoint = (
  * Hook for responsive grid behavior
  */
 export const useGridResponsive = (props: GridProps): GridResponsiveState => {
-	const [viewportWidth, setViewportWidth] = createSignal(window.innerWidth)
-	const [currentBreakpoint, setCurrentBreakpoint] = createSignal<GridBreakpoint | undefined>()
+	const [containerWidth, setContainerWidth] = createSignal<number | null>(null)
+	const [currentBreakpoint, setCurrentBreakpoint] = createSignal<
+		GridBreakpoint | undefined
+	>()
 
 	// Calculate initial breakpoint
 	const calculateBreakpoint = () => {
 		if (props.breakpoints && props.breakpoints.length > 0) {
-			const width = viewportWidth()
+			const width = containerWidth() ?? window.innerWidth
 			const bp = findBreakpoint(props.breakpoints, width)
 			setCurrentBreakpoint(bp)
 		}
 	}
 
-	// Handle window resize
+	// Handle window resize (fallback)
 	const handleResize = () => {
-		setViewportWidth(window.innerWidth)
-		calculateBreakpoint()
+		if (!containerWidth()) {
+			calculateBreakpoint()
+		}
 	}
 
-	// Handle ResizeObserver (if enabled)
+	// Handle ResizeObserver (primary method - works with zoom)
 	let resizeObserver: ResizeObserver | null = null
 	let containerElement: HTMLElement | null = null
 
 	const setupResizeObserver = (element: HTMLElement) => {
-		if (!props.observeResize) return
-
+		// Always use ResizeObserver for accurate container width (works with zoom)
 		containerElement = element
+
+		// Set initial width
+		const initialWidth = element.getBoundingClientRect().width
+		setContainerWidth(initialWidth)
+		calculateBreakpoint()
+
 		resizeObserver = new ResizeObserver(entries => {
 			for (const entry of entries) {
-				const width = entry.contentRect.width
-				setViewportWidth(width)
+				// Use getBoundingClientRect for accurate width including zoom
+				const width = entry.target.getBoundingClientRect().width
+				setContainerWidth(width)
 				calculateBreakpoint()
 			}
 		})
@@ -116,7 +127,10 @@ export const useGridResponsive = (props: GridProps): GridResponsiveState => {
 	}
 
 	onMount(() => {
-		calculateBreakpoint()
+		// Initial calculation with window width if container not yet observed
+		if (!containerWidth()) {
+			calculateBreakpoint()
+		}
 		window.addEventListener('resize', handleResize)
 
 		return () => {

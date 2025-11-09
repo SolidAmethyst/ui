@@ -18,25 +18,34 @@ export const docsStyles = {
 		'max-width': '700px',
 		'box-sizing': 'border-box',
 		margin: '0 auto',
-		padding: '24px 0',
+		padding: '8px 0 24px 0',
 		color: getColors(theme).text,
 		overflow: 'hidden',
 		'overflow-x': 'hidden'
 	}),
 
 	title: (theme: DocsTheme): JSX.CSSProperties => ({
-		'font-size': '1.75rem',
+		'font-size': '15px',
 		'font-weight': '700',
+		'margin-top': '0',
 		'margin-bottom': '12px',
-		'line-height': '1.2',
+		'line-height': '1',
+		'letter-spacing': '0.08em',
+		'text-transform': 'uppercase',
 		color: getColors(theme).text
 	}),
 
 	description: (theme: DocsTheme): JSX.CSSProperties => ({
-		'font-size': '0.95rem',
+		'font-size': '0.85rem',
 		color: getColors(theme).textMuted,
 		'margin-bottom': '24px',
 		'line-height': '1.6'
+	}),
+
+	paragraph: (theme: DocsTheme): JSX.CSSProperties => ({
+		'font-size': '0.85rem',
+		'line-height': '1.7',
+		color: theme.isDark ? 'rgba(246, 246, 246, 0.9)' : 'rgba(26, 26, 26, 0.9)'
 	}),
 
 	section: (): JSX.CSSProperties => ({
@@ -44,7 +53,15 @@ export const docsStyles = {
 	}),
 
 	sectionTitle: (theme: DocsTheme): JSX.CSSProperties => ({
-		'font-size': '1.25rem',
+		'font-size': '11px',
+		'font-weight': '600',
+		'margin-bottom': '12px',
+		'line-height': '1.3',
+		color: getColors(theme).text
+	}),
+
+	subsectionTitle: (theme: DocsTheme): JSX.CSSProperties => ({
+		'font-size': '10px',
 		'font-weight': '600',
 		'margin-bottom': '12px',
 		'line-height': '1.3',

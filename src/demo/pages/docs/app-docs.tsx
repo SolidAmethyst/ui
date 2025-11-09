@@ -4,6 +4,7 @@ import type { SidebarItem } from '../../../components/ui/sidebar'
 import { App } from '../../../composites/app'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
+import { docsStyles } from '../../lib/docs.styles'
 import { appSnippets } from './code-snippets/app-snippets'
 
 interface AppDocsProps {
@@ -100,33 +101,12 @@ export const AppDocs: Component<AppDocsProps> = props => {
 		{ label: 'About', icon: 'info', onClick: () => console.log('About') }
 	]
 
+	const theme = () => ({ isDark: props.isDark() })
+
 	return (
-		<article
-			style={{
-				width: '100%',
-				'max-width': '700px'
-			}}
-		>
-			<h1
-				style={{
-					'font-size': '2rem',
-					'font-weight': '700',
-					margin: '0 0 8px 0',
-					color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-				}}
-			>
-				App
-			</h1>
-			<p
-				style={{
-					'font-size': '1rem',
-					'line-height': '1.6',
-					color: props.isDark()
-						? 'rgba(246, 246, 246, 0.7)'
-						: 'rgba(26, 26, 26, 0.7)',
-					margin: '0 0 32px 0'
-				}}
-			>
+		<article style={docsStyles.article(theme())}>
+			<h1 style={docsStyles.title(theme())}>App</h1>
+			<p style={docsStyles.description(theme())}>
 				Full-featured application composition with Window, TitleBar, and Sidebar
 			</p>
 

@@ -48,33 +48,51 @@ export const Sidebar: Component<SidebarProps> = props => (
 			'min-width': '220px',
 			'max-width': '220px',
 			position: 'sticky',
-			top: '56px',
+			top: '0',
 			'align-self': 'flex-start',
-			'max-height': 'calc(100vh - 56px)',
+			'max-height': 'calc(100vh - 60px)',
 			overflow: 'auto',
 			'overflow-x': 'hidden',
 			'flex-shrink': '0',
 			'box-sizing': 'border-box',
 			background: 'transparent',
 			'border-right': props.isDark()
-				? '1px solid rgba(255, 255, 255, 0.1)'
-				: '1px solid rgba(0, 0, 0, 0.1)'
+				? '1px solid rgba(255, 255, 255, 0.15)'
+				: '1px solid rgba(0, 0, 0, 0.15)',
+			margin: '0',
+			padding: '0',
+			'padding-right': '24px',
+			'margin-right': '24px'
 		}}
 	>
 		<div
-			style={{ padding: '16px 0', height: '100%', 'box-sizing': 'border-box' }}
+			style={{
+				padding: '8px 0 0 0',
+				height: '100%',
+				'box-sizing': 'border-box',
+				margin: '0'
+			}}
 		>
 			<For each={componentGroups}>
-				{group => (
-					<div style={{ 'margin-bottom': '16px' }}>
+				{(group, index) => (
+					<div
+						style={{
+							'margin-bottom': '16px',
+							'margin-top': '0',
+							'padding-top': '0'
+						}}
+					>
 						<h4
 							style={{
 								padding: '0 0 8px 16px',
 								margin: '0',
-								'font-size': '11px',
+								'margin-top': index() === 0 ? '0.1rem' : '0',
+								'padding-top': '0',
+								'font-size': '13px',
 								'font-weight': '600',
 								'letter-spacing': '0.08em',
 								'text-transform': 'uppercase',
+								'line-height': '1',
 								color: props.isDark()
 									? 'rgba(246, 246, 246, 0.5)'
 									: 'rgba(26, 26, 26, 0.5)'
@@ -83,14 +101,18 @@ export const Sidebar: Component<SidebarProps> = props => (
 							{group.title}
 						</h4>
 						<For each={group.items}>
-							{item => (
+							{(item, itemIndex) => (
 								<button
 									onClick={() => props.onComponentSelect(item.id)}
 									style={{
 										width: '100%',
 										padding:
 											props.currentComponent === item.id
-												? '6px 0 6px 16px'
+												? itemIndex() === 0
+													? '0 0 6px 16px'
+													: '6px 0 6px 16px'
+												: itemIndex() === 0
+												? '0 0 6px 19px'
 												: '6px 0 6px 19px',
 										'text-align': 'left',
 										border: 'none',
