@@ -7,6 +7,7 @@ interface AppDemoProps {
 	isDark: Accessor<boolean>
 	toggleTheme: () => void
 	overlayMode?: boolean
+	showContent?: boolean
 }
 
 export const AppDemo: Component<AppDemoProps> = props => {
@@ -259,103 +260,105 @@ export const AppDemo: Component<AppDemoProps> = props => {
 					overflow: 'auto'
 				}}
 			>
-				<div
-					style={{
-						width: '100%',
-						'max-width': 'min(100%, 1200px)',
-						'min-width': '0',
-						margin: '0 auto',
-						'box-sizing': 'border-box'
-					}}
-				>
-					<h1
-						style={{
-							'font-size': '2rem',
-							'font-weight': '700',
-							margin: '0 0 16px 0',
-							color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-						}}
-					>
-						Welcome to My Application
-					</h1>
-					<p
-						style={{
-							'font-size': '1rem',
-							'line-height': '1.6',
-							color: props.isDark()
-								? 'rgba(246, 246, 246, 0.7)'
-								: 'rgba(26, 26, 26, 0.7)',
-							margin: '0 0 24px 0'
-						}}
-					>
-						This is a full-featured application demo with TitleBar and side
-						menu. Click the burger menu icon in the top-left corner to open the
-						sidebar.
-					</p>
+				<Show when={props.showContent !== false}>
 					<div
 						style={{
-							display: 'grid',
-							'grid-template-columns': 'repeat(auto-fit, minmax(280px, 1fr))',
-							gap: '16px',
-							margin: '24px 0',
 							width: '100%',
-							'max-width': '100%',
+							'max-width': 'min(100%, 1200px)',
 							'min-width': '0',
+							margin: '0 auto',
 							'box-sizing': 'border-box'
 						}}
 					>
-						<For each={Array.from({ length: 6 })}>
-							{(_, i) => (
-								<div
-									style={{
-										padding: '24px',
-										'border-radius': '8px',
-										background: props.isDark()
-											? 'rgba(30, 30, 30, 0.5)'
-											: 'rgba(255, 255, 255, 0.8)',
-										border: `1px solid ${
-											props.isDark()
-												? 'rgba(255, 255, 255, 0.1)'
-												: 'rgba(0, 0, 0, 0.1)'
-										}`,
-										'box-shadow': props.isDark()
-											? '0 2px 8px rgba(0, 0, 0, 0.3)'
-											: '0 2px 8px rgba(0, 0, 0, 0.1)',
-										width: '100%',
-										'max-width': '100%',
-										'min-width': '0',
-										'box-sizing': 'border-box',
-										overflow: 'hidden',
-										'word-wrap': 'break-word',
-										'overflow-wrap': 'break-word'
-									}}
-								>
-									<h3
+						<h1
+							style={{
+								'font-size': '2rem',
+								'font-weight': '700',
+								margin: '0 0 16px 0',
+								color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+							}}
+						>
+							Welcome to My Application
+						</h1>
+						<p
+							style={{
+								'font-size': '1rem',
+								'line-height': '1.6',
+								color: props.isDark()
+									? 'rgba(246, 246, 246, 0.7)'
+									: 'rgba(26, 26, 26, 0.7)',
+								margin: '0 0 24px 0'
+							}}
+						>
+							This is a full-featured application demo with TitleBar and side
+							menu. Click the burger menu icon in the top-left corner to open the
+							sidebar.
+						</p>
+						<div
+							style={{
+								display: 'grid',
+								'grid-template-columns': 'repeat(auto-fit, minmax(280px, 1fr))',
+								gap: '16px',
+								margin: '24px 0',
+								width: '100%',
+								'max-width': '100%',
+								'min-width': '0',
+								'box-sizing': 'border-box'
+							}}
+						>
+							<For each={Array.from({ length: 6 })}>
+								{(_, i) => (
+									<div
 										style={{
-											'font-size': '1.25rem',
-											'font-weight': '600',
-											margin: '0 0 8px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+											padding: '24px',
+											'border-radius': '8px',
+											background: props.isDark()
+												? 'rgba(30, 30, 30, 0.5)'
+												: 'rgba(255, 255, 255, 0.8)',
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											'box-shadow': props.isDark()
+												? '0 2px 8px rgba(0, 0, 0, 0.3)'
+												: '0 2px 8px rgba(0, 0, 0, 0.1)',
+											width: '100%',
+											'max-width': '100%',
+											'min-width': '0',
+											'box-sizing': 'border-box',
+											overflow: 'hidden',
+											'word-wrap': 'break-word',
+											'overflow-wrap': 'break-word'
 										}}
 									>
-										Card {i() + 1}
-									</h3>
-									<p
-										style={{
-											'font-size': '0.9rem',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.6)'
-												: 'rgba(26, 26, 26, 0.6)',
-											margin: '0'
-										}}
-									>
-										This is a sample card in the main content area.
-									</p>
-								</div>
-							)}
-						</For>
+										<h3
+											style={{
+												'font-size': '1.25rem',
+												'font-weight': '600',
+												margin: '0 0 8px 0',
+												color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+											}}
+										>
+											Card {i() + 1}
+										</h3>
+										<p
+											style={{
+												'font-size': '0.9rem',
+												color: props.isDark()
+													? 'rgba(246, 246, 246, 0.6)'
+													: 'rgba(26, 26, 26, 0.6)',
+												margin: '0'
+											}}
+										>
+											This is a sample card in the main content area.
+										</p>
+									</div>
+								)}
+							</For>
+						</div>
 					</div>
-				</div>
+				</Show>
 			</div>
 		</Window>
 	)

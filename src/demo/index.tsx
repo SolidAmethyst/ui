@@ -6,12 +6,13 @@ import '../styles/globals.css'
 import { Footer, Sidebar, TopNav } from './components/layout'
 import { DemoPage } from './pages/demo-page'
 import {
+	AppDocs,
 	ButtonDocs,
 	GridDocs,
 	InstallationDocs,
 	IntroductionDocs,
-	MenuDocs,
 	ScrollbarDocs,
+	SidebarDocs,
 	TechChipDocs,
 	TitleBarDocs
 } from './pages/docs'
@@ -146,14 +147,14 @@ function App() {
 										<Show when={currentComponent() === 'installation'}>
 											<InstallationDocs isDark={isDark} />
 										</Show>
-									<Show when={currentComponent() === 'button'}>
-										<ButtonDocs isDark={isDark} />
-									</Show>
+										<Show when={currentComponent() === 'button'}>
+											<ButtonDocs isDark={isDark} />
+										</Show>
 									<Show when={currentComponent() === 'grid'}>
 										<GridDocs isDark={isDark} />
 									</Show>
-									<Show when={currentComponent() === 'menu'}>
-										<MenuDocs isDark={isDark} />
+									<Show when={currentComponent() === 'sidebar'}>
+										<SidebarDocs isDark={isDark} />
 									</Show>
 										<Show when={currentComponent() === 'techchip'}>
 											<TechChipDocs isDark={isDark} />
@@ -163,6 +164,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'titlebar'}>
 											<TitleBarDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'app'}>
+											<AppDocs isDark={isDark} />
 										</Show>
 									</div>
 								</main>
