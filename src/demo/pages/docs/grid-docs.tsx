@@ -9,9 +9,26 @@ interface GridDocsProps {
 }
 
 export const GridDocs: Component<GridDocsProps> = props => {
+	// Auto-fit example signals
 	const [columns, setColumns] = createSignal(3)
 	const [gap, setGap] = createSignal('16px')
 	const [autoFit, setAutoFit] = createSignal(false)
+	
+	// Basic Usage signals
+	const [basicColumns, setBasicColumns] = createSignal(3)
+	const [basicGap, setBasicGap] = createSignal('12px')
+	const [basicAutoFit, setBasicAutoFit] = createSignal(false)
+	
+	// Responsive Breakpoints signals
+	const [responsiveGap, setResponsiveGap] = createSignal('12px')
+	
+	// Separate Gap signals
+	const [separateGap, setSeparateGap] = createSignal({ row: '16px', column: '12px' })
+	const [separateColumns, setSeparateColumns] = createSignal(3)
+	const [separateAutoFit, setSeparateAutoFit] = createSignal(false)
+	
+	// Custom CSS Template signals
+	const [customGap, setCustomGap] = createSignal('12px')
 
 	return (
 		<article
@@ -85,49 +102,259 @@ export const GridDocs: Component<GridDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<Grid columns={3} gap='12px' style={{ width: '100%' }}>
-							<For each={Array.from({ length: 5 })}>
-								{(_, i) => (
+						<div style={{ width: '100%' }}>
+							<style>{`
+								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
+								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
+									-webkit-appearance: none;
+									margin: 0;
+								}
+								.grid-demo-input[type="number"] {
+									-moz-appearance: textfield;
+								}
+							`}</style>
+							<div
+								style={{
+									display: 'flex',
+									gap: '12px',
+									'margin-bottom': '16px',
+									'flex-wrap': 'wrap',
+									'align-items': 'center'
+								}}
+							>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									<input
+										type='checkbox'
+										checked={basicAutoFit()}
+										onChange={e => setBasicAutoFit(e.currentTarget.checked)}
+										style={{ cursor: 'pointer' }}
+									/>
+									Auto-fit
+								</label>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									Columns:
 									<div
 										style={{
-											padding: '12px 16px',
-											'border-radius': '6px',
-											background: props.isDark()
-												? 'rgba(255, 255, 255, 0.05)'
-												: 'rgba(0, 0, 0, 0.02)',
+											position: 'relative',
+											display: 'inline-flex',
+											'align-items': 'center'
+										}}
+									>
+										<input
+											class='grid-demo-input'
+											type='number'
+											min='1'
+											max='6'
+											value={basicColumns()}
+											onInput={e => {
+												const val = parseInt(e.currentTarget.value)
+												if (!isNaN(val) && val >= 1 && val <= 6) {
+													setBasicColumns(val)
+												}
+											}}
+											style={{
+												width: '60px',
+												padding: '4px 20px 4px 8px',
+												'border-radius': '4px',
+												border: `1px solid ${
+													props.isDark()
+														? 'rgba(255, 255, 255, 0.1)'
+														: 'rgba(0, 0, 0, 0.1)'
+												}`,
+												background: props.isDark()
+													? 'rgba(255, 255, 255, 0.05)'
+													: 'rgba(0, 0, 0, 0.02)',
+												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+												'font-size': '0.875rem',
+												'box-sizing': 'border-box',
+												outline: 'none',
+												transition: 'border-color 150ms ease'
+											}}
+											onFocus={e => {
+												e.currentTarget.style.borderColor = props.isDark()
+													? 'rgba(59, 130, 246, 0.5)'
+													: 'rgba(59, 130, 246, 0.3)'
+											}}
+											onBlur={e => {
+												e.currentTarget.style.borderColor = props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}}
+										/>
+										<div
+											style={{
+												position: 'absolute',
+												right: '4px',
+												display: 'flex',
+												'flex-direction': 'column',
+												gap: '2px',
+												height: '100%',
+												'justify-content': 'center',
+												'pointer-events': 'none'
+											}}
+										>
+											<Button
+												variant='ghost'
+												icon='arrow_drop_up'
+												iconPosition='only'
+												disabled={basicColumns() >= 6}
+												onClick={() => {
+													if (basicColumns() < 6) setBasicColumns(basicColumns() + 1)
+												}}
+												title='Increase'
+												class='grid-number-arrow'
+												style={{
+													width: '12px',
+													height: '10px',
+													padding: '0',
+													'min-width': '12px',
+													'min-height': '10px',
+													'pointer-events': 'auto'
+												}}
+											/>
+											<Button
+												variant='ghost'
+												icon='arrow_drop_down'
+												iconPosition='only'
+												disabled={basicColumns() <= 1}
+												onClick={() => {
+													if (basicColumns() > 1) setBasicColumns(basicColumns() - 1)
+												}}
+												title='Decrease'
+												class='grid-number-arrow'
+												style={{
+													width: '12px',
+													height: '10px',
+													padding: '0',
+													'min-width': '12px',
+													'min-height': '10px',
+													'pointer-events': 'auto'
+												}}
+											/>
+										</div>
+									</div>
+								</label>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									Gap:
+									<input
+										class='grid-demo-input'
+										type='text'
+										value={basicGap()}
+										onInput={e => setBasicGap(e.currentTarget.value)}
+										style={{
+											width: '60px',
+											padding: '4px 8px',
+											'border-radius': '4px',
 											border: `1px solid ${
 												props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
 											}`,
-											'box-sizing': 'border-box'
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											'font-size': '0.875rem',
+											'box-sizing': 'border-box',
+											outline: 'none',
+											transition: 'border-color 150ms ease'
 										}}
-									>
+										onFocus={e => {
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(59, 130, 246, 0.5)'
+												: 'rgba(59, 130, 246, 0.3)'
+										}}
+										onBlur={e => {
+											const val = e.currentTarget.value.trim()
+											if (val && /^\d+px$/.test(val)) {
+												setBasicGap(val)
+											} else if (val && /^\d+$/.test(val)) {
+												setBasicGap(`${val}px`)
+											} else if (!val) {
+												setBasicGap('12px')
+											}
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(255, 255, 255, 0.1)'
+												: 'rgba(0, 0, 0, 0.1)'
+										}}
+									/>
+								</label>
+							</div>
+							<Grid
+								columns={basicAutoFit() ? undefined : basicColumns()}
+								autoFit={basicAutoFit()}
+								minColumnWidth={basicAutoFit() ? '150px' : undefined}
+								maxColumnWidth={basicAutoFit() ? '1fr' : undefined}
+								gap={basicGap()}
+								style={{ width: '100%' }}
+							>
+								<For each={Array.from({ length: 5 })}>
+									{(_, i) => (
 										<div
 											style={{
-												'font-size': '0.75rem',
-												'font-weight': '500',
-												margin: '0 0 4px 0',
-												color: props.isDark()
-													? 'rgba(246, 246, 246, 0.6)'
-													: 'rgba(26, 26, 26, 0.6)'
+												padding: '12px 16px',
+												'border-radius': '6px',
+												background: props.isDark()
+													? 'rgba(255, 255, 255, 0.05)'
+													: 'rgba(0, 0, 0, 0.02)',
+												border: `1px solid ${
+													props.isDark()
+														? 'rgba(255, 255, 255, 0.1)'
+														: 'rgba(0, 0, 0, 0.1)'
+												}`,
+												'box-sizing': 'border-box'
 											}}
 										>
-											Title
+											<div
+												style={{
+													'font-size': '0.75rem',
+													'font-weight': '500',
+													margin: '0 0 4px 0',
+													color: props.isDark()
+														? 'rgba(246, 246, 246, 0.6)'
+														: 'rgba(26, 26, 26, 0.6)'
+												}}
+											>
+												Title
+											</div>
+											<div
+												style={{
+													'font-size': '1rem',
+													'font-weight': '600',
+													color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+												}}
+											>
+												KPI {i() + 1}
+											</div>
 										</div>
-										<div
-											style={{
-												'font-size': '1rem',
-												'font-weight': '600',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-											}}
-										>
-											KPI {i() + 1}
-										</div>
-									</div>
-								)}
-							</For>
-						</Grid>
+									)}
+								</For>
+							</Grid>
+						</div>
 					}
 					code={`<Grid columns={3} gap="16px">
   <div>
@@ -171,6 +398,79 @@ export const GridDocs: Component<GridDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={{ width: '100%' }}>
+							<style>{`
+								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
+								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
+									-webkit-appearance: none;
+									margin: 0;
+								}
+								.grid-demo-input[type="number"] {
+									-moz-appearance: textfield;
+								}
+							`}</style>
+							<div
+								style={{
+									display: 'flex',
+									gap: '12px',
+									'margin-bottom': '16px',
+									'flex-wrap': 'wrap',
+									'align-items': 'center'
+								}}
+							>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									Gap:
+									<input
+										class='grid-demo-input'
+										type='text'
+										value={responsiveGap()}
+										onInput={e => setResponsiveGap(e.currentTarget.value)}
+										style={{
+											width: '60px',
+											padding: '4px 8px',
+											'border-radius': '4px',
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											'font-size': '0.875rem',
+											'box-sizing': 'border-box',
+											outline: 'none',
+											transition: 'border-color 150ms ease'
+										}}
+										onFocus={e => {
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(59, 130, 246, 0.5)'
+												: 'rgba(59, 130, 246, 0.3)'
+										}}
+										onBlur={e => {
+											const val = e.currentTarget.value.trim()
+											if (val && /^\d+px$/.test(val)) {
+												setResponsiveGap(val)
+											} else if (val && /^\d+$/.test(val)) {
+												setResponsiveGap(`${val}px`)
+											} else if (!val) {
+												setResponsiveGap('12px')
+											}
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(255, 255, 255, 0.1)'
+												: 'rgba(0, 0, 0, 0.1)'
+										}}
+									/>
+								</label>
+							</div>
 							<p
 								style={{
 									'font-size': '0.875rem',
@@ -191,7 +491,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									{ minWidth: 769, maxWidth: 1024, columns: 2 },
 									{ minWidth: 1025, columns: 4 }
 								]}
-								gap='12px'
+								gap={responsiveGap()}
 								style={{ width: '100%' }}
 							>
 								<For each={Array.from({ length: 8 })}>
@@ -472,9 +772,9 @@ export const GridDocs: Component<GridDocsProps> = props => {
 								</label>
 							</div>
 							<Grid
-								columns={columns()}
-								minColumnWidth='150px'
-								maxColumnWidth='1fr'
+								columns={autoFit() ? undefined : columns()}
+								minColumnWidth={autoFit() ? '150px' : undefined}
+								maxColumnWidth={autoFit() ? '1fr' : undefined}
 								autoFit={autoFit()}
 								gap={gap()}
 								style={{ width: '100%' }}
@@ -554,53 +854,318 @@ export const GridDocs: Component<GridDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<Grid
-							columns={3}
-							gap={{ row: '16px', column: '12px' }}
-							style={{ width: '100%' }}
-						>
-							<For each={Array.from({ length: 6 })}>
-								{(_, i) => (
+						<div style={{ width: '100%' }}>
+							<style>{`
+								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
+								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
+									-webkit-appearance: none;
+									margin: 0;
+								}
+								.grid-demo-input[type="number"] {
+									-moz-appearance: textfield;
+								}
+							`}</style>
+							<div
+								style={{
+									display: 'flex',
+									gap: '12px',
+									'margin-bottom': '16px',
+									'flex-wrap': 'wrap',
+									'align-items': 'center'
+								}}
+							>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									<input
+										type='checkbox'
+										checked={separateAutoFit()}
+										onChange={e => setSeparateAutoFit(e.currentTarget.checked)}
+										style={{ cursor: 'pointer' }}
+									/>
+									Auto-fit
+								</label>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									Columns:
 									<div
 										style={{
-											padding: '12px 16px',
-											'border-radius': '6px',
-											background: props.isDark()
-												? 'rgba(236, 72, 153, 0.1)'
-												: 'rgba(236, 72, 153, 0.05)',
-											border: `1px solid ${
-												props.isDark()
-													? 'rgba(236, 72, 153, 0.2)'
-													: 'rgba(236, 72, 153, 0.15)'
-											}`,
-											'box-sizing': 'border-box'
+											position: 'relative',
+											display: 'inline-flex',
+											'align-items': 'center'
 										}}
 									>
+										<input
+											class='grid-demo-input'
+											type='number'
+											min='1'
+											max='6'
+											value={separateColumns()}
+											onInput={e => {
+												const val = parseInt(e.currentTarget.value)
+												if (!isNaN(val) && val >= 1 && val <= 6) {
+													setSeparateColumns(val)
+												}
+											}}
+											style={{
+												width: '60px',
+												padding: '4px 20px 4px 8px',
+												'border-radius': '4px',
+												border: `1px solid ${
+													props.isDark()
+														? 'rgba(255, 255, 255, 0.1)'
+														: 'rgba(0, 0, 0, 0.1)'
+												}`,
+												background: props.isDark()
+													? 'rgba(255, 255, 255, 0.05)'
+													: 'rgba(0, 0, 0, 0.02)',
+												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+												'font-size': '0.875rem',
+												'box-sizing': 'border-box',
+												outline: 'none',
+												transition: 'border-color 150ms ease'
+											}}
+											onFocus={e => {
+												e.currentTarget.style.borderColor = props.isDark()
+													? 'rgba(59, 130, 246, 0.5)'
+													: 'rgba(59, 130, 246, 0.3)'
+											}}
+											onBlur={e => {
+												e.currentTarget.style.borderColor = props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}}
+										/>
 										<div
 											style={{
-												'font-size': '0.75rem',
-												'font-weight': '500',
-												margin: '0 0 4px 0',
-												color: props.isDark()
-													? 'rgba(246, 246, 246, 0.6)'
-													: 'rgba(26, 26, 26, 0.6)'
+												position: 'absolute',
+												right: '4px',
+												display: 'flex',
+												'flex-direction': 'column',
+												gap: '2px',
+												height: '100%',
+												'justify-content': 'center',
+												'pointer-events': 'none'
 											}}
 										>
-											Title
-										</div>
-										<div
-											style={{
-												'font-size': '1rem',
-												'font-weight': '600',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-											}}
-										>
-											KPI {i() + 1}
+											<Button
+												variant='ghost'
+												icon='arrow_drop_up'
+												iconPosition='only'
+												disabled={separateColumns() >= 6}
+												onClick={() => {
+													if (separateColumns() < 6) setSeparateColumns(separateColumns() + 1)
+												}}
+												title='Increase'
+												class='grid-number-arrow'
+												style={{
+													width: '12px',
+													height: '10px',
+													padding: '0',
+													'min-width': '12px',
+													'min-height': '10px',
+													'pointer-events': 'auto'
+												}}
+											/>
+											<Button
+												variant='ghost'
+												icon='arrow_drop_down'
+												iconPosition='only'
+												disabled={separateColumns() <= 1}
+												onClick={() => {
+													if (separateColumns() > 1) setSeparateColumns(separateColumns() - 1)
+												}}
+												title='Decrease'
+												class='grid-number-arrow'
+												style={{
+													width: '12px',
+													height: '10px',
+													padding: '0',
+													'min-width': '12px',
+													'min-height': '10px',
+													'pointer-events': 'auto'
+												}}
+											/>
 										</div>
 									</div>
-								)}
-							</For>
-						</Grid>
+								</label>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									Row Gap:
+									<input
+										class='grid-demo-input'
+										type='text'
+										value={separateGap().row}
+										onInput={e => {
+											const val = e.currentTarget.value.trim()
+											setSeparateGap({ ...separateGap(), row: val })
+										}}
+										style={{
+											width: '60px',
+											padding: '4px 8px',
+											'border-radius': '4px',
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											'font-size': '0.875rem',
+											'box-sizing': 'border-box',
+											outline: 'none',
+											transition: 'border-color 150ms ease'
+										}}
+										onFocus={e => {
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(59, 130, 246, 0.5)'
+												: 'rgba(59, 130, 246, 0.3)'
+										}}
+										onBlur={e => {
+											const val = e.currentTarget.value.trim()
+											if (val && /^\d+px$/.test(val)) {
+												setSeparateGap({ ...separateGap(), row: val })
+											} else if (val && /^\d+$/.test(val)) {
+												setSeparateGap({ ...separateGap(), row: `${val}px` })
+											} else if (!val) {
+												setSeparateGap({ ...separateGap(), row: '16px' })
+											}
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(255, 255, 255, 0.1)'
+												: 'rgba(0, 0, 0, 0.1)'
+										}}
+									/>
+								</label>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									Column Gap:
+									<input
+										class='grid-demo-input'
+										type='text'
+										value={separateGap().column}
+										onInput={e => {
+											const val = e.currentTarget.value.trim()
+											setSeparateGap({ ...separateGap(), column: val })
+										}}
+										style={{
+											width: '60px',
+											padding: '4px 8px',
+											'border-radius': '4px',
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											'font-size': '0.875rem',
+											'box-sizing': 'border-box',
+											outline: 'none',
+											transition: 'border-color 150ms ease'
+										}}
+										onFocus={e => {
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(59, 130, 246, 0.5)'
+												: 'rgba(59, 130, 246, 0.3)'
+										}}
+										onBlur={e => {
+											const val = e.currentTarget.value.trim()
+											if (val && /^\d+px$/.test(val)) {
+												setSeparateGap({ ...separateGap(), column: val })
+											} else if (val && /^\d+$/.test(val)) {
+												setSeparateGap({ ...separateGap(), column: `${val}px` })
+											} else if (!val) {
+												setSeparateGap({ ...separateGap(), column: '12px' })
+											}
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(255, 255, 255, 0.1)'
+												: 'rgba(0, 0, 0, 0.1)'
+										}}
+									/>
+								</label>
+							</div>
+							<Grid
+								columns={separateAutoFit() ? undefined : separateColumns()}
+								autoFit={separateAutoFit()}
+								minColumnWidth={separateAutoFit() ? '150px' : undefined}
+								maxColumnWidth={separateAutoFit() ? '1fr' : undefined}
+								gap={separateGap()}
+								style={{ width: '100%' }}
+							>
+								<For each={Array.from({ length: 6 })}>
+									{(_, i) => (
+										<div
+											style={{
+												padding: '12px 16px',
+												'border-radius': '6px',
+												background: props.isDark()
+													? 'rgba(236, 72, 153, 0.1)'
+													: 'rgba(236, 72, 153, 0.05)',
+												border: `1px solid ${
+													props.isDark()
+														? 'rgba(236, 72, 153, 0.2)'
+														: 'rgba(236, 72, 153, 0.15)'
+												}`,
+												'box-sizing': 'border-box'
+											}}
+										>
+											<div
+												style={{
+													'font-size': '0.75rem',
+													'font-weight': '500',
+													margin: '0 0 4px 0',
+													color: props.isDark()
+														? 'rgba(246, 246, 246, 0.6)'
+														: 'rgba(26, 26, 26, 0.6)'
+												}}
+											>
+												Title
+											</div>
+											<div
+												style={{
+													'font-size': '1rem',
+													'font-weight': '600',
+													color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+												}}
+											>
+												KPI {i() + 1}
+											</div>
+										</div>
+									)}
+								</For>
+							</Grid>
+						</div>
 					}
 					code={`<Grid
   columns={3}
@@ -627,12 +1192,86 @@ export const GridDocs: Component<GridDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<Grid
-							columns='200px 1fr auto'
-							rows='auto 1fr auto'
-							gap='12px'
-							style={{ width: '100%', 'min-height': '250px' }}
-						>
+						<div style={{ width: '100%' }}>
+							<style>{`
+								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
+								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
+									-webkit-appearance: none;
+									margin: 0;
+								}
+								.grid-demo-input[type="number"] {
+									-moz-appearance: textfield;
+								}
+							`}</style>
+							<div
+								style={{
+									display: 'flex',
+									gap: '12px',
+									'margin-bottom': '16px',
+									'flex-wrap': 'wrap',
+									'align-items': 'center'
+								}}
+							>
+								<label
+									style={{
+										display: 'flex',
+										'align-items': 'center',
+										gap: '8px',
+										color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+										'font-size': '0.875rem'
+									}}
+								>
+									Gap:
+									<input
+										class='grid-demo-input'
+										type='text'
+										value={customGap()}
+										onInput={e => setCustomGap(e.currentTarget.value)}
+										style={{
+											width: '60px',
+											padding: '4px 8px',
+											'border-radius': '4px',
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											'font-size': '0.875rem',
+											'box-sizing': 'border-box',
+											outline: 'none',
+											transition: 'border-color 150ms ease'
+										}}
+										onFocus={e => {
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(59, 130, 246, 0.5)'
+												: 'rgba(59, 130, 246, 0.3)'
+										}}
+										onBlur={e => {
+											const val = e.currentTarget.value.trim()
+											if (val && /^\d+px$/.test(val)) {
+												setCustomGap(val)
+											} else if (val && /^\d+$/.test(val)) {
+												setCustomGap(`${val}px`)
+											} else if (!val) {
+												setCustomGap('12px')
+											}
+											e.currentTarget.style.borderColor = props.isDark()
+												? 'rgba(255, 255, 255, 0.1)'
+												: 'rgba(0, 0, 0, 0.1)'
+										}}
+									/>
+								</label>
+							</div>
+							<Grid
+								columns='200px 1fr auto'
+								rows='auto 1fr auto'
+								gap={customGap()}
+								style={{ width: '100%', 'min-height': '250px' }}
+							>
 							<div
 								style={{
 									padding: '12px 16px',
@@ -726,6 +1365,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 								Footer (full width)
 							</div>
 						</Grid>
+						</div>
 					}
 					code={`<Grid
   columns="200px 1fr auto"

@@ -33,14 +33,27 @@ const calculateColumns = (
 	maxColumnWidth?: string,
 	autoFit?: boolean
 ): string => {
+	// If autoFit is true, always use auto-fit with minmax (ignore columns count)
+	if (autoFit) {
+		const minWidth = minColumnWidth || '150px'
+		const maxWidth = maxColumnWidth || '1fr'
+		return `repeat(auto-fit, minmax(${minWidth}, ${maxWidth}))`
+	}
+
 	if (!columns) return 'none'
 
-	// If it's a number, use repeat with auto-fit/auto-fill
+	// If it's a number, use repeat with auto-fill or fixed count
 	if (typeof columns === 'number') {
 		const minWidth = minColumnWidth || '1fr'
 		const maxWidth = maxColumnWidth || '1fr'
-		const fitType = autoFit ? 'auto-fit' : 'auto-fill'
-		return `repeat(${fitType}, minmax(${minWidth}, ${maxWidth}))`
+		
+		// If minColumnWidth/maxColumnWidth are provided, use auto-fill
+		if (minColumnWidth || maxColumnWidth) {
+			return `repeat(auto-fill, minmax(${minWidth}, ${maxWidth}))`
+		}
+		
+		// Otherwise, use fixed repeat count
+		return `repeat(${columns}, 1fr)`
 	}
 
 	// If it's already a CSS value, return as-is
