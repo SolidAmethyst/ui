@@ -570,3 +570,23 @@
 [data-theme='light'] * {
 	scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
 }
+
+/* Hide default spinner arrows for number inputs */
+.number-input[type='number']::-webkit-inner-spin-button,
+.number-input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.number-input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+/* Number input arrow buttons styling */
+.number-input-arrow {
+	font-size: 12px !important;
+}
+
+.number-input-arrow .material-symbols-rounded {
+	font-size: 12px !important;
+}
