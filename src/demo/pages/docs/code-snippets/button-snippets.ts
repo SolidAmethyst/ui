@@ -23,6 +23,15 @@ export const buttonSnippets = {
   title="Settings"
 />`,
 
+		triggerButton: `<Button
+  variant="trigger"
+  iconPosition="only"
+  title="Toggle Sidebar"
+  active={isOpen}
+  onClick={() => setIsOpen(!isOpen)}
+  style={{ width: "28px", height: "28px" }}
+/>`,
+
 		playPause: `<Button variant="play-pause" icon="play_arrow" title="Play" />
 <Button variant="play-pause" icon="pause" title="Pause" />`,
 

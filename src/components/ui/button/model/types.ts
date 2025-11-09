@@ -42,6 +42,7 @@ export type ButtonVariant =
 	| 'filter'
 	| 'share'
 	| 'favorite'
+	| 'trigger'
 
 export type ButtonSize = 'sm' | 'md' | 'lg'
 

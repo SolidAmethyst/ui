@@ -6,6 +6,31 @@ import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { buttonSnippets } from './code-snippets/button-snippets'
 
+// Trigger Button Demo Component
+const TriggerButtonDemo: Component = () => {
+	const [isOpen, setIsOpen] = createSignal(false)
+
+	return (
+		<div
+			style={{
+				display: 'flex',
+				'flex-wrap': 'wrap',
+				gap: '12px',
+				'align-items': 'center'
+			}}
+		>
+			<Button
+				variant='trigger'
+				iconPosition='only'
+				title={isOpen() ? 'Close Sidebar' : 'Open Sidebar'}
+				active={isOpen()}
+				onClick={() => setIsOpen(!isOpen())}
+				style={{ width: '28px', height: '28px' }}
+			/>
+		</div>
+	)
+}
+
 interface ButtonDocsProps {
 	isDark: Accessor<boolean>
 }
@@ -110,6 +135,16 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 						</div>
 					}
 					code={buttonSnippets.usage.smallButtons}
+				/>
+			</section>
+
+			{/* Trigger Button */}
+			<section style={docsStyles.section()}>
+				<h2 style={docsStyles.sectionTitle(theme())}>Trigger Button</h2>
+				<Tabs
+					isDark={props.isDark}
+					preview={<TriggerButtonDemo />}
+					code={buttonSnippets.usage.triggerButton}
 				/>
 			</section>
 
