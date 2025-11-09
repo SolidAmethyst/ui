@@ -1,5 +1,8 @@
-export { ButtonDocs } from "./button-docs";
-export { TechChipDocs } from "./techchip-docs";
-export { ScrollbarDocs } from "./scrollbar-docs";
-export { IntroductionDocs } from "./introduction-docs";
-export { InstallationDocs } from "./installation-docs";
+export { ButtonDocs } from './button-docs'
+export { GridDocs } from './grid-docs'
+export { InstallationDocs } from './installation-docs'
+export { IntroductionDocs } from './introduction-docs'
+export { MenuDocs } from './menu-docs'
+export { ScrollbarDocs } from './scrollbar-docs'
+export { TechChipDocs } from './techchip-docs'
+export { TitleBarDocs } from './title-bar-docs'
