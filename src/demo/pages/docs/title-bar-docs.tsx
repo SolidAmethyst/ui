@@ -1,4 +1,4 @@
-import { Accessor, Component, createSignal, createEffect } from 'solid-js'
+import { Accessor, Component, createEffect, createSignal } from 'solid-js'
 import { TitleBar } from '../../../composites/title-bar'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
@@ -12,14 +12,40 @@ interface TitleBarDocsProps {
 export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 	const [maximized, setMaximized] = createSignal(false)
 	const [pinned, setPinned] = createSignal(false)
-	const [basicUsageDark, setBasicUsageDark] = createSignal(props.isDark())
-	const [minimalExampleDark, setMinimalExampleDark] = createSignal(props.isDark())
-	const [windowControlsDark, setWindowControlsDark] = createSignal(props.isDark())
+	const [basicUsageDark, setBasicUsageDark] = createSignal(false)
+	const [minimalExampleDark, setMinimalExampleDark] = createSignal(false)
+	const [windowControlsDark, setWindowControlsDark] = createSignal(false)
 	const [basicUsageOverridden, setBasicUsageOverridden] = createSignal(false)
-	const [minimalExampleOverridden, setMinimalExampleOverridden] = createSignal(false)
-	const [windowControlsOverridden, setWindowControlsOverridden] = createSignal(false)
+	const [minimalExampleOverridden, setMinimalExampleOverridden] =
+		createSignal(false)
+	const [windowControlsOverridden, setWindowControlsOverridden] =
+		createSignal(false)
 
-	// Синхронизация с глобальной темой, если не переопределено локально
+	// Track previous global theme value to detect changes
+	const [previousGlobalTheme, setPreviousGlobalTheme] = createSignal<
+		boolean | undefined
+	>(undefined)
+
+	// Reset all local theme overrides when global theme changes
+	createEffect(() => {
+		const currentGlobalTheme = props.isDark()
+		const prevTheme = previousGlobalTheme()
+		// Check if global theme actually changed (skip initial undefined)
+		if (prevTheme !== undefined && prevTheme !== currentGlobalTheme) {
+			// Reset all override flags
+			setBasicUsageOverridden(false)
+			setMinimalExampleOverridden(false)
+			setWindowControlsOverridden(false)
+			// Set local themes to match global theme
+			setBasicUsageDark(currentGlobalTheme)
+			setMinimalExampleDark(currentGlobalTheme)
+			setWindowControlsDark(currentGlobalTheme)
+		}
+		// Update previous value
+		setPreviousGlobalTheme(currentGlobalTheme)
+	})
+
+	// Sync with global theme if not overridden locally
 	createEffect(() => {
 		if (!basicUsageOverridden()) {
 			setBasicUsageDark(props.isDark())

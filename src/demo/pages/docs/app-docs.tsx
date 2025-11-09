@@ -1,5 +1,5 @@
 import type { Accessor } from 'solid-js'
-import { Component, For, createSignal, createEffect } from 'solid-js'
+import { Component, For, createEffect, createSignal } from 'solid-js'
 import type { SidebarItem } from '../../../components/ui/sidebar'
 import { App } from '../../../composites/app'
 import { CodeHighlight } from '../../components/common/code-highlight'
@@ -11,14 +11,39 @@ interface AppDocsProps {
 }
 
 export const AppDocs: Component<AppDocsProps> = props => {
-	const [basicUsageDark, setBasicUsageDark] = createSignal(props.isDark())
-	const [adaptiveLayoutDark, setAdaptiveLayoutDark] = createSignal(props.isDark())
-	const [overlayModeDark, setOverlayModeDark] = createSignal(props.isDark())
+	const [basicUsageDark, setBasicUsageDark] = createSignal(false)
+	const [adaptiveLayoutDark, setAdaptiveLayoutDark] = createSignal(false)
+	const [overlayModeDark, setOverlayModeDark] = createSignal(false)
 	const [basicUsageOverridden, setBasicUsageOverridden] = createSignal(false)
-	const [adaptiveLayoutOverridden, setAdaptiveLayoutOverridden] = createSignal(false)
+	const [adaptiveLayoutOverridden, setAdaptiveLayoutOverridden] =
+		createSignal(false)
 	const [overlayModeOverridden, setOverlayModeOverridden] = createSignal(false)
 
-	// Синхронизация с глобальной темой, если не переопределено локально
+	// Track previous global theme value to detect changes
+	const [previousGlobalTheme, setPreviousGlobalTheme] = createSignal<
+		boolean | undefined
+	>(undefined)
+
+	// Reset all local theme overrides when global theme changes
+	createEffect(() => {
+		const currentGlobalTheme = props.isDark()
+		const prevTheme = previousGlobalTheme()
+		// Check if global theme actually changed (skip initial undefined)
+		if (prevTheme !== undefined && prevTheme !== currentGlobalTheme) {
+			// Reset all override flags
+			setBasicUsageOverridden(false)
+			setAdaptiveLayoutOverridden(false)
+			setOverlayModeOverridden(false)
+			// Set local themes to match global theme
+			setBasicUsageDark(currentGlobalTheme)
+			setAdaptiveLayoutDark(currentGlobalTheme)
+			setOverlayModeDark(currentGlobalTheme)
+		}
+		// Update previous value
+		setPreviousGlobalTheme(currentGlobalTheme)
+	})
+
+	// Sync with global theme if not overridden locally
 	createEffect(() => {
 		if (!basicUsageOverridden()) {
 			setBasicUsageDark(props.isDark())
