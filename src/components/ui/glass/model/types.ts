@@ -53,6 +53,12 @@ export interface GlassProps {
 	darkness?: number
 
 	/**
+	 * Whether the theme is dark
+	 * Used to adapt glass effect colors for dark/light themes
+	 */
+	isDark?: boolean
+
+	/**
 	 * Whether to use native Tauri effects when available
 	 * If false, always uses CSS fallback
 	 */

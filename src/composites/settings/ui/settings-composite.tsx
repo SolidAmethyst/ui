@@ -27,7 +27,7 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 		enabled: props.glassSettings?.enabled ?? false,
 		blur: props.glassSettings?.blur ?? 15,
 		opacity: props.glassSettings?.opacity ?? 0.9,
-		darkness: props.glassSettings?.darkness ?? 0.5,
+		darkness: props.glassSettings?.darkness ?? 1.0,
 		saturation: props.glassSettings?.saturation ?? 1.0
 	}))
 

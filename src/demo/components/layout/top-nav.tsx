@@ -176,6 +176,7 @@ export const TopNav: Component<TopNavProps> = props => (
 			opacity={props.glassOpacity}
 			darkness={props.glassDarkness}
 			saturation={props.glassSaturation}
+			isDark={props.isDark()}
 			style={{
 				position: 'fixed',
 				top: '0',

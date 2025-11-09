@@ -6,7 +6,6 @@ import { SettingsComposite } from '../composites/settings'
 import '../styles/globals.css'
 import { Footer, Sidebar, TopNav } from './components/layout'
 import { DemoPage } from './pages/demo-page'
-import { SettingsPage } from './pages/settings-page'
 import {
 	AppDocs,
 	ButtonDocs,
@@ -19,21 +18,24 @@ import {
 	TechChipDocs,
 	TitleBarDocs
 } from './pages/docs'
+import { SettingsPage } from './pages/settings-page'
 import './styles.css'
 
 function App() {
 	const [isDark, setIsDark] = createSignal(true)
-	const [currentPage, setCurrentPage] = createSignal<'demo' | 'docs' | 'settings'>('demo')
+	const [currentPage, setCurrentPage] = createSignal<
+		'demo' | 'docs' | 'settings'
+	>('demo')
 	const [currentComponent, setCurrentComponent] = createSignal<string | null>(
 		'introduction'
 	)
 
 	// Glass settings state
 	const [glassEnabled, setGlassEnabled] = createSignal(true)
-	const [glassBlur, setGlassBlur] = createSignal(20)
-	const [glassOpacity, setGlassOpacity] = createSignal(0.4)
-	const [glassDarkness, setGlassDarkness] = createSignal(0.0)
-	const [glassSaturation, setGlassSaturation] = createSignal(1.0)
+	const [glassBlur, setGlassBlur] = createSignal(0)
+	const [glassOpacity, setGlassOpacity] = createSignal(0)
+	const [glassDarkness, setGlassDarkness] = createSignal(0)
+	const [glassSaturation, setGlassSaturation] = createSignal(0)
 	const [glassSettingsOpen, setGlassSettingsOpen] = createSignal(false)
 
 	const toggleTheme = () => {
