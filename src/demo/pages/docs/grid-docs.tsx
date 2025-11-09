@@ -1,6 +1,6 @@
 import { Accessor, Component, createSignal, For } from 'solid-js'
-import { Button } from '../../../components/ui/button'
 import { Grid } from '../../../components/ui/grid'
+import { NumberInput } from '../../../components/ui/number-input'
 import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 
@@ -32,29 +32,6 @@ export const GridDocs: Component<GridDocsProps> = props => {
 
 	// Custom CSS Template signals
 	const [customGap, setCustomGap] = createSignal('12px')
-
-	// Helper function to parse and modify gap values
-	const parseGapValue = (value: string): number => {
-		const match = value.match(/^(\d+)px$/)
-		return match ? parseInt(match[1], 10) : 0
-	}
-
-	const modifyGap = (
-		currentValue: string,
-		delta: number,
-		setter: (value: string) => void
-	) => {
-		const num = parseGapValue(currentValue)
-		const newValue = Math.max(0, num + delta)
-		setter(`${newValue}px`)
-	}
-
-	const modifySeparateGap = (field: 'row' | 'column', delta: number) => {
-		const current = separateGap()
-		const num = parseGapValue(current[field])
-		const newValue = Math.max(0, num + delta)
-		setSeparateGap({ ...current, [field]: `${newValue}px` })
-	}
 
 	return (
 		<article
@@ -129,16 +106,6 @@ export const GridDocs: Component<GridDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={{ width: '100%' }}>
-							<style>{`
-								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
-								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
-									-webkit-appearance: none;
-									margin: 0;
-								}
-								.grid-demo-input[type="number"] {
-									-moz-appearance: textfield;
-								}
-							`}</style>
 							<div
 								style={{
 									display: 'flex',
@@ -175,117 +142,59 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Columns:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
+									<NumberInput
+										value={basicColumns()}
+										onChange={val => {
+											const num =
+												typeof val === 'number'
+													? val
+													: parseInt(String(val), 10)
+											if (!isNaN(num) && num >= 1 && num <= 6) {
+												setBasicColumns(num)
+											}
 										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='number'
-											min='1'
-											max='6'
-											value={basicColumns()}
-											onInput={e => {
-												const val = parseInt(e.currentTarget.value)
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = parseInt(target.value, 10)
 												if (!isNaN(val) && val >= 1 && val <= 6) {
 													setBasicColumns(val)
 												}
-											}}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												const newValue = Math.max(
-													1,
-													Math.min(6, basicColumns() + delta)
-												)
-												setBasicColumns(newValue)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+											}
+										}}
+										min={1}
+										max={6}
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										style={{
+											border: `1px solid ${
+												props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												disabled={basicColumns() >= 6}
-												onClick={() => {
-													if (basicColumns() < 6)
-														setBasicColumns(basicColumns() + 1)
-												}}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												disabled={basicColumns() <= 1}
-												onClick={() => {
-													if (basicColumns() > 1)
-														setBasicColumns(basicColumns() - 1)
-												}}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
+													? 'rgba(59, 130, 246, 0.5)'
+													: 'rgba(59, 130, 246, 0.3)'
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}
+										}}
+									/>
 								</label>
 								<label
 									style={{
@@ -297,48 +206,42 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Gap:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
+									<NumberInput
+										value={basicGap()}
+										onChange={val => setBasicGap(String(val))}
+										type='text'
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												setBasicGap(target.value)
+											}
 										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='text'
-											value={basicGap()}
-											onInput={e => setBasicGap(e.currentTarget.value)}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												modifyGap(basicGap(), delta, setBasicGap)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+										style={{
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
 													? 'rgba(59, 130, 246, 0.5)'
 													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												const val = e.currentTarget.value.trim()
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = target.value.trim()
 												if (val && /^\d+px$/.test(val)) {
 													setBasicGap(val)
 												} else if (val && /^\d+$/.test(val)) {
@@ -346,57 +249,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												} else if (!val) {
 													setBasicGap('12px')
 												}
-												e.currentTarget.style.borderColor = props.isDark()
+												target.style.borderColor = props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												onClick={() => modifyGap(basicGap(), 1, setBasicGap)}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												onClick={() => modifyGap(basicGap(), -1, setBasicGap)}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}
+										}}
+									/>
 								</label>
 							</div>
 							<Grid
@@ -493,16 +351,6 @@ export const GridDocs: Component<GridDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={{ width: '100%' }}>
-							<style>{`
-								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
-								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
-									-webkit-appearance: none;
-									margin: 0;
-								}
-								.grid-demo-input[type="number"] {
-									-moz-appearance: textfield;
-								}
-							`}</style>
 							<div
 								style={{
 									display: 'flex',
@@ -522,48 +370,42 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Gap:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
+									<NumberInput
+										value={responsiveGap()}
+										onChange={val => setResponsiveGap(String(val))}
+										type='text'
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												setResponsiveGap(target.value)
+											}
 										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='text'
-											value={responsiveGap()}
-											onInput={e => setResponsiveGap(e.currentTarget.value)}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												modifyGap(responsiveGap(), delta, setResponsiveGap)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+										style={{
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
 													? 'rgba(59, 130, 246, 0.5)'
 													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												const val = e.currentTarget.value.trim()
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = target.value.trim()
 												if (val && /^\d+px$/.test(val)) {
 													setResponsiveGap(val)
 												} else if (val && /^\d+$/.test(val)) {
@@ -571,61 +413,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												} else if (!val) {
 													setResponsiveGap('12px')
 												}
-												e.currentTarget.style.borderColor = props.isDark()
+												target.style.borderColor = props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												onClick={() =>
-													modifyGap(responsiveGap(), 1, setResponsiveGap)
-												}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												onClick={() =>
-													modifyGap(responsiveGap(), -1, setResponsiveGap)
-												}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}
+										}}
+									/>
 								</label>
 							</div>
 							<p
@@ -726,16 +519,6 @@ export const GridDocs: Component<GridDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={{ width: '100%' }}>
-							<style>{`
-								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
-								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
-									-webkit-appearance: none;
-									margin: 0;
-								}
-								.grid-demo-input[type="number"] {
-									-moz-appearance: textfield;
-								}
-							`}</style>
 							<div
 								style={{
 									display: 'flex',
@@ -772,115 +555,59 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Columns:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
+									<NumberInput
+										value={columns()}
+										onChange={val => {
+											const num =
+												typeof val === 'number'
+													? val
+													: parseInt(String(val), 10)
+											if (!isNaN(num) && num >= 1 && num <= 6) {
+												setColumns(num)
+											}
 										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='number'
-											min='1'
-											max='6'
-											value={columns()}
-											onInput={e => {
-												const val = parseInt(e.currentTarget.value)
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = parseInt(target.value, 10)
 												if (!isNaN(val) && val >= 1 && val <= 6) {
 													setColumns(val)
 												}
-											}}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												const newValue = Math.max(
-													1,
-													Math.min(6, columns() + delta)
-												)
-												setColumns(newValue)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+											}
+										}}
+										min={1}
+										max={6}
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										style={{
+											border: `1px solid ${
+												props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												disabled={columns() >= 6}
-												onClick={() => {
-													if (columns() < 6) setColumns(columns() + 1)
-												}}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												disabled={columns() <= 1}
-												onClick={() => {
-													if (columns() > 1) setColumns(columns() - 1)
-												}}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
+													? 'rgba(59, 130, 246, 0.5)'
+													: 'rgba(59, 130, 246, 0.3)'
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}
+										}}
+									/>
 								</label>
 								<label
 									style={{
@@ -892,49 +619,42 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Gap:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
+									<NumberInput
+										value={gap()}
+										onChange={val => setGap(String(val))}
+										type='text'
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												setGap(target.value)
+											}
 										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='text'
-											value={gap()}
-											onInput={e => setGap(e.currentTarget.value)}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												modifyGap(gap(), delta, setGap)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+										style={{
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
 													? 'rgba(59, 130, 246, 0.5)'
 													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												// Validate gap value
-												const val = e.currentTarget.value.trim()
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = target.value.trim()
 												if (val && /^\d+px$/.test(val)) {
 													setGap(val)
 												} else if (val && /^\d+$/.test(val)) {
@@ -942,57 +662,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												} else if (!val) {
 													setGap('16px')
 												}
-												e.currentTarget.style.borderColor = props.isDark()
+												target.style.borderColor = props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												onClick={() => modifyGap(gap(), 1, setGap)}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												onClick={() => modifyGap(gap(), -1, setGap)}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}
+										}}
+									/>
 								</label>
 							</div>
 							<Grid
@@ -1079,16 +754,6 @@ export const GridDocs: Component<GridDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={{ width: '100%' }}>
-							<style>{`
-								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
-								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
-									-webkit-appearance: none;
-									margin: 0;
-								}
-								.grid-demo-input[type="number"] {
-									-moz-appearance: textfield;
-								}
-							`}</style>
 							<div
 								style={{
 									display: 'flex',
@@ -1125,117 +790,59 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Columns:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
+									<NumberInput
+										value={separateColumns()}
+										onChange={val => {
+											const num =
+												typeof val === 'number'
+													? val
+													: parseInt(String(val), 10)
+											if (!isNaN(num) && num >= 1 && num <= 6) {
+												setSeparateColumns(num)
+											}
 										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='number'
-											min='1'
-											max='6'
-											value={separateColumns()}
-											onInput={e => {
-												const val = parseInt(e.currentTarget.value)
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = parseInt(target.value, 10)
 												if (!isNaN(val) && val >= 1 && val <= 6) {
 													setSeparateColumns(val)
 												}
-											}}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												const newValue = Math.max(
-													1,
-													Math.min(6, separateColumns() + delta)
-												)
-												setSeparateColumns(newValue)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
-													? 'rgba(59, 130, 246, 0.5)'
-													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+											}
+										}}
+										min={1}
+										max={6}
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										style={{
+											border: `1px solid ${
+												props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												disabled={separateColumns() >= 6}
-												onClick={() => {
-													if (separateColumns() < 6)
-														setSeparateColumns(separateColumns() + 1)
-												}}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												disabled={separateColumns() <= 1}
-												onClick={() => {
-													if (separateColumns() > 1)
-														setSeparateColumns(separateColumns() - 1)
-												}}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
+													? 'rgba(59, 130, 246, 0.5)'
+													: 'rgba(59, 130, 246, 0.3)'
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}
+										}}
+									/>
 								</label>
 								<label
 									style={{
@@ -1247,51 +854,56 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Row Gap:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
-										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='text'
-											value={separateGap().row}
-											onInput={e => {
-												const val = e.currentTarget.value.trim()
+									<NumberInput
+										value={separateGap().row}
+										onChange={val => {
+											// Handle changes from arrows and wheel
+											if (typeof val === 'string') {
 												setSeparateGap({ ...separateGap(), row: val })
-											}}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												modifySeparateGap('row', delta)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+											} else {
+												// Number from wheel/arrows - preserve unit
+												const current = separateGap().row
+												const unit = current.replace(/^\d+/, '') || 'px'
+												setSeparateGap({
+													...separateGap(),
+													row: `${val}${unit}`
+												})
+											}
+										}}
+										type='text'
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = target.value.trim()
+												setSeparateGap({ ...separateGap(), row: val })
+											}
+										}}
+										style={{
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
 													? 'rgba(59, 130, 246, 0.5)'
 													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												const val = e.currentTarget.value.trim()
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = target.value.trim()
 												if (val && /^\d+px$/.test(val)) {
 													setSeparateGap({ ...separateGap(), row: val })
 												} else if (val && /^\d+$/.test(val)) {
@@ -1299,57 +911,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												} else if (!val) {
 													setSeparateGap({ ...separateGap(), row: '16px' })
 												}
-												e.currentTarget.style.borderColor = props.isDark()
+												target.style.borderColor = props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												onClick={() => modifySeparateGap('row', 1)}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												onClick={() => modifySeparateGap('row', -1)}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}
+										}}
+									/>
 								</label>
 								<label
 									style={{
@@ -1361,51 +928,56 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Column Gap:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
-										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='text'
-											value={separateGap().column}
-											onInput={e => {
-												const val = e.currentTarget.value.trim()
+									<NumberInput
+										value={separateGap().column}
+										onChange={val => {
+											// Handle changes from arrows and wheel
+											if (typeof val === 'string') {
 												setSeparateGap({ ...separateGap(), column: val })
-											}}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												modifySeparateGap('column', delta)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+											} else {
+												// Number from wheel/arrows - preserve unit
+												const current = separateGap().column
+												const unit = current.replace(/^\d+/, '') || 'px'
+												setSeparateGap({
+													...separateGap(),
+													column: `${val}${unit}`
+												})
+											}
+										}}
+										type='text'
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = target.value.trim()
+												setSeparateGap({ ...separateGap(), column: val })
+											}
+										}}
+										style={{
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
 													? 'rgba(59, 130, 246, 0.5)'
 													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												const val = e.currentTarget.value.trim()
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = target.value.trim()
 												if (val && /^\d+px$/.test(val)) {
 													setSeparateGap({ ...separateGap(), column: val })
 												} else if (val && /^\d+$/.test(val)) {
@@ -1416,57 +988,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												} else if (!val) {
 													setSeparateGap({ ...separateGap(), column: '12px' })
 												}
-												e.currentTarget.style.borderColor = props.isDark()
+												target.style.borderColor = props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												onClick={() => modifySeparateGap('column', 1)}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												onClick={() => modifySeparateGap('column', -1)}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}
+										}}
+									/>
 								</label>
 							</div>
 							<Grid
@@ -1547,16 +1074,6 @@ export const GridDocs: Component<GridDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={{ width: '100%' }}>
-							<style>{`
-								.grid-demo-input[type="number"]::-webkit-inner-spin-button,
-								.grid-demo-input[type="number"]::-webkit-outer-spin-button {
-									-webkit-appearance: none;
-									margin: 0;
-								}
-								.grid-demo-input[type="number"] {
-									-moz-appearance: textfield;
-								}
-							`}</style>
 							<div
 								style={{
 									display: 'flex',
@@ -1576,48 +1093,42 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									}}
 								>
 									Gap:
-									<div
-										style={{
-											position: 'relative',
-											display: 'inline-flex',
-											'align-items': 'center'
+									<NumberInput
+										value={customGap()}
+										onChange={val => setCustomGap(String(val))}
+										type='text'
+										step={1}
+										enableWheel={true}
+										showArrows={true}
+										onInput={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												setCustomGap(target.value)
+											}
 										}}
-									>
-										<input
-											class='grid-demo-input'
-											type='text'
-											value={customGap()}
-											onInput={e => setCustomGap(e.currentTarget.value)}
-											onWheel={e => {
-												e.preventDefault()
-												const delta = e.deltaY > 0 ? -1 : 1
-												modifyGap(customGap(), delta, setCustomGap)
-											}}
-											style={{
-												width: '60px',
-												padding: '4px 20px 4px 8px',
-												'border-radius': '4px',
-												border: `1px solid ${
-													props.isDark()
-														? 'rgba(255, 255, 255, 0.1)'
-														: 'rgba(0, 0, 0, 0.1)'
-												}`,
-												background: props.isDark()
-													? 'rgba(255, 255, 255, 0.05)'
-													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-												'font-size': '0.875rem',
-												'box-sizing': 'border-box',
-												outline: 'none',
-												transition: 'border-color 150ms ease'
-											}}
-											onFocus={e => {
-												e.currentTarget.style.borderColor = props.isDark()
+										style={{
+											border: `1px solid ${
+												props.isDark()
+													? 'rgba(255, 255, 255, 0.1)'
+													: 'rgba(0, 0, 0, 0.1)'
+											}`,
+											background: props.isDark()
+												? 'rgba(255, 255, 255, 0.05)'
+												: 'rgba(0, 0, 0, 0.02)',
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										}}
+										onFocus={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												target.style.borderColor = props.isDark()
 													? 'rgba(59, 130, 246, 0.5)'
 													: 'rgba(59, 130, 246, 0.3)'
-											}}
-											onBlur={e => {
-												const val = e.currentTarget.value.trim()
+											}
+										}}
+										onBlur={e => {
+											const target = e.currentTarget as HTMLInputElement
+											if (target) {
+												const val = target.value.trim()
 												if (val && /^\d+px$/.test(val)) {
 													setCustomGap(val)
 												} else if (val && /^\d+$/.test(val)) {
@@ -1625,57 +1136,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												} else if (!val) {
 													setCustomGap('12px')
 												}
-												e.currentTarget.style.borderColor = props.isDark()
+												target.style.borderColor = props.isDark()
 													? 'rgba(255, 255, 255, 0.1)'
 													: 'rgba(0, 0, 0, 0.1)'
-											}}
-										/>
-										<div
-											style={{
-												position: 'absolute',
-												right: '4px',
-												display: 'flex',
-												'flex-direction': 'column',
-												gap: '2px',
-												height: '100%',
-												'justify-content': 'center',
-												'pointer-events': 'none'
-											}}
-										>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_up'
-												iconPosition='only'
-												onClick={() => modifyGap(customGap(), 1, setCustomGap)}
-												title='Increase'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-											<Button
-												variant='ghost'
-												icon='arrow_drop_down'
-												iconPosition='only'
-												onClick={() => modifyGap(customGap(), -1, setCustomGap)}
-												title='Decrease'
-												class='grid-number-arrow'
-												style={{
-													width: '12px',
-													height: '10px',
-													padding: '0',
-													'min-width': '12px',
-													'min-height': '10px',
-													'pointer-events': 'auto'
-												}}
-											/>
-										</div>
-									</div>
+											}
+										}}
+									/>
 								</label>
 							</div>
 							<Grid
