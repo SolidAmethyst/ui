@@ -1,4 +1,4 @@
-import { render, screen } from '@solidjs/testing-library'
+import { render, screen, waitFor } from '@solidjs/testing-library'
 import { describe, expect, it, vi } from 'vitest'
 import { Drawer } from '../ui/drawer'
 
@@ -23,21 +23,38 @@ describe('Drawer', () => {
 		expect(panel).toBeInTheDocument()
 	})
 
-	it('calls onClose when backdrop is clicked', () => {
+	it('calls onClose when backdrop is clicked', async () => {
 		const onClose = vi.fn()
 		render(() => (
 			<Drawer isOpen={true} onClose={onClose} isDark={false}>
 				<div>Content</div>
 			</Drawer>
 		))
+
+		// Wait for backdrop to be rendered in portal
+		await waitFor(
+			() => {
+				const backdrop = document.querySelector(
+					'div[style*="backdrop-filter"]'
+				) as HTMLElement
+				expect(backdrop).toBeInTheDocument()
+				return backdrop
+			},
+			{ timeout: 1000 }
+		)
+
 		const backdrop = document.querySelector(
 			'div[style*="backdrop-filter"]'
 		) as HTMLElement
-		expect(backdrop).toBeInTheDocument()
-		if (backdrop) {
-			backdrop.click()
-		}
-		expect(onClose).toHaveBeenCalledTimes(1)
+		backdrop.click()
+
+		// Wait for onClose to be called (may need a small delay due to animation)
+		await waitFor(
+			() => {
+				expect(onClose).toHaveBeenCalledTimes(1)
+			},
+			{ timeout: 1000 }
+		)
 	})
 
 	it('does not call onClose when backdrop is clicked and closeOnBackdropClick is false', () => {
@@ -63,13 +80,16 @@ describe('Drawer', () => {
 
 	it('does not show backdrop when showBackdrop is false', () => {
 		render(() => (
-			<Drawer isOpen={true} onClose={vi.fn()} showBackdrop={false} isDark={false}>
+			<Drawer
+				isOpen={true}
+				onClose={vi.fn()}
+				showBackdrop={false}
+				isDark={false}
+			>
 				<div>Content</div>
 			</Drawer>
 		))
-		const backdrop = document.querySelector(
-			'div[style*="backdrop-filter"]'
-		)
+		const backdrop = document.querySelector('div[style*="backdrop-filter"]')
 		expect(backdrop).not.toBeInTheDocument()
 	})
 
@@ -85,7 +105,13 @@ describe('Drawer', () => {
 
 	it('applies custom size for right position', () => {
 		render(() => (
-			<Drawer isOpen={true} onClose={vi.fn()} size='400px' position='right' isDark={false}>
+			<Drawer
+				isOpen={true}
+				onClose={vi.fn()}
+				size='400px'
+				position='right'
+				isDark={false}
+			>
 				<div>Content</div>
 			</Drawer>
 		))
@@ -95,7 +121,13 @@ describe('Drawer', () => {
 
 	it('applies custom size for bottom position', () => {
 		render(() => (
-			<Drawer isOpen={true} onClose={vi.fn()} size='60vh' position='bottom' isDark={false}>
+			<Drawer
+				isOpen={true}
+				onClose={vi.fn()}
+				size='60vh'
+				position='bottom'
+				isDark={false}
+			>
 				<div>Content</div>
 			</Drawer>
 		))
@@ -130,7 +162,12 @@ describe('Drawer', () => {
 
 	it('applies custom class name', () => {
 		render(() => (
-			<Drawer isOpen={true} onClose={vi.fn()} class='custom-drawer' isDark={false}>
+			<Drawer
+				isOpen={true}
+				onClose={vi.fn()}
+				class='custom-drawer'
+				isDark={false}
+			>
 				<div>Content</div>
 			</Drawer>
 		))
@@ -138,4 +175,3 @@ describe('Drawer', () => {
 		expect(panel).toHaveClass('custom-drawer')
 	})
 })
-

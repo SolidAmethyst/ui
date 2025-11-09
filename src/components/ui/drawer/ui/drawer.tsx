@@ -38,7 +38,7 @@ export const Drawer: Component<DrawerProps> = props => {
 	const size = () => props.size ?? defaultSize()
 
 	const handleBackdropClick = () => {
-		if (closeOnBackdropClick() && localIsOpen()) {
+		if (closeOnBackdropClick() && props.isOpen) {
 			props.onClose()
 		}
 	}
