@@ -9,6 +9,7 @@ import { DemoPage } from './pages/demo-page'
 import {
 	AppDocs,
 	ButtonDocs,
+	DrawerDocs,
 	GridDocs,
 	InstallationDocs,
 	IntroductionDocs,
@@ -258,6 +259,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'button'}>
 											<ButtonDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'drawer'}>
+											<DrawerDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'grid'}>
 											<GridDocs isDark={isDark} />

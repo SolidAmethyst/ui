@@ -23,6 +23,7 @@ const componentGroups: ComponentGroup[] = [
 		title: 'Components',
 		items: [
 			{ name: 'Button', id: 'button' },
+			{ name: 'Drawer', id: 'drawer' },
 			{ name: 'Grid', id: 'grid' },
 			{ name: 'Sidebar', id: 'sidebar' },
 			{ name: 'Slider', id: 'slider' },

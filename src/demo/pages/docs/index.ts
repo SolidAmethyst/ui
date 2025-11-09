@@ -1,5 +1,6 @@
 export { AppDocs } from './app-docs'
 export { ButtonDocs } from './button-docs'
+export { DrawerDocs } from './drawer-docs'
 export { GridDocs } from './grid-docs'
 export { InstallationDocs } from './installation-docs'
 export { IntroductionDocs } from './introduction-docs'
