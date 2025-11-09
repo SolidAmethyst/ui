@@ -3,10 +3,14 @@
  * Full-page settings interface with left sidebar and right content
  */
 
-import { Component, createMemo, createSignal, Show, For } from 'solid-js'
+import { Component, createMemo, createSignal, For, Show } from 'solid-js'
 import { Slider } from '../../components/ui/slider'
-import type { GlassSettings, MainCategory, AppearanceSubcategory } from '../../composites/settings/model/types'
 import { settingsCompositeStyles } from '../../composites/settings/lib/settings-composite.styles'
+import type {
+	AppearanceSubcategory,
+	GlassSettings,
+	MainCategory
+} from '../../composites/settings/model/types'
 
 interface SettingsPageProps {
 	isDark: () => boolean
@@ -15,8 +19,10 @@ interface SettingsPageProps {
 }
 
 export const SettingsPage: Component<SettingsPageProps> = props => {
-	const [activeMainCategory, setActiveMainCategory] = createSignal<MainCategory>('appearance')
-	const [activeSubcategory, setActiveSubcategory] = createSignal<AppearanceSubcategory>('glass')
+	const [activeMainCategory, setActiveMainCategory] =
+		createSignal<MainCategory>('appearance')
+	const [activeSubcategory, setActiveSubcategory] =
+		createSignal<AppearanceSubcategory>('glass')
 
 	const isDark = createMemo(() => props.isDark())
 
@@ -28,7 +34,10 @@ export const SettingsPage: Component<SettingsPageProps> = props => {
 		saturation: props.glassSettings?.saturation ?? 1.0
 	}))
 
-	const handleGlassChange = (key: keyof GlassSettings, value: boolean | number) => {
+	const handleGlassChange = (
+		key: keyof GlassSettings,
+		value: boolean | number
+	) => {
 		if (props.onGlassSettingsChange) {
 			props.onGlassSettingsChange({
 				...glassSettings(),
@@ -37,7 +46,11 @@ export const SettingsPage: Component<SettingsPageProps> = props => {
 		}
 	}
 
-	const mainCategories: Array<{ id: MainCategory; label: string; icon: string }> = [
+	const mainCategories: Array<{
+		id: MainCategory
+		label: string
+		icon: string
+	}> = [
 		{ id: 'appearance', label: 'Appearance', icon: 'palette' },
 		{ id: 'fonts', label: 'Fonts', icon: 'text_fields' }
 	]
@@ -142,7 +155,12 @@ export const SettingsPage: Component<SettingsPageProps> = props => {
 
 				{/* Content for selected subcategory */}
 				<div style={settingsCompositeStyles.contentArea()}>
-					<Show when={activeMainCategory() === 'appearance' && activeSubcategory() === 'glass'}>
+					<Show
+						when={
+							activeMainCategory() === 'appearance' &&
+							activeSubcategory() === 'glass'
+						}
+					>
 						<section style={settingsCompositeStyles.section(isDark())}>
 							<h4 style={settingsCompositeStyles.sectionTitle(isDark())}>
 								Glass Effect
@@ -170,21 +188,7 @@ export const SettingsPage: Component<SettingsPageProps> = props => {
 								</label>
 							</div>
 
-							{/* Blur Slider */}
-							<div style={settingsCompositeStyles.controlContainer(isDark())}>
-								<Slider
-									value={glassSettings().blur}
-									min={0}
-									max={50}
-									step={1}
-									label='Blur'
-									formatValue={val => `${val}px`}
-									isDark={isDark()}
-									onChange={val => handleGlassChange('blur', val)}
-								/>
-							</div>
-
-							{/* Opacity Slider */}
+							{/* Opacity Slider - First, always enabled */}
 							<div style={settingsCompositeStyles.controlContainer(isDark())}>
 								<Slider
 									value={glassSettings().opacity * 100}
@@ -198,24 +202,23 @@ export const SettingsPage: Component<SettingsPageProps> = props => {
 								/>
 							</div>
 
-							{/* Darkness Slider */}
+							{/* Blur Slider - Disabled when opacity is 0 */}
 							<div style={settingsCompositeStyles.controlContainer(isDark())}>
 								<Slider
-									value={glassSettings().darkness * 100}
+									value={glassSettings().blur}
 									min={0}
-									max={100}
+									max={50}
 									step={1}
-									label='Darkness'
-									formatValue={val => `${val}%`}
+									label='Blur'
+									formatValue={val => `${val}px`}
 									isDark={isDark()}
-									onChange={val => handleGlassChange('darkness', val / 100)}
+									disabled={glassSettings().opacity === 0}
+									onChange={val => handleGlassChange('blur', val)}
 								/>
 							</div>
 
-							{/* Saturation Slider */}
-							<div
-								style={settingsCompositeStyles.controlContainer(isDark(), true)}
-							>
+							{/* Saturation Slider - Disabled when opacity is 0 */}
+							<div style={settingsCompositeStyles.controlContainer(isDark())}>
 								<Slider
 									value={glassSettings().saturation * 100}
 									min={0}
@@ -224,16 +227,37 @@ export const SettingsPage: Component<SettingsPageProps> = props => {
 									label='Saturation'
 									formatValue={val => `${val}%`}
 									isDark={isDark()}
-									onChange={val =>
-										handleGlassChange('saturation', val / 100)
-									}
+									disabled={glassSettings().opacity === 0}
+									onChange={val => handleGlassChange('saturation', val / 100)}
+								/>
+							</div>
+
+							{/* Darkness Slider - Disabled when opacity is 0 */}
+							<div
+								style={settingsCompositeStyles.controlContainer(isDark(), true)}
+							>
+								<Slider
+									value={glassSettings().darkness * 100}
+									min={0}
+									max={100}
+									step={1}
+									label='Darkness'
+									formatValue={val => `${val}%`}
+									isDark={isDark()}
+									disabled={glassSettings().opacity === 0}
+									onChange={val => handleGlassChange('darkness', val / 100)}
 								/>
 							</div>
 						</section>
 					</Show>
 
-					<Show when={activeMainCategory() === 'appearance' && activeSubcategory() === 'theme'}>
-						<section style={settingsCompositeStyles.section(isDark(), true)}>
+					<Show
+						when={
+							activeMainCategory() === 'appearance' &&
+							activeSubcategory() === 'theme'
+						}
+					>
+						<section style={settingsCompositeStyles.section(isDark())}>
 							<h4 style={settingsCompositeStyles.sectionTitle(isDark())}>
 								Theme
 							</h4>
@@ -247,7 +271,7 @@ export const SettingsPage: Component<SettingsPageProps> = props => {
 					</Show>
 
 					<Show when={activeMainCategory() === 'fonts'}>
-						<section style={settingsCompositeStyles.section(isDark(), true)}>
+						<section style={settingsCompositeStyles.section(isDark())}>
 							<h4 style={settingsCompositeStyles.sectionTitle(isDark())}>
 								Fonts
 							</h4>

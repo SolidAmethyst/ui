@@ -123,8 +123,8 @@ export const settingsCompositeStyles = {
 			? 'hsla(240, 5.9%, 10%, 0.95)'
 			: 'hsla(0, 0%, 98%, 0.95)',
 		'box-sizing': 'border-box' as const,
-		display: 'flex',
-		'flex-direction': 'column'
+		display: 'flex' as const,
+		'flex-direction': 'column' as const
 	}),
 
 	tabsContainer: (isDark: boolean) => ({
