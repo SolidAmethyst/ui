@@ -117,14 +117,14 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 									}}
 								>
 									<Button
-										icon='menu'
-										variant='ghost'
+										variant='trigger'
 										iconPosition='only'
+										title={sidebarOpen() ? 'Close Sidebar' : 'Open Sidebar'}
+										active={sidebarOpen()}
 										onClick={() => setSidebarOpen(!sidebarOpen())}
 										style={{
-											width: '40px',
-											height: '40px',
-											'font-size': '24px'
+											width: '28px',
+											height: '28px'
 										}}
 									/>
 									<h2

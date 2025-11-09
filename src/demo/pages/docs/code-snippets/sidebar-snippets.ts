@@ -39,10 +39,18 @@ export function App() {
 				onItemClick={() => setSidebarOpen(false)}
 			/>
 			<div style={{ flex: '1', display: 'flex', 'flex-direction': 'column' }}>
-				<div style={{ padding: '16px', 'border-bottom': '1px solid rgba(0,0,0,0.1)' }}>
-					<Button icon="menu" onClick={() => setSidebarOpen(!sidebarOpen())}>
-						Menu
-					</Button>
+				<div style={{ padding: '16px', 'border-bottom': '1px solid rgba(0,0,0,0.1)', display: 'flex', 'align-items': 'center', gap: '12px' }}>
+					<Button
+						variant="trigger"
+						iconPosition="only"
+						title={sidebarOpen() ? 'Close Sidebar' : 'Open Sidebar'}
+						active={sidebarOpen()}
+						onClick={() => setSidebarOpen(!sidebarOpen())}
+						style={{ width: '28px', height: '28px' }}
+					/>
+					<h2 style={{ 'font-size': '1.25rem', 'font-weight': '600', margin: '0' }}>
+						Application
+					</h2>
 				</div>
 				<div style={{ flex: '1', padding: '24px', overflow: 'auto' }}>
 					{/* Your content */}
@@ -52,7 +60,11 @@ export function App() {
 	)
 }`,
 
-		yourFirstSidebar: `export function App() {
+		yourFirstSidebar: `import { createSignal } from 'solid-js'
+import { Sidebar, Button } from '@sapphiresolid/ui'
+import type { SidebarItem } from '@sapphiresolid/ui'
+
+export function App() {
 	const [sidebarOpen, setSidebarOpen] = createSignal(false)
 
 	const sidebarItems: SidebarItem[] = [
@@ -78,10 +90,18 @@ export function App() {
 				onItemClick={() => setSidebarOpen(false)}
 			/>
 			<div style={{ flex: '1', display: 'flex', 'flex-direction': 'column' }}>
-				<div style={{ padding: '16px', 'border-bottom': '1px solid rgba(0,0,0,0.1)' }}>
-					<Button icon="menu" onClick={() => setSidebarOpen(!sidebarOpen())}>
-						Menu
-					</Button>
+				<div style={{ padding: '16px', 'border-bottom': '1px solid rgba(0,0,0,0.1)', display: 'flex', 'align-items': 'center', gap: '12px' }}>
+					<Button
+						variant="trigger"
+						iconPosition="only"
+						title={sidebarOpen() ? 'Close Sidebar' : 'Open Sidebar'}
+						active={sidebarOpen()}
+						onClick={() => setSidebarOpen(!sidebarOpen())}
+						style={{ width: '28px', height: '28px' }}
+					/>
+					<h2 style={{ 'font-size': '1.25rem', 'font-weight': '600', margin: '0' }}>
+						Application
+					</h2>
 				</div>
 				<div style={{ flex: '1', padding: '24px', overflow: 'auto' }}>
 					{/* Your content */}
