@@ -10,13 +10,13 @@ interface CodeHighlightDocsProps {
 const codeHighlightSnippets = {
 	imports: `import { CodeHighlight } from '@sapphiresolid/ui'`,
 	basicUsage: `<CodeHighlight code="const x = 1" isDark={isDark} />`,
-	withCustomClass: `<CodeHighlight 
-  code="const x = 1" 
+	withCustomClass: `<CodeHighlight
+  code="const x = 1"
   isDark={isDark}
   class="custom-code"
 />`,
-	withCustomStyle: `<CodeHighlight 
-  code="const x = 1" 
+	withCustomStyle: `<CodeHighlight
+  code="const x = 1"
   isDark={isDark}
   style={{ 'margin-top': '20px' }}
 />`
@@ -96,4 +96,3 @@ export const CodeHighlightDocs: Component<CodeHighlightDocsProps> = props => {
 		</article>
 	)
 }
-

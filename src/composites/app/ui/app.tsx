@@ -3,11 +3,10 @@
  * Full-featured application composition with Window, TitleBar, and Sidebar
  */
 
-import type { JSX } from 'solid-js'
 import { Component, createSignal, Show } from 'solid-js'
 import { Sidebar } from '../../../components/ui/sidebar'
-import { TitleBar } from '../../title-bar'
 import { Window } from '../../../components/ui/window'
+import { TitleBar } from '../../title-bar'
 import type { AppProps } from '../model/types'
 
 export const App: Component<AppProps> = props => {
@@ -16,7 +15,8 @@ export const App: Component<AppProps> = props => {
 	const [pinned, setPinned] = createSignal(false)
 
 	const isDark = () => {
-		const dark = typeof props.isDark === 'function' ? props.isDark() : props.isDark
+		const dark =
+			typeof props.isDark === 'function' ? props.isDark() : props.isDark
 		return dark ?? true
 	}
 
@@ -61,6 +61,7 @@ export const App: Component<AppProps> = props => {
 					title={props.title ?? 'My Application'}
 					isDark={isDark()}
 					onBurgerClick={() => setSidebarOpen(!sidebarOpen())}
+					burgerActive={sidebarOpen()}
 					onThemeToggle={props.toggleTheme}
 					onDebugClick={handleDebug}
 					onPinClick={handlePin}

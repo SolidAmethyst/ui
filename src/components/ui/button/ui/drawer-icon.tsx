@@ -60,7 +60,7 @@ export const DrawerIcon: Component<DrawerIconProps> = props => {
 				fill={color()}
 				style={{
 					transform: isOpen() ? 'translateX(6.5px)' : 'translateX(0px)',
-					transition: 'transform 0.2s ease-in-out'
+					transition: 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)'
 				}}
 			/>
 		</svg>

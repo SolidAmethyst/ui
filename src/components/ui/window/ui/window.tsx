@@ -60,7 +60,7 @@ export const Window: Component<WindowProps> = props => {
 									position: 'relative' as const,
 									display: 'flex',
 									'flex-direction': 'column'
-							  })
+								})
 					}}
 				>
 					{props.children}
