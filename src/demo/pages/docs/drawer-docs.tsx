@@ -1,7 +1,7 @@
 import { Accessor, Component, createSignal } from 'solid-js'
 import { Button } from '../../../components/ui/button'
+import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Drawer } from '../../../components/ui/drawer'
-import { CodeHighlight } from '../../components/common/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { drawerSnippets } from './code-snippets/drawer-snippets'
