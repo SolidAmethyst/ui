@@ -131,4 +131,37 @@ describe("Button", () => {
     const button = screen.getByRole("button", { name: /maximized button/i });
     expect(button).toHaveClass("maximized");
   });
+
+  it("renders as anchor element when as='a'", () => {
+    render(() => (
+      <Button as="a" href="/login">
+        Login
+      </Button>
+    ));
+    const link = screen.getByRole("link", { name: /login/i });
+    expect(link).toBeInTheDocument();
+    expect(link.tagName.toLowerCase()).toBe("a");
+    expect(link).toHaveAttribute("href", "/login");
+  });
+
+  it("renders anchor with target and rel", () => {
+    render(() => (
+      <Button as="a" href="https://example.com" target="_blank" rel="noopener">
+        External Link
+      </Button>
+    ));
+    const link = screen.getByRole("link", { name: /external link/i });
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener");
+  });
+
+  it("applies button classes when rendered as anchor", () => {
+    render(() => (
+      <Button as="a" href="/test" variant="primary">
+        Link Button
+      </Button>
+    ));
+    const link = screen.getByRole("link", { name: /link button/i });
+    expect(link).toHaveClass("control-btn");
+  });
 });
