@@ -14,5 +14,9 @@ export type {
   ButtonVariant,
 } from "./model/types";
 
+// Variants helper (for advanced usage)
+export { buttonVariants } from "./lib/button-variants";
+export type { ButtonVariantsOptions } from "./lib/button-variants";
+
 // Styles (for advanced usage)
 export { buttonStyles } from "./lib/button.styles";
