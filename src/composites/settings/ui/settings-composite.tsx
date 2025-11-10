@@ -5,11 +5,14 @@
 
 import { Component, createMemo, createSignal, For, Show } from 'solid-js'
 import { Settings } from './settings'
+import { Select } from '../../../components/ui/select'
 import { Slider } from '../../../components/ui/slider'
 import { settingsCompositeStyles } from '../lib/settings-composite.styles'
 import type {
 	AppearanceSubcategory,
 	GlassSettings,
+	HighlightsSettings,
+	HighlightProfile,
 	MainCategory,
 	SettingsCompositeProps
 } from '../model/types'
@@ -34,6 +37,10 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 		saturation: props.glassSettings?.saturation ?? 1.0
 	}))
 
+	const highlightsSettings = createMemo<HighlightsSettings>(() => ({
+		profile: props.highlightsSettings?.profile ?? 'default'
+	}))
+
 	const handleGlassChange = (
 		key: keyof GlassSettings,
 		value: boolean | number
@@ -45,6 +52,27 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 			})
 		}
 	}
+
+	const handleHighlightsChange = (profile: HighlightProfile) => {
+		if (props.onHighlightsSettingsChange) {
+			props.onHighlightsSettingsChange({
+				profile
+			})
+		}
+	}
+
+	const highlightProfiles: Array<{
+		id: HighlightProfile
+		label: string
+		description: string
+	}> = [
+		{ id: 'default', label: 'Default', description: 'Standard syntax highlighting' },
+		{ id: 'monokai', label: 'Monokai', description: 'Popular dark theme colors' },
+		{ id: 'dracula', label: 'Dracula', description: 'Dark purple theme' },
+		{ id: 'github', label: 'GitHub', description: 'GitHub-style highlighting' },
+		{ id: 'vs-code', label: 'VS Code', description: 'Visual Studio Code theme' },
+		{ id: 'one-dark', label: 'One Dark', description: 'Atom One Dark theme' }
+	]
 
 	const mainCategories: Array<{
 		id: MainCategory
@@ -61,7 +89,8 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 		icon: string
 	}> = [
 		{ id: 'glass', label: 'Glass', icon: 'blur' },
-		{ id: 'theme', label: 'Theme', icon: 'dark_mode' }
+		{ id: 'theme', label: 'Theme', icon: 'dark_mode' },
+		{ id: 'highlights', label: 'Highlights', icon: 'palette' }
 	]
 
 	return (
@@ -269,6 +298,39 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 								</p>
 								<div style={settingsCompositeStyles.placeholder(isDark())}>
 									Theme settings coming soon...
+								</div>
+							</section>
+						</Show>
+
+						<Show
+							when={
+								activeMainCategory() === 'appearance' &&
+								activeSubcategory() === 'highlights'
+							}
+						>
+							<section style={settingsCompositeStyles.section(isDark())}>
+								<h4 style={settingsCompositeStyles.sectionTitle(isDark())}>
+									Syntax Highlighting
+								</h4>
+								<p style={settingsCompositeStyles.sectionDescription(isDark())}>
+									Choose a color profile for code syntax highlighting.
+								</p>
+
+								<div
+									style={{
+										'margin-top': '24px'
+									}}
+								>
+									<Select
+										options={highlightProfiles.map(profile => ({
+											value: profile.id,
+											label: profile.label,
+											description: profile.description
+										}))}
+										value={highlightsSettings().profile}
+										onChange={value => handleHighlightsChange(value)}
+										isDark={isDark()}
+									/>
 								</div>
 							</section>
 						</Show>

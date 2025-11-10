@@ -13,7 +13,7 @@ export type MainCategory = 'appearance' | 'fonts'
 /**
  * Appearance subcategory types
  */
-export type AppearanceSubcategory = 'glass' | 'theme'
+export type AppearanceSubcategory = 'glass' | 'theme' | 'highlights'
 
 /**
  * Glass effect settings
@@ -24,6 +24,18 @@ export interface GlassSettings {
 	opacity: number
 	darkness: number
 	saturation: number
+}
+
+/**
+ * Syntax highlighting color profile
+ */
+export type HighlightProfile = 'default' | 'monokai' | 'dracula' | 'github' | 'vs-code' | 'one-dark'
+
+/**
+ * Highlights settings
+ */
+export interface HighlightsSettings {
+	profile: HighlightProfile
 }
 
 export interface SettingsProps {
@@ -93,4 +105,14 @@ export interface SettingsCompositeProps {
 	 * Callback when glass settings change
 	 */
 	onGlassSettingsChange: (settings: GlassSettings) => void
+
+	/**
+	 * Highlights settings
+	 */
+	highlightsSettings?: HighlightsSettings
+
+	/**
+	 * Callback when highlights settings change
+	 */
+	onHighlightsSettingsChange?: (settings: HighlightsSettings) => void
 }
