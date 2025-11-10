@@ -67,3 +67,30 @@ export interface SettingsProps {
 	 */
 	style?: JSX.CSSProperties
 }
+
+export interface SettingsCompositeProps {
+	/**
+	 * Whether the settings panel is open
+	 */
+	isOpen: boolean
+
+	/**
+	 * Callback when panel should be closed
+	 */
+	onClose: () => void
+
+	/**
+	 * Whether dark theme is active
+	 */
+	isDark: () => boolean
+
+	/**
+	 * Glass effect settings
+	 */
+	glassSettings: GlassSettings
+
+	/**
+	 * Callback when glass settings change
+	 */
+	onGlassSettingsChange: (settings: GlassSettings) => void
+}

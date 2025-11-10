@@ -1,6 +1,5 @@
 import type { JSX } from 'solid-js'
 import { createSignal, Show } from 'solid-js'
-import { render } from 'solid-js/web'
 import { Container } from '../components/ui/container'
 import { ScrollbarProvider } from '../components/ui/scrollbar'
 import type { GlassSettings } from '../composites/settings'
@@ -307,4 +306,12 @@ function App() {
 	)
 }
 
-render(() => <App />, document.getElementById('app')!)
+// Export for use in Astro
+export default App
+
+// For Vite/standalone usage
+if (typeof window !== 'undefined' && document.getElementById('app')) {
+	import('solid-js/web').then(({ render }) => {
+		render(() => <App />, document.getElementById('app')!)
+	})
+}

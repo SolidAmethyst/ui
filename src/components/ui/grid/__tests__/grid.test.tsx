@@ -3,15 +3,19 @@
  */
 
 import { render } from '@solidjs/testing-library'
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { Grid } from '../ui/grid'
 
 // Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation(() => ({
-	observe: vi.fn(),
-	unobserve: vi.fn(),
-	disconnect: vi.fn()
-}))
+global.ResizeObserver = class ResizeObserver {
+	observe = vi.fn()
+	unobserve = vi.fn()
+	disconnect = vi.fn()
+	constructor(_callback: (entries: ResizeObserverEntry[]) => void) {
+		// Store callback for potential use in tests
+		;(this as any)._callback = _callback
+	}
+} as any
 
 describe('Grid', () => {
 	beforeEach(() => {
@@ -86,11 +90,7 @@ describe('Grid', () => {
 
 	it('applies minColumnWidth and maxColumnWidth', () => {
 		const { container } = render(() => (
-			<Grid
-				columns={4}
-				minColumnWidth='200px'
-				maxColumnWidth='1fr'
-			>
+			<Grid columns={4} minColumnWidth='200px' maxColumnWidth='1fr'>
 				Content
 			</Grid>
 		))
