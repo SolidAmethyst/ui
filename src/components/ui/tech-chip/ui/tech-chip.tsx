@@ -4,12 +4,23 @@
  */
 
 import { Component } from "solid-js";
+import { techChipVariants } from "../lib/tech-chip-variants";
 import type { TechChipProps } from "../model/types";
 
-export const TechChip: Component<TechChipProps> = (props) => (
-  <span
-    class={props.class}
-    onClick={() => props.onClick?.()}
+export const TechChip: Component<TechChipProps> = (props) => {
+	const getChipClass = () => {
+		return techChipVariants({
+			variant: props.variant,
+			status: props.status,
+			clickable: !!props.onClick,
+			class: props.class
+		})
+	}
+
+	return (
+		<span
+			class={getChipClass()}
+			onClick={() => props.onClick?.()}
     style={{
       display: "inline-flex",
       "align-items": "center",
@@ -56,5 +67,6 @@ export const TechChip: Component<TechChipProps> = (props) => (
     >
       {props.label}
     </span>
-  </span>
-);
+		</span>
+	)
+}
