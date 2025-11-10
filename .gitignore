@@ -3,6 +3,10 @@ node_modules/
 .pnp
 .pnp.js
 bun.lockb
+bun.lock
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # Production builds
 dist/
