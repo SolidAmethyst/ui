@@ -1,12 +1,12 @@
 import type { JSX } from 'solid-js'
 import { createSignal, Show } from 'solid-js'
 import { render } from 'solid-js/web'
+import { Container } from '../components/ui/container'
 import { ScrollbarProvider } from '../components/ui/scrollbar'
 import type { GlassSettings } from '../composites/settings'
 import { SettingsComposite } from '../composites/settings'
 import '../styles/globals.css'
 import { Footer, Sidebar, TopNav } from './components/layout'
-import { DemoPage } from './pages/demo-page'
 import {
 	AppDocs,
 	ButtonDocs,
@@ -21,13 +21,14 @@ import {
 	TitleBarDocs
 } from './pages/docs'
 import { SettingsPage } from './pages/settings-page'
+import { BlocksPage } from './pages/blocks-page'
 import './styles.css'
 
 function App() {
 	const [isDark, setIsDark] = createSignal(true)
 	const [currentPage, setCurrentPage] = createSignal<
-		'demo' | 'docs' | 'settings'
-	>('demo')
+		'docs' | 'blocks' | 'settings'
+	>('docs')
 	const [currentComponent, setCurrentComponent] = createSignal<string | null>(
 		'introduction'
 	)
@@ -44,7 +45,7 @@ function App() {
 		setIsDark(!isDark())
 	}
 
-	const handlePageChange = (page: 'demo' | 'docs' | 'settings') => {
+	const handlePageChange = (page: 'docs' | 'blocks' | 'settings') => {
 		setCurrentPage(page)
 		if (page === 'docs') {
 			setCurrentComponent('introduction')
@@ -105,44 +106,31 @@ function App() {
 					}}
 				/>
 
-				<Show when={currentPage() === 'demo'}>
-					<div
-						style={{
-							'padding-top': '60px',
-							width: '100%',
-							'box-sizing': 'border-box',
-							'min-height': 'calc(100vh - 60px)'
-						}}
-					>
-						<DemoPage isDark={isDark} toggleTheme={toggleTheme} />
-					</div>
+				<Show when={currentPage() === 'blocks'}>
+					<BlocksPage isDark={isDark} />
 				</Show>
 
-				<Show when={currentPage() === 'settings'}>
-					<div
-						style={{
-							'padding-top': '60px',
-							width: '100%',
-							'min-height': 'calc(100vh - 60px)',
-							'box-sizing': 'border-box',
-							position: 'relative',
-							display: 'flex',
-							'flex-direction': 'column'
-						}}
-					>
+					<Show when={currentPage() === 'settings'}>
 						<div
 							style={{
+								'padding-top': '60px',
 								width: '100%',
-								'max-width': '1400px',
-								margin: '0 auto',
-								flex: '1',
+								'min-height': 'calc(100vh - 60px)',
 								'box-sizing': 'border-box',
-								padding: '0',
+								position: 'relative',
 								display: 'flex',
-								'flex-direction': 'column',
-								height: 'calc(100vh - 60px)'
+								'flex-direction': 'column'
 							}}
 						>
+							<Container
+								padding='0'
+								style={{
+									flex: '1',
+									display: 'flex',
+									'flex-direction': 'column',
+									height: 'calc(100vh - 60px)'
+								}}
+							>
 							<div
 								style={{
 									display: 'flex',
@@ -184,7 +172,7 @@ function App() {
 									}}
 								/>
 							</div>
-						</div>
+						</Container>
 					</div>
 				</Show>
 
@@ -200,18 +188,14 @@ function App() {
 							'flex-direction': 'column'
 						}}
 					>
-						<div
-							style={{
-								width: '100%',
-								'max-width': '1400px',
-								margin: '0 auto',
-								flex: '1',
-								'box-sizing': 'border-box',
-								padding: '0',
-								display: 'flex',
-								'flex-direction': 'column'
-							}}
-						>
+							<Container
+								padding='0'
+								style={{
+									flex: '1',
+									display: 'flex',
+									'flex-direction': 'column'
+								}}
+							>
 							<div
 								data-docs-container
 								style={{
@@ -315,7 +299,7 @@ function App() {
 								/>
 							</div>
 							<Footer isDark={isDark} />
-						</div>
+						</Container>
 					</div>
 				</Show>
 			</div>

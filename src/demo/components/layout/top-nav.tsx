@@ -1,12 +1,13 @@
 import { Component, Show } from 'solid-js'
 import { Button } from '../../../components/ui/button'
+import { Container } from '../../../components/ui/container'
 import { Glass } from '../../../components/ui/glass'
 
 interface TopNavProps {
 	isDark: () => boolean
 	toggleTheme: () => void
-	currentPage: 'demo' | 'docs' | 'settings'
-	onPageChange: (page: 'demo' | 'docs' | 'settings') => void
+	currentPage: 'docs' | 'blocks' | 'settings'
+	onPageChange: (page: 'docs' | 'blocks' | 'settings') => void
 	onSettingsClick: () => void
 	glassEnabled: boolean
 	glassBlur: number
@@ -40,16 +41,11 @@ export const TopNav: Component<TopNavProps> = props => (
 						: '0 1px 0 rgba(0, 0, 0, 0.03), 0 4px 16px rgba(0, 0, 0, 0.1)'
 				}}
 			>
-				<div
+				<Container
 					style={{
-						width: '100%',
-						'max-width': '1400px',
 						display: 'flex',
 						'align-items': 'center',
 						'justify-content': 'space-between',
-						padding: '0 32px',
-						margin: '0 auto',
-						'box-sizing': 'border-box',
 						position: 'relative'
 					}}
 				>
@@ -83,27 +79,6 @@ export const TopNav: Component<TopNavProps> = props => (
 						}}
 					>
 						<button
-							onClick={() => props.onPageChange('demo')}
-							style={{
-								padding: '8px 16px',
-								'font-size': '14px',
-								'font-weight': '500',
-								border: 'none',
-								background:
-									props.currentPage === 'demo'
-										? props.isDark()
-											? 'rgba(255, 255, 255, 0.1)'
-											: 'rgba(0, 0, 0, 0.05)'
-										: 'transparent',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-								cursor: 'pointer',
-								'border-radius': '6px',
-								transition: 'all 0.2s ease'
-							}}
-						>
-							Demo
-						</button>
-						<button
 							onClick={() => props.onPageChange('docs')}
 							style={{
 								padding: '8px 16px',
@@ -123,6 +98,27 @@ export const TopNav: Component<TopNavProps> = props => (
 							}}
 						>
 							Docs
+						</button>
+						<button
+							onClick={() => props.onPageChange('blocks')}
+							style={{
+								padding: '8px 16px',
+								'font-size': '14px',
+								'font-weight': '500',
+								border: 'none',
+								background:
+									props.currentPage === 'blocks'
+										? props.isDark()
+											? 'rgba(255, 255, 255, 0.1)'
+											: 'rgba(0, 0, 0, 0.05)'
+										: 'transparent',
+								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								cursor: 'pointer',
+								'border-radius': '6px',
+								transition: 'all 0.2s ease'
+							}}
+						>
+							Blocks
 						</button>
 						<button
 							onClick={() => props.onPageChange('settings')}
@@ -166,7 +162,7 @@ export const TopNav: Component<TopNavProps> = props => (
 							onClick={props.onSettingsClick}
 						/>
 					</div>
-				</div>
+				</Container>
 			</header>
 		}
 	>
@@ -203,16 +199,11 @@ export const TopNav: Component<TopNavProps> = props => (
 					'justify-content': 'center'
 				}}
 			>
-				<div
+				<Container
 					style={{
-						width: '100%',
-						'max-width': '1400px',
 						display: 'flex',
 						'align-items': 'center',
 						'justify-content': 'space-between',
-						padding: '0 32px',
-						margin: '0 auto',
-						'box-sizing': 'border-box',
 						position: 'relative'
 					}}
 				>
@@ -246,27 +237,6 @@ export const TopNav: Component<TopNavProps> = props => (
 						}}
 					>
 						<button
-							onClick={() => props.onPageChange('demo')}
-							style={{
-								padding: '8px 16px',
-								'font-size': '14px',
-								'font-weight': '500',
-								border: 'none',
-								background:
-									props.currentPage === 'demo'
-										? props.isDark()
-											? 'rgba(255, 255, 255, 0.1)'
-											: 'rgba(0, 0, 0, 0.05)'
-										: 'transparent',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-								cursor: 'pointer',
-								'border-radius': '6px',
-								transition: 'all 0.2s ease'
-							}}
-						>
-							Demo
-						</button>
-						<button
 							onClick={() => props.onPageChange('docs')}
 							style={{
 								padding: '8px 16px',
@@ -286,6 +256,27 @@ export const TopNav: Component<TopNavProps> = props => (
 							}}
 						>
 							Docs
+						</button>
+						<button
+							onClick={() => props.onPageChange('blocks')}
+							style={{
+								padding: '8px 16px',
+								'font-size': '14px',
+								'font-weight': '500',
+								border: 'none',
+								background:
+									props.currentPage === 'blocks'
+										? props.isDark()
+											? 'rgba(255, 255, 255, 0.1)'
+											: 'rgba(0, 0, 0, 0.05)'
+										: 'transparent',
+								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								cursor: 'pointer',
+								'border-radius': '6px',
+								transition: 'all 0.2s ease'
+							}}
+						>
+							Blocks
 						</button>
 						<button
 							onClick={() => props.onPageChange('settings')}
@@ -329,7 +320,7 @@ export const TopNav: Component<TopNavProps> = props => (
 							onClick={props.onSettingsClick}
 						/>
 					</div>
-				</div>
+				</Container>
 			</header>
 		</Glass>
 	</Show>
