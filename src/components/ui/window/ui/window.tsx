@@ -31,7 +31,7 @@ export const Window: Component<WindowProps> = props => {
 
 			{/* Content Area */}
 			<Grid
-				columns={props.sidebar ? 'auto 1fr' : '1fr'}
+				columns={props.sidebar ? 'minmax(0, auto) 1fr' : '1fr'}
 				style={{
 					'grid-row': '2',
 					'grid-column': '1 / -1',

@@ -23,33 +23,21 @@ export const TitleBar: Component<TitleBarProps> = props => {
 			{/* Left Section: Burger Menu */}
 			<div style={titleBarStyles.leftSection}>
 				<Show when={props.onBurgerClick}>
-					<button
-						type='button'
+					<Button
+						variant='trigger'
+						iconPosition='only'
+						title='Toggle Sidebar'
+						active={props.burgerActive ?? false}
 						onClick={e => {
-							e.stopPropagation()
+							e?.stopPropagation()
 							props.onBurgerClick?.()
 						}}
-						style={titleBarStyles.burgerButton(isDark())}
-						title='Menu'
-						onMouseEnter={e => {
-							e.currentTarget.style.backgroundColor = isDark()
-								? 'rgba(255, 255, 255, 0.1)'
-								: 'rgba(0, 0, 0, 0.05)'
+						style={{
+							width: '28px',
+							height: '28px',
+							color: isDark() ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 26, 26, 0.9)'
 						}}
-						onMouseLeave={e => {
-							e.currentTarget.style.backgroundColor = 'transparent'
-						}}
-					>
-						<span
-							class='material-symbols-rounded'
-							style={{
-								'font-size': '18px',
-								color: isDark() ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 26, 26, 0.9)'
-							}}
-						>
-							menu
-						</span>
-					</button>
+					/>
 				</Show>
 			</div>
 

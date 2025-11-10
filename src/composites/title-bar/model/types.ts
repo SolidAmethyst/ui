@@ -21,6 +21,11 @@ export interface TitleBarProps {
   onBurgerClick?: () => void;
 
   /**
+   * Whether the burger menu is active (for trigger button)
+   */
+  burgerActive?: boolean;
+
+  /**
    * Theme toggle button click handler
    */
   onThemeToggle?: () => void;
@@ -80,4 +85,3 @@ export interface TitleBarProps {
    */
   children?: JSX.Element;
 }
-

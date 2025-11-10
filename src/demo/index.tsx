@@ -7,6 +7,7 @@ import type { GlassSettings } from '../composites/settings'
 import { SettingsComposite } from '../composites/settings'
 import '../styles/globals.css'
 import { Footer, Sidebar, TopNav } from './components/layout'
+import { BlocksPage } from './pages/blocks-page'
 import {
 	AppDocs,
 	ButtonDocs,
@@ -21,7 +22,6 @@ import {
 	TitleBarDocs
 } from './pages/docs'
 import { SettingsPage } from './pages/settings-page'
-import { BlocksPage } from './pages/blocks-page'
 import './styles.css'
 
 function App() {
@@ -110,27 +110,27 @@ function App() {
 					<BlocksPage isDark={isDark} />
 				</Show>
 
-					<Show when={currentPage() === 'settings'}>
-						<div
+				<Show when={currentPage() === 'settings'}>
+					<div
+						style={{
+							'padding-top': '60px',
+							width: '100%',
+							'min-height': 'calc(100vh - 60px)',
+							'box-sizing': 'border-box',
+							position: 'relative',
+							display: 'flex',
+							'flex-direction': 'column'
+						}}
+					>
+						<Container
+							padding='0'
 							style={{
-								'padding-top': '60px',
-								width: '100%',
-								'min-height': 'calc(100vh - 60px)',
-								'box-sizing': 'border-box',
-								position: 'relative',
+								flex: '1',
 								display: 'flex',
-								'flex-direction': 'column'
+								'flex-direction': 'column',
+								height: 'calc(100vh - 60px)'
 							}}
 						>
-							<Container
-								padding='0'
-								style={{
-									flex: '1',
-									display: 'flex',
-									'flex-direction': 'column',
-									height: 'calc(100vh - 60px)'
-								}}
-							>
 							<div
 								style={{
 									display: 'flex',
@@ -188,14 +188,14 @@ function App() {
 							'flex-direction': 'column'
 						}}
 					>
-							<Container
-								padding='0'
-								style={{
-									flex: '1',
-									display: 'flex',
-									'flex-direction': 'column'
-								}}
-							>
+						<Container
+							padding='0'
+							style={{
+								flex: '1',
+								display: 'flex',
+								'flex-direction': 'column'
+							}}
+						>
 							<div
 								data-docs-container
 								style={{

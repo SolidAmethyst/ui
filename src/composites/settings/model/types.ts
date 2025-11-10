@@ -5,6 +5,27 @@
 
 import type { JSX } from 'solid-js'
 
+/**
+ * Main category types
+ */
+export type MainCategory = 'appearance' | 'fonts'
+
+/**
+ * Appearance subcategory types
+ */
+export type AppearanceSubcategory = 'glass' | 'theme'
+
+/**
+ * Glass effect settings
+ */
+export interface GlassSettings {
+	enabled: boolean
+	blur: number
+	opacity: number
+	darkness: number
+	saturation: number
+}
+
 export interface SettingsProps {
 	/**
 	 * Whether the settings panel is open
