@@ -3,7 +3,7 @@ import { Component, For, createEffect, createSignal } from 'solid-js'
 import type { SidebarItem } from '../../../components/ui/sidebar'
 import { App } from '../../../composites/app'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
-import { Tabs } from '../../components/common/tabs'
+import { Tabs } from '../../../components/ui/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { appSnippets } from './code-snippets/app-snippets'
 

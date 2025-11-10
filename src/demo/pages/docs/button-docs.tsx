@@ -2,7 +2,7 @@ import { Accessor, Component, createSignal } from 'solid-js'
 import { Button } from '../../../components/ui/button'
 import { NumberInput } from '../../../components/ui/number-input'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
-import { Tabs } from '../../components/common/tabs'
+import { Tabs } from '../../../components/ui/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { buttonSnippets } from './code-snippets/button-snippets'
 

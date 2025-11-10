@@ -1,7 +1,7 @@
 import { Accessor, Component } from 'solid-js'
 import { TechChip } from '../../../components/ui/tech-chip'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
-import { Tabs } from '../../components/common/tabs'
+import { Tabs } from '../../../components/ui/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { techchipSnippets } from './code-snippets/techchip-snippets'
 

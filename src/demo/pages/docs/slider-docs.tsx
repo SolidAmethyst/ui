@@ -1,7 +1,7 @@
 import { Accessor, Component, createSignal } from 'solid-js'
 import { Slider } from '../../../components/ui/slider'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
-import { Tabs } from '../../components/common/tabs'
+import { Tabs } from '../../../components/ui/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { sliderSnippets } from './code-snippets/slider-snippets'
 

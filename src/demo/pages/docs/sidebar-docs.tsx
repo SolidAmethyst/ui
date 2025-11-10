@@ -3,7 +3,7 @@ import { Button } from '../../../components/ui/button'
 import type { SidebarItem } from '../../../components/ui/sidebar'
 import { Sidebar } from '../../../components/ui/sidebar'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
-import { Tabs } from '../../components/common/tabs'
+import { Tabs } from '../../../components/ui/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { sidebarSnippets } from './code-snippets/sidebar-snippets'
 
