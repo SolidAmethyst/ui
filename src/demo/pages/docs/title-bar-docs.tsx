@@ -1,6 +1,6 @@
 import { Accessor, Component, createEffect, createSignal } from 'solid-js'
 import { TitleBar } from '../../../composites/title-bar'
-import { CodeHighlight } from '../../components/common/code-highlight'
+import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { titleBarSnippets } from './code-snippets/title-bar-snippets'

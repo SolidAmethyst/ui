@@ -1,5 +1,5 @@
 import { Accessor, Component } from 'solid-js'
-import { CodeHighlight } from '../../components/common/code-highlight'
+import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { docsStyles } from '../../lib/docs.styles'
 import { installationExamples } from './code-snippets/installation-snippets'
 

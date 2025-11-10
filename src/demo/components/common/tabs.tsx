@@ -1,6 +1,6 @@
 import type { JSX } from "solid-js";
 import { Component, createSignal, Show } from "solid-js";
-import { CodeHighlight } from "./code-highlight";
+import { CodeHighlight } from '../../../components/ui/code-highlight'
 
 interface TabsProps {
   preview: JSX.Element;

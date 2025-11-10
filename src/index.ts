@@ -1,6 +1,7 @@
 // Main entry point for the library
 export * from './components/ui/button'
 export * from './components/ui/container'
+export * from './components/ui/code-highlight'
 export * from './components/ui/drawer'
 export * from './components/ui/glass'
 export * from './components/ui/grid'

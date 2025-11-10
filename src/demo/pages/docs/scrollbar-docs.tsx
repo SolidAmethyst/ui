@@ -1,6 +1,6 @@
 import { Accessor, Component } from 'solid-js'
 import { Scrollbar, ScrollbarProvider } from '../../../components/ui/scrollbar'
-import { CodeHighlight } from '../../components/common/code-highlight'
+import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { scrollbarSnippets } from './code-snippets/scrollbar-snippets'

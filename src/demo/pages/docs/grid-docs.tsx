@@ -1,7 +1,7 @@
 import { Accessor, Component, createSignal, For } from 'solid-js'
 import { Grid } from '../../../components/ui/grid'
 import { NumberInput } from '../../../components/ui/number-input'
-import { CodeHighlight } from '../../components/common/code-highlight'
+import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../components/common/tabs'
 import { docsStyles } from '../../lib/docs.styles'
 import { gridSnippets } from './code-snippets/grid-snippets'
