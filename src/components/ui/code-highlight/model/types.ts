@@ -1,6 +1,8 @@
 /**
- * CodeHighlight component types
+ * Code Highlight Component Types
  */
+
+import type { Accessor } from 'solid-js'
 
 export interface CodeHighlightProps {
 	/**
@@ -9,18 +11,17 @@ export interface CodeHighlightProps {
 	code: string
 
 	/**
-	 * Dark theme accessor
+	 * Whether dark theme is active
 	 */
-	isDark: () => boolean
+	isDark: Accessor<boolean> | boolean
 
 	/**
-	 * Optional CSS class name
+	 * Additional CSS class names
 	 */
 	class?: string
 
 	/**
-	 * Optional inline styles
+	 * Custom inline styles
 	 */
-	style?: JSX.CSSProperties
+	style?: Record<string, string>
 }
-
