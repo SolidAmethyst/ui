@@ -10,6 +10,7 @@ import { BlocksPage } from './pages/blocks-page'
 import {
 	AppDocs,
 	ButtonDocs,
+	CodeHighlightDocs,
 	DrawerDocs,
 	GridDocs,
 	InstallationDocs,
@@ -17,6 +18,7 @@ import {
 	ScrollbarDocs,
 	SidebarDocs,
 	SliderDocs,
+	TabsDocs,
 	TechChipDocs,
 	TitleBarDocs
 } from './pages/docs'
@@ -259,6 +261,9 @@ function App() {
 										<Show when={currentComponent() === 'button'}>
 											<ButtonDocs isDark={isDark} />
 										</Show>
+										<Show when={currentComponent() === 'code-highlight'}>
+											<CodeHighlightDocs isDark={isDark} />
+										</Show>
 										<Show when={currentComponent() === 'drawer'}>
 											<DrawerDocs isDark={isDark} />
 										</Show>
@@ -276,6 +281,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'slider'}>
 											<SliderDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'tabs'}>
+											<TabsDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'titlebar'}>
 											<TitleBarDocs isDark={isDark} />
