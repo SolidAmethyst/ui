@@ -1,5 +1,6 @@
 import { Accessor, Component } from 'solid-js'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { installationExamples } from './code-snippets/installation-snippets'
 
@@ -12,13 +13,17 @@ export const InstallationDocs: Component<InstallationDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>Installation</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				Installation
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Get started with Solid UI Toolkit in your project.
-			</p>
+			</Typography>
 
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Install from GitHub</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Install from GitHub
+				</Typography>
 				<CodeHighlight
 					code={installationExamples.install}
 					isDark={props.isDark}
@@ -26,19 +31,16 @@ export const InstallationDocs: Component<InstallationDocsProps> = props => {
 			</section>
 
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Include Styles</h2>
-				<p
-					style={{
-						'margin-bottom': '12px',
-						'font-size': '0.9rem',
-						'line-height': '1.6',
-						color: theme().isDark
-							? 'rgba(246, 246, 246, 0.7)'
-							: 'rgba(26, 26, 26, 0.7)'
-					}}
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Include Styles
+				</Typography>
+				<Typography
+					variant='body'
+					isDark={props.isDark()}
+					style={{ 'margin-bottom': '12px' }}
 				>
 					Import the global styles in your main entry file:
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={installationExamples.includeStyles}
 					isDark={props.isDark}
@@ -46,19 +48,16 @@ export const InstallationDocs: Component<InstallationDocsProps> = props => {
 			</section>
 
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Import Components</h2>
-				<p
-					style={{
-						'margin-bottom': '12px',
-						'font-size': '0.9rem',
-						'line-height': '1.6',
-						color: theme().isDark
-							? 'rgba(246, 246, 246, 0.7)'
-							: 'rgba(26, 26, 26, 0.7)'
-					}}
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Import Components
+				</Typography>
+				<Typography
+					variant='body'
+					isDark={props.isDark()}
+					style={{ 'margin-bottom': '12px' }}
 				>
 					Import components as needed in your files:
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={installationExamples.importComponents}
 					isDark={props.isDark}

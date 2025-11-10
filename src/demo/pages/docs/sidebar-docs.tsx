@@ -1,9 +1,10 @@
 import { Accessor, Component, createSignal, For } from 'solid-js'
 import { Button } from '../../../components/ui/button'
+import { CodeHighlight } from '../../../components/ui/code-highlight'
 import type { SidebarItem } from '../../../components/ui/sidebar'
 import { Sidebar } from '../../../components/ui/sidebar'
-import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { sidebarSnippets } from './code-snippets/sidebar-snippets'
 
@@ -46,27 +47,33 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>Sidebar</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				Sidebar
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				A composable, themeable and customizable sidebar component. Supports
 				overlay and shift modes, icons, separators, and can be controlled by any
 				trigger.
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={sidebarSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Your First Sidebar */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Your First Sidebar</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Your First Sidebar
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					Let's start with a complete, self-contained sidebar example. This
 					example demonstrates shift mode (sidebar shifts content), icons,
 					separators, and custom trigger button.
-				</p>
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -127,16 +134,14 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 											height: '28px'
 										}}
 									/>
-									<h2
-										style={{
-											'font-size': '1.25rem',
-											'font-weight': '600',
-											margin: '0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
+									<Typography
+										variant='h4'
+										as='h2'
+										isDark={props.isDark()}
+										style={{ margin: '0' }}
 									>
 										Application
-									</h2>
+									</Typography>
 								</div>
 								<div
 									style={{
@@ -158,20 +163,15 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 									>
 										Main Content
 									</h3>
-									<p
-										style={{
-											'font-size': '0.9rem',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.7)'
-												: 'rgba(26, 26, 26, 0.7)',
-											'line-height': '1.6',
-											margin: '0 0 16px 0'
-										}}
+									<Typography
+										variant='small'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 16px 0' }}
 									>
 										Click the menu button to toggle the sidebar. The sidebar
 										supports icons, separators, and can be controlled by any
 										trigger you provide.
-									</p>
+									</Typography>
 									<div
 										style={{
 											display: 'grid',
@@ -207,17 +207,13 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 													>
 														Card {i() + 1}
 													</h4>
-													<p
-														style={{
-															'font-size': '0.8rem',
-															color: props.isDark()
-																? 'rgba(246, 246, 246, 0.6)'
-																: 'rgba(26, 26, 26, 0.6)',
-															margin: '0'
-														}}
+													<Typography
+														variant='caption'
+														isDark={props.isDark()}
+														style={{ margin: '0' }}
 													>
 														Content area
-													</p>
+													</Typography>
 												</div>
 											)}
 										</For>
@@ -232,22 +228,24 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 
 			{/* Customization */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					The sidebar component uses CSS custom properties for theming. These
 					variables are already defined in the library, but you can override
 					them in your application's stylesheet to match your design system.
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={sidebarSnippets.usage.customization}
 					isDark={props.isDark}
 				/>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='body' isDark={props.isDark()}>
 					The sidebar component automatically uses these CSS variables. You can
 					override them in your application to match your design system. All
 					colors use HSL format without the `hsl()` wrapper, allowing for easy
 					opacity adjustments.
-				</p>
+				</Typography>
 			</section>
 		</article>
 	)

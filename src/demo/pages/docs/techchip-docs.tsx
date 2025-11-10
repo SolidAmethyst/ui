@@ -1,7 +1,8 @@
 import { Accessor, Component } from 'solid-js'
-import { TechChip } from '../../../components/ui/tech-chip'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
+import { TechChip } from '../../../components/ui/tech-chip'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { techchipSnippets } from './code-snippets/techchip-snippets'
 
@@ -14,21 +15,27 @@ export const TechChipDocs: Component<TechChipDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>TechChip</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				TechChip
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Status indicator chip for displaying technology stack with real-time
 				status updates. Built with Material 3 design principles.
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={techchipSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -84,7 +91,9 @@ export const TechChipDocs: Component<TechChipDocsProps> = props => {
 
 			{/* Status States */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Status States</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Status States
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -122,12 +131,14 @@ export const TechChipDocs: Component<TechChipDocsProps> = props => {
 
 			{/* Customization */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					The TechChip component uses CSS custom properties for theming. These
 					variables are already defined in the library, but you can override
 					them in your application's stylesheet to match your design system.
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={`@layer base {
   :root {
@@ -147,12 +158,12 @@ export const TechChipDocs: Component<TechChipDocsProps> = props => {
 }`}
 					isDark={props.isDark}
 				/>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='body' isDark={props.isDark()}>
 					The TechChip component automatically uses these CSS variables. You can
 					override them in your application to match your design system. All
 					colors use HSL format without the `hsl()` wrapper, allowing for easy
 					opacity adjustments.
-				</p>
+				</Typography>
 			</section>
 		</article>
 	)

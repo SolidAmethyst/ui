@@ -2,6 +2,7 @@ import { Accessor, Component } from 'solid-js'
 import { Scrollbar, ScrollbarProvider } from '../../../components/ui/scrollbar'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { scrollbarSnippets } from './code-snippets/scrollbar-snippets'
 
@@ -14,21 +15,27 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>Scrollbar</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				Scrollbar
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Customizable scrollbar component with Material 3 styling and physics
 				engine support.
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={scrollbarSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Vertical Scrollbar */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Vertical Scrollbar</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Vertical Scrollbar
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -70,7 +77,9 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 
 			{/* Horizontal Scrollbar */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Horizontal Scrollbar</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Horizontal Scrollbar
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -132,12 +141,14 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 
 			{/* Customization */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					The scrollbar component uses CSS custom properties for theming. These
 					variables are already defined in the library, but you can override
 					them in your application's stylesheet to match your design system.
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={`@layer base {
   :root {
@@ -163,12 +174,12 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 }`}
 					isDark={props.isDark}
 				/>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='body' isDark={props.isDark()}>
 					The scrollbar component automatically uses these CSS variables. You
 					can override them in your application to match your design system. All
 					colors use HSL format without the `hsl()` wrapper, allowing for easy
 					opacity adjustments.
-				</p>
+				</Typography>
 			</section>
 		</article>
 	)

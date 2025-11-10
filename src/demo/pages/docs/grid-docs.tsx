@@ -3,6 +3,7 @@ import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Grid } from '../../../components/ui/grid'
 import { NumberInput } from '../../../components/ui/number-input'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { gridSnippets } from './code-snippets/grid-snippets'
 
@@ -39,21 +40,27 @@ export const GridDocs: Component<GridDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>Grid</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				Grid
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Full-featured responsive CSS Grid container component with resize
 				observation, breakpoints, and auto-fit/auto-fill support.
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={gridSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -230,7 +237,9 @@ export const GridDocs: Component<GridDocsProps> = props => {
 
 			{/* Responsive Breakpoints */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Responsive Breakpoints</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Responsive Breakpoints
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -268,19 +277,15 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									/>
 								</label>
 							</div>
-							<p
-								style={{
-									'font-size': '0.875rem',
-									color: props.isDark()
-										? 'rgba(246, 246, 246, 0.6)'
-										: 'rgba(26, 26, 26, 0.6)',
-									'margin-bottom': '16px'
-								}}
+							<Typography
+								variant='small'
+								isDark={props.isDark()}
+								style={{ 'margin-bottom': '16px' }}
 							>
 								Resize the window to see the grid adapt. On mobile (≤768px) it
 								shows 1 column, on tablet (769-1024px) it shows 2 columns, and
 								on desktop ({'>'}1024px) it shows 4 columns.
-							</p>
+							</Typography>
 							<Grid
 								columns={4}
 								breakpoints={[
@@ -341,9 +346,9 @@ export const GridDocs: Component<GridDocsProps> = props => {
 
 			{/* Auto-fit with Min/Max Width */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Auto-fit with Min/Max Width
-				</h2>
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -523,9 +528,9 @@ export const GridDocs: Component<GridDocsProps> = props => {
 
 			{/* Gap as Object */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Separate Row and Column Gap
-				</h2>
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -751,7 +756,9 @@ export const GridDocs: Component<GridDocsProps> = props => {
 
 			{/* Custom CSS Template */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Custom CSS Template</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Custom CSS Template
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -896,14 +903,16 @@ export const GridDocs: Component<GridDocsProps> = props => {
 
 			{/* Customization */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					The Grid component is a layout component and doesn't use CSS custom
 					properties for theming. Instead, it uses standard CSS Grid properties
 					that can be customized through inline styles or CSS classes. The Grid
 					component accepts standard CSS Grid properties like `columns`, `rows`,
 					`gap`, and `style` props.
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={`// Grid component accepts standard CSS Grid properties
 <Grid
@@ -919,11 +928,11 @@ export const GridDocs: Component<GridDocsProps> = props => {
 </Grid>`}
 					isDark={props.isDark}
 				/>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='body' isDark={props.isDark()}>
 					You can customize the Grid component by passing CSS Grid properties
 					directly through props or by using the `style` prop for additional
 					customization.
-				</p>
+				</Typography>
 			</section>
 		</article>
 	)

@@ -1,7 +1,8 @@
 import { Accessor, Component, createEffect, createSignal } from 'solid-js'
-import { TitleBar } from '../../../composites/title-bar'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
+import { TitleBar } from '../../../composites/title-bar'
 import { docsStyles } from '../../lib/docs.styles'
 import { titleBarSnippets } from './code-snippets/title-bar-snippets'
 
@@ -93,21 +94,27 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>TitleBar</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				TitleBar
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Composite component for application title bar with controls, burger
 				menu, and window management buttons.
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={titleBarSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -149,7 +156,9 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 
 			{/* Minimal Example */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Minimal Example</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Minimal Example
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -182,7 +191,9 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 
 			{/* With Window Controls Only */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>With Window Controls</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					With Window Controls
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -219,12 +230,14 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 
 			{/* Customization */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					The TitleBar component uses CSS custom properties for theming. These
 					variables are already defined in the library, but you can override
 					them in your application's stylesheet to match your design system.
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={`@layer base {
   :root {
@@ -246,12 +259,12 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
 }`}
 					isDark={props.isDark}
 				/>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='body' isDark={props.isDark()}>
 					The TitleBar component automatically uses these CSS variables. You can
 					override them in your application to match your design system. All
 					colors use HSL format without the `hsl()` wrapper, allowing for easy
 					opacity adjustments.
-				</p>
+				</Typography>
 			</section>
 		</article>
 	)

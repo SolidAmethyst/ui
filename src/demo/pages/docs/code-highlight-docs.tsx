@@ -1,6 +1,7 @@
 import { Accessor, Component } from 'solid-js'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 
 interface CodeHighlightDocsProps {
@@ -27,18 +28,28 @@ export const CodeHighlightDocs: Component<CodeHighlightDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>CodeHighlight</h1>
-			<p style={docsStyles.description(theme())}>
-				Syntax highlighting component for displaying code blocks with copy functionality.
-			</p>
+			<Typography variant='h1' isDark={props.isDark()}>
+				CodeHighlight
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
+				Syntax highlighting component for displaying code blocks with copy
+				functionality.
+			</Typography>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
-				<CodeHighlight code={codeHighlightSnippets.imports} isDark={props.isDark} />
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
+				<CodeHighlight
+					code={codeHighlightSnippets.imports}
+					isDark={props.isDark}
+				/>
 			</section>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
 				<Tabs
 					preview={
 						<CodeHighlight
@@ -52,7 +63,9 @@ export const CodeHighlightDocs: Component<CodeHighlightDocsProps> = props => {
 			</section>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
 				<Tabs
 					preview={
 						<div>
@@ -74,7 +87,9 @@ export const CodeHighlightDocs: Component<CodeHighlightDocsProps> = props => {
 			</section>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Features</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Features
+				</Typography>
 				<ul
 					style={{
 						'font-size': '0.85rem',

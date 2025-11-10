@@ -1,9 +1,10 @@
 import type { Accessor } from 'solid-js'
 import { Component, For, createEffect, createSignal } from 'solid-js'
-import type { SidebarItem } from '../../../components/ui/sidebar'
-import { App } from '../../../composites/app'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
+import type { SidebarItem } from '../../../components/ui/sidebar'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
+import { App } from '../../../composites/app'
 import { docsStyles } from '../../lib/docs.styles'
 import { appSnippets } from './code-snippets/app-snippets'
 
@@ -105,40 +106,26 @@ export const AppDocs: Component<AppDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>App</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				App
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Full-featured application composition with Window, TitleBar, and Sidebar
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
+				<Typography variant='h4' as='h2' isDark={props.isDark()}>
 					Installation
-				</h2>
+				</Typography>
 				<CodeHighlight code={appSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
 			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
+				<Typography variant='h4' as='h2' isDark={props.isDark()}>
 					Basic Usage
-				</h2>
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -187,17 +174,9 @@ export const AppDocs: Component<AppDocsProps> = props => {
 
 			{/* Adaptive Layout */}
 			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
+				<Typography variant='h4' as='h2' isDark={props.isDark()}>
 					Adaptive Layout
-				</h2>
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -295,18 +274,14 @@ export const AppDocs: Component<AppDocsProps> = props => {
 															'overflow-wrap': 'break-word'
 														}}
 													>
-														<h3
-															style={{
-																'font-size': '1.25rem',
-																'font-weight': '600',
-																margin: '0 0 8px 0',
-																color: adaptiveLayoutDark()
-																	? '#f6f6f6'
-																	: '#1a1a1a'
-															}}
+														<Typography
+															variant='h4'
+															as='h3'
+															isDark={adaptiveLayoutDark()}
+															style={{ margin: '0 0 8px 0' }}
 														>
 															Card {i() + 1}
-														</h3>
+														</Typography>
 														<p
 															style={{
 																'font-size': '0.9rem',
@@ -333,17 +308,9 @@ export const AppDocs: Component<AppDocsProps> = props => {
 
 			{/* Overlay Menu */}
 			<section style={{ 'margin-bottom': '32px' }}>
-				<h2
-					style={{
-						'font-size': '1.25rem',
-						'font-weight': '600',
-						'margin-bottom': '12px',
-						'line-height': '1.3',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-					}}
-				>
+				<Typography variant='h4' as='h2' isDark={props.isDark()}>
 					Overlay Menu
-				</h2>
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -442,16 +409,14 @@ export const AppDocs: Component<AppDocsProps> = props => {
 															'overflow-wrap': 'break-word'
 														}}
 													>
-														<h3
-															style={{
-																'font-size': '1.25rem',
-																'font-weight': '600',
-																margin: '0 0 8px 0',
-																color: overlayModeDark() ? '#f6f6f6' : '#1a1a1a'
-															}}
+														<Typography
+															variant='h4'
+															as='h3'
+															isDark={overlayModeDark()}
+															style={{ margin: '0 0 8px 0' }}
 														>
 															Card {i() + 1}
-														</h3>
+														</Typography>
 														<p
 															style={{
 																'font-size': '0.9rem',

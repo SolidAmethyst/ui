@@ -10,6 +10,7 @@ import {
 	TabsRoot,
 	TabsTrigger
 } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 
 interface TabsDocsProps {
@@ -83,18 +84,24 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>Tabs</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				Tabs
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Tabbed interface component for switching between preview and code views.
-			</p>
+			</Typography>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={tabsSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
 				<Tabs
 					preview={
 						<TabsRoot defaultValue='tab1' isDark={props.isDark()}>
@@ -112,9 +119,9 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 			</section>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Universal Tabs (for Applications)
-				</h2>
+				</Typography>
 				<CodeHighlight
 					code={tabsSnippets.universalImports}
 					isDark={props.isDark}
@@ -178,16 +185,9 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 											height: '28px'
 										}}
 									/>
-									<h2
-										style={{
-											'font-size': '1.25rem',
-											'font-weight': '600',
-											margin: '0',
-											color: appDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
-									>
+									<Typography variant='h4' as='h2' isDark={appDark()} style={{ margin: '0' }}>
 										Dashboard
-									</h2>
+									</Typography>
 								</div>
 								<div
 									style={{
@@ -310,26 +310,30 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 			</section>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					The tabs component uses CSS custom properties for theming. These
 					variables are already defined in the library, but you can override
 					them in your application's stylesheet to match your design system.
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={tabsSnippets.customization}
 					isDark={props.isDark}
 				/>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='body' isDark={props.isDark()}>
 					The tabs component automatically uses these CSS variables. You can
 					override them in your application to match your design system. All
 					colors use HSL format without the `hsl()` wrapper, allowing for easy
 					opacity adjustments.
-				</p>
+				</Typography>
 			</section>
 
 			<section style={{ 'margin-bottom': '48px' }}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Features</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Features
+				</Typography>
 				<ul
 					style={{
 						'font-size': '0.85rem',

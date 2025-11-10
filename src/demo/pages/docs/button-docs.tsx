@@ -1,8 +1,9 @@
 import { Accessor, Component, createSignal } from 'solid-js'
 import { Button } from '../../../components/ui/button'
-import { NumberInput } from '../../../components/ui/number-input'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
+import { NumberInput } from '../../../components/ui/number-input'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { buttonSnippets } from './code-snippets/button-snippets'
 
@@ -41,21 +42,27 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>Button</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				Button
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Displays a button component with various variants and states. Built with
 				Material 3 design principles.
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={buttonSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -79,7 +86,9 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Control Buttons */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Control Buttons</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Control Buttons
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -102,7 +111,9 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Small Buttons */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Small Buttons</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Small Buttons
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -140,7 +151,9 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Trigger Button */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Trigger Button</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Trigger Button
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={<TriggerButtonDemo />}
@@ -150,7 +163,9 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Play/Pause */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Play/Pause Button</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Play/Pause Button
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -172,7 +187,9 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Window Controls */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Window Control Buttons</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Window Control Buttons
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -210,7 +227,9 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Action Buttons */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Action Buttons</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Action Buttons
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -260,7 +279,9 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Button States */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Button States</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Button States
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -285,7 +306,9 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Number Input Controls */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Number Input Controls</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Number Input Controls
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -339,12 +362,14 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 
 			{/* Customization */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					The button component uses CSS custom properties for theming. These
 					variables are already defined in the library, but you can override
 					them in your application's stylesheet to match your design system.
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={`@layer base {
   :root {
@@ -362,12 +387,12 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 }`}
 					isDark={props.isDark}
 				/>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='body' isDark={props.isDark()}>
 					The button component automatically uses these CSS variables. You can
 					override them in your application to match your design system. All
 					colors use HSL format without the `hsl()` wrapper, allowing for easy
 					opacity adjustments.
-				</p>
+				</Typography>
 			</section>
 		</article>
 	)

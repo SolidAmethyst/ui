@@ -3,6 +3,7 @@ import { Button } from '../../../components/ui/button'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Drawer } from '../../../components/ui/drawer'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { drawerSnippets } from './code-snippets/drawer-snippets'
 
@@ -22,22 +23,28 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>Drawer</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				Drawer
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Universal sliding panel component that can slide in from any edge of the
 				screen. Perfect for settings panels, navigation menus, filters, and
 				more.
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={drawerSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -49,24 +56,21 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 								isDark={props.isDark()}
 							>
 								<div style={{ padding: '20px' }}>
-									<h2
-										style={{
-											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
+									<Typography
+										variant='h4'
+										as='h2'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 12px 0' }}
 									>
 										Drawer Content
-									</h2>
-									<p
-										style={{
-											margin: '0',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.7)'
-												: 'rgba(26, 26, 26, 0.7)'
-										}}
+									</Typography>
+									<Typography
+										variant='small'
+										isDark={props.isDark()}
+										style={{ margin: '0' }}
 									>
 										This is the drawer content area.
-									</p>
+									</Typography>
 								</div>
 							</Drawer>
 						</div>
@@ -77,10 +81,12 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 
 			{/* Positions */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Positions</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Positions
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					Drawer can slide in from any edge: left, right, top, or bottom.
-				</p>
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -96,24 +102,21 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 								isDark={props.isDark()}
 							>
 								<div style={{ padding: '20px' }}>
-									<h3
-										style={{
-											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
+									<Typography
+										variant='h4'
+										as='h3'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 12px 0' }}
 									>
 										Left Drawer
-									</h3>
-									<p
-										style={{
-											margin: '0',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.7)'
-												: 'rgba(26, 26, 26, 0.7)'
-										}}
+									</Typography>
+									<Typography
+										variant='small'
+										isDark={props.isDark()}
+										style={{ margin: '0' }}
 									>
 										Slides in from the left side.
-									</p>
+									</Typography>
 								</div>
 							</Drawer>
 							<Drawer
@@ -134,24 +137,21 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 										height: '100%'
 									}}
 								>
-									<h3
-										style={{
-											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
+									<Typography
+										variant='h4'
+										as='h3'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 12px 0' }}
 									>
 										Top Drawer
-									</h3>
-									<p
-										style={{
-											margin: '0',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.7)'
-												: 'rgba(26, 26, 26, 0.7)'
-										}}
+									</Typography>
+									<Typography
+										variant='small'
+										isDark={props.isDark()}
+										style={{ margin: '0' }}
 									>
 										Slides in from the top.
-									</p>
+									</Typography>
 								</div>
 							</Drawer>
 							<Drawer
@@ -172,24 +172,21 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 										height: '100%'
 									}}
 								>
-									<h3
-										style={{
-											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
+									<Typography
+										variant='h4'
+										as='h3'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 12px 0' }}
 									>
 										Bottom Drawer
-									</h3>
-									<p
-										style={{
-											margin: '0',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.7)'
-												: 'rgba(26, 26, 26, 0.7)'
-										}}
+									</Typography>
+									<Typography
+										variant='small'
+										isDark={props.isDark()}
+										style={{ margin: '0' }}
 									>
 										Slides in from the bottom.
-									</p>
+									</Typography>
 								</div>
 							</Drawer>
 						</div>
@@ -200,7 +197,9 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 
 			{/* Custom Size */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Custom Size</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Custom Size
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -215,24 +214,21 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 								isDark={props.isDark()}
 							>
 								<div style={{ padding: '20px' }}>
-									<h2
-										style={{
-											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
+									<Typography
+										variant='h4'
+										as='h2'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 12px 0' }}
 									>
 										Wide Drawer
-									</h2>
-									<p
-										style={{
-											margin: '0',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.7)'
-												: 'rgba(26, 26, 26, 0.7)'
-										}}
+									</Typography>
+									<Typography
+										variant='small'
+										isDark={props.isDark()}
+										style={{ margin: '0' }}
 									>
 										This drawer is 600px wide instead of the default 320px.
-									</p>
+									</Typography>
 								</div>
 							</Drawer>
 						</div>
@@ -243,7 +239,9 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 
 			{/* No Backdrop */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Without Backdrop</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Without Backdrop
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -260,24 +258,21 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 								isDark={props.isDark()}
 							>
 								<div style={{ padding: '20px' }}>
-									<h2
-										style={{
-											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
+									<Typography
+										variant='h4'
+										as='h2'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 12px 0' }}
 									>
 										No Backdrop
-									</h2>
-									<p
-										style={{
-											margin: '0',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.7)'
-												: 'rgba(26, 26, 26, 0.7)'
-										}}
+									</Typography>
+									<Typography
+										variant='small'
+										isDark={props.isDark()}
+										style={{ margin: '0' }}
 									>
 										This drawer doesn't have a backdrop overlay.
-									</p>
+									</Typography>
 								</div>
 							</Drawer>
 						</div>
@@ -288,7 +283,9 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 
 			{/* Controlled Close */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Controlled Close</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Controlled Close
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -303,24 +300,21 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 								isDark={props.isDark()}
 							>
 								<div style={{ padding: '20px' }}>
-									<h2
-										style={{
-											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-										}}
+									<Typography
+										variant='h4'
+										as='h2'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 12px 0' }}
 									>
 										Controlled Close
-									</h2>
-									<p
-										style={{
-											margin: '0 0 16px 0',
-											color: props.isDark()
-												? 'rgba(246, 246, 246, 0.7)'
-												: 'rgba(26, 26, 26, 0.7)'
-										}}
+									</Typography>
+									<Typography
+										variant='small'
+										isDark={props.isDark()}
+										style={{ margin: '0 0 16px 0' }}
 									>
 										This drawer won't close on backdrop click.
-									</p>
+									</Typography>
 									<Button onClick={() => setControlledOpen(false)}>
 										Close
 									</Button>

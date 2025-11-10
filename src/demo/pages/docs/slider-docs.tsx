@@ -1,7 +1,8 @@
 import { Accessor, Component, createSignal } from 'solid-js'
-import { Slider } from '../../../components/ui/slider'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
+import { Slider } from '../../../components/ui/slider'
 import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { sliderSnippets } from './code-snippets/slider-snippets'
 
@@ -18,21 +19,27 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 
 	return (
 		<article style={docsStyles.article(theme())}>
-			<h1 style={docsStyles.title(theme())}>Slider</h1>
-			<p style={docsStyles.description(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				Slider
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
 				Range input slider component for selecting numeric values. Supports
 				custom formatting, labels, and theme-aware styling.
-			</p>
+			</Typography>
 
 			{/* Installation */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Installation</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
 				<CodeHighlight code={sliderSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Basic Usage</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -52,7 +59,9 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 
 			{/* With Label */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>With Label</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					With Label
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -77,7 +86,9 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 
 			{/* Min/Max/Step */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Min, Max, and Step</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Min, Max, and Step
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -105,7 +116,9 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 
 			{/* Custom Formatter */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Custom Value Formatter</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Custom Value Formatter
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -131,7 +144,9 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 
 			{/* Controlled */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Controlled Component</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Controlled Component
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -148,17 +163,13 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 								isDark={props.isDark()}
 								onChange={val => setControlledValue(val)}
 							/>
-							<p
-								style={{
-									'margin-top': '12px',
-									'font-size': '14px',
-									color: props.isDark()
-										? 'rgba(246, 246, 246, 0.7)'
-										: 'rgba(26, 26, 26, 0.7)'
-								}}
+							<Typography
+								variant='small'
+								isDark={props.isDark()}
+								style={{ 'margin-top': '12px' }}
 							>
 								Current value: {controlledValue()}
-							</p>
+							</Typography>
 						</div>
 					}
 					code={sliderSnippets.usage.controlled}
@@ -167,7 +178,9 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 
 			{/* Disabled */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Disabled State</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Disabled State
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -192,7 +205,9 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 
 			{/* Hide Value */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Hide Value</h2>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Hide Value
+				</Typography>
 				<Tabs
 					isDark={props.isDark}
 					preview={
@@ -217,12 +232,14 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 
 			{/* Customization */}
 			<section style={docsStyles.section()}>
-				<h2 style={docsStyles.sectionTitle(theme())}>Customization</h2>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
 					The slider component uses CSS custom properties for theming. These
 					variables are already defined in the library, but you can override
 					them in your application's stylesheet to match your design system.
-				</p>
+				</Typography>
 				<CodeHighlight
 					code={`@layer base {
   :root {
@@ -241,13 +258,13 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 }`}
 					isDark={props.isDark}
 				/>
-				<p style={docsStyles.description(theme())}>
+				<Typography variant='body' isDark={props.isDark()}>
 					The slider component automatically uses these CSS variables. You can
 					override them in your application to match your design system. The
 					thumb color uses HSL format without the `hsl()` wrapper, allowing for
 					easy color adjustments. Track colors use RGBA format for transparency
 					control.
-				</p>
+				</Typography>
 			</section>
 		</article>
 	)
