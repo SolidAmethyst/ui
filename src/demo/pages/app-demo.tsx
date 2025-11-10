@@ -1,6 +1,7 @@
 import { Accessor, Component, createSignal, For, Show } from 'solid-js'
 import type { MenuItem } from '../../components/ui/menu'
 import { TitleBar } from '../../composites/title-bar'
+import { Typography } from '../../components/ui/typography'
 import { Window } from '../../components/ui/window'
 
 interface AppDemoProps {
@@ -270,30 +271,14 @@ export const AppDemo: Component<AppDemoProps> = props => {
 							'box-sizing': 'border-box'
 						}}
 					>
-						<h1
-							style={{
-								'font-size': '2rem',
-								'font-weight': '700',
-								margin: '0 0 16px 0',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-							}}
-						>
+						<Typography variant='h2' isDark={props.isDark()} style={{ margin: '0 0 16px 0' }}>
 							Welcome to My Application
-						</h1>
-						<p
-							style={{
-								'font-size': '1rem',
-								'line-height': '1.6',
-								color: props.isDark()
-									? 'rgba(246, 246, 246, 0.7)'
-									: 'rgba(26, 26, 26, 0.7)',
-								margin: '0 0 24px 0'
-							}}
-						>
+						</Typography>
+						<Typography variant='body' isDark={props.isDark()} style={{ margin: '0 0 24px 0', 'line-height': '1.6', color: props.isDark() ? 'rgba(246, 246, 246, 0.7)' : 'rgba(26, 26, 26, 0.7)' }}>
 							This is a full-featured application demo with TitleBar and side
 							menu. Click the burger menu icon in the top-left corner to open the
 							sidebar.
-						</p>
+						</Typography>
 						<div
 							style={{
 								display: 'grid',
@@ -332,27 +317,12 @@ export const AppDemo: Component<AppDemoProps> = props => {
 											'overflow-wrap': 'break-word'
 										}}
 									>
-										<h3
-											style={{
-												'font-size': '1.25rem',
-												'font-weight': '600',
-												margin: '0 0 8px 0',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-											}}
-										>
+										<Typography variant='h4' as='h3' isDark={props.isDark()} style={{ margin: '0 0 8px 0' }}>
 											Card {i() + 1}
-										</h3>
-										<p
-											style={{
-												'font-size': '0.9rem',
-												color: props.isDark()
-													? 'rgba(246, 246, 246, 0.6)'
-													: 'rgba(26, 26, 26, 0.6)',
-												margin: '0'
-											}}
-										>
+										</Typography>
+										<Typography variant='small' isDark={props.isDark()} style={{ margin: '0' }}>
 											This is a sample card in the main content area.
-										</p>
+										</Typography>
 									</div>
 								)}
 							</For>

@@ -3,24 +3,10 @@ import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { codeHighlightSnippets } from './code-snippets/code-highlight-snippets'
 
 interface CodeHighlightDocsProps {
 	isDark: Accessor<boolean>
-}
-
-const codeHighlightSnippets = {
-	imports: `import { CodeHighlight } from '@sapphiresolid/ui'`,
-	basicUsage: `<CodeHighlight code="const x = 1" isDark={isDark} />`,
-	withCustomClass: `<CodeHighlight
-  code="const x = 1"
-  isDark={isDark}
-  class="custom-code"
-/>`,
-	withCustomStyle: `<CodeHighlight
-  code="const x = 1"
-  isDark={isDark}
-  style={{ 'margin-top': '20px' }}
-/>`
 }
 
 export const CodeHighlightDocs: Component<CodeHighlightDocsProps> = props => {
@@ -53,7 +39,7 @@ export const CodeHighlightDocs: Component<CodeHighlightDocsProps> = props => {
 				<Tabs
 					preview={
 						<CodeHighlight
-							code='const greeting = "Hello, World!"'
+							code={codeHighlightSnippets.examples.typescript}
 							isDark={props.isDark}
 						/>
 					}
@@ -64,22 +50,34 @@ export const CodeHighlightDocs: Component<CodeHighlightDocsProps> = props => {
 
 			<section style={{ 'margin-bottom': '48px' }}>
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Different Languages
+				</Typography>
+				<Tabs
+					preview={
+						<CodeHighlight
+							code={codeHighlightSnippets.examples.javascript}
+							isDark={props.isDark}
+						/>
+					}
+					code={`<CodeHighlight
+  code="const x = 1"
+  isDark={isDark}
+/>`}
+					isDark={props.isDark}
+				/>
+			</section>
+
+			<section style={{ 'margin-bottom': '48px' }}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Customization
 				</Typography>
 				<Tabs
 					preview={
-						<div>
-							<CodeHighlight
-								code='const x = 1'
-								isDark={props.isDark}
-								class='custom-code'
-							/>
-							<CodeHighlight
-								code='const y = 2'
-								isDark={props.isDark}
-								style={{ 'margin-top': '20px' }}
-							/>
-						</div>
+						<CodeHighlight
+							code={codeHighlightSnippets.examples.typescript}
+							isDark={props.isDark}
+							class='custom-code'
+						/>
 					}
 					code={`${codeHighlightSnippets.withCustomClass}\n\n${codeHighlightSnippets.withCustomStyle}`}
 					isDark={props.isDark}
@@ -92,20 +90,36 @@ export const CodeHighlightDocs: Component<CodeHighlightDocsProps> = props => {
 				</Typography>
 				<ul
 					style={{
-						'font-size': '0.85rem',
-						'line-height': '1.7',
-						color: theme().isDark
-							? 'rgba(246, 246, 246, 0.9)'
-							: 'rgba(26, 26, 26, 0.9)',
 						'padding-left': '20px',
-						margin: '0'
+						margin: '0',
+						'list-style': 'disc'
 					}}
 				>
-					<li>Syntax highlighting for TypeScript/TSX/JavaScript/JSX/CSS</li>
-					<li>Copy to clipboard functionality</li>
-					<li>Dark and light theme support</li>
-					<li>Customizable styles and classes</li>
-					<li>Automatic HTML escaping</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Syntax highlighting for TypeScript/TSX/JavaScript/JSX/CSS
+						</Typography>
+					</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Copy to clipboard functionality
+						</Typography>
+					</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Dark and light theme support
+						</Typography>
+					</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Customizable styles and classes
+						</Typography>
+					</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Automatic HTML escaping
+						</Typography>
+					</li>
 				</ul>
 			</section>
 		</article>

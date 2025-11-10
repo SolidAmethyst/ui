@@ -336,20 +336,36 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 				</Typography>
 				<ul
 					style={{
-						'font-size': '0.85rem',
-						'line-height': '1.7',
-						color: theme().isDark
-							? 'rgba(246, 246, 246, 0.9)'
-							: 'rgba(26, 26, 26, 0.9)',
 						'padding-left': '20px',
-						margin: '0'
+						margin: '0',
+						'list-style': 'disc'
 					}}
 				>
-					<li>Switch between preview and code tabs</li>
-					<li>Integrated with CodeHighlight component</li>
-					<li>Dark and light theme support</li>
-					<li>Customizable styles and classes</li>
-					<li>Smooth transitions</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Switch between preview and code tabs
+						</Typography>
+					</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Integrated with CodeHighlight component
+						</Typography>
+					</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Dark and light theme support
+						</Typography>
+					</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Customizable styles and classes
+						</Typography>
+					</li>
+					<li>
+						<Typography variant='body' isDark={props.isDark()}>
+							Smooth transitions
+						</Typography>
+					</li>
 				</ul>
 			</section>
 		</article>

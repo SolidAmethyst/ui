@@ -197,16 +197,9 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 														}`
 													}}
 												>
-													<h4
-														style={{
-															'font-size': '0.9rem',
-															'font-weight': '600',
-															margin: '0 0 8px 0',
-															color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
-														}}
-													>
+													<Typography variant='h5' as='h4' isDark={props.isDark()} style={{ margin: '0 0 8px 0' }}>
 														Card {i() + 1}
-													</h4>
+													</Typography>
 													<Typography
 														variant='caption'
 														isDark={props.isDark()}

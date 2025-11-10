@@ -11,6 +11,9 @@ export interface CodeHighlightStyleOptions {
 export const codeHighlightStyles = {
 	container: (options: CodeHighlightStyleOptions): JSX.CSSProperties => ({
 		position: 'relative',
+		width: '100%',
+		'max-width': '100%',
+		'box-sizing': 'border-box',
 		background: options.isDark ? '#1a1a1f' : '#f8f9fa',
 		border: `1px solid ${
 			options.isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)'

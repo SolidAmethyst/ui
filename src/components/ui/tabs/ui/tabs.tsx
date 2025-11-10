@@ -43,9 +43,7 @@ export const Tabs: Component<TabsProps> = props => {
 			{/* Tab content */}
 			<div>
 				<Show when={activeTab() === 'preview'}>
-					<div style={tabsStyles.previewContainer({ isDark: isDark(), isActive: false })}>
-						{props.preview}
-					</div>
+					{props.preview}
 				</Show>
 				<Show when={activeTab() === 'code'}>
 					<CodeHighlight code={props.code} isDark={isDark} />
@@ -54,4 +52,3 @@ export const Tabs: Component<TabsProps> = props => {
 		</div>
 	)
 }
-

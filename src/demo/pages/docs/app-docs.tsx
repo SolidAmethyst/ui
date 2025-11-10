@@ -225,16 +225,9 @@ export const AppDocs: Component<AppDocsProps> = props => {
 											'box-sizing': 'border-box'
 										}}
 									>
-										<h1
-											style={{
-												'font-size': '2rem',
-												'font-weight': '700',
-												margin: '0 0 16px 0',
-												color: adaptiveLayoutDark() ? '#f6f6f6' : '#1a1a1a'
-											}}
-										>
+										<Typography variant='h2' isDark={adaptiveLayoutDark()} style={{ margin: '0 0 16px 0' }}>
 											Welcome to My Application
-										</h1>
+										</Typography>
 										<div
 											style={{
 												display: 'grid',
@@ -282,17 +275,9 @@ export const AppDocs: Component<AppDocsProps> = props => {
 														>
 															Card {i() + 1}
 														</Typography>
-														<p
-															style={{
-																'font-size': '0.9rem',
-																color: adaptiveLayoutDark()
-																	? 'rgba(246, 246, 246, 0.6)'
-																	: 'rgba(26, 26, 26, 0.6)',
-																margin: '0'
-															}}
-														>
+														<Typography variant='small' isDark={adaptiveLayoutDark()} style={{ margin: '0' }}>
 															This is a sample card in the main content area.
-														</p>
+														</Typography>
 													</div>
 												)}
 											</For>
@@ -360,16 +345,9 @@ export const AppDocs: Component<AppDocsProps> = props => {
 											'box-sizing': 'border-box'
 										}}
 									>
-										<h1
-											style={{
-												'font-size': '2rem',
-												'font-weight': '700',
-												margin: '0 0 16px 0',
-												color: overlayModeDark() ? '#f6f6f6' : '#1a1a1a'
-											}}
-										>
+										<Typography variant='h2' isDark={overlayModeDark()} style={{ margin: '0 0 16px 0' }}>
 											Welcome to My Application
-										</h1>
+										</Typography>
 										<div
 											style={{
 												display: 'grid',
@@ -417,17 +395,9 @@ export const AppDocs: Component<AppDocsProps> = props => {
 														>
 															Card {i() + 1}
 														</Typography>
-														<p
-															style={{
-																'font-size': '0.9rem',
-																color: overlayModeDark()
-																	? 'rgba(246, 246, 246, 0.6)'
-																	: 'rgba(26, 26, 26, 0.6)',
-																margin: '0'
-															}}
-														>
+														<Typography variant='small' isDark={overlayModeDark()} style={{ margin: '0' }}>
 															This is a sample card in the main content area.
-														</p>
+														</Typography>
 													</div>
 												)}
 											</For>
