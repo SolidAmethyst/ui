@@ -91,6 +91,7 @@
 	},
 	"dependencies": {
 		"clsx": "^2.0.0",
+		"cmdk-solid": "^1.1.2",
 		"tailwind-merge": "^3.3.1"
 	}
 }

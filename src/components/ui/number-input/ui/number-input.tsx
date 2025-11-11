@@ -71,6 +71,8 @@ export const NumberInput: Component<NumberInputProps> = props => {
 		if (!props.enableWheel || props.disabled) return
 
 		e.preventDefault()
+		// Normalize wheel delta to always change by 1 step
+		// deltaY can be large (e.g., 100+), but we want to change by exactly 1 step per wheel event
 		const delta = e.deltaY > 0 ? -1 : 1
 		modifyValue(delta)
 	}

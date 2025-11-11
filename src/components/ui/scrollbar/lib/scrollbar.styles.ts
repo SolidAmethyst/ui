@@ -21,12 +21,10 @@ export const scrollbarStyles = `
   z-index: 999;
   background: transparent;
   opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .scrollbar-track.visible {
   opacity: 1;
-  transform: scale(1);
 }
 .scrollbar-track-vertical {
   top: 0;
@@ -139,4 +137,4 @@ export const scrollbarStyles = `
   justify-content: center;
   z-index: 1001;
 }
-`;
+`

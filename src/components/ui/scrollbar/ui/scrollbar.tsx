@@ -1,6 +1,5 @@
 import { createSignal, onCleanup, onMount, createEffect } from "solid-js";
 import { ScrollbarProvider } from "../lib/scrollbar-provider";
-import { scrollbarStyles } from "../lib/scrollbar.styles";
 import { useScrollbarHandlers } from "../lib/use-scrollbar-handlers";
 import { useScrollbarLogic } from "../lib/use-scrollbar-logic";
 import { useScrollbarObservers } from "../lib/use-scrollbar-observers";
@@ -134,12 +133,10 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
   });
 
   return (
-    <>
-      <style>{scrollbarStyles}</style>
-      <div
-        ref={setContainerRef}
-        class={`scrollbar-container ${props.class || ""}`}
-        style={props.style}
+    <div
+      ref={setContainerRef}
+      class={`scrollbar-container ${props.class || ""}`}
+      style={props.style}
         onMouseEnter={() => {
           handleMouseEnter();
           updateScrollbar(); // Check if scrollbar is needed on hover
@@ -189,7 +186,6 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
           </div>
         )}
       </div>
-    </>
   );
 };
 

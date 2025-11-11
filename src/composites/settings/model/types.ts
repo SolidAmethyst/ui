@@ -29,7 +29,13 @@ export interface GlassSettings {
 /**
  * Syntax highlighting color profile
  */
-export type HighlightProfile = 'default' | 'monokai' | 'dracula' | 'github' | 'vs-code' | 'one-dark'
+export type HighlightProfile =
+	| 'default'
+	| 'monokai'
+	| 'dracula'
+	| 'github'
+	| 'vs-code'
+	| 'one-dark'
 
 /**
  * Highlights settings
@@ -97,6 +103,11 @@ export interface SettingsCompositeProps {
 	isDark: () => boolean
 
 	/**
+	 * Callback when theme changes
+	 */
+	onThemeChange?: (isDark: boolean) => void
+
+	/**
 	 * Glass effect settings
 	 */
 	glassSettings: GlassSettings
@@ -115,4 +126,14 @@ export interface SettingsCompositeProps {
 	 * Callback when highlights settings change
 	 */
 	onHighlightsSettingsChange?: (settings: HighlightsSettings) => void
+
+	/**
+	 * Additional CSS class names
+	 */
+	class?: string
+
+	/**
+	 * Inline CSS styles
+	 */
+	style?: JSX.CSSProperties
 }

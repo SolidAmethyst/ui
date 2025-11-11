@@ -22,76 +22,42 @@ body {
 	position: relative;
 	margin: 0;
 	padding: 0;
-	color: #e5e7eb;
+	color: var(--code-foreground, #e5e7eb);
 	font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 	font-size: 13px;
 	line-height: 1.6;
 }
 
-[data-theme='light'] .code-block {
-	color: #1f2937;
-}
-
 .code-block .code-keyword {
-	color: #c792ea;
+	color: var(--code-keyword, #c792ea);
 	font-weight: 500;
-}
-
-[data-theme='light'] .code-block .code-keyword {
-	color: #7c3aed;
 }
 
 .code-block .code-string {
-	color: #c3e88d;
-}
-
-[data-theme='light'] .code-block .code-string {
-	color: #059669;
+	color: var(--code-string, #c3e88d);
 }
 
 .code-block .code-comment {
-	color: #546e7a;
+	color: var(--code-comment, #546e7a);
 	font-style: italic;
 }
 
-[data-theme='light'] .code-block .code-comment {
-	color: #6b7280;
-}
-
 .code-block .code-tag {
-	color: #f07178;
-}
-
-[data-theme='light'] .code-block .code-tag {
-	color: #dc2626;
+	color: var(--code-tag, #f07178);
 }
 
 .code-block .code-tag-name {
-	color: #82aaff;
+	color: var(--code-tag, #82aaff);
 	font-weight: 500;
-}
-
-[data-theme='light'] .code-block .code-tag-name {
-	color: #2563eb;
 }
 
 .code-block .code-attr {
-	color: #ffcb6b;
-	font-weight: 500;
-}
-
-[data-theme='light'] .code-block .code-attr {
-	color: #d97706;
+	color: var(--code-attribute, #ffcb6b);
 	font-weight: 500;
 }
 
 .code-block .code-operator {
-	color: #89ddff;
-	opacity: 0.85;
-}
-
-[data-theme='light'] .code-block .code-operator {
-	color: #0891b2;
+	color: var(--code-operator, #89ddff);
 	opacity: 0.85;
 }
 

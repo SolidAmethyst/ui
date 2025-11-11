@@ -1,7 +1,6 @@
 import { Accessor, Component, createSignal } from 'solid-js'
 import { Button } from '../../../components/ui/button'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
-import { NumberInput } from '../../../components/ui/number-input'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
@@ -17,7 +16,8 @@ const TriggerButtonDemo: Component = () => {
 				display: 'flex',
 				'flex-wrap': 'wrap',
 				gap: '12px',
-				'align-items': 'center'
+				'align-items': 'center',
+				'justify-content': 'center'
 			}}
 		>
 			<Button
@@ -37,7 +37,6 @@ interface ButtonDocsProps {
 }
 
 export const ButtonDocs: Component<ButtonDocsProps> = props => {
-	const [columnsValue, setColumnsValue] = createSignal(3)
 	const theme = () => ({ isDark: props.isDark() })
 
 	return (
@@ -71,7 +70,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								display: 'flex',
 								'flex-wrap': 'wrap',
 								gap: '12px',
-								'align-items': 'center'
+								'align-items': 'center',
+								'justify-content': 'center'
 							}}
 						>
 							<Button variant='primary'>Primary</Button>
@@ -97,7 +97,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								display: 'flex',
 								'flex-wrap': 'wrap',
 								gap: '12px',
-								'align-items': 'center'
+								'align-items': 'center',
+								'justify-content': 'center'
 							}}
 						>
 							<Button icon='menu'>Menu</Button>
@@ -122,7 +123,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								display: 'flex',
 								'flex-wrap': 'wrap',
 								gap: '12px',
-								'align-items': 'center'
+								'align-items': 'center',
+								'justify-content': 'center'
 							}}
 						>
 							<Button
@@ -174,7 +176,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								display: 'flex',
 								'flex-wrap': 'wrap',
 								gap: '12px',
-								'align-items': 'center'
+								'align-items': 'center',
+								'justify-content': 'center'
 							}}
 						>
 							<Button variant='play-pause' icon='play_arrow' title='Play' />
@@ -198,7 +201,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								display: 'flex',
 								'flex-wrap': 'wrap',
 								gap: '12px',
-								'align-items': 'center'
+								'align-items': 'center',
+								'justify-content': 'center'
 							}}
 						>
 							<Button
@@ -238,7 +242,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								display: 'flex',
 								'flex-wrap': 'wrap',
 								gap: '12px',
-								'align-items': 'center'
+								'align-items': 'center',
+								'justify-content': 'center'
 							}}
 						>
 							<Button
@@ -290,7 +295,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								display: 'flex',
 								'flex-wrap': 'wrap',
 								gap: '12px',
-								'align-items': 'center'
+								'align-items': 'center',
+								'justify-content': 'center'
 							}}
 						>
 							<Button active>Active</Button>
@@ -301,62 +307,6 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 						</div>
 					}
 					code={buttonSnippets.usage.buttonStates}
-				/>
-			</section>
-
-			{/* Number Input Controls */}
-			<section style={docsStyles.section()}>
-				<Typography variant='h3' as='h2' isDark={props.isDark()}>
-					Number Input Controls
-				</Typography>
-				<Tabs
-					isDark={props.isDark}
-					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-direction': 'column',
-								gap: '16px',
-								'align-items': 'flex-start'
-							}}
-						>
-							<div
-								style={{
-									display: 'flex',
-									'align-items': 'center',
-									gap: '8px'
-								}}
-							>
-								<label
-									style={{
-										'font-size': '0.875rem',
-										color: props.isDark()
-											? 'rgba(246, 246, 246, 0.7)'
-											: 'rgba(26, 26, 26, 0.7)'
-									}}
-								>
-									Columns:
-								</label>
-								<NumberInput
-									value={columnsValue()}
-									onChange={val => {
-										const num =
-											typeof val === 'number' ? val : parseInt(String(val), 10)
-										if (!isNaN(num) && num >= 1 && num <= 6) {
-											setColumnsValue(num)
-										}
-									}}
-									min={1}
-									max={6}
-									step={1}
-									enableWheel={true}
-									showArrows={true}
-									themeAware={true}
-								/>
-							</div>
-						</div>
-					}
-					code={buttonSnippets.usage.numberInputControls}
 				/>
 			</section>
 

@@ -11,7 +11,7 @@ export interface SelectStyleOptions {
 }
 
 export const selectStyles = {
-	container: (options: SelectStyleOptions): JSX.CSSProperties => ({
+	container: (): JSX.CSSProperties => ({
 		position: 'relative',
 		width: '100%',
 		'box-sizing': 'border-box'
@@ -23,9 +23,7 @@ export const selectStyles = {
 		'font-weight': '400',
 		'line-height': '1.5',
 		border: `1px solid ${
-			options.isDark
-				? 'rgba(255, 255, 255, 0.1)'
-				: 'rgba(0, 0, 0, 0.1)'
+			options.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
 		}`,
 		'border-radius': '6px',
 		background: options.isDisabled
@@ -52,7 +50,7 @@ export const selectStyles = {
 		'text-align': 'left'
 	}),
 	triggerHover: (options: SelectStyleOptions): JSX.CSSProperties => ({
-		borderColor: options.isDark
+		'border-color': options.isDark
 			? 'rgba(255, 255, 255, 0.2)'
 			: 'rgba(0, 0, 0, 0.2)',
 		background: options.isDark
@@ -60,7 +58,7 @@ export const selectStyles = {
 			: 'rgba(0, 0, 0, 0.02)'
 	}),
 	triggerOpen: (options: SelectStyleOptions): JSX.CSSProperties => ({
-		borderColor: options.isDark ? '#3b82f6' : '#2563eb',
+		'border-color': options.isDark ? '#3b82f6' : '#2563eb',
 		background: options.isDark
 			? 'rgba(59, 130, 246, 0.1)'
 			: 'rgba(37, 99, 235, 0.05)'
@@ -85,17 +83,17 @@ export const selectStyles = {
 		'border-radius': '6px',
 		background: options.isDark ? '#1a1a1f' : '#ffffff',
 		border: `1px solid ${
-			options.isDark
-				? 'rgba(255, 255, 255, 0.1)'
-				: 'rgba(0, 0, 0, 0.1)'
+			options.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
 		}`,
 		'box-shadow': options.isDark
 			? '0 4px 12px rgba(0, 0, 0, 0.3)'
 			: '0 2px 8px rgba(0, 0, 0, 0.1)',
 		'z-index': '1000',
 		'max-height': '300px',
-		overflow: 'auto',
-		'box-sizing': 'border-box'
+		height: '300px',
+		'box-sizing': 'border-box',
+		display: 'flex',
+		'flex-direction': 'column'
 	}),
 	option: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		padding: '10px 12px',
@@ -119,7 +117,7 @@ export const selectStyles = {
 		color: options.isDark ? '#60a5fa' : '#2563eb',
 		'font-weight': '500'
 	}),
-	optionDisabled: (options: SelectStyleOptions): JSX.CSSProperties => ({
+	optionDisabled: (): JSX.CSSProperties => ({
 		opacity: 0.5,
 		cursor: 'not-allowed'
 	}),
@@ -131,8 +129,6 @@ export const selectStyles = {
 		display: 'block',
 		'font-size': '12px',
 		'margin-top': '2px',
-		color: options.isDark
-			? 'rgba(246, 246, 246, 0.6)'
-			: 'rgba(26, 26, 26, 0.6)'
+		color: options.isDark ? 'rgba(246, 246, 246, 0.6)' : 'rgba(26, 26, 26, 0.6)'
 	})
 } as const

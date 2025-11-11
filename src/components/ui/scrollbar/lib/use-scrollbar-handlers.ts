@@ -1,243 +1,276 @@
-import type { Accessor, Setter } from "solid-js";
-import type { ScrollbarState } from "../model/types";
-import { adjustForZoom } from "./scrollbar-calculations";
-import { ScrollbarEngineManager } from "./scrollbar-engine";
+import type { Accessor, Setter } from 'solid-js'
+import type { ScrollbarState } from '../model/types'
+import { adjustForZoom } from './scrollbar-calculations'
+import { ScrollbarEngineManager } from './scrollbar-engine'
 
 export function useScrollbarHandlers(
-  state: Accessor<ScrollbarState>,
-  setState: Setter<ScrollbarState>,
-  direction: () => string,
-  _containerRef: () => HTMLDivElement | undefined,
-  contentRef: () => HTMLDivElement | undefined,
-  trackRef: () => HTMLDivElement | undefined,
-  thumbRef: () => HTMLDivElement | undefined,
-  engineIntegration: () => boolean,
-  updateScrollbar?: () => void,
+	state: Accessor<ScrollbarState>,
+	setState: Setter<ScrollbarState>,
+	direction: () => string,
+	_containerRef: () => HTMLDivElement | undefined,
+	contentRef: () => HTMLDivElement | undefined,
+	trackRef: () => HTMLDivElement | undefined,
+	thumbRef: () => HTMLDivElement | undefined,
+	engineIntegration: () => boolean,
+	updateScrollbar?: () => void
 ) {
-  const engine = new ScrollbarEngineManager();
+	const engine = new ScrollbarEngineManager()
 
-  const scrollBy = (amount: number) => {
-    if (!contentRef()) return;
-    const fastAmount = amount * 3;
-    const currentScroll =
-      direction() === "horizontal"
-        ? contentRef()!.scrollLeft
-        : contentRef()!.scrollTop;
-    const targetScroll = currentScroll + fastAmount;
+	const scrollBy = (amount: number) => {
+		if (!contentRef()) return
+		const fastAmount = amount * 3
+		const currentScroll =
+			direction() === 'horizontal'
+				? contentRef()!.scrollLeft
+				: contentRef()!.scrollTop
+		const targetScroll = currentScroll + fastAmount
 
-    // Use smooth scrolling for better UX
-    contentRef()!.scrollTo({
-      left: direction() === "horizontal" ? targetScroll : undefined,
-      top: direction() === "horizontal" ? undefined : targetScroll,
-      behavior: "smooth",
-    });
+		// Use smooth scrolling for better UX
+		contentRef()!.scrollTo({
+			left: direction() === 'horizontal' ? targetScroll : undefined,
+			top: direction() === 'horizontal' ? undefined : targetScroll,
+			behavior: 'smooth'
+		})
 
-    // handleScroll will be called automatically during smooth scroll
-    // No need to manually update here
-  };
+		// handleScroll will be called automatically during smooth scroll
+		// No need to manually update here
+	}
 
-  const handleWheel = (e: WheelEvent) => {
-    if (!contentRef()) return;
-    e.preventDefault();
+	const handleWheel = (e: WheelEvent) => {
+		if (!contentRef()) return
 
-    let delta: number;
-    let isHorizontal: boolean;
+		// Check if content actually needs scrolling
+		const containerSize =
+			direction() === 'horizontal'
+				? contentRef()!.clientWidth
+				: contentRef()!.clientHeight
+		const contentSize =
+			direction() === 'horizontal'
+				? contentRef()!.scrollWidth
+				: contentRef()!.scrollHeight
 
-    if (direction() === "horizontal") {
-      // For horizontal scrollbar use deltaY (most mice don't support deltaX)
-      delta = e.deltaY;
-      isHorizontal = true;
-    } else {
-      // For vertical scrollbar use deltaY, but if Shift is pressed - deltaY for horizontal
-      delta = e.shiftKey ? e.deltaY : e.deltaY;
-      isHorizontal = e.shiftKey;
-    }
+		const needsScrollbar = contentSize > containerSize
+		if (!needsScrollbar) {
+			// Content doesn't overflow - don't prevent default, let page scroll
+			return
+		}
 
-    // Handle delta based on deltaMode for standard scroll behavior
-    let scrollAmount: number;
-    if (e.deltaMode === WheelEvent.DOM_DELTA_LINE) {
-      // Delta is in lines - standard is about 16-20px per line
-      scrollAmount = delta * 16;
-    } else if (e.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
-      // Delta is in pages - use container height/width
-      const containerSize = isHorizontal
-        ? contentRef()!.clientWidth
-        : contentRef()!.clientHeight;
-      scrollAmount = delta * containerSize;
-    } else {
-      // DOM_DELTA_PIXEL - use delta directly but normalize for standard behavior
-      // Standard browsers typically scroll ~40-50px per tick
-      // For hyper-scroll, scale down proportionally
-      if (Math.abs(delta) > 100) {
-        // Hyper-scroll: scale down to reasonable amount
-        scrollAmount = delta * 0.2;
-      } else {
-        // Normal scroll: use delta as-is (browser already provides pixel values)
-        scrollAmount = delta;
-      }
-    }
+		// Check if we can scroll in the direction of the wheel
+		const currentScroll =
+			direction() === 'horizontal'
+				? contentRef()!.scrollLeft
+				: contentRef()!.scrollTop
+		const maxScroll = contentSize - containerSize
 
-    // Direct scroll - standard browser behavior (no smooth for wheel)
-    if (isHorizontal) {
-      contentRef()!.scrollLeft += scrollAmount;
-    } else {
-      contentRef()!.scrollTop += scrollAmount;
-    }
+		let delta: number
+		let isHorizontal: boolean
 
-    // Force update thumb position after scrolling
-    if (updateScrollbar) {
-      setTimeout(updateScrollbar, 0);
-    }
-  };
+		if (direction() === 'horizontal') {
+			// For horizontal scrollbar use deltaY (most mice don't support deltaX)
+			delta = e.deltaY
+			isHorizontal = true
+		} else {
+			// For vertical scrollbar use deltaY, but if Shift is pressed - deltaY for horizontal
+			delta = e.shiftKey ? e.deltaY : e.deltaY
+			isHorizontal = e.shiftKey
+		}
 
-  const handleThumbMouseDown = async (e: MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+		// Check if we're at the boundary and trying to scroll further
+		const scrollingDown = delta > 0
+		const scrollingUp = delta < 0
+		const atBottom = currentScroll >= maxScroll - 1 // Allow 1px tolerance
+		const atTop = currentScroll <= 1 // Allow 1px tolerance
 
-    const trackRect = trackRef()!.getBoundingClientRect();
-    const mousePos =
-      direction() === "horizontal"
-        ? adjustForZoom(e.clientX - trackRect.left)
-        : adjustForZoom(e.clientY - trackRect.top);
+		// If at boundary and trying to scroll further, don't prevent default
+		if ((scrollingDown && atBottom) || (scrollingUp && atTop)) {
+			return
+		}
 
-    const thumbCenter = state().thumbPosition + state().thumbSize / 2;
-    const offset = mousePos - thumbCenter;
+		// Only prevent default if we actually need to scroll
+		e.preventDefault()
 
-    setState((prev) => ({
-      ...prev,
-      isDragging: true,
-      dragOffset: offset,
-    }));
+		// Handle delta based on deltaMode for standard scroll behavior
+		let scrollAmount: number
+		if (e.deltaMode === WheelEvent.DOM_DELTA_LINE) {
+			// Delta is in lines - standard is about 16-20px per line
+			scrollAmount = delta * 16
+		} else if (e.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
+			// Delta is in pages - use container height/width
+			const containerSize = isHorizontal
+				? contentRef()!.clientWidth
+				: contentRef()!.clientHeight
+			scrollAmount = delta * containerSize
+		} else {
+			// DOM_DELTA_PIXEL - use delta directly but normalize for standard behavior
+			// Standard browsers typically scroll ~40-50px per tick
+			// For hyper-scroll, scale down proportionally
+			if (Math.abs(delta) > 100) {
+				// Hyper-scroll: scale down to reasonable amount
+				scrollAmount = delta * 0.2
+			} else {
+				// Normal scroll: use delta as-is (browser already provides pixel values)
+				scrollAmount = delta
+			}
+		}
 
-    if (engineIntegration()) {
-      await engine.createPhysicsObject(mousePos, 0);
-    }
+		// Direct scroll - standard browser behavior (no smooth for wheel)
+		if (isHorizontal) {
+			contentRef()!.scrollLeft += scrollAmount
+		} else {
+			contentRef()!.scrollTop += scrollAmount
+		}
 
-    document.body.style.userSelect = "none";
-  };
+		// Force update thumb position after scrolling
+		if (updateScrollbar) {
+			setTimeout(updateScrollbar, 0)
+		}
+	}
 
-  const handleMouseMove = async (e: MouseEvent) => {
-    if (!state().isDragging || !trackRef() || !contentRef()) return;
-    e.preventDefault();
+	const handleThumbMouseDown = async (e: MouseEvent) => {
+		e.preventDefault()
+		e.stopPropagation()
 
-    const trackRect = trackRef()!.getBoundingClientRect();
-    const mousePos =
-      direction() === "horizontal"
-        ? adjustForZoom(e.clientX - trackRect.left)
-        : adjustForZoom(e.clientY - trackRect.top);
+		const trackRect = trackRef()!.getBoundingClientRect()
+		const mousePos =
+			direction() === 'horizontal'
+				? adjustForZoom(e.clientX - trackRect.left)
+				: adjustForZoom(e.clientY - trackRect.top)
 
-    if (engineIntegration()) {
-      await engine.updatePhysicsObject(mousePos, 0);
-    }
+		const thumbCenter = state().thumbPosition + state().thumbSize / 2
+		const offset = mousePos - thumbCenter
 
-    const thumbCenterPos = mousePos - state().dragOffset;
-    const newThumbPos = thumbCenterPos - state().thumbSize / 2;
+		setState(prev => ({
+			...prev,
+			isDragging: true,
+			dragOffset: offset
+		}))
 
-    const arrowSpace = state().showArrows ? 12 : 0;
-    const trackSize =
-      direction() === "horizontal"
-        ? trackRef()!.clientWidth
-        : trackRef()!.clientHeight;
-    const availableTrackSize = trackSize - arrowSpace * 2;
-    const maxThumbPos = availableTrackSize - state().thumbSize;
-    const clampedPos = Math.max(
-      arrowSpace,
-      Math.min(newThumbPos, maxThumbPos + arrowSpace),
-    );
+		if (engineIntegration()) {
+			await engine.createPhysicsObject(mousePos, 0)
+		}
 
-    // First update thumb position
-    setState((prev) => ({ ...prev, thumbPosition: clampedPos }));
+		document.body.style.userSelect = 'none'
+	}
 
-    // Then update scroll position
-    const containerSize =
-      direction() === "horizontal"
-        ? trackRef()!.clientWidth
-        : trackRef()!.clientHeight;
-    const contentSize =
-      direction() === "horizontal"
-        ? contentRef()!.scrollWidth
-        : contentRef()!.scrollHeight;
-    const maxScroll = contentSize - containerSize;
+	const handleMouseMove = async (e: MouseEvent) => {
+		if (!state().isDragging || !trackRef() || !contentRef()) return
+		e.preventDefault()
 
-    const adjustedThumbPos = clampedPos - arrowSpace;
-    const availableScrollSize = availableTrackSize - state().thumbSize;
-    const scrollRatio = Math.max(
-      0,
-      Math.min(1, adjustedThumbPos / availableScrollSize),
-    );
-    const scrollPos = scrollRatio * maxScroll;
+		const trackRect = trackRef()!.getBoundingClientRect()
+		const mousePos =
+			direction() === 'horizontal'
+				? adjustForZoom(e.clientX - trackRect.left)
+				: adjustForZoom(e.clientY - trackRect.top)
 
-    // Instant scroll without animation
-    if (direction() === "horizontal") {
-      contentRef()!.scrollLeft = scrollPos;
-    } else {
-      contentRef()!.scrollTop = scrollPos;
-    }
-  };
+		if (engineIntegration()) {
+			await engine.updatePhysicsObject(mousePos, 0)
+		}
 
-  const handleMouseUp = () => {
-    setState((prev) => ({
-      ...prev,
-      isDragging: false,
-      dragOffset: 0,
-    }));
-    document.body.style.userSelect = "";
-  };
+		const thumbCenterPos = mousePos - state().dragOffset
+		const newThumbPos = thumbCenterPos - state().thumbSize / 2
 
-  const handleTrackClick = (e: MouseEvent) => {
-    if (!trackRef() || !contentRef() || !thumbRef()) return;
-    if (e.target === thumbRef()) return;
+		const arrowSpace = state().showArrows ? 12 : 0
+		const trackSize =
+			direction() === 'horizontal'
+				? trackRef()!.clientWidth
+				: trackRef()!.clientHeight
+		const availableTrackSize = trackSize - arrowSpace * 2
+		const maxThumbPos = availableTrackSize - state().thumbSize
+		const clampedPos = Math.max(
+			arrowSpace,
+			Math.min(newThumbPos, maxThumbPos + arrowSpace)
+		)
 
-    const trackRect = trackRef()!.getBoundingClientRect();
-    const clickPosition =
-      direction() === "horizontal"
-        ? adjustForZoom(e.clientX - trackRect.left)
-        : adjustForZoom(e.clientY - trackRect.top);
+		// First update thumb position
+		setState(prev => ({ ...prev, thumbPosition: clampedPos }))
 
-    const arrowSpace = state().showArrows ? 12 : 0;
-    const availableTrackSize =
-      (direction() === "horizontal"
-        ? trackRef()!.clientWidth
-        : trackRef()!.clientHeight) -
-      arrowSpace * 2;
-    const adjustedClickPos = clickPosition - arrowSpace;
-    const newThumbPos = adjustedClickPos - state().thumbSize / 2;
-    const maxThumbPos = availableTrackSize - state().thumbSize;
-    const clampedThumbPos =
-      Math.max(0, Math.min(newThumbPos, maxThumbPos)) + arrowSpace;
+		// Then update scroll position
+		const containerSize =
+			direction() === 'horizontal'
+				? trackRef()!.clientWidth
+				: trackRef()!.clientHeight
+		const contentSize =
+			direction() === 'horizontal'
+				? contentRef()!.scrollWidth
+				: contentRef()!.scrollHeight
+		const maxScroll = contentSize - containerSize
 
-    setState((prev) => ({ ...prev, thumbPosition: clampedThumbPos }));
+		const adjustedThumbPos = clampedPos - arrowSpace
+		const availableScrollSize = availableTrackSize - state().thumbSize
+		const scrollRatio = Math.max(
+			0,
+			Math.min(1, adjustedThumbPos / availableScrollSize)
+		)
+		const scrollPos = scrollRatio * maxScroll
 
-    const containerSize =
-      direction() === "horizontal"
-        ? trackRef()!.clientWidth
-        : trackRef()!.clientHeight;
-    const contentSize =
-      direction() === "horizontal"
-        ? contentRef()!.scrollWidth
-        : contentRef()!.scrollHeight;
-    const maxScroll = contentSize - containerSize;
+		// Instant scroll without animation
+		if (direction() === 'horizontal') {
+			contentRef()!.scrollLeft = scrollPos
+		} else {
+			contentRef()!.scrollTop = scrollPos
+		}
+	}
 
-    const adjustedThumbPos = clampedThumbPos - arrowSpace;
-    const scrollRatio = Math.max(
-      0,
-      Math.min(1, adjustedThumbPos / maxThumbPos),
-    );
-    const scrollPos = scrollRatio * maxScroll;
+	const handleMouseUp = () => {
+		setState(prev => ({
+			...prev,
+			isDragging: false,
+			dragOffset: 0
+		}))
+		document.body.style.userSelect = ''
+	}
 
-    if (direction() === "horizontal") {
-      contentRef()!.scrollLeft = scrollPos;
-    } else {
-      contentRef()!.scrollTop = scrollPos;
-    }
-  };
+	const handleTrackClick = (e: MouseEvent) => {
+		if (!trackRef() || !contentRef() || !thumbRef()) return
+		if (e.target === thumbRef()) return
 
-  return {
-    scrollBy,
-    handleWheel,
-    handleThumbMouseDown,
-    handleMouseMove,
-    handleMouseUp,
-    handleTrackClick,
-  };
+		const trackRect = trackRef()!.getBoundingClientRect()
+		const clickPosition =
+			direction() === 'horizontal'
+				? adjustForZoom(e.clientX - trackRect.left)
+				: adjustForZoom(e.clientY - trackRect.top)
+
+		const arrowSpace = state().showArrows ? 12 : 0
+		const availableTrackSize =
+			(direction() === 'horizontal'
+				? trackRef()!.clientWidth
+				: trackRef()!.clientHeight) -
+			arrowSpace * 2
+		const adjustedClickPos = clickPosition - arrowSpace
+		const newThumbPos = adjustedClickPos - state().thumbSize / 2
+		const maxThumbPos = availableTrackSize - state().thumbSize
+		const clampedThumbPos =
+			Math.max(0, Math.min(newThumbPos, maxThumbPos)) + arrowSpace
+
+		setState(prev => ({ ...prev, thumbPosition: clampedThumbPos }))
+
+		const containerSize =
+			direction() === 'horizontal'
+				? trackRef()!.clientWidth
+				: trackRef()!.clientHeight
+		const contentSize =
+			direction() === 'horizontal'
+				? contentRef()!.scrollWidth
+				: contentRef()!.scrollHeight
+		const maxScroll = contentSize - containerSize
+
+		const adjustedThumbPos = clampedThumbPos - arrowSpace
+		const scrollRatio = Math.max(0, Math.min(1, adjustedThumbPos / maxThumbPos))
+		const scrollPos = scrollRatio * maxScroll
+
+		if (direction() === 'horizontal') {
+			contentRef()!.scrollLeft = scrollPos
+		} else {
+			contentRef()!.scrollTop = scrollPos
+		}
+	}
+
+	return {
+		scrollBy,
+		handleWheel,
+		handleThumbMouseDown,
+		handleMouseMove,
+		handleMouseUp,
+		handleTrackClick
+	}
 }

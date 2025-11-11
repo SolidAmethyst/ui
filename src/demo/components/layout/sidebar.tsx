@@ -1,4 +1,5 @@
 import { Component, For } from 'solid-js'
+import { Scrollbar } from '../../../components/ui/scrollbar'
 
 interface SidebarProps {
 	isDark: () => boolean
@@ -24,8 +25,10 @@ const componentGroups: ComponentGroup[] = [
 		items: [
 			{ name: 'Button', id: 'button' },
 			{ name: 'CodeHighlight', id: 'code-highlight' },
+			{ name: 'Command', id: 'command' },
 			{ name: 'Drawer', id: 'drawer' },
 			{ name: 'Grid', id: 'grid' },
+			{ name: 'NumberInput', id: 'number-input' },
 			{ name: 'Sidebar', id: 'sidebar' },
 			{ name: 'Slider', id: 'slider' },
 			{ name: 'Tabs', id: 'tabs' },
@@ -53,8 +56,7 @@ export const Sidebar: Component<SidebarProps> = props => (
 			top: '0',
 			'align-self': 'flex-start',
 			'max-height': 'calc(100vh - 60px)',
-			overflow: 'auto',
-			'overflow-x': 'hidden',
+			overflow: 'hidden',
 			'flex-shrink': '0',
 			'box-sizing': 'border-box',
 			background: 'transparent',
@@ -64,17 +66,28 @@ export const Sidebar: Component<SidebarProps> = props => (
 			margin: '0',
 			padding: '0',
 			'padding-right': '24px',
-			'margin-right': '24px'
+			'margin-right': '24px',
+			display: 'flex',
+			'flex-direction': 'column'
 		}}
 	>
-		<div
+		<Scrollbar
+			direction='vertical'
 			style={{
-				padding: '8px 0 0 0',
+				width: '100%',
 				height: '100%',
-				'box-sizing': 'border-box',
-				margin: '0'
+				flex: '1',
+				'min-height': '0'
 			}}
 		>
+			<div
+				style={{
+					padding: '8px 0 0 0',
+					height: '100%',
+					'box-sizing': 'border-box',
+					margin: '0'
+				}}
+			>
 			<For each={componentGroups}>
 				{(group, index) => (
 					<div
@@ -105,7 +118,12 @@ export const Sidebar: Component<SidebarProps> = props => (
 						<For each={group.items}>
 							{(item, itemIndex) => (
 								<button
-									onClick={() => props.onComponentSelect(item.id)}
+									type="button"
+									onClick={e => {
+										e.preventDefault()
+										e.stopPropagation()
+										props.onComponentSelect(item.id)
+									}}
 									style={{
 										width: '100%',
 										padding:
@@ -162,5 +180,6 @@ export const Sidebar: Component<SidebarProps> = props => (
 				)}
 			</For>
 		</div>
+		</Scrollbar>
 	</aside>
 )

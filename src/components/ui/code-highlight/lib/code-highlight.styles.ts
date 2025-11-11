@@ -45,9 +45,17 @@ export const codeHighlightStyles = {
 	}),
 	pre: (): JSX.CSSProperties => ({
 		margin: '0',
+		width: '100%',
+		height: '100%',
+		'max-width': '100%',
+		'max-height': '500px',
+		'box-sizing': 'border-box',
+		display: 'flex',
+		'flex-direction': 'column'
+	}),
+	preInner: (): JSX.CSSProperties => ({
+		margin: '0',
 		padding: '16px',
-		overflow: 'auto',
-		'overflow-x': 'auto',
 		'font-size': '13px',
 		'line-height': '1.6',
 		'font-family': 'Monaco, Menlo, "Ubuntu Mono", monospace',

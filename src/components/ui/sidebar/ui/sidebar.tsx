@@ -6,6 +6,7 @@
 
 import type { JSX } from 'solid-js'
 import { Component, For, Show } from 'solid-js'
+import { Scrollbar } from '../../scrollbar'
 import { sidebarStyles } from '../lib/sidebar.styles'
 import type { SidebarItem, SidebarProps } from '../model/types'
 
@@ -15,7 +16,14 @@ const SidebarContent = (props: {
 	isDark: boolean
 	onItemClick?: (item: SidebarItem) => void
 }) => (
-	<div style={sidebarStyles.innerContainer()}>
+	<Scrollbar
+		direction='vertical'
+		style={{
+			...sidebarStyles.innerContainer(),
+			width: '100%',
+			height: '100%'
+		}}
+	>
 		<ul style={sidebarStyles.list()}>
 			<For each={props.items}>
 				{item => (
@@ -61,7 +69,7 @@ const SidebarContent = (props: {
 				)}
 			</For>
 		</ul>
-	</div>
+	</Scrollbar>
 )
 
 export const Sidebar: Component<SidebarProps> = props => {

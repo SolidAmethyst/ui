@@ -12,6 +12,7 @@ import {
 	splitProps,
 	useContext
 } from 'solid-js'
+import { Scrollbar } from '../../scrollbar'
 import { tabsUIStyles } from './tabs-ui.styles'
 
 interface TabsContextValue {
@@ -73,15 +74,17 @@ export const TabsList: Component<TabsListProps> = props => {
 	}
 
 	return (
-		<div
-			class={props.class}
-			style={{
-				...tabsUIStyles.list({ isDark: context.isDark(), isActive: false }),
-				...props.style
-			}}
-		>
-			{props.children}
-		</div>
+		<Scrollbar direction='horizontal' style={{ width: '100%' }}>
+			<div
+				class={props.class}
+				style={{
+					...tabsUIStyles.list({ isDark: context.isDark(), isActive: false }),
+					...props.style
+				}}
+			>
+				{props.children}
+			</div>
+		</Scrollbar>
 	)
 }
 

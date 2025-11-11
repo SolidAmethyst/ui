@@ -3,7 +3,15 @@
  * Dropdown select component for choosing from a list of options
  */
 
-import { Component, createSignal, For, onCleanup, Show, splitProps } from 'solid-js'
+import {
+	Component,
+	createSignal,
+	For,
+	onCleanup,
+	Show,
+	splitProps
+} from 'solid-js'
+import { Scrollbar } from '../../scrollbar'
 import { selectStyles } from '../lib/select.styles'
 import type { SelectProps } from '../model/types'
 
@@ -27,7 +35,7 @@ export const Select = <T extends string = string>(
 
 	const isDark = () => {
 		const dark = local.isDark
-		return typeof dark === 'function' ? dark() : dark ?? false
+		return typeof dark === 'function' ? dark() : (dark ?? false)
 	}
 
 	const selectedOption = () => {
@@ -68,11 +76,7 @@ export const Select = <T extends string = string>(
 		<div
 			class={local.class}
 			style={{
-				...selectStyles.container({
-					isDark: isDark(),
-					isOpen: isOpen(),
-					isDisabled: local.disabled ?? false
-				}),
+				...selectStyles.container(),
 				...local.style
 			}}
 			{...others}
@@ -93,7 +97,7 @@ export const Select = <T extends string = string>(
 								isDark: isDark(),
 								isOpen: isOpen(),
 								isDisabled: local.disabled ?? false
-						  })
+							})
 						: {})
 				}}
 				onMouseEnter={e => {
@@ -143,75 +147,79 @@ export const Select = <T extends string = string>(
 						isDisabled: local.disabled ?? false
 					})}
 				>
-					<For each={local.options}>
-						{option => {
-							const isSelected = () => option.value === local.value
-							const isDisabled = () => option.disabled ?? false
+					<Scrollbar
+						direction='vertical'
+						style={{
+							width: '100%',
+							height: '100%',
+							flex: '1',
+							'min-height': '0'
+						}}
+					>
+						<For each={local.options}>
+							{option => {
+								const isSelected = () => option.value === local.value
+								const isDisabled = () => option.disabled ?? false
 
-							return (
-								<div
-									onClick={() => {
-										if (!isDisabled()) {
-											handleSelect(option.value)
-										}
-									}}
-									style={{
-										...selectStyles.option({
-											isDark: isDark(),
-											isOpen: isOpen(),
-											isDisabled: isDisabled()
-										}),
-										...(isSelected()
-											? selectStyles.optionSelected({
-													isDark: isDark(),
-													isOpen: isOpen(),
-													isDisabled: isDisabled()
-											  })
-											: {}),
-										...(isDisabled()
-											? selectStyles.optionDisabled({
-													isDark: isDark(),
-													isOpen: isOpen(),
-													isDisabled: isDisabled()
-											  })
-											: {})
-									}}
-									onMouseEnter={e => {
-										if (!isDisabled() && !isSelected()) {
-											Object.assign(
-												e.currentTarget.style,
-												selectStyles.optionHover({
-													isDark: isDark(),
-													isOpen: isOpen(),
-													isDisabled: isDisabled()
-												})
-											)
-										}
-									}}
-									onMouseLeave={e => {
-										if (!isDisabled() && !isSelected()) {
-											e.currentTarget.style.background = 'transparent'
-										}
-									}}
-								>
-									<span style={selectStyles.optionLabel()}>
-										{option.label}
-									</span>
-									<Show when={option.description}>
-										<span
-											style={selectStyles.optionDescription({
+								return (
+									<div
+										onClick={() => {
+											if (!isDisabled()) {
+												handleSelect(option.value)
+											}
+										}}
+										style={{
+											...selectStyles.option({
 												isDark: isDark(),
 												isOpen: isOpen(),
 												isDisabled: isDisabled()
-											})}
-										>
-											{option.description}
+											}),
+											...(isSelected()
+												? selectStyles.optionSelected({
+														isDark: isDark(),
+														isOpen: isOpen(),
+														isDisabled: isDisabled()
+													})
+												: {}),
+											...(isDisabled() ? selectStyles.optionDisabled() : {})
+										}}
+										onMouseEnter={e => {
+											if (!isDisabled() && !isSelected()) {
+												Object.assign(
+													e.currentTarget.style,
+													selectStyles.optionHover({
+														isDark: isDark(),
+														isOpen: isOpen(),
+														isDisabled: isDisabled()
+													})
+												)
+											}
+										}}
+										onMouseLeave={e => {
+											if (!isDisabled() && !isSelected()) {
+												e.currentTarget.style.background = 'transparent'
+											}
+										}}
+									>
+										<span style={selectStyles.optionLabel()}>
+											{option.label}
 										</span>
-									</Show>
-								</div>
-							)
-						}}
-					</For>
+										<Show when={option.description}>
+											<span
+												style={selectStyles.optionDescription({
+													isDark: isDark(),
+													isOpen: isOpen(),
+													isDisabled: isDisabled()
+												})}
+											>
+												{option.description}
+											</span>
+										</Show>
+									</div>
+								)
+							}}
+						</For>
+					</Scrollbar>
 				</div>
 			</Show>
 		</div>

@@ -4,18 +4,19 @@
  */
 
 import { Component, createMemo, createSignal, For, Show } from 'solid-js'
-import { Settings } from './settings'
+import { Scrollbar } from '../../../components/ui/scrollbar'
 import { Select } from '../../../components/ui/select'
 import { Slider } from '../../../components/ui/slider'
 import { settingsCompositeStyles } from '../lib/settings-composite.styles'
 import type {
 	AppearanceSubcategory,
 	GlassSettings,
-	HighlightsSettings,
 	HighlightProfile,
+	HighlightsSettings,
 	MainCategory,
 	SettingsCompositeProps
 } from '../model/types'
+import { Settings } from './settings'
 
 export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 	const [activeMainCategory, setActiveMainCategory] =
@@ -66,11 +67,23 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 		label: string
 		description: string
 	}> = [
-		{ id: 'default', label: 'Default', description: 'Standard syntax highlighting' },
-		{ id: 'monokai', label: 'Monokai', description: 'Popular dark theme colors' },
+		{
+			id: 'default',
+			label: 'Default',
+			description: 'Standard syntax highlighting'
+		},
+		{
+			id: 'monokai',
+			label: 'Monokai',
+			description: 'Popular dark theme colors'
+		},
 		{ id: 'dracula', label: 'Dracula', description: 'Dark purple theme' },
 		{ id: 'github', label: 'GitHub', description: 'GitHub-style highlighting' },
-		{ id: 'vs-code', label: 'VS Code', description: 'Visual Studio Code theme' },
+		{
+			id: 'vs-code',
+			label: 'VS Code',
+			description: 'Visual Studio Code theme'
+		},
 		{ id: 'one-dark', label: 'One Dark', description: 'Atom One Dark theme' }
 	]
 
@@ -105,7 +118,8 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 			<div style={settingsCompositeStyles.container()}>
 				{/* Categories Sidebar */}
 				<aside style={settingsCompositeStyles.sidebar(isDark())}>
-					<For each={mainCategories}>
+					<Scrollbar direction='vertical' style={{ width: '100%', height: '100%' }}>
+						<For each={mainCategories}>
 						{category => (
 							<button
 								type='button'
@@ -142,10 +156,19 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 							</button>
 						)}
 					</For>
+					</Scrollbar>
 				</aside>
 
 				{/* Content Area */}
-				<div style={settingsCompositeStyles.content(isDark())}>
+				<Scrollbar
+					direction='vertical'
+					style={{
+						...settingsCompositeStyles.content(isDark()),
+						width: '100%',
+						height: '100%'
+					}}
+				>
+					<div style={settingsCompositeStyles.contentArea()}>
 					{/* Tabs for Appearance subcategories */}
 					<Show when={activeMainCategory() === 'appearance'}>
 						<div style={settingsCompositeStyles.tabsContainer(isDark())}>
@@ -294,10 +317,35 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 									Theme
 								</h4>
 								<p style={settingsCompositeStyles.sectionDescription(isDark())}>
-									Customize theme settings for the application.
+									Choose the application theme.
 								</p>
-								<div style={settingsCompositeStyles.placeholder(isDark())}>
-									Theme settings coming soon...
+
+								<div
+									style={{
+										'margin-top': '24px'
+									}}
+								>
+									<Select
+										options={[
+											{
+												value: 'light',
+												label: 'Light',
+												description: 'Light theme with bright colors'
+											},
+											{
+												value: 'dark',
+												label: 'Dark',
+												description: 'Dark theme with dark colors'
+											}
+										]}
+										value={isDark() ? 'dark' : 'light'}
+										onChange={value => {
+											if (props.onThemeChange) {
+												props.onThemeChange(value === 'dark')
+											}
+										}}
+										isDark={isDark()}
+									/>
 								</div>
 							</section>
 						</Show>
@@ -349,7 +397,8 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 							</section>
 						</Show>
 					</div>
-				</div>
+					</div>
+				</Scrollbar>
 			</div>
 		</Settings>
 	)

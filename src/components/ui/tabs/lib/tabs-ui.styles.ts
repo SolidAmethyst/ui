@@ -20,7 +20,7 @@ export const tabsUIStyles = {
 		display: 'flex',
 		height: '38px',
 		'align-items': 'center',
-		'justify-content': 'flex-start',
+		'justify-content': 'center',
 		'border-radius': '6px',
 		background: options.isDark
 			? 'rgba(255, 255, 255, 0.1)'
@@ -29,7 +29,6 @@ export const tabsUIStyles = {
 		'box-sizing': 'border-box',
 		width: '100%',
 		'max-width': '100%',
-		overflow: 'auto',
 		'flex-wrap': 'nowrap',
 		gap: '4px'
 	}),
@@ -41,7 +40,8 @@ export const tabsUIStyles = {
 		'border-radius': '4px',
 		'font-size': '14px',
 		'font-weight': '500',
-		transition: 'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+		transition:
+			'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
 		padding: '6px 12px',
 		cursor: 'pointer',
 		border: 'none',

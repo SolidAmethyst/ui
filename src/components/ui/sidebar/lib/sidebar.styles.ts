@@ -40,7 +40,9 @@ export const sidebarStyles = {
 		height: '100%',
 		padding: '16px 0',
 		'box-sizing': 'border-box',
-		overflow: 'auto'
+		overflow: 'hidden',
+		display: 'flex',
+		'flex-direction': 'column'
 	}),
 	list: (): JSX.CSSProperties => ({
 		'list-style': 'none',

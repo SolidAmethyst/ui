@@ -454,17 +454,37 @@
 	overflow: hidden;
 }
 
+.scrollbar-content {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: auto;
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+}
+
+.scrollbar-content::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
 .scrollbar-track {
 	position: absolute;
-	background: rgba(255, 255, 255, 0.1);
-	border-radius: 4px;
-	z-index: 10;
+	z-index: 999;
+	background: transparent;
+	opacity: 0;
+	transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scrollbar-track.visible {
+	opacity: 1;
 }
 
 .scrollbar-track-vertical {
-	right: 0;
 	top: 0;
-	width: 8px;
+	right: 0;
+	width: 12px;
 	height: 100%;
 }
 
@@ -472,71 +492,121 @@
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 8px;
+	height: 12px;
 }
 
 .scrollbar-thumb {
-	background: rgba(255, 255, 255, 0.3);
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background 0.2s ease;
+	position: absolute;
+	background: rgba(59, 130, 246, 0.6);
+	border-radius: 2px;
+	cursor: grab;
+	transition:
+		background 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	z-index: 99999;
+	min-width: 1px;
+	min-height: 1px;
 }
 
 .scrollbar-thumb:hover {
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(59, 130, 246, 0.9);
 }
 
-.scrollbar-thumb-vertical {
-	width: 100%;
-	min-height: 20px;
-}
-
-.scrollbar-thumb-horizontal {
-	height: 100%;
-	min-width: 20px;
+.scrollbar-thumb:active,
+.scrollbar-thumb.dragging {
+	background: rgba(59, 130, 246, 1);
+	cursor: grabbing;
 }
 
 .scrollbar-arrow {
 	position: absolute;
+	width: 12px;
+	height: 12px;
 	background: transparent;
 	border: none;
-	color: #ffffff;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: color 0.2s ease;
-	z-index: 11;
+	font-size: 12px;
+	font-weight: bold;
+	color: #6b7280;
+	transition:
+		color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		transform 100ms cubic-bezier(0.4, 0, 0.2, 1);
+	z-index: 1000;
+	padding: 0;
+	margin: 0;
 }
 
 .scrollbar-arrow:hover {
-	color: #0d8bf2;
+	color: #3b82f6;
+	transform: scale(1.1);
 }
 
-.scrollbar-arrow-vertical {
-	width: 100%;
-	height: 20px;
+.scrollbar-arrow:active {
+	color: #1d4ed8;
 }
 
-.scrollbar-arrow-horizontal {
-	width: 20px;
-	height: 100%;
+.scrollbar-arrow:disabled {
+	color: #9ca3af;
+	cursor: not-allowed;
 }
 
 .scrollbar-arrow-up {
+	position: absolute;
 	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
+	padding: 0;
+	margin: 0;
 }
 
 .scrollbar-arrow-down {
+	position: absolute;
 	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
+	padding: 0;
+	margin: 0;
 }
 
 .scrollbar-arrow-left {
+	position: absolute;
+	top: 50%;
 	left: 0;
+	width: 12px;
+	height: 12px;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
 }
 
 .scrollbar-arrow-right {
+	position: absolute;
+	top: 50%;
 	right: 0;
+	width: 12px;
+	height: 12px;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
 }
 
 /* Icon and button text shadows - Sharp glass effect */
@@ -598,53 +668,16 @@
 	color: #1a1a1a !important;
 }
 
-/* Browser Scrollbar Styles */
-::-webkit-scrollbar {
-	width: 12px;
-	height: 12px;
-}
-
-::-webkit-scrollbar-track {
-	background: rgba(255, 255, 255, 0.05);
-	border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb {
-	background: rgba(255, 255, 255, 0.2);
-	border-radius: 6px;
-	border: 2px solid transparent;
-	background-clip: padding-box;
-	transition: background 0.2s ease;
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background: rgba(255, 255, 255, 0.35);
-	background-clip: padding-box;
-}
-
-/* Light theme scrollbar */
-[data-theme='light'] ::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.05);
-}
-
-[data-theme='light'] ::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.2);
-	background-clip: padding-box;
-}
-
-[data-theme='light'] ::-webkit-scrollbar-thumb:hover {
-	background: rgba(0, 0, 0, 0.35);
-	background-clip: padding-box;
-}
-
-/* Firefox scrollbar */
+/* Hide native scrollbars - use Scrollbar component instead */
 * {
-	scrollbar-width: thin;
-	scrollbar-color: rgba(255, 255, 255, 0.2) rgba(255, 255, 255, 0.05);
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
 }
 
-[data-theme='light'] * {
-	scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+*::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
 }
 
 /* Hide default spinner arrows for number inputs */
@@ -665,6 +698,54 @@
 
 .number-input-arrow .material-symbols-rounded {
 	font-size: 12px !important;
+}
+
+/* Command component styles */
+[cmdk-item] {
+	display: flex !important;
+	align-items: center !important;
+	width: 100% !important;
+}
+
+[cmdk-item] > * {
+	flex-shrink: 0;
+}
+
+[cmdk-item] {
+	line-height: 1 !important;
+}
+
+[cmdk-item]:hover {
+	background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[cmdk-shortcuts] {
+	margin-left: 48px !important;
+	margin-right: 0 !important;
+}
+
+[cmdk-input]::placeholder {
+	color: rgba(255, 255, 255, 0.5) !important;
+}
+
+[data-theme='light'] [cmdk-input]::placeholder {
+	color: rgba(26, 26, 26, 0.5) !important;
+}
+
+[cmdk-group-heading] {
+	font-size: 12px !important;
+	font-weight: 500 !important;
+	text-transform: none !important;
+	letter-spacing: 0 !important;
+	padding: 0 !important;
+	margin-top: 8px !important;
+	margin-bottom: 4px !important;
+	color: rgba(255, 255, 255, 0.6) !important;
+	user-select: none !important;
+}
+
+[data-theme='light'] [cmdk-group-heading] {
+	color: rgba(26, 26, 26, 0.6) !important;
 }
 
 /* NumberInput theme-aware CSS variables */
@@ -697,7 +778,9 @@
 	background: hsl(var(--slider-thumb));
 	cursor: pointer;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	transition: background 0.2s ease, transform 0.1s ease;
+	transition:
+		background 0.2s ease,
+		transform 0.1s ease;
 }
 
 .slider-input[type='range']::-webkit-slider-thumb:hover {
@@ -717,7 +800,9 @@
 	cursor: pointer;
 	border: none;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-	transition: background 0.2s ease, transform 0.1s ease;
+	transition:
+		background 0.2s ease,
+		transform 0.1s ease;
 }
 
 .slider-input[type='range']::-moz-range-thumb:hover {

@@ -47,7 +47,10 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 							style={{
 								width: '100%',
 								'max-width': '400px',
-								padding: '20px'
+								padding: '20px',
+								margin: '0 auto',
+								display: 'flex',
+								'justify-content': 'center'
 							}}
 						>
 							<Slider value={50} isDark={props.isDark()} />
@@ -69,7 +72,10 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 							style={{
 								width: '100%',
 								'max-width': '400px',
-								padding: '20px'
+								padding: '20px',
+								margin: '0 auto',
+								display: 'flex',
+								'justify-content': 'center'
 							}}
 						>
 							<Slider
@@ -96,7 +102,10 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 							style={{
 								width: '100%',
 								'max-width': '400px',
-								padding: '20px'
+								padding: '20px',
+								margin: '0 auto',
+								display: 'flex',
+								'justify-content': 'center'
 							}}
 						>
 							<Slider
@@ -126,7 +135,10 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 							style={{
 								width: '100%',
 								'max-width': '400px',
-								padding: '20px'
+								padding: '20px',
+								margin: '0 auto',
+								display: 'flex',
+								'justify-content': 'center'
 							}}
 						>
 							<Slider
@@ -154,7 +166,10 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 							style={{
 								width: '100%',
 								'max-width': '400px',
-								padding: '20px'
+								padding: '20px',
+								margin: '0 auto',
+								display: 'flex',
+								'justify-content': 'center'
 							}}
 						>
 							<Slider
@@ -188,7 +203,10 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 							style={{
 								width: '100%',
 								'max-width': '400px',
-								padding: '20px'
+								padding: '20px',
+								margin: '0 auto',
+								display: 'flex',
+								'justify-content': 'center'
 							}}
 						>
 							<Slider
@@ -215,7 +233,10 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 							style={{
 								width: '100%',
 								'max-width': '400px',
-								padding: '20px'
+								padding: '20px',
+								margin: '0 auto',
+								display: 'flex',
+								'justify-content': 'center'
 							}}
 						>
 							<Slider

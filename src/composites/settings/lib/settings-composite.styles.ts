@@ -20,8 +20,10 @@ export const settingsCompositeStyles = {
 			isDark ? 'hsla(240, 3.7%, 15.9%, 1)' : 'hsla(220, 13%, 91%, 1)'
 		}`,
 		background: isDark ? 'hsla(240, 5.9%, 8%, 0.95)' : 'hsla(0, 0%, 98%, 0.95)',
-		overflow: 'auto' as const,
-		'box-sizing': 'border-box' as const
+		overflow: 'hidden' as const,
+		'box-sizing': 'border-box' as const,
+		display: 'flex',
+		'flex-direction': 'column'
 	}),
 
 	categoryButton: (isDark: boolean, isActive: boolean) => ({
@@ -118,7 +120,7 @@ export const settingsCompositeStyles = {
 
 	content: (isDark: boolean) => ({
 		flex: '1',
-		overflow: 'auto' as const,
+		overflow: 'hidden' as const,
 		background: isDark
 			? 'hsla(240, 5.9%, 10%, 0.95)'
 			: 'hsla(0, 0%, 98%, 0.95)',
@@ -162,7 +164,8 @@ export const settingsCompositeStyles = {
 
 	contentArea: () => ({
 		flex: '1',
-		overflow: 'auto' as const
+		overflow: 'visible' as const,
+		width: '100%'
 	}),
 	section: (isDark: boolean) => ({
 		padding: '24px 20px',

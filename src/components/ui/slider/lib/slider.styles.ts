@@ -3,20 +3,21 @@
  */
 
 import type { JSX } from 'solid-js'
-import type { SliderProps } from '../model/types'
 
 export const sliderStyles = {
-	container: (isDark: boolean): JSX.CSSProperties => ({
+	container: (_isDark: boolean): JSX.CSSProperties => ({
 		display: 'flex',
 		'flex-direction': 'column',
 		gap: '8px',
-		width: '100%'
+		width: '100%',
+		'align-items': 'center'
 	}),
 
 	labelContainer: (isDark: boolean): JSX.CSSProperties => ({
 		display: 'flex',
-		'justify-content': 'space-between',
+		'justify-content': 'center',
 		'align-items': 'center',
+		gap: '8px',
 		'font-size': '14px',
 		color: isDark ? '#f6f6f6' : '#1a1a1a',
 		'font-weight': '500'
@@ -27,11 +28,12 @@ export const sliderStyles = {
 		color: isDark ? 'rgba(246, 246, 246, 0.6)' : 'rgba(26, 26, 26, 0.6)',
 		'font-weight': '400',
 		'min-width': '40px',
-		'text-align': 'right'
+		'text-align': 'center'
 	}),
 
 	slider: (isDark: boolean, disabled: boolean): JSX.CSSProperties => ({
 		width: '100%',
+		'max-width': '100%',
 		height: '6px',
 		'border-radius': '3px',
 		background: disabled

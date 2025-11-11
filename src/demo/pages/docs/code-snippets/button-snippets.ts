@@ -64,30 +64,6 @@ export const buttonSnippets = {
 <Button pinned>Pinned</Button>
 <Button maximized>Maximized</Button>
 <Button loading>Loading</Button>
-<Button disabled>Disabled</Button>`,
-
-		numberInputControls: `<div style={{ position: "relative", display: "inline-flex" }}>
-  <input
-    type="number"
-    value={value}
-    min={1}
-    max={6}
-    style={{ paddingRight: "20px" }}
-  />
-  <div style={{ position: "absolute", right: "4px" }}>
-    <Button
-      variant="ghost"
-      icon="arrow_drop_up"
-      iconPosition="only"
-      onClick={() => setValue(v => Math.min(v + 1, 6))}
-    />
-    <Button
-      variant="ghost"
-      icon="arrow_drop_down"
-      iconPosition="only"
-      onClick={() => setValue(v => Math.max(v - 1, 1))}
-    />
-  </div>
-</div>`
+<Button disabled>Disabled</Button>`
 	}
 } as const

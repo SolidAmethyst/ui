@@ -2,7 +2,8 @@ import type { JSX } from 'solid-js'
 import { createSignal, Show } from 'solid-js'
 import { Container } from '../components/ui/container'
 import { ScrollbarProvider } from '../components/ui/scrollbar'
-import type { GlassSettings } from '../composites/settings'
+import { HighlightContext } from '../components/ui/code-highlight/lib/highlight-context'
+import type { GlassSettings, HighlightsSettings } from '../composites/settings'
 import { SettingsComposite } from '../composites/settings'
 import '../styles/globals.css'
 import { Footer, Sidebar, TopNav } from './components/layout'
@@ -11,10 +12,12 @@ import {
 	AppDocs,
 	ButtonDocs,
 	CodeHighlightDocs,
+	CommandDocs,
 	DrawerDocs,
 	GridDocs,
 	InstallationDocs,
 	IntroductionDocs,
+	NumberInputDocs,
 	ScrollbarDocs,
 	SidebarDocs,
 	SliderDocs,
@@ -42,6 +45,9 @@ function App() {
 	const [glassSaturation, setGlassSaturation] = createSignal(0)
 	const [glassSettingsOpen, setGlassSettingsOpen] = createSignal(false)
 
+	// Highlights settings state
+	const [highlightsProfile, setHighlightsProfile] = createSignal<'default' | 'monokai' | 'dracula' | 'github' | 'vs-code' | 'one-dark'>('default')
+
 	const toggleTheme = () => {
 		setIsDark(!isDark())
 	}
@@ -55,7 +61,8 @@ function App() {
 
 	return (
 		<ScrollbarProvider>
-			<div
+			<HighlightContext.Provider value={{ profile: highlightsProfile }}>
+				<div
 				data-theme={isDark() ? 'dark' : 'light'}
 				style={
 					{
@@ -91,6 +98,7 @@ function App() {
 					isOpen={glassSettingsOpen()}
 					onClose={() => setGlassSettingsOpen(false)}
 					isDark={isDark}
+					onThemeChange={setIsDark}
 					glassSettings={{
 						enabled: glassEnabled(),
 						blur: glassBlur(),
@@ -104,6 +112,12 @@ function App() {
 						setGlassOpacity(settings.opacity)
 						setGlassDarkness(settings.darkness)
 						setGlassSaturation(settings.saturation)
+					}}
+					highlightsSettings={{
+						profile: highlightsProfile()
+					}}
+					onHighlightsSettingsChange={(settings: HighlightsSettings) => {
+						setHighlightsProfile(settings.profile)
 					}}
 				/>
 
@@ -264,11 +278,17 @@ function App() {
 										<Show when={currentComponent() === 'code-highlight'}>
 											<CodeHighlightDocs isDark={isDark} />
 										</Show>
+										<Show when={currentComponent() === 'command'}>
+											<CommandDocs isDark={isDark} />
+										</Show>
 										<Show when={currentComponent() === 'drawer'}>
 											<DrawerDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'grid'}>
 											<GridDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'number-input'}>
+											<NumberInputDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'sidebar'}>
 											<SidebarDocs isDark={isDark} />
@@ -310,6 +330,7 @@ function App() {
 					</div>
 				</Show>
 			</div>
+			</HighlightContext.Provider>
 		</ScrollbarProvider>
 	)
 }
