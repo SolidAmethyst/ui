@@ -41,7 +41,7 @@ export const commandStyles = {
 	input: (options?: CommandStyleOptions): JSX.CSSProperties => ({
 		width: '100%',
 		padding: '12px 16px',
-		'font-size': '16px',
+		'font-size': '14px',
 		'line-height': '1.5',
 		border: 'none',
 		outline: 'none',
@@ -96,9 +96,10 @@ export const commandStyles = {
 		'font-weight': '500',
 		'text-transform': 'none',
 		'letter-spacing': '0',
+		'line-height': '1',
 		padding: '0',
-		'margin-top': '12px',
-		'margin-bottom': '8px',
+		'margin-top': '8px',
+		'margin-bottom': '4px',
 		color: options?.isDark
 			? 'rgba(255, 255, 255, 0.6)'
 			: 'rgba(26, 26, 26, 0.6)',

@@ -203,7 +203,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 										position: 'relative',
 										display: 'flex',
 										'align-items': 'center',
-										padding: '0 8px',
+										padding: '0 12px',
 										'border-bottom': `1px solid ${
 											props.isDark()
 												? 'rgba(255, 255, 255, 0.1)'
@@ -242,7 +242,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 								</div>
 								<Command.List
 									style={{
-										padding: '0 8px 16px 8px',
+										padding: '0 12px 16px 12px',
 										overflow: 'visible',
 										'box-sizing': 'border-box'
 									}}
@@ -271,22 +271,22 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 													flex: '1',
 													'min-width': '0',
 													overflow: 'hidden'
+											}}
+										>
+											<div
+												style={{
+													display: 'flex',
+													'align-items': 'center',
+													'justify-content': 'center',
+													width: '16px',
+													height: '16px',
+													color: props.isDark() ? '#ffffff' : '#1a1a1a',
+													'flex-shrink': '0'
 												}}
 											>
-												<div
-													style={{
-														display: 'flex',
-														'align-items': 'center',
-														'justify-content': 'center',
-														width: '16px',
-														height: '16px',
-														color: props.isDark() ? '#ffffff' : '#1a1a1a',
-														'flex-shrink': '0'
-													}}
-												>
-													<CalendarIcon />
-												</div>
-												<span style={{ 'margin-left': '8px' }}>Calendar</span>
+												<CalendarIcon />
+											</div>
+											<span style={{ 'margin-left': '8px' }}>Calendar</span>
 											</div>
 											<Command.Shortcut
 												style={{
@@ -320,21 +320,21 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 													flex: '1',
 													'min-width': '0',
 													overflow: 'hidden'
+											}}
+										>
+											<div
+												style={{
+													display: 'flex',
+													'align-items': 'center',
+													'justify-content': 'center',
+													width: '16px',
+													height: '16px',
+													color: props.isDark() ? '#ffffff' : '#1a1a1a',
+													'flex-shrink': '0'
 												}}
 											>
-												<div
-													style={{
-														display: 'flex',
-														'align-items': 'center',
-														'justify-content': 'center',
-														width: '16px',
-														height: '16px',
-														color: props.isDark() ? '#ffffff' : '#1a1a1a',
-														'flex-shrink': '0'
-													}}
-												>
-													<SmileIcon />
-												</div>
+												<SmileIcon />
+											</div>
 												<span style={{ 'margin-left': '8px' }}>
 													Search Emoji
 												</span>
@@ -371,22 +371,22 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 													flex: '1',
 													'min-width': '0',
 													overflow: 'hidden'
+											}}
+										>
+											<div
+												style={{
+													display: 'flex',
+													'align-items': 'center',
+													'justify-content': 'center',
+													width: '16px',
+													height: '16px',
+													color: props.isDark() ? '#ffffff' : '#1a1a1a',
+													'flex-shrink': '0'
 												}}
 											>
-												<div
-													style={{
-														display: 'flex',
-														'align-items': 'center',
-														'justify-content': 'center',
-														width: '16px',
-														height: '16px',
-														color: props.isDark() ? '#ffffff' : '#1a1a1a',
-														'flex-shrink': '0'
-													}}
-												>
-													<RocketIcon />
-												</div>
-												<span style={{ 'margin-left': '8px' }}>Launch</span>
+												<RocketIcon />
+											</div>
+											<span style={{ 'margin-left': '8px' }}>Launch</span>
 											</div>
 											<Command.Shortcut
 												style={{
