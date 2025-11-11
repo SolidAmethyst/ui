@@ -18,14 +18,14 @@ export const selectStyles = {
 	}),
 	trigger: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		width: '100%',
-		padding: '10px 12px',
-		'font-size': '14px',
+		padding: 'var(--select-padding)',
+		'font-size': 'var(--select-font-size)',
 		'font-weight': '400',
 		'line-height': '1.5',
 		border: `1px solid ${
 			options.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
 		}`,
-		'border-radius': '6px',
+		'border-radius': 'var(--select-border-radius)',
 		background: options.isDisabled
 			? options.isDark
 				? 'rgba(255, 255, 255, 0.05)'
@@ -64,23 +64,23 @@ export const selectStyles = {
 			: 'rgba(37, 99, 235, 0.05)'
 	}),
 	icon: (options: SelectStyleOptions): JSX.CSSProperties => ({
-		'font-size': '18px',
+		'font-size': 'var(--select-icon-font-size)',
 		color: options.isDark
 			? 'rgba(246, 246, 246, 0.6)'
 			: 'rgba(26, 26, 26, 0.6)',
 		transition: 'transform 0.2s ease',
 		transform: options.isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
 		'flex-shrink': '0',
-		'margin-left': '8px'
+		'margin-left': 'var(--select-icon-margin-left)'
 	}),
 	dropdown: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		position: 'absolute',
 		top: '100%',
 		left: '0',
 		right: '0',
-		'margin-top': '4px',
-		padding: '4px',
-		'border-radius': '6px',
+		'margin-top': 'var(--select-dropdown-margin-top)',
+		padding: 'var(--select-dropdown-padding)',
+		'border-radius': 'var(--select-border-radius)',
 		background: options.isDark ? '#1a1a1f' : '#ffffff',
 		border: `1px solid ${
 			options.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
@@ -89,20 +89,20 @@ export const selectStyles = {
 			? '0 4px 12px rgba(0, 0, 0, 0.3)'
 			: '0 2px 8px rgba(0, 0, 0, 0.1)',
 		'z-index': '1000',
-		'max-height': '300px',
-		height: '300px',
+		'max-height': 'var(--select-dropdown-max-height)',
+		height: 'var(--select-dropdown-max-height)',
 		'box-sizing': 'border-box',
 		display: 'flex',
 		'flex-direction': 'column'
 	}),
 	option: (options: SelectStyleOptions): JSX.CSSProperties => ({
-		padding: '10px 12px',
-		'font-size': '14px',
+		padding: 'var(--select-option-padding)',
+		'font-size': 'var(--select-option-font-size)',
 		'line-height': '1.5',
 		color: options.isDark ? '#f6f6f6' : '#1a1a1a',
 		cursor: 'pointer',
-		'border-radius': '4px',
-		transition: 'background-color 0.15s ease',
+		'border-radius': 'var(--radius-sm)',
+		transition: 'background-color var(--transition-fast)',
 		'box-sizing': 'border-box'
 	}),
 	optionHover: (options: SelectStyleOptions): JSX.CSSProperties => ({
@@ -127,8 +127,8 @@ export const selectStyles = {
 	}),
 	optionDescription: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		display: 'block',
-		'font-size': '12px',
-		'margin-top': '2px',
+		'font-size': 'var(--select-option-description-font-size)',
+		'margin-top': 'var(--select-option-description-margin-top)',
 		color: options.isDark ? 'rgba(246, 246, 246, 0.6)' : 'rgba(26, 26, 26, 0.6)'
 	})
 } as const

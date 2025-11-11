@@ -46,7 +46,7 @@ export const typographyStyles = {
 		switch (variant) {
 			case 'h1':
 				return {
-					'font-size': '2.5rem',
+					'font-size': 'var(--typography-h1-font-size)',
 					'font-weight': '700',
 					'line-height': '1.2',
 					'margin-top': '0',
@@ -56,7 +56,7 @@ export const typographyStyles = {
 				}
 			case 'h2':
 				return {
-					'font-size': '2rem',
+					'font-size': 'var(--typography-h2-font-size)',
 					'font-weight': '700',
 					'line-height': '1.3',
 					'margin-top': '0',
@@ -66,7 +66,7 @@ export const typographyStyles = {
 				}
 			case 'h3':
 				return {
-					'font-size': '1.5rem',
+					'font-size': 'var(--typography-h3-font-size)',
 					'font-weight': '600',
 					'line-height': '1.4',
 					'margin-top': '0',
@@ -75,7 +75,7 @@ export const typographyStyles = {
 				}
 			case 'h4':
 				return {
-					'font-size': '1.25rem',
+					'font-size': 'var(--typography-h4-font-size)',
 					'font-weight': '600',
 					'line-height': '1.4',
 					'margin-top': '0',
@@ -84,7 +84,7 @@ export const typographyStyles = {
 				}
 			case 'h5':
 				return {
-					'font-size': '1.125rem',
+					'font-size': 'var(--typography-h5-font-size)',
 					'font-weight': '600',
 					'line-height': '1.5',
 					'margin-top': '0',
@@ -93,7 +93,7 @@ export const typographyStyles = {
 				}
 			case 'h6':
 				return {
-					'font-size': '1rem',
+					'font-size': 'var(--typography-h6-font-size)',
 					'font-weight': '600',
 					'line-height': '1.5',
 					'margin-top': '0',
@@ -111,7 +111,7 @@ export const typographyStyles = {
 				}
 			case 'body':
 				return {
-					'font-size': '1rem',
+					'font-size': 'var(--typography-body-font-size)',
 					'font-weight': '400',
 					'line-height': '1.6',
 					'margin-top': '0',
@@ -120,7 +120,7 @@ export const typographyStyles = {
 				}
 			case 'small':
 				return {
-					'font-size': '0.875rem',
+					'font-size': 'var(--typography-small-font-size)',
 					'font-weight': '400',
 					'line-height': '1.5',
 					'margin-top': '0',
@@ -156,4 +156,3 @@ export const typographyStyles = {
 		}
 	}
 } as const
-

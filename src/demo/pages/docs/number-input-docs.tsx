@@ -44,22 +44,23 @@ export const NumberInputDocs: Component<NumberInputDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 							<NumberInput
 								value={basicValue()}
 								step={1}
 								enableWheel={true}
 								onChange={val => setBasicValue(typeof val === 'number' ? val : parseInt(String(val), 10))}
 							/>
+							</div>
 						</div>
 					}
 					code={numberInputSnippets.usage.basicUsage}
@@ -74,16 +75,16 @@ export const NumberInputDocs: Component<NumberInputDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 							<NumberInput
 								value={controlledValue()}
 								onChange={val => {
@@ -100,6 +101,7 @@ export const NumberInputDocs: Component<NumberInputDocsProps> = props => {
 								showArrows={true}
 								themeAware={true}
 							/>
+							</div>
 						</div>
 					}
 					code={numberInputSnippets.usage.controlled}

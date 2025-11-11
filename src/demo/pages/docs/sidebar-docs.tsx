@@ -1,6 +1,7 @@
 import { Accessor, Component, createSignal, For } from 'solid-js'
 import { Button } from '../../../components/ui/button'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
+import { Grid } from '../../../components/ui/grid'
 import type { SidebarItem } from '../../../components/ui/sidebar'
 import { Sidebar } from '../../../components/ui/sidebar'
 import { Tabs } from '../../../components/ui/tabs'
@@ -80,7 +81,9 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 						<div
 							style={{
 								width: '100%',
-								height: '500px',
+								height: '600px',
+								'max-width': '800px',
+								margin: '0 auto',
 								'box-sizing': 'border-box',
 								border: `1px solid ${
 									props.isDark()
@@ -107,7 +110,10 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 									display: 'flex',
 									'flex-direction': 'column',
 									height: '100%',
-									overflow: 'hidden'
+									width: '100%',
+									overflow: 'hidden',
+									'min-height': '0',
+									'min-width': '0'
 								}}
 							>
 								<div
@@ -120,7 +126,8 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 										}`,
 										display: 'flex',
 										'align-items': 'center',
-										gap: '12px'
+										gap: '12px',
+										'flex-shrink': '0'
 									}}
 								>
 									<Button
@@ -145,12 +152,20 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 								</div>
 								<div
 									style={{
-										flex: '1',
+										flex: '1 1 0',
 										padding: '24px',
-										overflow: 'auto',
+										overflow: 'hidden',
 										background: props.isDark()
 											? 'hsl(240 20% 10%)'
-											: 'rgba(248, 248, 248, 1)'
+											: 'rgba(248, 248, 248, 1)',
+										display: 'flex',
+										'flex-direction': 'column',
+										height: '100%',
+										width: '100%',
+										'box-sizing': 'border-box',
+										'min-height': '0',
+										'min-width': '0',
+										position: 'relative'
 									}}
 								>
 									<h3
@@ -158,7 +173,8 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 											'font-size': '1.1rem',
 											'font-weight': '600',
 											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											'flex-shrink': '0'
 										}}
 									>
 										Main Content
@@ -166,26 +182,36 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 									<Typography
 										variant='small'
 										isDark={props.isDark()}
-										style={{ margin: '0 0 16px 0' }}
+										style={{ margin: '0 0 16px 0', 'flex-shrink': '0' }}
 									>
 										Click the menu button to toggle the sidebar. The sidebar
 										supports icons, separators, and can be controlled by any
 										trigger you provide.
 									</Typography>
-									<div
+									<Grid
+										columns='repeat(3, minmax(0, 1fr))'
+										rows='auto 1fr'
+										gap='4px'
+										preserveArea={{
+											selector: '[data-preserve-area="true"]',
+											minHeight: '200px'
+										}}
 										style={{
-											display: 'grid',
-											'grid-template-columns':
-												'repeat(auto-fit, minmax(200px, 1fr))',
-											gap: '16px',
-											margin: '24px 0'
+											flex: '1 1 0',
+											width: '100%',
+											'max-height': '100%',
+											'box-sizing': 'border-box',
+											'min-height': '0',
+											'min-width': '0',
+											overflow: 'hidden'
 										}}
 									>
 										<For each={Array.from({ length: 4 })}>
 											{(_, i) => (
 												<div
+													data-preserve-area={i() === 3 ? 'true' : undefined}
 													style={{
-														padding: '16px',
+														padding: '32px',
 														'border-radius': '8px',
 														background: props.isDark()
 															? 'rgba(30, 30, 30, 0.5)'
@@ -194,10 +220,23 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 															props.isDark()
 																? 'rgba(255, 255, 255, 0.1)'
 																: 'rgba(0, 0, 0, 0.1)'
-														}`
+														}`,
+														'grid-column': i() === 3 ? '1 / -1' : 'auto',
+														'grid-row': i() === 3 ? '2' : '1',
+														display: 'flex',
+														'flex-direction': 'column',
+														'align-items': i() === 3 ? 'flex-start' : 'center',
+														'justify-content':
+															i() === 3 ? 'flex-start' : 'center',
+														'box-sizing': 'border-box'
 													}}
 												>
-													<Typography variant='h5' as='h4' isDark={props.isDark()} style={{ margin: '0 0 8px 0' }}>
+													<Typography
+														variant='h5'
+														as='h4'
+														isDark={props.isDark()}
+														style={{ margin: '0 0 8px 0' }}
+													>
 														Card {i() + 1}
 													</Typography>
 													<Typography
@@ -210,7 +249,7 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 												</div>
 											)}
 										</For>
-									</div>
+									</Grid>
 								</div>
 							</div>
 						</div>

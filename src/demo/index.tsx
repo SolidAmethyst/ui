@@ -26,6 +26,7 @@ import {
 	TitleBarDocs
 } from './pages/docs'
 import { SettingsPage } from './pages/settings-page'
+import { TestPage } from './pages/test-page'
 import './styles.css'
 
 function App() {
@@ -310,6 +311,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'app'}>
 											<AppDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'test'}>
+											<TestPage isDark={isDark} />
 										</Show>
 									</div>
 								</main>

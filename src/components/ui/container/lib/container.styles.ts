@@ -16,13 +16,13 @@ export const containerStyles = (
 	const maxWidth =
 		typeof options.maxWidth === 'number'
 			? `${options.maxWidth}px`
-			: options.maxWidth || '1400px'
+			: options.maxWidth || 'var(--container-max-width)'
 
 	return {
 		width: '100%',
 		'max-width': maxWidth,
 		margin: '0 auto',
-		padding: options.padding || '0 32px',
+		padding: options.padding || 'var(--container-padding)',
 		'box-sizing': 'border-box'
 	}
 }

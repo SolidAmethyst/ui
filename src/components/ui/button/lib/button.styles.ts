@@ -17,8 +17,8 @@ export const buttonStyles = {
     align-items: center;
     justify-content: center;
     -webkit-app-region: no-drag;
-    font-size: 12px;
-    border-radius: 0;
+    font-size: var(--button-font-size);
+    border-radius: var(--button-border-radius);
     box-sizing: border-box;
     overflow: hidden;
     box-shadow: none;
@@ -30,8 +30,8 @@ export const buttonStyles = {
   // Play/Pause button
   playPause: `
     position: relative;
-    width: 50px;
-    height: 50px;
+    width: var(--button-play-pause-size);
+    height: var(--button-play-pause-size);
     border: 2px solid transparent;
     background: transparent;
     color: hsl(var(--foreground));
@@ -87,8 +87,8 @@ export const buttonStyles = {
 
   // Icon sizes
   iconSizes: {
-    small: "12px",
-    normal: "14px",
-    large: "20px",
+    small: "var(--button-icon-size-small)",
+    normal: "var(--button-icon-size-normal)",
+    large: "var(--button-icon-size-large)",
   },
 };

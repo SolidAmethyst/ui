@@ -39,14 +39,16 @@ export const TechChipDocs: Component<TechChipDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									width: '100%'
+								}}
+							>
 							<TechChip
 								label='TypeScript'
 								icon='code'
@@ -83,6 +85,7 @@ export const TechChipDocs: Component<TechChipDocsProps> = props => {
 								status='ready'
 								variant='engine'
 							/>
+							</div>
 						</div>
 					}
 					code={techchipSnippets.usage.basicUsage}
@@ -97,14 +100,16 @@ export const TechChipDocs: Component<TechChipDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									width: '100%'
+								}}
+							>
 							<TechChip
 								label='Loading'
 								icon='hourglass_empty'
@@ -123,6 +128,7 @@ export const TechChipDocs: Component<TechChipDocsProps> = props => {
 								status='error'
 								variant='engine'
 							/>
+							</div>
 						</div>
 					}
 					code={techchipSnippets.usage.statusStates}

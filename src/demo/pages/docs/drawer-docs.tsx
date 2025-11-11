@@ -48,7 +48,8 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div style={{ padding: '20px' }}>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div style={{ width: '100%' }}>
 							<Button onClick={() => setRightOpen(true)}>Open Drawer</Button>
 							<Drawer
 								isOpen={rightOpen()}
@@ -73,6 +74,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 									</Typography>
 								</div>
 							</Drawer>
+							</div>
 						</div>
 					}
 					code={drawerSnippets.usage.basicUsage}
@@ -90,7 +92,8 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div style={{ padding: '20px', display: 'flex', gap: '12px' }}>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div style={{ width: '100%', display: 'flex', gap: '12px' }}>
 							<Button onClick={() => setLeftOpen(true)}>Left</Button>
 							<Button onClick={() => setTopOpen(true)}>Top</Button>
 							<Button onClick={() => setBottomOpen(true)}>Bottom</Button>
@@ -189,6 +192,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 									</Typography>
 								</div>
 							</Drawer>
+							</div>
 						</div>
 					}
 					code={drawerSnippets.usage.positions}
@@ -203,7 +207,8 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div style={{ padding: '20px' }}>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div style={{ width: '100%' }}>
 							<Button onClick={() => setWideOpen(true)}>
 								Open Wide Drawer
 							</Button>
@@ -231,6 +236,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 									</Typography>
 								</div>
 							</Drawer>
+							</div>
 						</div>
 					}
 					code={drawerSnippets.usage.customSize}
@@ -245,7 +251,8 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div style={{ padding: '20px' }}>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div style={{ width: '100%' }}>
 							<Button onClick={() => setNoBackdropOpen(!noBackdropOpen())}>
 								{noBackdropOpen()
 									? 'Close Drawer'
@@ -275,6 +282,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 									</Typography>
 								</div>
 							</Drawer>
+							</div>
 						</div>
 					}
 					code={drawerSnippets.usage.noBackdrop}
@@ -289,7 +297,8 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div style={{ padding: '20px' }}>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div style={{ width: '100%' }}>
 							<Button onClick={() => setControlledOpen(true)}>
 								Open Drawer
 							</Button>
@@ -320,6 +329,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 									</Button>
 								</div>
 							</Drawer>
+							</div>
 						</div>
 					}
 					code={drawerSnippets.usage.controlledClose}

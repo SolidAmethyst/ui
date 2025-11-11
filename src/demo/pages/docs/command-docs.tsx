@@ -163,23 +163,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'box-sizing': 'border-box',
-								border: `1px solid ${
-									props.isDark()
-										? 'rgba(255, 255, 255, 0.1)'
-										: 'rgba(0, 0, 0, 0.1)'
-								}`,
-								'border-radius': '8px',
-								overflow: 'hidden',
-								position: 'relative',
-								display: 'flex',
-								padding: '24px',
-								background: props.isDark() ? 'hsl(240 20% 7%)' : '#fafafa'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
 							<Command
 								style={{
 									width: '100%',
@@ -203,7 +187,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 										position: 'relative',
 										display: 'flex',
 										'align-items': 'center',
-										padding: '0 12px',
+										padding: 'var(--command-input-container-padding)',
 										'border-bottom': `1px solid ${
 											props.isDark()
 												? 'rgba(255, 255, 255, 0.1)'
@@ -229,7 +213,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 										placeholder='Type a command or search...'
 										style={{
 											padding: '12px 0 12px 0',
-											'font-size': '14px',
+											'font-size': 'var(--command-input-font-size)',
 											border: 'none',
 											outline: 'none',
 											background: 'transparent',
@@ -242,7 +226,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 								</div>
 								<Command.List
 									style={{
-										padding: '0 12px 16px 12px',
+										padding: `0 var(--command-list-padding-horizontal) var(--command-list-padding-bottom) var(--command-list-padding-horizontal)`,
 										overflow: 'visible',
 										'box-sizing': 'border-box'
 									}}
@@ -256,9 +240,9 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												'justify-content': 'space-between',
 												padding: '2px 0',
 												height: '28px',
-												'font-size': '14px',
+												'font-size': 'var(--command-item-font-size)',
 												color: props.isDark() ? '#ffffff' : '#1a1a1a',
-												'border-radius': '4px',
+												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
 												gap: '12px'
@@ -286,7 +270,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 											>
 												<CalendarIcon />
 											</div>
-											<span style={{ 'margin-left': '8px' }}>Calendar</span>
+											<span style={{ 'margin-left': 'var(--spacing-sm)' }}>Calendar</span>
 											</div>
 											<Command.Shortcut
 												style={{
@@ -305,9 +289,9 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												'justify-content': 'space-between',
 												padding: '2px 0',
 												height: '28px',
-												'font-size': '14px',
+												'font-size': 'var(--command-item-font-size)',
 												color: props.isDark() ? '#ffffff' : '#1a1a1a',
-												'border-radius': '4px',
+												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
 												gap: '12px'
@@ -335,7 +319,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 											>
 												<SmileIcon />
 											</div>
-												<span style={{ 'margin-left': '8px' }}>
+												<span style={{ 'margin-left': 'var(--spacing-sm)' }}>
 													Search Emoji
 												</span>
 											</div>
@@ -356,9 +340,9 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												'justify-content': 'space-between',
 												padding: '2px 0',
 												height: '28px',
-												'font-size': '14px',
+												'font-size': 'var(--command-item-font-size)',
 												color: props.isDark() ? '#ffffff' : '#1a1a1a',
-												'border-radius': '4px',
+												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
 												gap: '12px'
@@ -386,7 +370,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 											>
 												<RocketIcon />
 											</div>
-											<span style={{ 'margin-left': '8px' }}>Launch</span>
+											<span style={{ 'margin-left': 'var(--spacing-sm)' }}>Launch</span>
 											</div>
 											<Command.Shortcut
 												style={{
@@ -408,9 +392,9 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												'justify-content': 'space-between',
 												padding: '2px 0',
 												height: '28px',
-												'font-size': '14px',
+												'font-size': 'var(--command-item-font-size)',
 												color: props.isDark() ? '#ffffff' : '#1a1a1a',
-												'border-radius': '4px',
+												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
 												gap: '12px'
@@ -438,7 +422,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												>
 													<UserIcon />
 												</div>
-												<span style={{ 'margin-left': '8px' }}>Profile</span>
+												<span style={{ 'margin-left': 'var(--spacing-sm)' }}>Profile</span>
 											</div>
 											<Command.Shortcut
 												style={{
@@ -457,9 +441,9 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												'justify-content': 'space-between',
 												padding: '2px 0',
 												height: '28px',
-												'font-size': '14px',
+												'font-size': 'var(--command-item-font-size)',
 												color: props.isDark() ? '#ffffff' : '#1a1a1a',
-												'border-radius': '4px',
+												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
 												gap: '12px'
@@ -487,7 +471,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												>
 													<MailIcon />
 												</div>
-												<span style={{ 'margin-left': '8px' }}>Mail</span>
+												<span style={{ 'margin-left': 'var(--spacing-sm)' }}>Mail</span>
 											</div>
 											<Command.Shortcut
 												style={{
@@ -506,9 +490,9 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												'justify-content': 'space-between',
 												padding: '2px 0',
 												height: '28px',
-												'font-size': '14px',
+												'font-size': 'var(--command-item-font-size)',
 												color: props.isDark() ? '#ffffff' : '#1a1a1a',
-												'border-radius': '4px',
+												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
 												gap: '12px'
@@ -536,7 +520,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												>
 													<SettingsIcon />
 												</div>
-												<span style={{ 'margin-left': '8px' }}>Settings</span>
+												<span style={{ 'margin-left': 'var(--spacing-sm)' }}>Settings</span>
 											</div>
 											<Command.Shortcut
 												style={{

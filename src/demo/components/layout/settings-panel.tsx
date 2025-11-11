@@ -3,7 +3,7 @@
  * General settings panel with sections for different components (Glass, etc.)
  */
 
-import { Component } from 'solid-js'
+import { Component, createEffect, onCleanup } from 'solid-js'
 
 interface SettingsPanelProps {
 	isDark: () => boolean
@@ -23,6 +23,24 @@ interface SettingsPanelProps {
 }
 
 export const SettingsPanel: Component<SettingsPanelProps> = props => {
+	// Block body scroll when panel is open
+	createEffect(() => {
+		if (props.isOpen) {
+			const scrollBarWidth =
+				window.innerWidth - document.documentElement.clientWidth
+			document.body.style.overflow = 'hidden'
+			document.body.style.paddingRight = `${scrollBarWidth}px`
+		} else {
+			document.body.style.overflow = ''
+			document.body.style.paddingRight = ''
+		}
+	})
+
+	onCleanup(() => {
+		document.body.style.overflow = ''
+		document.body.style.paddingRight = ''
+	})
+
 	const panelStyles = () => ({
 		position: 'fixed' as const,
 		top: '60px',

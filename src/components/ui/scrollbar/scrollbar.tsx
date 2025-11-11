@@ -224,100 +224,46 @@ export const Scrollbar = (props: ScrollbarProps) => {
   });
 
   return (
-    <>
-      <style>{`
-				.custom-scrollbar-container {
-					position: relative;
-					overflow: hidden;
-				}
-				.custom-scrollbar-content {
-					height: 100%;
-					width: 100%;
-					overflow-y: auto;
-					overflow-x: auto;
-					scrollbar-width: none !important;
-					-ms-overflow-style: none !important;
-				}
-				.custom-scrollbar-content::-webkit-scrollbar {
-					display: none !important;
-					width: 0 !important;
-					height: 0 !important;
-				}
-				.custom-scrollbar-track {
-					position: absolute;
-					z-index: 999;
-					background: transparent;
-				}
-				.custom-scrollbar-track-vertical {
-					top: 0;
-					right: 0;
-					width: 10px;
-					height: 100%;
-				}
-				.custom-scrollbar-track-horizontal {
-					bottom: 0;
-					left: 0;
-					width: 100%;
-					height: 12px;
-				}
-				.custom-scrollbar-thumb {
-					position: absolute;
-					background: rgba(59, 130, 246, 0.6);
-					border-radius: 2px;
-					cursor: grab;
-					transition: background 150ms;
-					z-index: 99999;
-				}
-				.custom-scrollbar-thumb:hover {
-					background: rgba(59, 130, 246, 0.8);
-				}
-				.custom-scrollbar-thumb:active,
-				.custom-scrollbar-thumb.dragging {
-					background: rgba(59, 130, 246, 1);
-					cursor: grabbing;
-				}
-			`}</style>
+    <div
+      ref={containerRef}
+      class={`custom-scrollbar-container ${props.class || ""}`}
+      style={props.style}
+    >
       <div
-        ref={containerRef}
-        class={`custom-scrollbar-container ${props.class || ""}`}
-        style={props.style}
+        ref={contentRef}
+        class="custom-scrollbar-content"
+        style={{
+          "overflow-y": props.horizontal ? "hidden" : "auto",
+          "overflow-x": props.horizontal ? "auto" : "hidden",
+        }}
       >
-        <div
-          ref={contentRef}
-          class="custom-scrollbar-content"
-          style={{
-            "overflow-y": props.horizontal ? "hidden" : "auto",
-            "overflow-x": props.horizontal ? "auto" : "hidden",
-          }}
-        >
-          {props.children}
-        </div>
-
-        {showScrollbar() && (
-          <div
-            ref={trackRef}
-            class={`custom-scrollbar-track ${
-              props.horizontal
-                ? "custom-scrollbar-track-horizontal"
-                : "custom-scrollbar-track-vertical"
-            }`}
-            onClick={handleTrackClick}
-          >
-            <div
-              ref={thumbRef}
-              class={`custom-scrollbar-thumb ${isDragging() ? "dragging" : ""}`}
-              style={{
-                width: props.horizontal ? `${thumbSize()}px` : "4px",
-                height: props.horizontal ? "4px" : `${thumbSize()}px`,
-                left: props.horizontal ? `${thumbPosition()}px` : "auto",
-                top: props.horizontal ? "4px" : `${thumbPosition()}px`,
-                right: props.horizontal ? "auto" : "2px",
-              }}
-              onMouseDown={handleThumbMouseDown}
-            />
-          </div>
-        )}
+        {props.children}
       </div>
-    </>
+
+      {showScrollbar() && (
+        <div
+          ref={trackRef}
+          class={`custom-scrollbar-track ${
+            props.horizontal
+              ? "custom-scrollbar-track-horizontal"
+              : "custom-scrollbar-track-vertical"
+          }`}
+          onClick={handleTrackClick}
+        >
+          <div
+            ref={thumbRef}
+            class={`custom-scrollbar-thumb ${isDragging() ? "dragging" : ""}`}
+            style={{
+              width: props.horizontal ? `${thumbSize()}px` : "4px",
+              height: props.horizontal ? "4px" : `${thumbSize()}px`,
+              left: props.horizontal ? `${thumbPosition()}px` : "auto",
+              top: props.horizontal ? "4px" : `${thumbPosition()}px`,
+              right: props.horizontal ? "auto" : "2px",
+            }}
+            onMouseDown={handleThumbMouseDown}
+          />
+        </div>
+      )}
+    </div>
   );
 };

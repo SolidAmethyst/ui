@@ -42,14 +42,14 @@ export const drawerStyles = {
 			right: '0',
 			bottom: '0',
 			...backdropCoverage[position],
-			background: 'rgba(0, 0, 0, 0.3)',
-			'backdrop-filter': 'blur(2px)',
-			'-webkit-backdrop-filter': 'blur(2px)',
+			background: `rgba(0, 0, 0, var(--drawer-backdrop-opacity))`,
+			'backdrop-filter': `blur(var(--drawer-backdrop-blur))`,
+			'-webkit-backdrop-filter': `blur(var(--drawer-backdrop-blur))`,
 			'z-index': '9999',
 			opacity: isOpen ? '1' : '0',
 			visibility: isOpen ? 'visible' : 'hidden',
 			transition:
-				'opacity 300ms cubic-bezier(0.4, 0, 0.2, 1), visibility 300ms cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter 300ms cubic-bezier(0.4, 0, 0.2, 1), right 300ms cubic-bezier(0.4, 0, 0.2, 1), left 300ms cubic-bezier(0.4, 0, 0.2, 1), top 300ms cubic-bezier(0.4, 0, 0.2, 1), bottom 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+				`opacity var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), visibility var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), right var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), left var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), top var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), bottom var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1)`,
 			'pointer-events': isOpen ? 'auto' : 'none'
 		}
 	},
@@ -67,8 +67,8 @@ export const drawerStyles = {
 			background: isDark
 				? 'hsla(240, 5.9%, 10%, 0.95)'
 				: 'hsla(0, 0%, 98%, 0.95)',
-			'backdrop-filter': 'blur(20px) saturate(180%)',
-			'-webkit-backdrop-filter': 'blur(20px) saturate(180%)',
+			'backdrop-filter': `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
+			'-webkit-backdrop-filter': `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
 			border: 'none',
 			'box-sizing': 'border-box',
 			overflow: 'hidden',
@@ -81,7 +81,7 @@ export const drawerStyles = {
 					: '0 4px 16px rgba(0, 0, 0, 0.1), -2px 0 8px rgba(0, 0, 0, 0.05)'
 				: 'none',
 			transition:
-				'transform 300ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+				`transform var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), box-shadow var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1)`
 		}
 
 		// Position-specific styles

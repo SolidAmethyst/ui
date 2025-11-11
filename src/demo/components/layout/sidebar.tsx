@@ -42,6 +42,12 @@ const componentGroups: ComponentGroup[] = [
 			{ name: 'App', id: 'app' },
 			{ name: 'TitleBar', id: 'titlebar' }
 		]
+	},
+	{
+		title: 'Testing',
+		items: [
+			{ name: 'Test', id: 'test' }
+		]
 	}
 ]
 

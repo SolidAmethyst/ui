@@ -104,14 +104,16 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 				</Typography>
 				<Tabs
 					preview={
-						<TabsRoot defaultValue='tab1' isDark={props.isDark()}>
-							<TabsList style={{ width: '100%', 'max-width': '100%' }}>
-								<TabsTrigger value='tab1'>Overview</TabsTrigger>
-								<TabsTrigger value='tab2'>Settings</TabsTrigger>
-								<TabsTrigger value='tab3'>Analytics</TabsTrigger>
-								<TabsTrigger value='tab4'>Reports</TabsTrigger>
-							</TabsList>
-						</TabsRoot>
+						<div style={docsStyles.previewContainer(theme())}>
+							<TabsRoot defaultValue='tab1' isDark={props.isDark()}>
+								<TabsList style={{ width: '100%', 'max-width': '100%' }}>
+									<TabsTrigger value='tab1'>Overview</TabsTrigger>
+									<TabsTrigger value='tab2'>Settings</TabsTrigger>
+									<TabsTrigger value='tab3'>Analytics</TabsTrigger>
+									<TabsTrigger value='tab4'>Reports</TabsTrigger>
+								</TabsList>
+							</TabsRoot>
+						</div>
 					}
 					code={tabsSnippets.basicUsage}
 					isDark={props.isDark}
@@ -131,14 +133,16 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 						<div
 							style={{
 								width: '100%',
-								height: '500px',
+								'aspect-ratio': '1',
+								'max-width': '800px',
+								'margin': '0 auto',
 								'box-sizing': 'border-box',
 								border: `1px solid ${
 									props.isDark()
 										? 'rgba(255, 255, 255, 0.1)'
 										: 'rgba(0, 0, 0, 0.1)'
 								}`,
-								'border-radius': '0',
+								'border-radius': '8px',
 								overflow: 'hidden',
 								position: 'relative',
 								display: 'flex',

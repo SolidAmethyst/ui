@@ -69,6 +69,84 @@ export const gridSnippets = {
   <div>Main Content</div>
   <div>Actions</div>
   <div style={{ gridColumn: "1 / -1" }}>Footer</div>
-</Grid>`
-	}
+</Grid>`,
+
+		preserveArea: `<Grid
+  columns="repeat(3, minmax(0, 1fr))"
+  rows="auto 1fr"
+  gap="8px"
+  preserveArea={{
+    selector: '[data-preserve-area="true"]',
+    minHeight: '150px'
+  }}
+>
+  <div>Card 1</div>
+  <div>Card 2</div>
+  <div>Card 3</div>
+  <div
+    data-preserve-area="true"
+    style={{ gridColumn: '1 / -1', gridRow: '2' }}
+  >
+    Card 4 (Priority - preserves area on resize)
+  </div>
+</Grid>
+
+// CSS Variables for advanced customization:
+// --grid-row-1-height: Height of first row
+// --grid-row-2-height: Height of second row (priority element)`
+	},
+
+	customization: `@layer base {
+  :root {
+    /* Grid spacing */
+    --grid-gap: 12px;
+    --grid-gap-row: 16px;
+    --grid-gap-column: 12px;
+    --grid-item-padding: 20px;
+
+    /* Grid transitions */
+    --grid-transition-duration: 250ms;
+    --grid-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Preserve area minimums */
+    --grid-preserve-area-min-row-height: 80px;
+    --grid-preserve-area-min-card-height: 250px;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    /* Override for dark theme if needed */
+    --grid-gap: 16px;
+  }
+}
+
+/* Override for specific grid instance */
+.my-custom-grid {
+  --grid-gap: 24px;
+  --grid-transition-duration: 300ms;
+}`,
+
+	customizationPreserveArea: `/* Override preserve area row heights */
+.my-grid {
+  --grid-row-1-height: 120px;
+  --grid-row-2-height: 400px;
+}
+
+/* Override preserve area minimums */
+.my-grid {
+  --grid-preserve-area-min-row-height: 100px;
+  --grid-preserve-area-min-card-height: 300px;
+}
+
+/* Override transition timing */
+.my-grid {
+  --grid-transition-duration: 350ms;
+  --grid-transition-timing: ease-in-out;
+}
+
+/* Example: Smooth preserve area animation */
+.smooth-grid {
+  --grid-transition-duration: 400ms;
+  --grid-transition-timing: cubic-bezier(0.25, 0.1, 0.25, 1);
+}`
 } as const

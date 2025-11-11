@@ -65,19 +65,22 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center',
-								'justify-content': 'center'
-							}}
-						>
-							<Button variant='primary'>Primary</Button>
-							<Button variant='secondary'>Secondary</Button>
-							<Button variant='danger'>Danger</Button>
-							<Button variant='ghost'>Ghost</Button>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									'justify-content': 'center',
+									width: '100%'
+								}}
+							>
+								<Button variant='primary'>Primary</Button>
+								<Button variant='secondary'>Secondary</Button>
+								<Button variant='danger'>Danger</Button>
+								<Button variant='ghost'>Ghost</Button>
+							</div>
 						</div>
 					}
 					code={buttonSnippets.usage.basicUsage}
@@ -92,18 +95,21 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center',
-								'justify-content': 'center'
-							}}
-						>
-							<Button icon='menu'>Menu</Button>
-							<Button icon='settings'>Settings</Button>
-							<Button icon='bug_report'>Debug</Button>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									'justify-content': 'center',
+									width: '100%'
+								}}
+							>
+								<Button icon='menu'>Menu</Button>
+								<Button icon='settings'>Settings</Button>
+								<Button icon='bug_report'>Debug</Button>
+							</div>
 						</div>
 					}
 					code={buttonSnippets.usage.controlButtons}
@@ -118,33 +124,36 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center',
-								'justify-content': 'center'
-							}}
-						>
-							<Button
-								variant='small'
-								icon='settings'
-								iconPosition='only'
-								title='Settings'
-							/>
-							<Button
-								variant='small'
-								icon='bug_report'
-								iconPosition='only'
-								title='Debug'
-							/>
-							<Button
-								variant='small'
-								icon='push_pin'
-								iconPosition='only'
-								title='Pin'
-							/>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									'justify-content': 'center',
+									width: '100%'
+								}}
+							>
+								<Button
+									variant='small'
+									icon='settings'
+									iconPosition='only'
+									title='Settings'
+								/>
+								<Button
+									variant='small'
+									icon='bug_report'
+									iconPosition='only'
+									title='Debug'
+								/>
+								<Button
+									variant='small'
+									icon='push_pin'
+									iconPosition='only'
+									title='Pin'
+								/>
+							</div>
 						</div>
 					}
 					code={buttonSnippets.usage.smallButtons}
@@ -158,7 +167,11 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				</Typography>
 				<Tabs
 					isDark={props.isDark}
-					preview={<TriggerButtonDemo />}
+					preview={
+						<div style={docsStyles.previewContainer(theme())}>
+							<TriggerButtonDemo />
+						</div>
+					}
 					code={buttonSnippets.usage.triggerButton}
 				/>
 			</section>
@@ -171,17 +184,20 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center',
-								'justify-content': 'center'
-							}}
-						>
-							<Button variant='play-pause' icon='play_arrow' title='Play' />
-							<Button variant='play-pause' icon='pause' title='Pause' />
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									'justify-content': 'center',
+									width: '100%'
+								}}
+							>
+								<Button variant='play-pause' icon='play_arrow' title='Play' />
+								<Button variant='play-pause' icon='pause' title='Pause' />
+							</div>
 						</div>
 					}
 					code={buttonSnippets.usage.playPause}
@@ -196,33 +212,36 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center',
-								'justify-content': 'center'
-							}}
-						>
-							<Button
-								variant='minimize'
-								icon='remove'
-								iconPosition='only'
-								title='Minimize'
-							/>
-							<Button
-								variant='maximize'
-								icon='crop_square'
-								iconPosition='only'
-								title='Maximize'
-							/>
-							<Button
-								variant='close'
-								icon='close'
-								iconPosition='only'
-								title='Close'
-							/>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									'justify-content': 'center',
+									width: '100%'
+								}}
+							>
+								<Button
+									variant='minimize'
+									icon='remove'
+									iconPosition='only'
+									title='Minimize'
+								/>
+								<Button
+									variant='maximize'
+									icon='crop_square'
+									iconPosition='only'
+									title='Maximize'
+								/>
+								<Button
+									variant='close'
+									icon='close'
+									iconPosition='only'
+									title='Close'
+								/>
+							</div>
 						</div>
 					}
 					code={buttonSnippets.usage.windowControls}
@@ -237,45 +256,48 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center',
-								'justify-content': 'center'
-							}}
-						>
-							<Button
-								variant='back'
-								icon='arrow_back'
-								iconPosition='only'
-								title='Back'
-							/>
-							<Button
-								variant='save'
-								icon='save'
-								iconPosition='only'
-								title='Save'
-							/>
-							<Button
-								variant='delete'
-								icon='delete'
-								iconPosition='only'
-								title='Delete'
-							/>
-							<Button
-								variant='search'
-								icon='search'
-								iconPosition='only'
-								title='Search'
-							/>
-							<Button
-								variant='share'
-								icon='share'
-								iconPosition='only'
-								title='Share'
-							/>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									'justify-content': 'center',
+									width: '100%'
+								}}
+							>
+								<Button
+									variant='back'
+									icon='arrow_back'
+									iconPosition='only'
+									title='Back'
+								/>
+								<Button
+									variant='save'
+									icon='save'
+									iconPosition='only'
+									title='Save'
+								/>
+								<Button
+									variant='delete'
+									icon='delete'
+									iconPosition='only'
+									title='Delete'
+								/>
+								<Button
+									variant='search'
+									icon='search'
+									iconPosition='only'
+									title='Search'
+								/>
+								<Button
+									variant='share'
+									icon='share'
+									iconPosition='only'
+									title='Share'
+								/>
+							</div>
 						</div>
 					}
 					code={buttonSnippets.usage.actionButtons}
@@ -290,20 +312,23 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								display: 'flex',
-								'flex-wrap': 'wrap',
-								gap: '12px',
-								'align-items': 'center',
-								'justify-content': 'center'
-							}}
-						>
-							<Button active>Active</Button>
-							<Button pinned>Pinned</Button>
-							<Button maximized>Maximized</Button>
-							<Button loading>Loading</Button>
-							<Button disabled>Disabled</Button>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									'justify-content': 'center',
+									width: '100%'
+								}}
+							>
+								<Button active>Active</Button>
+								<Button pinned>Pinned</Button>
+								<Button maximized>Maximized</Button>
+								<Button loading>Loading</Button>
+								<Button disabled>Disabled</Button>
+							</div>
 						</div>
 					}
 					code={buttonSnippets.usage.buttonStates}

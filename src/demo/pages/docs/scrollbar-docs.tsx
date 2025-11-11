@@ -39,15 +39,15 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<ScrollbarProvider>
-							<div
-								style={{
-									width: '100%',
-									height: '300px',
-									padding: '12px',
-									'box-sizing': 'border-box'
-								}}
-							>
+						<div style={docsStyles.previewContainer(theme())}>
+							<ScrollbarProvider>
+								<div
+									style={{
+										width: '100%',
+										height: '200px',
+										'box-sizing': 'border-box'
+									}}
+								>
 								<Scrollbar
 									direction='vertical'
 									showArrows={true}
@@ -68,8 +68,9 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 										</div>
 									))}
 								</Scrollbar>
-							</div>
-						</ScrollbarProvider>
+								</div>
+							</ScrollbarProvider>
+						</div>
 					}
 					code={scrollbarSnippets.usage.verticalScrollbar}
 				/>
@@ -83,15 +84,15 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<ScrollbarProvider>
-							<div
-								style={{
-									width: '100%',
-									height: '87px',
-									padding: '12px 14px',
-									'box-sizing': 'border-box'
-								}}
-							>
+						<div style={docsStyles.previewContainer(theme())}>
+							<ScrollbarProvider>
+								<div
+									style={{
+										width: '100%',
+										height: '87px',
+										'box-sizing': 'border-box'
+									}}
+								>
 								<Scrollbar
 									direction='horizontal'
 									showArrows={true}
@@ -132,8 +133,9 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 										))}
 									</div>
 								</Scrollbar>
-							</div>
-						</ScrollbarProvider>
+								</div>
+							</ScrollbarProvider>
+						</div>
 					}
 					code={scrollbarSnippets.usage.horizontalScrollbar}
 				/>

@@ -113,5 +113,22 @@ export const docsStyles = {
 
 	inputFocus: (theme: DocsTheme): JSX.CSSProperties => ({
 		'border-color': getColors(theme).borderFocus
+	}),
+
+	previewContainer: (theme: DocsTheme): JSX.CSSProperties => ({
+		width: '100%',
+		'box-sizing': 'border-box',
+		border: `1px solid ${
+			theme.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+		}`,
+		'border-radius': '8px',
+		overflow: 'hidden',
+		position: 'relative',
+		display: 'flex',
+		'align-items': 'center',
+		'justify-content': 'center',
+		padding: '16px',
+		'min-height': '80px',
+		background: theme.isDark ? 'hsl(240 20% 7%)' : '#fafafa'
 	})
 } as const

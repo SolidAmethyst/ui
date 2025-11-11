@@ -12,16 +12,16 @@ export const sidebarStyles = {
 						position: 'absolute' as const,
 						top: '0',
 						left: isOpen ? '0' : '-250px',
-						width: '250px',
+						width: 'var(--sidebar-width)',
 						height: '100%',
 						'z-index': '1000',
-						transition: 'left 300ms cubic-bezier(0.4, 0, 0.2, 1)'
+						transition: 'left 200ms linear'
 				  }
-				: {
-						width: isOpen ? '250px' : '0',
+					: {
+						width: isOpen ? 'var(--sidebar-width)' : '0',
 						height: '100%',
 						overflow: 'hidden',
-						transition: 'width 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+						transition: 'width 200ms linear',
 						position: 'relative' as const,
 						'z-index': '100'
 				  }),
@@ -36,9 +36,9 @@ export const sidebarStyles = {
 		}
 	},
 	innerContainer: (): JSX.CSSProperties => ({
-		width: '250px',
+		width: 'var(--sidebar-width)',
 		height: '100%',
-		padding: '16px 0',
+		padding: 'var(--sidebar-padding)',
 		'box-sizing': 'border-box',
 		overflow: 'hidden',
 		display: 'flex',
@@ -50,24 +50,24 @@ export const sidebarStyles = {
 		padding: '0',
 		display: 'flex',
 		'flex-direction': 'column',
-		gap: '4px'
+		gap: 'var(--sidebar-list-gap)'
 	}),
 	separator: (isDark: boolean): JSX.CSSProperties => ({
-		height: '1px',
+		height: 'var(--sidebar-separator-height)',
 		'background-color': isDark
 			? 'hsla(240, 3.7%, 15.9%, 1)'
 			: 'hsla(220, 13%, 91%, 1)',
-		margin: '8px 12px'
+		margin: 'var(--sidebar-separator-margin)'
 	}),
 	button: (disabled: boolean, isDark: boolean): JSX.CSSProperties => ({
 		width: '100%',
 		display: 'flex',
 		'align-items': 'center',
-		gap: '12px',
-		padding: '10px 16px',
+		gap: 'var(--sidebar-button-gap)',
+		padding: 'var(--sidebar-button-padding)',
 		'border-radius': '0',
 		cursor: disabled ? 'not-allowed' : 'pointer',
-		'font-size': '14px',
+		'font-size': 'var(--sidebar-button-font-size)',
 		color: disabled
 			? isDark
 				? 'hsla(240, 4.8%, 95.9%, 0.4)'
@@ -83,9 +83,9 @@ export const sidebarStyles = {
 		opacity: disabled ? 0.5 : 1
 	}),
 	icon: (): JSX.CSSProperties => ({
-		'font-size': '20px',
-		width: '20px',
-		height: '20px',
+		'font-size': 'var(--sidebar-icon-font-size)',
+		width: 'var(--sidebar-icon-size)',
+		height: 'var(--sidebar-icon-size)',
 		display: 'flex',
 		'align-items': 'center',
 		'justify-content': 'center'

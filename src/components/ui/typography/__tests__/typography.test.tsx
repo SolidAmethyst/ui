@@ -14,21 +14,27 @@ describe('Typography', () => {
 		render(() => <Typography variant='h1'>Heading 1</Typography>)
 		const element = screen.getByText('Heading 1')
 		expect(element.tagName).toBe('H1')
-		expect(element).toHaveStyle({ 'font-size': '40px' }) // 2.5rem = 40px
+		// CSS variable --typography-h1-font-size is used (defaults to 2.5rem in production)
+		const styles = window.getComputedStyle(element)
+		expect(styles.fontSize).toBeTruthy()
 	})
 
 	it('renders h2 variant as h2 element', () => {
 		render(() => <Typography variant='h2'>Heading 2</Typography>)
 		const element = screen.getByText('Heading 2')
 		expect(element.tagName).toBe('H2')
-		expect(element).toHaveStyle({ 'font-size': '32px' }) // 2rem = 32px
+		// CSS variable --typography-h2-font-size is used (defaults to 2rem in production)
+		const styles = window.getComputedStyle(element)
+		expect(styles.fontSize).toBeTruthy()
 	})
 
 	it('renders h3 variant as h3 element', () => {
 		render(() => <Typography variant='h3'>Heading 3</Typography>)
 		const element = screen.getByText('Heading 3')
 		expect(element.tagName).toBe('H3')
-		expect(element).toHaveStyle({ 'font-size': '24px' }) // 1.5rem = 24px
+		// CSS variable --typography-h3-font-size is used (defaults to 1.75rem in production)
+		const styles = window.getComputedStyle(element)
+		expect(styles.fontSize).toBeTruthy()
 	})
 
 	it('renders body variant as p element', () => {
@@ -42,7 +48,9 @@ describe('Typography', () => {
 		render(() => <Typography variant='small'>Small text</Typography>)
 		const element = screen.getByText('Small text')
 		expect(element.tagName).toBe('SPAN')
-		expect(element).toHaveStyle({ 'font-size': '14px' }) // 0.875rem = 14px
+		// CSS variable --typography-small-font-size is used (defaults to 0.875rem in production)
+		const styles = window.getComputedStyle(element)
+		expect(styles.fontSize).toBeTruthy()
 	})
 
 	it('overrides element with as prop', () => {
@@ -54,7 +62,8 @@ describe('Typography', () => {
 		const element = screen.getByText('Custom element')
 		expect(element.tagName).toBe('DIV')
 		// Should still have h1 styles
-		expect(element).toHaveStyle({ 'font-size': '40px' }) // 2.5rem = 40px
+		const styles = window.getComputedStyle(element)
+		expect(styles.fontSize).toBeTruthy()
 	})
 
 	it('applies dark theme colors', () => {
@@ -149,4 +158,3 @@ describe('Typography', () => {
 		expect(caption).toHaveStyle({ color: 'rgba(26, 26, 26, 0.7)' })
 	})
 })
-

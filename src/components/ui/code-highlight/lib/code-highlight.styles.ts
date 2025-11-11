@@ -18,7 +18,7 @@ export const codeHighlightStyles = {
 		border: `1px solid ${
 			options.isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)'
 		}`,
-		'border-radius': '8px',
+		'border-radius': 'var(--code-highlight-border-radius)',
 		overflow: 'hidden',
 		'margin-bottom': '20px',
 		'word-wrap': 'break-word',
@@ -48,16 +48,15 @@ export const codeHighlightStyles = {
 		width: '100%',
 		height: '100%',
 		'max-width': '100%',
-		'max-height': '500px',
 		'box-sizing': 'border-box',
 		display: 'flex',
 		'flex-direction': 'column'
 	}),
 	preInner: (): JSX.CSSProperties => ({
 		margin: '0',
-		padding: '16px',
-		'font-size': '13px',
-		'line-height': '1.6',
+		padding: 'var(--code-highlight-padding)',
+		'font-size': 'var(--code-highlight-font-size)',
+		'line-height': 'var(--code-highlight-line-height)',
 		'font-family': 'Monaco, Menlo, "Ubuntu Mono", monospace',
 		background: 'transparent',
 		'word-wrap': 'break-word',

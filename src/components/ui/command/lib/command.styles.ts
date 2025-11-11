@@ -40,9 +40,9 @@ export const commandStyles = {
 
 	input: (options?: CommandStyleOptions): JSX.CSSProperties => ({
 		width: '100%',
-		padding: '12px 16px',
-		'font-size': '14px',
-		'line-height': '1.5',
+		padding: 'var(--command-input-padding)',
+		'font-size': 'var(--command-input-font-size)',
+		'line-height': 'var(--command-input-line-height)',
 		border: 'none',
 		outline: 'none',
 		background: 'transparent',
@@ -65,11 +65,11 @@ export const commandStyles = {
 		position: 'relative',
 		display: 'flex',
 		'align-items': 'center',
-		padding: '2px 0',
-		height: '32px',
-		'font-size': '14px',
-		'line-height': '1',
-		'border-radius': '4px',
+		padding: 'var(--command-item-padding)',
+		height: 'var(--command-item-height)',
+		'font-size': 'var(--command-item-font-size)',
+		'line-height': 'var(--command-item-line-height)',
+		'border-radius': 'var(--command-border-radius)',
 		cursor: options?.disabled ? 'not-allowed' : 'pointer',
 		'user-select': 'none',
 		'background-color': options?.selected
@@ -92,14 +92,14 @@ export const commandStyles = {
 	}),
 
 	groupHeading: (options?: CommandStyleOptions): JSX.CSSProperties => ({
-		'font-size': '12px',
-		'font-weight': '500',
+		'font-size': 'var(--command-group-heading-font-size)',
+		'font-weight': 'var(--command-group-heading-font-weight)',
 		'text-transform': 'none',
 		'letter-spacing': '0',
-		'line-height': '1',
-		padding: '0',
-		'margin-top': '8px',
-		'margin-bottom': '4px',
+		'line-height': 'var(--command-group-heading-line-height)',
+		padding: 'var(--command-group-heading-padding)',
+		'margin-top': 'var(--command-group-heading-margin-top)',
+		'margin-bottom': 'var(--command-group-heading-margin-bottom)',
 		color: options?.isDark
 			? 'rgba(255, 255, 255, 0.6)'
 			: 'rgba(26, 26, 26, 0.6)',
@@ -107,26 +107,26 @@ export const commandStyles = {
 	}),
 
 	separator: (options?: CommandStyleOptions): JSX.CSSProperties => ({
-		height: '1px',
+		height: 'var(--command-separator-height)',
 		'background-color': options?.isDark
 			? 'rgba(255, 255, 255, 0.1)'
 			: 'rgba(0, 0, 0, 0.1)',
-		margin: '8px 0'
+		margin: 'var(--command-separator-margin)'
 	}),
 
 	empty: (options?: CommandStyleOptions): JSX.CSSProperties => ({
-		padding: '24px',
+		padding: 'var(--command-empty-padding)',
 		'text-align': 'center',
-		'font-size': '14px',
+		'font-size': 'var(--command-empty-font-size)',
 		color: options?.isDark
 			? 'rgba(246, 246, 246, 0.5)'
 			: 'rgba(26, 26, 26, 0.5)'
 	}),
 
 	loading: (options?: CommandStyleOptions): JSX.CSSProperties => ({
-		padding: '24px',
+		padding: 'var(--command-empty-padding)',
 		'text-align': 'center',
-		'font-size': '14px',
+		'font-size': 'var(--command-empty-font-size)',
 		color: options?.isDark
 			? 'rgba(246, 246, 246, 0.5)'
 			: 'rgba(26, 26, 26, 0.5)'

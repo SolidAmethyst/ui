@@ -34,7 +34,7 @@ export const settingsCompositeStyles = {
 		padding: '12px 16px',
 		'border-radius': '0',
 		cursor: 'pointer',
-		'font-size': '14px',
+		'font-size': 'var(--settings-label-font-size)',
 		color: isActive
 			? isDark
 				? '#f6f6f6'
@@ -84,7 +84,7 @@ export const settingsCompositeStyles = {
 		padding: '8px 16px 8px 44px', // Indent subcategories
 		'border-radius': '0',
 		cursor: 'pointer',
-		'font-size': '13px',
+		'font-size': 'var(--settings-description-font-size)',
 		color: isActive
 			? isDark
 				? '#f6f6f6'
@@ -141,7 +141,7 @@ export const settingsCompositeStyles = {
 
 	tabButton: (isDark: boolean, isActive: boolean) => ({
 		padding: '12px 20px',
-		'font-size': '14px',
+		'font-size': 'var(--settings-label-font-size)',
 		'font-weight': isActive ? '500' : '400',
 		color: isActive
 			? isDark
@@ -186,7 +186,7 @@ export const settingsCompositeStyles = {
 	}),
 
 	sectionDescription: (isDark: boolean) => ({
-		'font-size': '13px',
+		'font-size': 'var(--settings-description-font-size)',
 		color: isDark ? 'rgba(246, 246, 246, 0.7)' : 'rgba(26, 26, 26, 0.7)',
 		'margin-bottom': '20px',
 		'line-height': '1.5'
@@ -206,7 +206,7 @@ export const settingsCompositeStyles = {
 		'justify-content': 'space-between',
 		'align-items': 'center',
 		'margin-bottom': '8px',
-		'font-size': '14px',
+		'font-size': 'var(--settings-label-font-size)',
 		color: isDark ? '#f6f6f6' : '#1a1a1a',
 		'font-weight': '500'
 	}),
@@ -238,7 +238,7 @@ export const settingsCompositeStyles = {
 	}),
 
 	checkboxLabel: (isDark: boolean) => ({
-		'font-size': '14px',
+		'font-size': 'var(--settings-label-font-size)',
 		color: isDark ? '#f6f6f6' : '#1a1a1a',
 		cursor: 'pointer',
 		'user-select': 'none' as const
@@ -248,7 +248,7 @@ export const settingsCompositeStyles = {
 		padding: '20px',
 		'text-align': 'center' as const,
 		color: isDark ? 'rgba(246, 246, 246, 0.5)' : 'rgba(26, 26, 26, 0.5)',
-		'font-size': '14px',
+		'font-size': 'var(--settings-label-font-size)',
 		'font-style': 'italic'
 	})
 } as const

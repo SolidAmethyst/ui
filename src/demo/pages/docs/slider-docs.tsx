@@ -43,17 +43,18 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
-							<Slider value={50} isDark={props.isDark()} />
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
+								<Slider value={50} isDark={props.isDark()} />
+							</div>
 						</div>
 					}
 					code={sliderSnippets.usage.basicUsage}
@@ -68,22 +69,23 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 							<Slider
 								value={basicValue()}
 								label='Volume'
 								isDark={props.isDark()}
 								onChange={val => setBasicValue(val)}
 							/>
+							</div>
 						</div>
 					}
 					code={sliderSnippets.usage.withLabel}
@@ -98,16 +100,16 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 							<Slider
 								value={minMaxValue()}
 								min={0}
@@ -117,6 +119,7 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 								isDark={props.isDark()}
 								onChange={val => setMinMaxValue(val)}
 							/>
+							</div>
 						</div>
 					}
 					code={sliderSnippets.usage.withMinMax}
@@ -131,16 +134,16 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 							<Slider
 								value={formattedValue()}
 								label='Opacity'
@@ -148,6 +151,7 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 								isDark={props.isDark()}
 								onChange={val => setFormattedValue(val)}
 							/>
+							</div>
 						</div>
 					}
 					code={sliderSnippets.usage.withFormatter}
@@ -162,16 +166,16 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 							<Slider
 								value={controlledValue()}
 								label='Volume'
@@ -185,6 +189,7 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 							>
 								Current value: {controlledValue()}
 							</Typography>
+							</div>
 						</div>
 					}
 					code={sliderSnippets.usage.controlled}
@@ -199,22 +204,23 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 							<Slider
 								value={50}
 								disabled={true}
 								label='Volume'
 								isDark={props.isDark()}
 							/>
+							</div>
 						</div>
 					}
 					code={sliderSnippets.usage.disabled}
@@ -229,22 +235,23 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 				<Tabs
 					isDark={props.isDark}
 					preview={
-						<div
-							style={{
-								width: '100%',
-								'max-width': '400px',
-								padding: '20px',
-								margin: '0 auto',
-								display: 'flex',
-								'justify-content': 'center'
-							}}
-						>
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 							<Slider
 								value={50}
 								label='Volume'
 								showValue={false}
 								isDark={props.isDark()}
 							/>
+							</div>
 						</div>
 					}
 					code={sliderSnippets.usage.hideValue}

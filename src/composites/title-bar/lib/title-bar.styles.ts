@@ -10,7 +10,7 @@ export const titleBarStyles = {
 		'align-items': 'center',
 		'justify-content': 'space-between',
 		width: '100%',
-		height: '32px',
+		height: 'var(--title-bar-height)',
 		'background-color': isDark ? 'rgba(30, 30, 30, 1)' : 'rgba(248, 248, 248, 1)',
 		'user-select': 'none',
 		'-webkit-app-region': 'drag' as const,
@@ -29,8 +29,8 @@ export const titleBarStyles = {
 	},
 	burgerButton: (isDark: boolean): JSX.CSSProperties => ({
 		'-webkit-app-region': 'no-drag' as const,
-		width: '32px',
-		height: '32px',
+		width: 'var(--title-bar-button-size)',
+		height: 'var(--title-bar-button-size)',
 		display: 'flex',
 		'align-items': 'center',
 		'justify-content': 'center',
@@ -52,7 +52,7 @@ export const titleBarStyles = {
 		'text-overflow': 'ellipsis',
 		'white-space': 'nowrap',
 		color: isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 26, 26, 0.9)',
-		'font-size': '13px',
+		'font-size': 'var(--font-size-sm)',
 		'font-weight': '400',
 		'letter-spacing': '0.01em'
 	}),
@@ -76,8 +76,8 @@ export const titleBarStyles = {
 		margin: '0 4px'
 	}),
 	controlButton: {
-		width: '32px',
-		height: '32px',
+		width: 'var(--title-bar-button-size)',
+		height: 'var(--title-bar-button-size)',
 		display: 'flex',
 		'align-items': 'center',
 		'justify-content': 'center',

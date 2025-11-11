@@ -15,16 +15,16 @@ export const menuStyles = {
 	},
 	container: {
 		position: 'absolute' as const,
-		'min-width': '200px',
+		'min-width': 'var(--menu-min-width)',
 		'background-color': 'rgba(30, 30, 30, 0.95)',
-		'backdrop-filter': 'blur(20px) saturate(180%)',
-		'-webkit-backdrop-filter': 'blur(20px) saturate(180%)',
-		'border-radius': '8px',
+		'backdrop-filter': `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
+		'-webkit-backdrop-filter': `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
+		'border-radius': 'var(--menu-border-radius)',
 		'box-shadow':
 			'0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.05) inset',
 		border: '1px solid rgba(255, 255, 255, 0.1)',
 		'box-sizing': 'border-box',
-		padding: '4px',
+		padding: 'var(--menu-padding)',
 		'z-index': '10000',
 		overflow: 'hidden',
 		'user-select': 'none'
@@ -32,7 +32,7 @@ export const menuStyles = {
 	list: {
 		display: 'flex',
 		'flex-direction': 'column' as const,
-		gap: '2px',
+		gap: 'var(--menu-list-gap)',
 		margin: '0',
 		padding: '0',
 		'list-style': 'none'
@@ -40,11 +40,11 @@ export const menuStyles = {
 	item: {
 		display: 'flex',
 		'align-items': 'center',
-		gap: '12px',
-		padding: '8px 12px',
-		'border-radius': '6px',
+		gap: 'var(--menu-item-gap)',
+		padding: 'var(--menu-item-padding)',
+		'border-radius': 'var(--menu-item-border-radius)',
 		cursor: 'pointer',
-		'font-size': '13px',
+		'font-size': 'var(--menu-item-font-size)',
 		color: 'rgba(255, 255, 255, 0.9)',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
 		'background-color': 'transparent',
@@ -64,9 +64,9 @@ export const menuStyles = {
 		display: 'flex',
 		'align-items': 'center',
 		'justify-content': 'center',
-		width: '20px',
-		height: '20px',
-		'font-size': '18px',
+		width: 'var(--menu-item-icon-size)',
+		height: 'var(--menu-item-icon-size)',
+		'font-size': 'var(--menu-item-icon-font-size)',
 		color: 'rgba(255, 255, 255, 0.8)',
 		'flex-shrink': '0'
 	},
@@ -77,9 +77,9 @@ export const menuStyles = {
 		'text-overflow': 'ellipsis'
 	},
 	separator: {
-		height: '1px',
+		height: 'var(--menu-separator-height)',
 		'background-color': 'rgba(255, 255, 255, 0.1)',
-		margin: '4px 0',
+		margin: 'var(--menu-separator-margin)',
 		'flex-shrink': '0'
 	}
 }
