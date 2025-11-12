@@ -1,4 +1,5 @@
 import { Accessor, Component, createSignal, For } from 'solid-js'
+import { Checkbox } from '../../../components/ui/checkbox'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Grid } from '../../../components/ui/grid'
 import { NumberInput } from '../../../components/ui/number-input'
@@ -83,23 +84,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										'align-items': 'center'
 									}}
 								>
-									<label
-										style={{
-											display: 'flex',
-											'align-items': 'center',
-											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-											'font-size': '0.875rem'
-										}}
-									>
-										<input
-											type='checkbox'
-											checked={basicAutoFit()}
-											onChange={e => setBasicAutoFit(e.currentTarget.checked)}
-											style={{ cursor: 'pointer' }}
-										/>
-										Auto-fit
-									</label>
+									<Checkbox
+										label='Auto-fit'
+										checked={basicAutoFit()}
+										onChange={setBasicAutoFit}
+										isDark={props.isDark()}
+									/>
 									<label
 										style={{
 											display: 'flex',
@@ -375,23 +365,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										'align-items': 'center'
 									}}
 								>
-									<label
-										style={{
-											display: 'flex',
-											'align-items': 'center',
-											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-											'font-size': '0.875rem'
-										}}
-									>
-										<input
-											type='checkbox'
-											checked={autoFit()}
-											onChange={e => setAutoFit(e.currentTarget.checked)}
-											style={{ cursor: 'pointer' }}
-										/>
-										Auto-fit
-									</label>
+									<Checkbox
+										label='Auto-fit'
+										checked={autoFit()}
+										onChange={setAutoFit}
+										isDark={props.isDark()}
+									/>
 									<label
 										style={{
 											display: 'flex',
@@ -559,25 +538,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 										'align-items': 'center'
 									}}
 								>
-									<label
-										style={{
-											display: 'flex',
-											'align-items': 'center',
-											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-											'font-size': '0.875rem'
-										}}
-									>
-										<input
-											type='checkbox'
-											checked={separateAutoFit()}
-											onChange={e =>
-												setSeparateAutoFit(e.currentTarget.checked)
-											}
-											style={{ cursor: 'pointer' }}
-										/>
-										Auto-fit
-									</label>
+									<Checkbox
+										label='Auto-fit'
+										checked={separateAutoFit()}
+										onChange={setSeparateAutoFit}
+										isDark={props.isDark()}
+									/>
 									<label
 										style={{
 											display: 'flex',
