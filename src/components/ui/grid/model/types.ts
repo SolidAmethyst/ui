@@ -50,88 +50,6 @@ export interface GridBreakpoint {
 }
 
 /**
- * Constraint configuration for grid elements
- * Prevents elements from being compressed below specified dimensions
- */
-export interface GridElementConstraint {
-	/**
-	 * CSS selector for target elements
-	 * Examples: ".card", "[data-card]", ":first-child", ".row-1"
-	 */
-	selector: string
-
-	/**
-	 * Minimum height in pixels or percentage
-	 * Examples: "100px", "20%", 100
-	 * Percentage is relative to container height
-	 */
-	minHeight?: string | number
-
-	/**
-	 * Minimum width in pixels or percentage
-	 * Examples: "200px", "30%", 200
-	 * Percentage is relative to container width
-	 */
-	minWidth?: string | number
-
-	/**
-	 * Priority for this constraint (higher = more important)
-	 * When multiple constraints conflict, higher priority wins
-	 * Default: 0
-	 */
-	priority?: number
-}
-
-/**
- * Configuration for preserving element area when grid resizes
- */
-export interface PreserveAreaConfig {
-	/**
-	 * Selector for elements that should preserve their area
-	 * Examples: "[data-preserve-area]", ".preserve-area", ":last-child"
-	 */
-	selector?: string
-
-	/**
-	 * Base width for area calculation (optional, will use initial width if not provided)
-	 * This is the reference width at which the element has its natural height
-	 */
-	baseWidth?: number
-
-	/**
-	 * Base height for area calculation (optional, will use initial height if not provided)
-	 * This is the reference height that will scale based on width changes
-	 */
-	baseHeight?: number
-
-	/**
-	 * Minimum height constraint (optional)
-	 */
-	minHeight?: string
-
-	/**
-	 * Maximum height constraint (optional)
-	 */
-	maxHeight?: string
-
-	/**
-	 * Constraints for other grid elements
-	 * Prevents specified elements from being compressed below minimum dimensions
-	 * Works as soft limits - only applies when element would go below minimum
-	 * Useful for maintaining readability of cards that need to shrink to accommodate preserve area
-	 *
-	 * Example:
-	 * ```ts
-	 * constraints: [
-	 *   { selector: '[data-card]', minHeight: '80px', priority: 1 },
-	 *   { selector: '.header', minHeight: '10%', priority: 2 }
-	 * ]
-	 * ```
-	 */
-	constraints?: GridElementConstraint[]
-}
-
-/**
  * Grid component props
  */
 export interface GridProps {
@@ -182,13 +100,6 @@ export interface GridProps {
 	 * Default: true
 	 */
 	observeResize?: boolean
-
-	/**
-	 * Configuration for preserving element area when grid resizes
-	 * When enabled, specified elements will adjust their height to maintain
-	 * consistent area when width changes (e.g., when sidebar opens/closes)
-	 */
-	preserveArea?: PreserveAreaConfig
 
 	/**
 	 * Additional CSS class names
