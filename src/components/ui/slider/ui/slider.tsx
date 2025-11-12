@@ -37,7 +37,7 @@ export const Slider: Component<SliderProps> = props => {
 	return (
 		<div
 			class={`slider-container ${props.class || ''}`}
-			style={sliderStyles.container(isDark())}
+			style={sliderStyles.container()}
 		>
 			{props.label && (
 				<div style={sliderStyles.labelContainer(isDark())}>

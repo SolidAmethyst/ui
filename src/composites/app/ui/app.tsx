@@ -3,7 +3,7 @@
  * Full-featured application composition with Window, TitleBar, and Sidebar
  */
 
-import { Component, createSignal, Show } from 'solid-js'
+import { Component, createMemo, createSignal, Show } from 'solid-js'
 import { Sidebar } from '../../../components/ui/sidebar'
 import { Window } from '../../../components/ui/window'
 import { TitleBar } from '../../title-bar'
@@ -20,7 +20,7 @@ export const App: Component<AppProps> = props => {
 		return dark ?? true
 	}
 
-	const sidebarItems = props.sidebarItems ?? []
+	const sidebarItems = createMemo(() => props.sidebarItems ?? [])
 
 	const handleMinimize = () => {
 		console.log('Minimize clicked')
@@ -78,7 +78,7 @@ export const App: Component<AppProps> = props => {
 				props.overlayMode ? undefined : (
 					<Sidebar
 						open={sidebarOpen()}
-						items={sidebarItems}
+						items={sidebarItems()}
 						isDark={isDark()}
 						overlayMode={false}
 						onItemClick={() => setSidebarOpen(false)}
@@ -90,7 +90,7 @@ export const App: Component<AppProps> = props => {
 			<Show when={props.overlayMode}>
 				<Sidebar
 					open={sidebarOpen()}
-					items={sidebarItems}
+					items={sidebarItems()}
 					isDark={isDark()}
 					overlayMode={true}
 					onItemClick={() => setSidebarOpen(false)}

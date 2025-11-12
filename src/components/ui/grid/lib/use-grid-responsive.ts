@@ -3,7 +3,7 @@
  * Handles responsive breakpoints and resize observation
  */
 
-import { createSignal, onCleanup, onMount, type Accessor } from 'solid-js'
+import { createEffect, createSignal, onCleanup, onMount, type Accessor } from 'solid-js'
 import type { GridBreakpoint, GridProps, PreserveAreaConfig } from '../model/types'
 
 export interface GridResponsiveState {
@@ -129,11 +129,16 @@ export const useGridResponsive = (props: GridProps): GridResponsiveState => {
 
 	onMount(() => {
 		// Initial calculation with window width if container not yet observed
-		if (!containerWidth()) {
-			calculateBreakpoint()
-		}
+		// Use createEffect to track reactivity
+		createEffect(() => {
+			if (!containerWidth()) {
+				calculateBreakpoint()
+			}
+		})
 		window.addEventListener('resize', handleResize)
 
+		// handleResize is an event handler, reactivity is fine in cleanup
+		// eslint-disable-next-line solid/reactivity
 		return () => {
 			window.removeEventListener('resize', handleResize)
 			if (resizeObserver && containerElement) {

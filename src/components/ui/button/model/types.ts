@@ -133,7 +133,7 @@ export interface ButtonProps {
 	 * Polymorphic component - render as different element/component
 	 * Examples: "a", Component, etc.
 	 */
-	as?: Component<any> | keyof JSX.IntrinsicElements | string
+	as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements | string
 
 	/**
 	 * Anchor-specific props (when as="a")

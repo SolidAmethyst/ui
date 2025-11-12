@@ -18,8 +18,9 @@ export const usePreserveArea = (
 ) => {
 	let resizeObserver: ResizeObserver | null = null
 	let baseArea = 0
-	// @ts-ignore - baseWidth is assigned but may not be read in current implementation
-	let baseWidth = 0
+	// baseWidth is stored for potential future recalculation but not currently used
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	let _baseWidth = 0
 	let initialized = false
 	let currentConfig: PreserveAreaConfig | undefined = undefined
 
@@ -30,7 +31,7 @@ export const usePreserveArea = (
 			resizeObserver = null
 		}
 		baseArea = 0
-		baseWidth = 0
+		_baseWidth = 0
 		initialized = false
 		currentConfig = undefined
 	}
@@ -54,7 +55,7 @@ export const usePreserveArea = (
 
 			// Use provided baseWidth or current container width
 			// Store for potential future recalculation
-			baseWidth = activeConfig.baseWidth || containerRect.width
+			_baseWidth = activeConfig.baseWidth || containerRect.width
 			// baseWidth is stored but may be used in future enhancements
 
 		// Calculate base area from CURRENT element width (which should be full width at init)

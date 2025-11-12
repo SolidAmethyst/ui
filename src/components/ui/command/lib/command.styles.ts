@@ -52,7 +52,7 @@ export const commandStyles = {
 		}`
 	}),
 
-	list: (_options?: CommandStyleOptions): JSX.CSSProperties => ({
+	list: (): JSX.CSSProperties => ({
 		flex: '1',
 		overflow: 'auto',
 		padding: '0',
@@ -87,7 +87,7 @@ export const commandStyles = {
 		transition: 'background-color 0.15s ease'
 	}),
 
-	group: (_options?: CommandStyleOptions): JSX.CSSProperties => ({
+	group: (): JSX.CSSProperties => ({
 		padding: '0'
 	}),
 

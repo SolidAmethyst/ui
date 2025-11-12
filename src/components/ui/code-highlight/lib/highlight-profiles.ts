@@ -3,7 +3,7 @@
  * Color schemes for different highlight profiles
  */
 
-// @ts-ignore - TypeScript module resolution issue with bundler mode
+// @ts-expect-error - TypeScript module resolution issue with bundler mode
 import type { HighlightProfile } from '../../../composites/settings'
 
 export interface HighlightColors {

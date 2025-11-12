@@ -5,7 +5,7 @@
 import type { JSX } from 'solid-js'
 
 export const sliderStyles = {
-	container: (_isDark: boolean): JSX.CSSProperties => ({
+	container: (): JSX.CSSProperties => ({
 		display: 'flex',
 		'flex-direction': 'column',
 		gap: 'var(--slider-gap)',
