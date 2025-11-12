@@ -23,7 +23,7 @@ export const settingsCompositeStyles = {
 		overflow: 'hidden' as const,
 		'box-sizing': 'border-box' as const,
 		display: 'flex',
-		'flex-direction': 'column'
+		'flex-direction': 'column' as const
 	}),
 
 	categoryButton: (isDark: boolean, isActive: boolean) => ({

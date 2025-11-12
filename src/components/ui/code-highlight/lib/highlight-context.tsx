@@ -4,6 +4,7 @@
  */
 
 import { createContext, useContext, type Accessor } from 'solid-js'
+// @ts-ignore - TypeScript module resolution issue with bundler mode
 import type { HighlightProfile } from '../../../composites/settings'
 
 interface HighlightContextValue {

@@ -3,7 +3,6 @@
  * Composite component for application title bar with controls
  */
 
-import type { JSX } from 'solid-js'
 import { Component, Show } from 'solid-js'
 import { Button } from '../../../components/ui/button'
 import { titleBarStyles } from '../lib/title-bar.styles'
@@ -28,8 +27,7 @@ export const TitleBar: Component<TitleBarProps> = props => {
 						iconPosition='only'
 						title='Toggle Sidebar'
 						active={props.burgerActive ?? false}
-						onClick={e => {
-							e?.stopPropagation()
+						onClick={() => {
 							props.onBurgerClick?.()
 						}}
 						style={{

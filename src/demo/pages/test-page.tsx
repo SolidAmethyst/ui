@@ -127,7 +127,7 @@ export const TestPage: Component<TestPageProps> = props => {
 						gap='12px'
 						preserveArea={{
 							selector: '[data-preserve-area="true"]',
-							minHeight: '50px'
+							minHeight: 50
 						}}
 						style={{
 							flex: '1 1 0',

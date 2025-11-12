@@ -7,7 +7,9 @@ export type {
 	SettingsCompositeProps,
 	GlassSettings,
 	MainCategory,
-	AppearanceSubcategory
+	AppearanceSubcategory,
+	HighlightProfile,
+	HighlightsSettings
 } from './model/types'
 
 // Export base Settings component

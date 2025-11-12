@@ -194,7 +194,7 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 										gap='4px'
 										preserveArea={{
 											selector: '[data-preserve-area="true"]',
-											minHeight: '200px'
+											minHeight: 200
 										}}
 										style={{
 											flex: '1 1 0',

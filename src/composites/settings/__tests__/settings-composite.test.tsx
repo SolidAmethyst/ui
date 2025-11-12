@@ -6,15 +6,31 @@ import { fireEvent, render, screen } from '@solidjs/testing-library'
 import { describe, expect, it, vi } from 'vitest'
 import { SettingsComposite } from '../ui/settings-composite'
 
+const defaultProps = {
+	isDark: () => false,
+	glassSettings: {
+		enabled: false,
+		blur: 15,
+		opacity: 0.9,
+		darkness: 0.5,
+		saturation: 1.0
+	},
+	onGlassSettingsChange: () => {}
+}
+
 describe('SettingsComposite', () => {
 	it('renders settings panel when open', () => {
-		render(() => <SettingsComposite isOpen={true} onClose={() => {}} />)
+		render(() => (
+			<SettingsComposite isOpen={true} onClose={() => {}} {...defaultProps} />
+		))
 
 		expect(screen.getByText('Settings')).toBeInTheDocument()
 	})
 
 	it('does not render settings panel when closed', () => {
-		render(() => <SettingsComposite isOpen={false} onClose={() => {}} />)
+		render(() => (
+			<SettingsComposite isOpen={false} onClose={() => {}} {...defaultProps} />
+		))
 
 		// Settings component uses Drawer which renders in portal
 		// Panel should still be in DOM but off-screen
@@ -27,13 +43,7 @@ describe('SettingsComposite', () => {
 			<SettingsComposite
 				isOpen={true}
 				onClose={() => {}}
-				glassSettings={{
-					enabled: false,
-					blur: 15,
-					opacity: 0.9,
-					darkness: 0.5,
-					saturation: 1.0
-				}}
+				{...defaultProps}
 			/>
 		))
 
@@ -42,8 +52,8 @@ describe('SettingsComposite', () => {
 	})
 
 	it('renders Fonts section placeholder', () => {
-		const { container } = render(() => (
-			<SettingsComposite isOpen={true} onClose={() => {}} />
+		render(() => (
+			<SettingsComposite isOpen={true} onClose={() => {}} {...defaultProps} />
 		))
 
 		// Find and click on Fonts category button in sidebar
@@ -69,13 +79,7 @@ describe('SettingsComposite', () => {
 			<SettingsComposite
 				isOpen={true}
 				onClose={() => {}}
-				glassSettings={{
-					enabled: false,
-					blur: 15,
-					opacity: 0.9,
-					darkness: 0.5,
-					saturation: 1.0
-				}}
+				{...defaultProps}
 			/>
 		))
 
@@ -88,7 +92,7 @@ describe('SettingsComposite', () => {
 	it('calls onClose when close button is clicked', () => {
 		const onClose = vi.fn()
 		render(() => (
-			<SettingsComposite isOpen={true} onClose={onClose} />
+			<SettingsComposite isOpen={true} onClose={onClose} {...defaultProps} />
 		))
 
 		// Find close button by the close icon span in drawer panel (rendered in portal)
@@ -103,7 +107,9 @@ describe('SettingsComposite', () => {
 
 	it('calls onClose when backdrop is clicked', () => {
 		const onClose = vi.fn()
-		render(() => <SettingsComposite isOpen={true} onClose={onClose} />)
+		render(() => (
+			<SettingsComposite isOpen={true} onClose={onClose} {...defaultProps} />
+		))
 
 		const backdrop = document.querySelector(
 			'[style*="backdrop"]'
@@ -120,6 +126,7 @@ describe('SettingsComposite', () => {
 			<SettingsComposite
 				isOpen={true}
 				onClose={() => {}}
+				isDark={() => false}
 				glassSettings={{
 					enabled: false,
 					blur: 15,
@@ -148,6 +155,7 @@ describe('SettingsComposite', () => {
 			<SettingsComposite
 				isOpen={true}
 				onClose={() => {}}
+				isDark={() => false}
 				glassSettings={{
 					enabled: true,
 					blur: 15,
@@ -182,6 +190,7 @@ describe('SettingsComposite', () => {
 			<SettingsComposite
 				isOpen={true}
 				onClose={() => {}}
+				isDark={() => false}
 				glassSettings={{
 					enabled: true,
 					blur: 15,
@@ -212,7 +221,13 @@ describe('SettingsComposite', () => {
 
 	it('applies dark theme styles', () => {
 		render(() => (
-			<SettingsComposite isOpen={true} onClose={() => {}} isDark={true} />
+			<SettingsComposite
+				isOpen={true}
+				onClose={() => {}}
+				isDark={() => true}
+				glassSettings={defaultProps.glassSettings}
+				onGlassSettingsChange={defaultProps.onGlassSettingsChange}
+			/>
 		))
 
 		// Settings uses Drawer which renders in portal
@@ -222,7 +237,13 @@ describe('SettingsComposite', () => {
 
 	it('applies light theme styles', () => {
 		render(() => (
-			<SettingsComposite isOpen={true} onClose={() => {}} isDark={false} />
+			<SettingsComposite
+				isOpen={true}
+				onClose={() => {}}
+				isDark={() => false}
+				glassSettings={defaultProps.glassSettings}
+				onGlassSettingsChange={defaultProps.onGlassSettingsChange}
+			/>
 		))
 
 		// Settings uses Drawer which renders in portal
@@ -231,7 +252,9 @@ describe('SettingsComposite', () => {
 	})
 
 	it('uses default glass settings when not provided', () => {
-		render(() => <SettingsComposite isOpen={true} onClose={() => {}} />)
+		render(() => (
+			<SettingsComposite isOpen={true} onClose={() => {}} {...defaultProps} />
+		))
 
 		expect(screen.getByText('Glass Effect')).toBeInTheDocument()
 		const checkbox = screen.getByLabelText(
@@ -246,6 +269,7 @@ describe('SettingsComposite', () => {
 				isOpen={true}
 				onClose={() => {}}
 				class='custom-settings'
+				{...defaultProps}
 			/>
 		))
 

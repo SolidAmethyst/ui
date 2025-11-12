@@ -234,7 +234,7 @@ export const CommandShortcut: Component<CommandShortcutProps> = props => {
 				'letter-spacing': '0.05em',
 				'margin-left': '48px',
 				opacity: 0.5,
-				...(local.style as JSX.CSSProperties)
+				...(local.style as import('solid-js').JSX.CSSProperties)
 			}}
 			{...others}
 		>

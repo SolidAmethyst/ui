@@ -4,7 +4,8 @@
  */
 
 import type { JSX } from 'solid-js'
-import type { GlassEffectType } from '../../../engines/types/engine-interface'
+// @ts-ignore - TypeScript module resolution issue with bundler mode
+import type { GlassEffectType } from '../../../engines'
 
 export type GlassVariant = GlassEffectType | 'auto'
 
