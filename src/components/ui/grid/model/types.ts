@@ -47,6 +47,58 @@ export interface GridBreakpoint {
 	 * Use auto-fit for this breakpoint
 	 */
 	autoFit?: boolean
+
+	/**
+	 * Preserve area configuration for this specific breakpoint
+	 * Allows different preserve area behavior per viewport size
+	 */
+	preserveArea?: PreserveAreaConfig
+}
+
+/**
+ * Configuration for preserve area feature
+ * Maintains element visual area by adjusting height when width changes
+ */
+export interface PreserveAreaConfig {
+	/**
+	 * CSS selector to identify the priority element(s)
+	 * This element will maintain its area when container width changes
+	 * Default: '[data-preserve-area]'
+	 */
+	selector?: string
+
+	/**
+	 * Minimum height for the preserve area element (in pixels)
+	 * Prevents the element from becoming too small
+	 */
+	minHeight?: number
+
+	/**
+	 * Maximum height for the preserve area element (in pixels)
+	 * Prevents the element from becoming too large
+	 */
+	maxHeight?: number
+
+	/**
+	 * Base width for area calculation (optional, auto-detected if not provided)
+	 * Used as reference width for calculating area
+	 */
+	baseWidth?: number
+
+	/**
+	 * Constraints for other elements in the grid
+	 * Prevents them from being compressed below specified sizes
+	 */
+	constraints?: {
+		/**
+		 * CSS selector for elements to constrain
+		 */
+		selector: string
+		/**
+		 * Minimum height in pixels
+		 */
+		minHeight?: number
+	}[]
 }
 
 /**
@@ -100,6 +152,12 @@ export interface GridProps {
 	 * Default: true
 	 */
 	observeResize?: boolean
+
+	/**
+	 * Global preserve area configuration
+	 * Can be overridden per breakpoint
+	 */
+	preserveArea?: PreserveAreaConfig
 
 	/**
 	 * Additional CSS class names

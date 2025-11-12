@@ -1,4 +1,4 @@
-import { Accessor, Component, createSignal, For, onMount } from 'solid-js'
+import { Accessor, Component, createSignal, For } from 'solid-js'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Grid } from '../../../components/ui/grid'
 import { NumberInput } from '../../../components/ui/number-input'
@@ -37,13 +37,12 @@ export const GridDocs: Component<GridDocsProps> = props => {
 	const [customGap, setCustomGap] = createSignal('12px')
 
 	// Preserve Area signals - 0% = full width (sidebar closed), 100% = narrow (sidebar open)
-	const [sidebarAmount, setSidebarAmount] = createSignal(100) // Start narrow for initialization
+	const [sidebarAmount, setSidebarAmount] = createSignal(0) // Start wide for proper initialization
 	const contentWidth = () => 100 - sidebarAmount() * 0.4 // 0% = 100%, 100% = 60%
 
-	// Initialize grid with narrow state, then reset to 0
-	onMount(() => {
-		setTimeout(() => setSidebarAmount(0), 100)
-	})
+	// Preserve Area Complex Example signals
+	const [sidebarAmount2, setSidebarAmount2] = createSignal(0)
+	const contentWidth2 = () => 100 - sidebarAmount2() * 0.4
 
 	const theme = () => ({ isDark: props.isDark() })
 
@@ -945,24 +944,37 @@ export const GridDocs: Component<GridDocsProps> = props => {
 				<div
 					style={{
 						margin: '16px 0',
-						padding: '12px',
-						'border-radius': '6px',
+						padding: '16px 20px',
+						'border-radius': '8px',
 						background: props.isDark()
 							? 'rgba(255, 255, 255, 0.05)'
-							: 'rgba(0, 0, 0, 0.02)'
+							: 'rgba(0, 0, 0, 0.02)',
+						border: `1px solid ${
+							props.isDark()
+								? 'rgba(255, 255, 255, 0.08)'
+								: 'rgba(0, 0, 0, 0.06)'
+						}`
 					}}
 				>
-					<label
+					<div
 						style={{
 							display: 'flex',
 							'align-items': 'center',
-							gap: '12px',
+							gap: '20px',
 							color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
 							'font-size': '0.875rem'
 						}}
 					>
-						Sidebar Open: {sidebarAmount()}% (Content Width:{' '}
-						{Math.round(contentWidth())}%)
+						<span
+							style={{
+								'flex-shrink': '0',
+								'min-width': '60px',
+								'font-weight': '500',
+								opacity: '0.7'
+							}}
+						>
+							Sidebar
+						</span>
 						<input
 							type='range'
 							min={0}
@@ -972,11 +984,50 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							onInput={e => setSidebarAmount(parseInt(e.currentTarget.value))}
 							style={{
 								flex: '1',
-								'max-width': '400px',
 								cursor: 'pointer'
 							}}
 						/>
-					</label>
+						<div
+							style={{
+								display: 'flex',
+								gap: '16px',
+								'flex-shrink': '0',
+								'align-items': 'center'
+							}}
+						>
+							<span
+								style={{
+									'min-width': '42px',
+									'text-align': 'right',
+									'font-weight': '600',
+									'font-size': '0.9375rem',
+									'font-family': 'ui-monospace, monospace',
+									color: props.isDark() ? '#3b82f6' : '#2563eb'
+								}}
+							>
+								{sidebarAmount()}%
+							</span>
+							<span
+								style={{
+									'min-width': '1px',
+									height: '16px',
+									background: props.isDark()
+										? 'rgba(255, 255, 255, 0.1)'
+										: 'rgba(0, 0, 0, 0.1)'
+								}}
+							/>
+							<span
+								style={{
+									'min-width': '90px',
+									opacity: '0.6',
+									'font-size': '0.8125rem',
+									'font-family': 'ui-monospace, monospace'
+								}}
+							>
+								width: {Math.round(contentWidth())}%
+							</span>
+						</div>
+					</div>
 				</div>
 
 				<Tabs
@@ -993,11 +1044,17 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							>
 								<Grid
 									columns='repeat(3, minmax(0, 1fr))'
-									rows='auto 1fr'
+									rows='1fr 1fr'
 									gap='4px'
 									preserveArea={{
 										selector: '[data-preserve-area="true"]',
-										minHeight: '200px'
+										minHeight: 200,
+										constraints: [
+											{
+												selector: ':not([data-preserve-area="true"])',
+												minHeight: 80
+											}
+										]
 									}}
 									style={{
 										flex: '1 1 0',
@@ -1081,6 +1138,222 @@ export const GridDocs: Component<GridDocsProps> = props => {
 					maintain its area, while Cards 1-3 shrink. This demonstrates how
 					priority elements preserve screen real estate in responsive layouts.
 				</Typography>
+
+				<Typography
+					variant='h4'
+					as='h3'
+					isDark={props.isDark()}
+					style={{ 'margin-top': '32px' }}
+				>
+					Complex Layout Example
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
+					More complex grid with 6 cards across 4 rows. Card 2 preserves its
+					area while other cards adjust.
+				</Typography>
+
+				<div
+					style={{
+						margin: '16px 0',
+						padding: '16px 20px',
+						'border-radius': '8px',
+						background: props.isDark()
+							? 'rgba(255, 255, 255, 0.05)'
+							: 'rgba(0, 0, 0, 0.02)',
+						border: `1px solid ${
+							props.isDark()
+								? 'rgba(255, 255, 255, 0.08)'
+								: 'rgba(0, 0, 0, 0.06)'
+						}`
+					}}
+				>
+					<div
+						style={{
+							display: 'flex',
+							'align-items': 'center',
+							gap: '20px',
+							color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+							'font-size': '0.875rem'
+						}}
+					>
+						<span
+							style={{
+								'flex-shrink': '0',
+								'min-width': '60px',
+								'font-weight': '500',
+								opacity: '0.7'
+							}}
+						>
+							Sidebar
+						</span>
+						<input
+							type='range'
+							min={0}
+							max={100}
+							step={1}
+							value={sidebarAmount2()}
+							onInput={e => setSidebarAmount2(parseInt(e.currentTarget.value))}
+							style={{
+								flex: '1',
+								cursor: 'pointer'
+							}}
+						/>
+						<div
+							style={{
+								display: 'flex',
+								gap: '16px',
+								'flex-shrink': '0',
+								'align-items': 'center'
+							}}
+						>
+							<span
+								style={{
+									'min-width': '42px',
+									'text-align': 'right',
+									'font-weight': '600',
+									'font-size': '0.9375rem',
+									'font-family': 'ui-monospace, monospace',
+									color: props.isDark() ? '#3b82f6' : '#2563eb'
+								}}
+							>
+								{sidebarAmount2()}%
+							</span>
+							<span
+								style={{
+									'min-width': '1px',
+									height: '16px',
+									background: props.isDark()
+										? 'rgba(255, 255, 255, 0.1)'
+										: 'rgba(0, 0, 0, 0.1)'
+								}}
+							/>
+							<span
+								style={{
+									'min-width': '90px',
+									opacity: '0.6',
+									'font-size': '0.8125rem',
+									'font-family': 'ui-monospace, monospace'
+								}}
+							>
+								width: {Math.round(contentWidth2())}%
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<Tabs
+					isDark={props.isDark}
+					preview={
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: `${contentWidth2()}%`,
+									height: '500px',
+									display: 'flex',
+									'flex-direction': 'column'
+								}}
+							>
+								<Grid
+									columns='repeat(2, minmax(0, 1fr))'
+									rows='1fr 1fr 1fr 1fr'
+									gap='4px'
+									preserveArea={{
+										selector: '[data-preserve-area="true"]',
+										minHeight: 100,
+										constraints: [
+											{
+												selector: ':not([data-preserve-area="true"])',
+												minHeight: 60
+											}
+										]
+									}}
+									style={{
+										flex: '1 1 0',
+										width: '100%',
+										height: '100%',
+										'box-sizing': 'border-box',
+										'min-height': '0',
+										'min-width': '0',
+										overflow: 'hidden'
+									}}
+								>
+									<For each={Array.from({ length: 6 })}>
+										{(_, i) => (
+											<div
+												data-preserve-area={i() === 1 ? 'true' : undefined}
+												style={{
+													padding: '16px',
+													'border-radius': '6px',
+													background:
+														i() === 1
+															? props.isDark()
+																? 'rgba(59, 130, 246, 0.15)'
+																: 'rgba(59, 130, 246, 0.1)'
+															: props.isDark()
+																? 'rgba(255, 255, 255, 0.05)'
+																: 'rgba(0, 0, 0, 0.02)',
+													border: `1px solid ${
+														i() === 1
+															? props.isDark()
+																? 'rgba(59, 130, 246, 0.3)'
+																: 'rgba(59, 130, 246, 0.2)'
+															: props.isDark()
+																? 'rgba(255, 255, 255, 0.1)'
+																: 'rgba(0, 0, 0, 0.1)'
+													}`,
+													'grid-column':
+														i() === 0
+															? '1 / -1'
+															: i() === 1
+																? '1 / -1'
+																: 'auto',
+													'grid-row':
+														i() === 0
+															? '1'
+															: i() === 1
+																? '2'
+																: i() === 2 || i() === 3
+																	? '3'
+																	: '4',
+													display: 'flex',
+													'flex-direction': 'column',
+													'align-items': 'center',
+													'justify-content': 'center',
+													'box-sizing': 'border-box'
+												}}
+											>
+												<div
+													style={{
+														'font-size': '0.875rem',
+														'font-weight': '600',
+														color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+														'margin-bottom': '4px'
+													}}
+												>
+													Card {i() + 1}
+													{i() === 1 && ' (Priority)'}
+												</div>
+												<div
+													style={{
+														'font-size': '0.75rem',
+														color: props.isDark()
+															? 'rgba(246, 246, 246, 0.6)'
+															: 'rgba(26, 26, 26, 0.6)'
+													}}
+												>
+													{i() === 1
+														? 'Preserves area on resize'
+														: 'Content area'}
+												</div>
+											</div>
+										)}
+									</For>
+								</Grid>
+							</div>
+						</div>
+					}
+					code={gridSnippets.usage.preserveArea}
+				/>
 			</section>
 
 			{/* Customization */}
@@ -1107,8 +1380,8 @@ export const GridDocs: Component<GridDocsProps> = props => {
 					Preserve Area CSS Variables
 				</Typography>
 				<Typography variant='body' isDark={props.isDark()}>
-					When using Preserve Area mode, the Grid component exposes additional CSS
-					custom properties that you can override:
+					When using Preserve Area mode, the Grid component exposes additional
+					CSS custom properties that you can override:
 				</Typography>
 				<CodeHighlight
 					code={gridSnippets.customizationPreserveArea}

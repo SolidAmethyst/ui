@@ -6,12 +6,16 @@
 import type { JSX } from 'solid-js'
 import { Component, onMount } from 'solid-js'
 import { useGridResponsive } from '../lib/use-grid-responsive'
+import { usePreserveArea } from '../lib/use-preserve-area'
 import type { GridProps } from '../model/types'
 
 export const Grid: Component<GridProps> = props => {
 	const responsive = useGridResponsive(props)
 
 	let containerRef: HTMLDivElement | undefined
+
+	// Setup preserve area with reactive config from breakpoint
+	usePreserveArea(() => containerRef, responsive.preserveArea)
 
 	onMount(() => {
 		// Always setup ResizeObserver for accurate width tracking (works with zoom)

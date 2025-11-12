@@ -4,12 +4,13 @@
  */
 
 import { createSignal, onCleanup, onMount, type Accessor } from 'solid-js'
-import type { GridBreakpoint, GridProps } from '../model/types'
+import type { GridBreakpoint, GridProps, PreserveAreaConfig } from '../model/types'
 
 export interface GridResponsiveState {
 	columns: Accessor<string>
 	rows: Accessor<string | undefined>
 	gap: Accessor<string>
+	preserveArea: Accessor<PreserveAreaConfig | undefined>
 	setupResizeObserver: (element: HTMLElement) => void
 }
 
@@ -174,10 +175,17 @@ export const useGridResponsive = (props: GridProps): GridResponsiveState => {
 		return calculateGap(bpGap)
 	}
 
+	// Calculate final preserveArea value
+	const preserveArea = (): PreserveAreaConfig | undefined => {
+		const bp = currentBreakpoint()
+		return bp?.preserveArea ?? props.preserveArea
+	}
+
 	return {
 		columns,
 		rows,
 		gap,
+		preserveArea,
 		setupResizeObserver: (element: HTMLElement) => {
 			setupResizeObserver(element)
 		}
