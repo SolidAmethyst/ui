@@ -56,11 +56,14 @@ export const buttonStyles = {
     pointer-events: auto;
   `,
 
-  // Hover effects
+  // Hover effects with glow on icon only - using unified system
   hover: `
     background: transparent;
-    color: hsl(var(--primary));
+    color: hsl(var(--hover-color));
     box-shadow: none;
+  `,
+  hoverIcon: `
+    filter: drop-shadow(0 0 var(--hover-glow-blur) hsla(var(--primary-hover) / var(--hover-glow-opacity)));
   `,
 
   // Active state

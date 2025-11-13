@@ -25,6 +25,7 @@ export * from './composites/settings'
 export * from './composites/title-bar'
 export * from './engines'
 export * from './lib/utils'
+export * from './lib/hover-styles'
 export * from './types'
 
 // Re-export types

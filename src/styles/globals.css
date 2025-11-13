@@ -10,8 +10,12 @@
 	--card-foreground: 222.2 84% 4.9%;
 	--popover: 0 0% 100%;
 	--popover-foreground: 222.2 84% 4.9%;
-	/* Sapphire Blue - Primary color for light theme */
-	--primary: 217 85% 50%;
+	/* Mace Windu Lightsaber Purple - Primary color for light theme */
+	--primary: 271 81% 53%;
+	/* Primary hover with glow effect - lighter and brighter */
+	--primary-hover: 271 81% 63%;
+	/* Unified hover color - maximum saturation for vibrant noble appearance */
+	--hover-color: 271 100% 58%;
 	--primary-foreground: 210 40% 98%;
 	--secondary: 210 40% 96%;
 	--secondary-foreground: 222.2 84% 4.9%;
@@ -267,8 +271,21 @@
 	--popover: 222.2 84% 4.9%;
 	--popover-foreground: 210 40% 98%;
 	/* Sapphire Blue - Primary color for dark theme (lighter for better contrast) */
-	--primary: 217 85% 60%;
+	--primary: 271 81% 63%;
+	/* Primary hover with glow effect - lighter and brighter */
+	--primary-hover: 271 81% 73%;
+	/* Unified hover color - maximum saturation for vibrant noble appearance */
+	--hover-color: 271 100% 66%;
 	--primary-foreground: 222.2 84% 4.9%;
+	/* Hover effect system - unified parameters (same as light theme) */
+	--hover-glow-blur: 1.5px;
+	--hover-glow-opacity: 1;
+	--hover-glow-box-blur: 1.5px;
+	--hover-glow-box-opacity: 0.7;
+	--hover-color-mix-primary: 100%;
+	--hover-color-mix-white: 0%;
+	--hover-text-shadow-blur: 1.5px;
+	--hover-text-shadow-opacity: 1;
 	--secondary: 217.2 32.6% 17.5%;
 	--secondary-foreground: 210 40% 98%;
 	--muted: 217.2 32.6% 17.5%;
@@ -330,8 +347,21 @@
 	--popover: 222.2 84% 4.9%;
 	--popover-foreground: 210 40% 98%;
 	/* Sapphire Blue - Primary color for dark theme (lighter for better contrast) */
-	--primary: 217 85% 60%;
+	--primary: 271 81% 63%;
+	/* Primary hover with glow effect - lighter and brighter */
+	--primary-hover: 271 81% 73%;
+	/* Unified hover color - maximum saturation for vibrant noble appearance */
+	--hover-color: 271 100% 66%;
 	--primary-foreground: 222.2 84% 4.9%;
+	/* Hover effect system - unified parameters (same as light theme) */
+	--hover-glow-blur: 1.5px;
+	--hover-glow-opacity: 1;
+	--hover-glow-box-blur: 1.5px;
+	--hover-glow-box-opacity: 0.7;
+	--hover-color-mix-primary: 100%;
+	--hover-color-mix-white: 0%;
+	--hover-text-shadow-blur: 1.5px;
+	--hover-text-shadow-opacity: 1;
 	--secondary: 217.2 32.6% 17.5%;
 	--secondary-foreground: 210 40% 98%;
 	--muted: 217.2 32.6% 17.5%;
@@ -434,14 +464,20 @@
 
 .control-btn:hover {
 	background: transparent;
-	color: hsl(var(--primary));
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
 	box-shadow: none;
 	transform: none;
 }
 
 .control-btn:hover svg,
 .control-btn:hover .material-symbols-rounded {
-	color: hsl(var(--primary));
+	color: hsl(var(--hover-color));
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 .control-btn:active {
@@ -477,13 +513,20 @@
 
 .play-pause-btn:hover {
 	background: transparent;
-	color: hsl(var(--primary));
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
 	border: 2px solid transparent;
+	box-shadow: none;
 }
 
 .play-pause-btn:hover svg,
 .play-pause-btn:hover .material-symbols-rounded {
-	color: hsl(var(--primary));
+	color: hsl(var(--hover-color));
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 .play-pause-btn:active {
@@ -520,12 +563,37 @@
 	justify-content: center;
 }
 
-.control-btn.active {
-	color: hsl(var(--primary));
+.small-btn:hover {
+	background: transparent;
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
+	box-shadow: none;
 }
 
-.control-btn.active svg {
-	color: hsl(var(--primary));
+.small-btn:hover svg,
+.small-btn:hover .material-symbols-rounded {
+	color: hsl(var(--hover-color));
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
+}
+
+.control-btn.active {
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
+	box-shadow: none;
+}
+
+.control-btn.active svg,
+.control-btn.active .material-symbols-rounded {
+	color: hsl(var(--hover-color));
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 .close-btn .material-symbols-rounded {
@@ -667,11 +735,14 @@
 	color: #1a1a1a;
 }
 
-/* Force same bright blue hover in light theme */
+/* Force same bright purple hover with glow in light theme */
 [data-theme='light'] .play-pause-btn:hover,
 [data-theme='light'] .control-btn:not(.close-btn):hover,
 [data-theme='light'] .small-btn:hover {
-	color: hsl(var(--primary)) !important;
+	color: hsl(var(--primary-hover)) !important;
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity)) !important;
+	box-shadow: none !important;
 }
 
 /* Light theme sun icon color */
@@ -686,7 +757,11 @@
 	.control-btn:not(.close-btn):hover
 	.material-symbols-rounded,
 [data-theme='light'] .small-btn:hover .material-symbols-rounded {
-	color: hsl(var(--primary)) !important;
+	color: hsl(var(--primary-hover)) !important;
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	) !important;
 }
 
 /* Light theme close button stays red */
@@ -798,8 +873,12 @@
 }
 
 .scrollbar-arrow:hover {
-	color: hsl(var(--primary));
+	color: hsl(var(--hover-color));
 	transform: scale(1.1);
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 .scrollbar-arrow:active {
@@ -975,11 +1054,29 @@
 }
 
 [cmdk-item]:hover {
-	background-color: rgba(255, 255, 255, 0.1);
+	background-color: hsla(var(--primary-hover) / 0.18);
+	box-shadow: 0 0 var(--hover-glow-box-blur)
+		hsla(var(--hover-color) / var(--hover-glow-box-opacity));
 }
 
 [data-theme='light'] [cmdk-item]:hover {
-	background-color: rgba(0, 0, 0, 0.05);
+	background-color: hsla(var(--primary-hover) / 0.1);
+	box-shadow: 0 0 var(--hover-glow-box-blur)
+		hsla(var(--hover-color) / var(--hover-glow-box-opacity));
+}
+
+[cmdk-item][data-selected='true'] {
+	background-color: hsla(var(--primary) / 0.1);
+	color: hsl(var(--primary));
+}
+
+[cmdk-item][data-selected='true']:hover {
+	background-color: hsla(var(--primary-hover) / 0.18);
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
+	box-shadow: 0 0 var(--hover-glow-box-blur)
+		hsla(var(--hover-color) / var(--hover-glow-box-opacity));
 }
 
 [cmdk-shortcuts] {

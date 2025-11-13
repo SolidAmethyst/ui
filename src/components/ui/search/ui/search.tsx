@@ -30,7 +30,11 @@ export const Search: Component<SearchProps> = props => {
 		'style',
 		'name',
 		'id',
-		'autofocus'
+		'autofocus',
+		'defaultPlaceholder',
+		'clearButtonAriaLabel',
+		'searchIcon',
+		'clearIcon'
 	])
 
 	// Initialize with empty string, will be synced via createEffect if value prop is provided
@@ -130,7 +134,7 @@ export const Search: Component<SearchProps> = props => {
 						class='material-symbols-rounded'
 						style={searchStyles.icon(styleOptions())}
 					>
-						search
+						{local.searchIcon ?? 'search'}
 					</span>
 				</Show>
 
@@ -140,7 +144,7 @@ export const Search: Component<SearchProps> = props => {
 					name={local.name}
 					id={local.id}
 					value={currentValue()}
-					placeholder={local.placeholder || 'Search...'}
+					placeholder={local.placeholder ?? local.defaultPlaceholder ?? 'Search...'}
 					disabled={local.disabled}
 					autofocus={local.autofocus}
 					onInput={handleInput}
@@ -157,9 +161,9 @@ export const Search: Component<SearchProps> = props => {
 						disabled={local.disabled}
 						class='material-symbols-rounded'
 						style={searchStyles.clearButton(styleOptions())}
-						aria-label='Clear search'
+						aria-label={local.clearButtonAriaLabel ?? 'Clear search'}
 					>
-						close
+						{local.clearIcon ?? 'close'}
 					</button>
 				</Show>
 			</div>

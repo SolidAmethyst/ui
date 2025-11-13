@@ -27,22 +27,22 @@ export const dragDropStyles = {
 		transform: isDragging ? 'scale(1.02)' : 'scale(1)',
 		transition: 'transform 0.2s ease, opacity 0.2s ease, background 0.2s ease',
 		background: isDragging
-			? 'hsla(var(--primary) / 0.15)'
+			? 'hsla(var(--primary-hover) / 0.15)'
 			: isOver
-				? 'hsla(var(--primary) / 0.12)'
+				? 'hsla(var(--primary-hover) / 0.12)'
 				: 'hsla(var(--primary) / 0.08)',
 		border: `1px solid ${
-			isOver ? 'hsla(var(--primary) / 0.4)' : 'hsla(var(--primary) / 0.2)'
+			isOver ? 'hsla(var(--primary-hover) / 0.4)' : 'hsla(var(--primary) / 0.2)'
 		}`,
 		'border-radius': 'var(--drag-drop-item-border-radius)',
 		padding: 'var(--drag-drop-item-padding)',
 		margin: `0 0 ${gap} 0`,
 		'pointer-events': disabled ? 'none' : 'auto',
 		'box-shadow': isDragging
-			? isDark
-				? '0 4px 12px rgba(0, 0, 0, 0.3)'
-				: '0 4px 12px rgba(0, 0, 0, 0.15)'
-			: 'none',
+			? `0 4px 8px hsla(var(--primary-hover) / 0.6), 0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
+			: isOver
+				? `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
+				: 'none',
 		'z-index': isDragging ? 1000 : 1
 	}),
 

@@ -1,8 +1,10 @@
 /**
  * Tabs Component Styles
+ * Re-exports unified styles from tabs-ui.styles.ts
  */
 
 import type { JSX } from 'solid-js'
+import { tabsUIStyles, type TabsUIStyleOptions } from './tabs-ui.styles'
 
 export interface TabsStyleOptions {
 	isDark: boolean
@@ -10,38 +12,13 @@ export interface TabsStyleOptions {
 }
 
 export const tabsStyles = {
-	container: (): JSX.CSSProperties => ({
-		width: '100%',
-		'max-width': '100%',
-		'box-sizing': 'border-box',
-		margin: 'var(--tabs-container-margin)'
-	}),
-	tabButtons: (options: TabsStyleOptions): JSX.CSSProperties => ({
-		display: 'flex',
-		gap: 'var(--tabs-button-gap)',
-		'border-bottom': `1px solid ${
-			options.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
-		}`,
-		margin: `0 0 var(--tabs-buttons-margin-bottom) 0`
-	}),
-	tabButton: (options: TabsStyleOptions): JSX.CSSProperties => ({
-		padding: 'var(--tabs-button-padding)',
-		'font-size': 'var(--tabs-button-font-size)',
-		'font-weight': 'var(--tabs-button-font-weight)',
-		border: 'none',
-		background: 'transparent',
-		color: options.isActive
-			? options.isDark
-				? '#f6f6f6'
-				: '#1a1a1a'
-			: options.isDark
-				? 'rgba(246, 246, 246, 0.5)'
-				: 'rgba(26, 26, 26, 0.5)',
-		cursor: 'pointer',
-		'border-bottom': `2px solid ${options.isActive ? 'hsl(var(--primary))' : 'transparent'}`,
-		transition: 'all 0.2s ease',
-		margin: `0 0 var(--tabs-button-margin-bottom) 0`
-	}),
+	container: (): JSX.CSSProperties => tabsUIStyles.root(),
+	tabButtons: (options: TabsStyleOptions): JSX.CSSProperties =>
+		tabsUIStyles.list({ isDark: options.isDark, isActive: options.isActive }),
+	tabButton: (options: TabsStyleOptions): JSX.CSSProperties =>
+		tabsUIStyles.trigger({ isDark: options.isDark, isActive: options.isActive }),
+	tabButtonHover: (options: TabsStyleOptions): JSX.CSSProperties =>
+		tabsUIStyles.triggerHover({ isDark: options.isDark, isActive: options.isActive }),
 	previewContainer: (options: TabsStyleOptions): JSX.CSSProperties => ({
 		background: options.isDark
 			? 'rgba(255, 255, 255, 0.03)'

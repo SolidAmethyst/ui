@@ -131,8 +131,9 @@ export const ScrollbarControls = (props: { class?: string }) => {
         }
 
         .scrollbar-controls-toggle:hover {
-          background: hsla(var(--primary) / 0.1);
-          color: hsl(var(--primary));
+          background: hsla(var(--primary-hover) / 0.15);
+          color: hsl(var(--hover-color));
+          box-shadow: 0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity));
         }
 
         .scrollbar-controls-toggle:active {

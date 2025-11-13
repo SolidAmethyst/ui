@@ -101,25 +101,47 @@ export const Select = <T extends string = string>(
 						: {})
 				}}
 				onMouseEnter={e => {
-					if (!local.disabled && !isOpen()) {
-						Object.assign(
-							e.currentTarget.style,
-							selectStyles.triggerHover({
-								isDark: isDark(),
-								isOpen: isOpen(),
-								isDisabled: local.disabled ?? false
-							})
-						)
+					if (!local.disabled) {
+						if (isOpen()) {
+							Object.assign(
+								e.currentTarget.style,
+								selectStyles.triggerOpenHover({
+									isDark: isDark(),
+									isOpen: isOpen(),
+									isDisabled: local.disabled ?? false
+								})
+							)
+						} else {
+							Object.assign(
+								e.currentTarget.style,
+								selectStyles.triggerHover({
+									isDark: isDark(),
+									isOpen: isOpen(),
+									isDisabled: local.disabled ?? false
+								})
+							)
+						}
 					}
 				}}
 				onMouseLeave={e => {
-					if (!local.disabled && !isOpen()) {
-						e.currentTarget.style.background = isDark()
-							? 'rgba(255, 255, 255, 0.05)'
-							: '#ffffff'
-						e.currentTarget.style.borderColor = isDark()
-							? 'rgba(255, 255, 255, 0.1)'
-							: 'rgba(0, 0, 0, 0.1)'
+					if (!local.disabled) {
+						if (isOpen()) {
+							Object.assign(
+								e.currentTarget.style,
+								selectStyles.triggerOpen({
+									isDark: isDark(),
+									isOpen: isOpen(),
+									isDisabled: local.disabled ?? false
+								})
+							)
+						} else {
+							e.currentTarget.style.background = isDark()
+								? 'rgba(255, 255, 255, 0.05)'
+								: '#ffffff'
+							e.currentTarget.style.borderColor = isDark()
+								? 'rgba(255, 255, 255, 0.1)'
+								: 'rgba(0, 0, 0, 0.1)'
+						}
 					}
 				}}
 			>
@@ -184,20 +206,42 @@ export const Select = <T extends string = string>(
 											...(isDisabled() ? selectStyles.optionDisabled() : {})
 										}}
 										onMouseEnter={e => {
-											if (!isDisabled() && !isSelected()) {
-												Object.assign(
-													e.currentTarget.style,
-													selectStyles.optionHover({
-														isDark: isDark(),
-														isOpen: isOpen(),
-														isDisabled: isDisabled()
-													})
-												)
+											if (!isDisabled()) {
+												if (isSelected()) {
+													Object.assign(
+														e.currentTarget.style,
+														selectStyles.optionSelectedHover({
+															isDark: isDark(),
+															isOpen: isOpen(),
+															isDisabled: isDisabled()
+														})
+													)
+												} else {
+													Object.assign(
+														e.currentTarget.style,
+														selectStyles.optionHover({
+															isDark: isDark(),
+															isOpen: isOpen(),
+															isDisabled: isDisabled()
+														})
+													)
+												}
 											}
 										}}
 										onMouseLeave={e => {
-											if (!isDisabled() && !isSelected()) {
-												e.currentTarget.style.background = 'transparent'
+											if (!isDisabled()) {
+												if (isSelected()) {
+													Object.assign(
+														e.currentTarget.style,
+														selectStyles.optionSelected({
+															isDark: isDark(),
+															isOpen: isOpen(),
+															isDisabled: isDisabled()
+														})
+													)
+												} else {
+													e.currentTarget.style.background = 'transparent'
+												}
 											}
 										}}
 									>

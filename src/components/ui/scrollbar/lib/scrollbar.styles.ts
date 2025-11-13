@@ -75,8 +75,9 @@ export const scrollbarStyles = `
   margin: 0;
 }
 .scrollbar-arrow:hover {
-  color: hsl(var(--primary));
+  color: hsl(var(--hover-color));
   transform: scale(1.1);
+  filter: drop-shadow(0 0 var(--hover-glow-blur) hsla(var(--primary-hover) / var(--hover-glow-opacity)));
 }
 .scrollbar-arrow:active {
   color: hsl(var(--primary));

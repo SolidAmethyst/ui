@@ -157,9 +157,22 @@ export const settingsCompositeStyles = {
 			? `2px solid hsl(var(--primary))`
 			: '2px solid transparent',
 		transition:
-			'color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+			'color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), text-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1)',
 		'box-sizing': 'border-box' as const,
 		'margin-bottom': '-1px'
+	}),
+	tabButtonHover: (isDark: boolean, isActive: boolean) => ({
+		color: isActive
+			? 'hsl(var(--hover-color))'
+			: isDark
+			? '#f6f6f6'
+			: '#1a1a1a',
+		'border-bottom': isActive
+			? `2px solid color-mix(in hsl, hsl(var(--primary-hover)) var(--hover-color-mix-primary), white var(--hover-color-mix-white))`
+			: '2px solid transparent',
+		'text-shadow': isActive
+			? `0 0 var(--hover-text-shadow-blur) hsla(var(--primary-hover) / var(--hover-text-shadow-opacity))`
+			: 'none'
 	}),
 
 	contentArea: () => ({

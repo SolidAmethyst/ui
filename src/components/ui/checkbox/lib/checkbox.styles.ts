@@ -76,10 +76,13 @@ export const checkboxStyles = {
 		return {
 			'border-color':
 				checked || indeterminate
-					? 'hsl(var(--primary))'
+					? 'hsl(var(--hover-color))'
 					: isDark
 						? 'rgba(255, 255, 255, 0.5)'
-						: 'rgba(0, 0, 0, 0.5)'
+						: 'rgba(0, 0, 0, 0.5)',
+			'box-shadow': checked || indeterminate
+				? `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
+				: 'none'
 		}
 	},
 

@@ -108,7 +108,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
 							<TabsRoot defaultValue='tab1' isDark={props.isDark()}>
-								<TabsList style={{ width: '100%', 'max-width': '100%' }}>
+								<TabsList center style={{ width: '100%', 'max-width': '100%' }}>
 									<TabsTrigger value='tab1'>Overview</TabsTrigger>
 									<TabsTrigger value='tab2'>Settings</TabsTrigger>
 									<TabsTrigger value='tab3'>Analytics</TabsTrigger>

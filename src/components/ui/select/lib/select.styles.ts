@@ -51,15 +51,21 @@ export const selectStyles = {
 	}),
 	triggerHover: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		'border-color': options.isDark
-			? 'rgba(255, 255, 255, 0.2)'
-			: 'rgba(0, 0, 0, 0.2)',
+			? 'hsla(var(--primary-hover) / 0.4)'
+			: 'hsla(var(--primary-hover) / 0.3)',
 		background: options.isDark
-			? 'rgba(255, 255, 255, 0.08)'
-			: 'rgba(0, 0, 0, 0.02)'
+			? 'hsla(var(--primary-hover) / 0.12)'
+			: 'hsla(var(--primary-hover) / 0.06)',
+		'box-shadow': `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
 	}),
 	triggerOpen: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		'border-color': 'hsl(var(--primary))',
 		background: 'hsla(var(--primary) / 0.1)'
+	}),
+	triggerOpenHover: (options: SelectStyleOptions): JSX.CSSProperties => ({
+		'border-color': 'hsl(var(--hover-color))',
+		background: 'hsla(var(--primary-hover) / 0.18)',
+		'box-shadow': `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
 	}),
 	icon: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		'font-size': 'var(--select-icon-font-size)',
@@ -105,13 +111,20 @@ export const selectStyles = {
 	}),
 	optionHover: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		background: options.isDark
-			? 'rgba(255, 255, 255, 0.1)'
-			: 'rgba(0, 0, 0, 0.05)'
+			? 'hsla(var(--primary-hover) / 0.18)'
+			: 'hsla(var(--primary-hover) / 0.1)',
+		'box-shadow': `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
 	}),
 	optionSelected: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		background: 'hsla(var(--primary) / 0.2)',
 		color: 'hsl(var(--primary))',
 		'font-weight': '500'
+	}),
+	optionSelectedHover: (options: SelectStyleOptions): JSX.CSSProperties => ({
+		background: 'hsla(var(--primary-hover) / 0.28)',
+		color: 'hsl(var(--hover-color))',
+		'text-shadow': `0 0 var(--hover-text-shadow-blur) hsla(var(--primary-hover) / var(--hover-text-shadow-opacity))`,
+		'box-shadow': `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
 	}),
 	optionDisabled: (): JSX.CSSProperties => ({
 		opacity: 0.5,
