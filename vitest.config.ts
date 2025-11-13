@@ -7,7 +7,7 @@ export default defineConfig({
 		environment: 'happy-dom',
 		globals: true,
 		setupFiles: ['./src/test/setup.ts'],
-		pool: 'forks',
+		pool: 'threads',
 		mockReset: true,
 		clearMocks: true,
 		testTimeout: 10000,

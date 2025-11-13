@@ -1,9 +1,9 @@
 ---
 // Main demo page using Astro + Solid.js
-import Layout from '../layouts/Layout.astro'
 import App from '../demo/index'
+import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Solid UI Toolkit">
-	<App client:load />
+	<App client:only="solid-js" />
 </Layout>

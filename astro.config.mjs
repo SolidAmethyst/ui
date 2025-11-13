@@ -10,7 +10,9 @@ export default defineConfig({
 	integrations: [
 		solid({
 			// Enable client-side hydration
-			include: ['**/demo/**/*.{tsx,jsx}']
+			include: ['**/demo/**/*.{tsx,jsx}', '**/components/**/*.{tsx,jsx}'],
+			// Ensure Solid.js JSX is used, not React
+			ssr: true
 		})
 		// Tailwind v4 uses PostCSS directly, not Astro integration
 	],
