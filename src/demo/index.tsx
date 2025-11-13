@@ -13,6 +13,7 @@ import {
 	ButtonDocs,
 	CodeHighlightDocs,
 	CommandDocs,
+	DragDropDocs,
 	DrawerDocs,
 	GridDocs,
 	InstallationDocs,
@@ -285,6 +286,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'drawer'}>
 											<DrawerDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'drag-drop'}>
+											<DragDropDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'grid'}>
 											<GridDocs isDark={isDark} />

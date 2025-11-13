@@ -227,6 +227,23 @@
 	--techchip-font-size: 12px;
 	--techchip-border-radius: 16px;
 	--techchip-gap: 6px;
+	/* DragDrop component variables */
+	--drag-drop-item-padding: 12px 16px;
+	--drag-drop-item-border-radius: 8px;
+	--drag-drop-item-bg-dark: 255 255 255 / 0.05;
+	--drag-drop-item-bg-light: 0 0 0 / 0.02;
+	--drag-drop-item-border-dark: 255 255 255 / 0.1;
+	--drag-drop-item-border-light: 0 0 0 / 0.1;
+	--drag-drop-item-drag-bg-dark: 255 255 255 / 0.1;
+	--drag-drop-item-drag-bg-light: 0 0 0 / 0.05;
+	--drag-drop-item-over-bg-dark: 255 255 255 / 0.08;
+	--drag-drop-item-over-bg-light: 0 0 0 / 0.04;
+	--drag-drop-item-over-border-dark: 217.2 91.2% 59.8% / 0.5;
+	--drag-drop-item-over-border-light: 221.2 83.2% 53.3% / 0.3;
+	--drag-drop-handle-color-dark: 255 255 255 / 0.6;
+	--drag-drop-handle-color-light: 0 0 0 / 0.4;
+	--drag-drop-indicator-color-dark: 217.2 91.2% 59.8%;
+	--drag-drop-indicator-color-light: 221.2 83.2% 53.3%;
 	--techchip-icon-size: 16px;
 	/* Settings composite variables */
 	--settings-section-gap: 24px;
@@ -296,6 +313,9 @@
 	--techchip-loading: 217.2 91.2% 59.8%;
 	--techchip-ready: 142.1 76.2% 36.3%;
 	--techchip-error: 0 62.8% 30.6%;
+	/* DragDrop component variables - dark theme */
+	--drag-drop-item-over-border-dark: 217.2 91.2% 59.8% / 0.5;
+	--drag-drop-indicator-color-dark: 217.2 91.2% 59.8%;
 }
 
 /* Dark theme variables - defined outside @layer for library compatibility */
@@ -355,6 +375,9 @@
 	--techchip-loading: 217.2 91.2% 59.8%;
 	--techchip-ready: 142.1 76.2% 36.3%;
 	--techchip-error: 0 62.8% 30.6%;
+	/* DragDrop component variables - dark theme */
+	--drag-drop-item-over-border-dark: 217.2 91.2% 59.8% / 0.5;
+	--drag-drop-indicator-color-dark: 217.2 91.2% 59.8%;
 }
 
 @layer base {
