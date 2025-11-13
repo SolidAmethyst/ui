@@ -4,13 +4,33 @@
  */
 
 import type { JSX } from 'solid-js'
-import { Component, Show } from 'solid-js'
+import { Component, Show, createSignal } from 'solid-js'
 import { Dynamic } from 'solid-js/web'
 import { buttonVariants } from '../lib/button-variants'
 import { DrawerIcon } from './drawer-icon'
 import type { ButtonProps } from '../model/types'
 
 export const Button: Component<ButtonProps> = props => {
+	// Internal state for maximize button if not controlled
+	const [internalMaximized, setInternalMaximized] = createSignal(false)
+
+	// Use controlled maximized prop if provided, otherwise use internal state
+	const isMaximized = () => props.maximized ?? internalMaximized()
+
+	// Get CSS variable value as number for DrawerIcon
+	const getIconSizeNumber = () => {
+		if (typeof window !== 'undefined' && window.getComputedStyle) {
+			const value = getComputedStyle(document.documentElement)
+				.getPropertyValue('--small-icon-size')
+				.trim()
+			if (value) {
+				const num = parseFloat(value)
+				if (!isNaN(num)) return num
+			}
+		}
+		return 16 // fallback
+	}
+
 	const getButtonClass = () => {
 		return buttonVariants({
 			variant: props.variant,
@@ -19,22 +39,14 @@ export const Button: Component<ButtonProps> = props => {
 			loading: props.loading,
 			active: props.active,
 			pinned: props.pinned,
-			maximized: props.maximized,
+			maximized: isMaximized(),
 			class: props.class
 		})
 	}
 
 	const getIconSize = () => {
-		if (props.variant === 'small') return '12px'
-		if (props.variant === 'play-pause') return '20px'
-		if (
-			props.variant === 'expand' ||
-			props.variant === 'copy' ||
-			props.variant === 'attach' ||
-			props.variant === 'trigger'
-		)
-			return '16px'
-		return '14px'
+		// Use CSS variable for all icon sizes to allow global customization
+		return 'var(--small-icon-size)'
 	}
 
 	const getDefaultIcon = () => {
@@ -43,6 +55,9 @@ export const Button: Component<ButtonProps> = props => {
 		if (props.variant === 'copy' && !props.icon) return 'content_copy'
 		if (props.variant === 'attach' && !props.icon) return 'attach_file'
 		if (props.variant === 'trigger' && !props.icon) return 'menu_open'
+		if (props.variant === 'maximize' && !props.icon) {
+			return isMaximized() ? 'fullscreen_exit' : 'fullscreen'
+		}
 		return props.icon
 	}
 
@@ -80,6 +95,16 @@ export const Button: Component<ButtonProps> = props => {
 		return 'button'
 	}
 
+	// Handle click - auto-toggle maximize if not controlled
+	const handleClick = () => {
+		// If maximize button and not controlled, toggle internal state
+		if (props.variant === 'maximize' && props.maximized === undefined) {
+			setInternalMaximized(!internalMaximized())
+		}
+		// Call user's onClick if provided
+		props.onClick?.()
+	}
+
 	// Prepare common props
 	const commonProps = (): JSX.ButtonHTMLAttributes<HTMLButtonElement> &
 		JSX.AnchorHTMLAttributes<HTMLAnchorElement> & {
@@ -89,7 +114,7 @@ export const Button: Component<ButtonProps> = props => {
 		} => ({
 		class: getButtonClass(),
 		style: props.style,
-		onClick: () => props.onClick?.(),
+		onClick: handleClick,
 		title: props.title
 	})
 
@@ -149,7 +174,7 @@ export const Button: Component<ButtonProps> = props => {
 				{props.variant === 'trigger' && !props.icon ? (
 					<DrawerIcon
 						isOpen={props.active ?? false}
-						size={parseInt(getIconSize().replace('px', '')) || 16}
+						size={getIconSizeNumber()}
 						color={props.style?.color as string}
 					/>
 				) : (
@@ -158,6 +183,7 @@ export const Button: Component<ButtonProps> = props => {
 							props.iconFilled ? 'filled' : ''
 						}`}
 						aria-hidden='true'
+						data-icon={getDefaultIcon()}
 						style={{
 							'font-size': getIconSize(),
 							color: props.style?.color || 'inherit'
@@ -174,6 +200,7 @@ export const Button: Component<ButtonProps> = props => {
 				<span
 					class={`material-symbols-rounded ${props.iconFilled ? 'filled' : ''}`}
 					aria-hidden='true'
+					data-icon={getDefaultIcon()}
 					style={{
 						'font-size': getIconSize(),
 						color: props.style?.color || 'inherit'

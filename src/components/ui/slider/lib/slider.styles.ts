@@ -19,13 +19,13 @@ export const sliderStyles = {
 		'align-items': 'center',
 		gap: 'var(--slider-gap)',
 		'font-size': 'var(--slider-label-font-size)',
-		color: isDark ? '#f6f6f6' : '#1a1a1a',
+		color: 'hsl(var(--foreground))',
 		'font-weight': 'var(--slider-label-font-weight)'
 	}),
 
 	value: (isDark: boolean): JSX.CSSProperties => ({
 		'font-size': 'var(--slider-value-font-size)',
-		color: isDark ? 'rgba(246, 246, 246, 0.6)' : 'rgba(26, 26, 26, 0.6)',
+		color: 'hsla(var(--muted-foreground) / 0.8)',
 		'font-weight': '400',
 		'min-width': 'var(--slider-value-min-width)',
 		'text-align': 'center'

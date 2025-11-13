@@ -127,8 +127,8 @@ export const docsStyles = {
 		display: 'flex',
 		'align-items': 'center',
 		'justify-content': 'center',
-		padding: '16px',
-		'min-height': '80px',
+		padding: '8px',
+		'min-height': '60px',
 		background: theme.isDark ? 'hsl(240 20% 7%)' : '#fafafa'
 	})
 } as const

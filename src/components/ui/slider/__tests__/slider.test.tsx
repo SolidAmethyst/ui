@@ -49,8 +49,7 @@ describe('Slider', () => {
 		const onChange = vi.fn()
 		render(() => <Slider value={50} onChange={onChange} />)
 		const slider = screen.getByRole('slider') as HTMLInputElement
-		slider.value = '75'
-		slider.dispatchEvent(new Event('change'))
+		fireEvent.change(slider, { target: { value: '75' } })
 		expect(onChange).toHaveBeenCalledWith(75)
 	})
 

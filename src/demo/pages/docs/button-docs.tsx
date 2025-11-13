@@ -12,6 +12,7 @@ const TriggerButtonDemo: Component = () => {
 
 	return (
 		<div
+			class='button-demo-large-icons'
 			style={{
 				display: 'flex',
 				'flex-wrap': 'wrap',
@@ -26,7 +27,6 @@ const TriggerButtonDemo: Component = () => {
 				title={isOpen() ? 'Close Sidebar' : 'Open Sidebar'}
 				active={isOpen()}
 				onClick={() => setIsOpen(!isOpen())}
-				style={{ width: '28px', height: '28px' }}
 			/>
 		</div>
 	)
@@ -57,10 +57,10 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				<CodeHighlight code={buttonSnippets.imports} isDark={props.isDark} />
 			</section>
 
-			{/* Basic Usage */}
+			{/* Text Buttons */}
 			<section style={docsStyles.section()}>
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
-					Basic Usage
+					Text Buttons
 				</Typography>
 				<Tabs
 					isDark={props.isDark}
@@ -87,10 +87,10 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 				/>
 			</section>
 
-			{/* Control Buttons */}
+			{/* Icon + Text Buttons */}
 			<section style={docsStyles.section()}>
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
-					Control Buttons
+					Icon + Text Buttons
 				</Typography>
 				<Tabs
 					isDark={props.isDark}
@@ -126,6 +126,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
 							<div
+								class='button-demo-large-icons'
 								style={{
 									display: 'flex',
 									'flex-wrap': 'wrap',
@@ -147,12 +148,6 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 									iconPosition='only'
 									title='Debug'
 								/>
-								<Button
-									variant='small'
-									icon='push_pin'
-									iconPosition='only'
-									title='Pin'
-								/>
 							</div>
 						</div>
 					}
@@ -169,7 +164,18 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<TriggerButtonDemo />
+							<div
+								style={{
+									display: 'flex',
+									'flex-wrap': 'wrap',
+									gap: '12px',
+									'align-items': 'center',
+									'justify-content': 'center',
+									width: '100%'
+								}}
+							>
+								<TriggerButtonDemo />
+							</div>
 						</div>
 					}
 					code={buttonSnippets.usage.triggerButton}
@@ -186,6 +192,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
 							<div
+								class='button-demo-large-icons'
 								style={{
 									display: 'flex',
 									'flex-wrap': 'wrap',
@@ -197,6 +204,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 							>
 								<Button variant='play-pause' icon='play_arrow' title='Play' />
 								<Button variant='play-pause' icon='pause' title='Pause' />
+								<Button variant='play-pause' icon='stop' title='Stop' />
 							</div>
 						</div>
 					}
@@ -214,6 +222,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
 							<div
+								class='button-demo-large-icons'
 								style={{
 									display: 'flex',
 									'flex-wrap': 'wrap',
@@ -224,6 +233,22 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								}}
 							>
 								<Button
+									variant='small'
+									icon='push_pin'
+									iconPosition='only'
+									title='Pin'
+								/>
+								<div
+									style={{
+										width: '1px',
+										height: '24px',
+										background: props.isDark()
+											? 'rgba(255, 255, 255, 0.2)'
+											: 'rgba(0, 0, 0, 0.2)',
+										'flex-shrink': '0'
+									}}
+								/>
+								<Button
 									variant='minimize'
 									icon='remove'
 									iconPosition='only'
@@ -231,9 +256,8 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 								/>
 								<Button
 									variant='maximize'
-									icon='crop_square'
 									iconPosition='only'
-									title='Maximize'
+									title='Maximize / Restore Down'
 								/>
 								<Button
 									variant='close'
@@ -258,6 +282,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
 							<div
+								class='button-demo-large-icons'
 								style={{
 									display: 'flex',
 									'flex-wrap': 'wrap',

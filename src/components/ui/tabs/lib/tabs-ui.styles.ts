@@ -33,12 +33,8 @@ export const tabsUIStyles = {
 		border: 'none',
 		background: 'transparent',
 		color: options.isActive
-			? options.isDark
-				? '#f6f6f6'
-				: '#1a1a1a'
-			: options.isDark
-				? 'rgba(246, 246, 246, 0.5)'
-				: 'rgba(26, 26, 26, 0.5)',
+			? 'hsl(var(--foreground))'
+			: 'hsla(var(--muted-foreground) / 0.7)',
 		cursor: 'pointer',
 		'border-bottom': `2px solid ${options.isActive ? 'hsl(var(--primary))' : 'transparent'}`,
 		transition: 'all 0.2s ease',
@@ -47,9 +43,7 @@ export const tabsUIStyles = {
 	triggerHover: (options: TabsUIStyleOptions): JSX.CSSProperties => ({
 		color: options.isActive
 			? 'hsl(var(--hover-color))'
-			: options.isDark
-				? '#f6f6f6'
-				: '#1a1a1a',
+			: 'hsl(var(--foreground))',
 		'border-bottom': `2px solid ${
 			options.isActive
 				? 'hsl(var(--hover-color))'

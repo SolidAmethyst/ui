@@ -42,16 +42,6 @@ const SidebarContent = (props: {
 									}}
 									disabled={item.disabled}
 									style={sidebarStyles.button(item.disabled ?? false, props.isDark)}
-									onMouseEnter={e => {
-										if (!item.disabled) {
-											e.currentTarget.style.backgroundColor = props.isDark
-												? 'hsla(240, 3.7%, 15.9%, 1)'
-												: 'hsla(240, 4.8%, 95.9%, 1)'
-										}
-									}}
-									onMouseLeave={e => {
-										e.currentTarget.style.backgroundColor = 'transparent'
-									}}
 								>
 									<Show when={item.icon}>
 										<span

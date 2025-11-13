@@ -39,7 +39,7 @@ export const titleBarStyles = {
 		background: 'transparent',
 		padding: '0',
 		margin: '0',
-		color: isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 26, 26, 0.9)',
+		color: 'hsl(var(--foreground))',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
 	}),
 	titleArea: (isDark: boolean): JSX.CSSProperties => ({
@@ -51,7 +51,7 @@ export const titleBarStyles = {
 		overflow: 'hidden',
 		'text-overflow': 'ellipsis',
 		'white-space': 'nowrap',
-		color: isDark ? 'rgba(255, 255, 255, 0.9)' : 'rgba(26, 26, 26, 0.9)',
+		color: 'hsl(var(--foreground))',
 		'font-size': 'var(--font-size-sm)',
 		'font-weight': '400',
 		'letter-spacing': '0.01em'
@@ -72,7 +72,7 @@ export const titleBarStyles = {
 	separator: (isDark: boolean): JSX.CSSProperties => ({
 		width: '1px',
 		height: '20px',
-		'background-color': isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+		'background-color': 'hsl(var(--border))',
 		margin: '0 4px'
 	}),
 	controlButton: {
@@ -86,13 +86,13 @@ export const titleBarStyles = {
 		background: 'transparent',
 		padding: '0',
 		margin: '0',
-		color: 'rgba(255, 255, 255, 0.8)',
+		color: 'hsl(var(--foreground))',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)'
 	},
 	controlButtonHover: {
-		'background-color': 'rgba(255, 255, 255, 0.1)'
+		'background-color': 'hsla(var(--primary-hover) / 0.1)'
 	},
 	closeButtonHover: {
-		'background-color': 'rgba(232, 17, 35, 0.2)'
+		'background-color': 'var(--button-close-hover)'
 	}
 }

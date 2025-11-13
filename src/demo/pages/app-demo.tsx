@@ -135,6 +135,7 @@ export const AppDemo: Component<AppDemoProps> = props => {
 													setSidebarOpen(false)
 												}}
 												disabled={item.disabled}
+												class='sidebar-item'
 												style={{
 													width: '100%',
 													display: 'flex',
@@ -145,30 +146,15 @@ export const AppDemo: Component<AppDemoProps> = props => {
 													cursor: item.disabled ? 'not-allowed' : 'pointer',
 													'font-size': '14px',
 													color: item.disabled
-														? props.isDark()
-															? 'rgba(255, 255, 255, 0.4)'
-															: 'rgba(0, 0, 0, 0.4)'
-														: props.isDark()
-														? 'rgba(255, 255, 255, 0.9)'
-														: 'rgba(0, 0, 0, 0.9)',
+														? 'hsla(var(--foreground) / 0.4)'
+														: 'hsl(var(--foreground))',
 													transition:
-														'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
-													'background-color': 'transparent',
+														'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1), text-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+													background: 'transparent',
 													border: 'none',
 													'text-align': 'left',
 													'box-sizing': 'border-box',
 													opacity: item.disabled ? 0.5 : 1
-												}}
-												onMouseEnter={e => {
-													if (!item.disabled) {
-														e.currentTarget.style.backgroundColor =
-															props.isDark()
-																? 'rgba(255, 255, 255, 0.1)'
-																: 'rgba(0, 0, 0, 0.05)'
-													}
-												}}
-												onMouseLeave={e => {
-													e.currentTarget.style.backgroundColor = 'transparent'
 												}}
 											>
 												<Show when={item.icon}>

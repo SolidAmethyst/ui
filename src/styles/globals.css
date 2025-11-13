@@ -278,13 +278,13 @@
 	--hover-color: 271 100% 66%;
 	--primary-foreground: 222.2 84% 4.9%;
 	/* Hover effect system - unified parameters (same as light theme) */
-	--hover-glow-blur: 1.5px;
+	--hover-glow-blur: 0.75px;
 	--hover-glow-opacity: 1;
-	--hover-glow-box-blur: 1.5px;
+	--hover-glow-box-blur: 0.75px;
 	--hover-glow-box-opacity: 0.7;
 	--hover-color-mix-primary: 100%;
 	--hover-color-mix-white: 0%;
-	--hover-text-shadow-blur: 1.5px;
+	--hover-text-shadow-blur: 0.75px;
 	--hover-text-shadow-opacity: 1;
 	--secondary: 217.2 32.6% 17.5%;
 	--secondary-foreground: 210 40% 98%;
@@ -354,13 +354,13 @@
 	--hover-color: 271 100% 66%;
 	--primary-foreground: 222.2 84% 4.9%;
 	/* Hover effect system - unified parameters (same as light theme) */
-	--hover-glow-blur: 1.5px;
+	--hover-glow-blur: 0.75px;
 	--hover-glow-opacity: 1;
-	--hover-glow-box-blur: 1.5px;
+	--hover-glow-box-blur: 0.75px;
 	--hover-glow-box-opacity: 0.7;
 	--hover-color-mix-primary: 100%;
 	--hover-color-mix-white: 0%;
-	--hover-text-shadow-blur: 1.5px;
+	--hover-text-shadow-blur: 0.75px;
 	--hover-text-shadow-opacity: 1;
 	--secondary: 217.2 32.6% 17.5%;
 	--secondary-foreground: 210 40% 98%;
@@ -431,11 +431,15 @@
 
 /* Button Styles - EXACT copy from Tauri project */
 :root {
-	/* Button Size Control */
-	--small-btn-size: 32px;
-	--small-icon-size: 16px;
+	/* Button Size Control - Unified sizes for all button variants */
+	--small-btn-size: 40px;
+	--small-icon-size: 18px;
 	--normal-btn-height: 40px;
 	--normal-btn-padding: 0 16px;
+	--button-play-pause-size: 40px;
+	--button-trigger-size: 40px;
+	--button-window-control-size: 40px;
+	--button-action-size: 40px;
 }
 
 .control-btn {
@@ -444,12 +448,13 @@
 	padding: var(--normal-btn-padding);
 	border: none;
 	background: transparent;
-	color: #ffffff;
+	color: hsl(var(--foreground));
 	cursor: pointer;
 	transition: all 0.2s ease;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: 8px;
 	-webkit-app-region: no-drag;
 	font-size: 14px;
 	border-radius: 8px;
@@ -488,11 +493,13 @@
 
 .play-pause-btn {
 	position: relative;
-	width: 60px;
-	height: 60px;
+	width: var(--button-play-pause-size);
+	height: var(--button-play-pause-size);
+	min-width: var(--button-play-pause-size);
+	min-height: var(--button-play-pause-size);
 	border: 2px solid transparent;
 	background: transparent;
-	color: #ffffff;
+	color: hsl(var(--foreground));
 	cursor: pointer;
 	transition: color 0.2s ease;
 	display: flex;
@@ -504,11 +511,28 @@
 	outline: none;
 }
 
-.play-pause-btn svg {
-	width: 24px;
-	height: 24px;
-	transform: scale(1);
+.play-pause-btn svg,
+.play-pause-btn .material-symbols-rounded {
+	width: var(--small-icon-size) !important;
+	height: var(--small-icon-size) !important;
+	font-size: var(--small-icon-size) !important;
+	min-width: var(--small-icon-size) !important;
+	min-height: var(--small-icon-size) !important;
+	max-width: var(--small-icon-size) !important;
+	max-height: var(--small-icon-size) !important;
+	transform: scale(1) !important;
 	transform-origin: center;
+	line-height: 1 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	font-variation-settings:
+		'FILL' 0,
+		'wght' 400,
+		'GRAD' 0,
+		'opsz' 24 !important;
+	font-family: 'Material Symbols Rounded' !important;
+	font-style: normal !important;
 }
 
 .play-pause-btn:hover {
@@ -531,13 +555,14 @@
 
 .play-pause-btn:active {
 	background: transparent;
-	color: #ffffff;
+	color: hsl(var(--foreground));
 }
 
 /* Small buttons for theme, debug, pin, and settings */
 .small-btn {
 	width: var(--small-btn-size);
 	height: var(--small-btn-size);
+	min-width: var(--small-btn-size);
 	min-height: var(--small-btn-size);
 	padding: 0;
 	margin: 0 2px;
@@ -546,6 +571,38 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+/* Trigger button */
+.trigger-btn {
+	width: var(--button-trigger-size);
+	height: var(--button-trigger-size);
+	min-width: var(--button-trigger-size);
+	min-height: var(--button-trigger-size);
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.trigger-btn .material-symbols-rounded,
+.trigger-btn svg {
+	font-size: var(--small-icon-size) !important;
+	width: var(--small-icon-size) !important;
+	height: var(--small-icon-size) !important;
+	line-height: 1 !important;
+}
+
+/* Action buttons (back, save, delete, search, share) - all use control-btn, size controlled by variant */
+.back-btn,
+.save-btn,
+.delete-btn,
+.search-btn,
+.share-btn {
+	width: var(--button-action-size);
+	height: var(--button-action-size);
+	min-width: var(--button-action-size);
+	min-height: var(--button-action-size);
 }
 
 .small-btn svg {
@@ -596,10 +653,6 @@
 	);
 }
 
-.close-btn .material-symbols-rounded {
-	font-size: 18px !important;
-}
-
 .close-btn:hover {
 	background: transparent;
 	color: #e81123 !important;
@@ -620,39 +673,114 @@
 	color: #b00000 !important;
 }
 
-/* Minimize and Maximize buttons for title bar */
+/* Window control buttons (minimize, maximize, close) - unified sizes */
 .minimize-btn,
-.maximize-btn {
-	width: 32px;
-	height: 32px;
-	min-width: 32px;
-	min-height: 32px;
+.maximize-btn,
+.close-btn {
+	width: var(--button-window-control-size);
+	height: var(--button-window-control-size);
+	min-width: var(--button-window-control-size);
+	min-height: var(--button-window-control-size);
 	padding: 0;
 	border-radius: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .minimize-btn .material-symbols-rounded,
-.maximize-btn .material-symbols-rounded {
-	font-size: 18px !important;
+.maximize-btn .material-symbols-rounded,
+.close-btn .material-symbols-rounded {
+	font-size: var(--small-icon-size) !important;
+	width: var(--small-icon-size) !important;
+	height: var(--small-icon-size) !important;
+	min-width: var(--small-icon-size) !important;
+	min-height: var(--small-icon-size) !important;
+	max-width: var(--small-icon-size) !important;
+	max-height: var(--small-icon-size) !important;
+	transform: scale(1) !important;
+	transform-origin: center;
+	line-height: 1 !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	font-variation-settings:
+		'FILL' 0,
+		'wght' 400,
+		'GRAD' 0,
+		'opsz' 24 !important;
+	font-family: 'Material Symbols Rounded' !important;
+	font-style: normal !important;
+}
+
+/* Normalize visual size - fullscreen icons appear larger, use smaller opsz */
+.maximize-btn .material-symbols-rounded[data-icon='fullscreen'],
+.maximize-btn .material-symbols-rounded[data-icon='fullscreen_exit'] {
+	font-variation-settings:
+		'FILL' 0,
+		'wght' 400,
+		'GRAD' 0,
+		'opsz' 20 !important;
 }
 
 /* Title bar control buttons */
 .title-bar-control-btn {
-	width: 32px;
-	height: 32px;
-	min-width: 32px;
-	min-height: 32px;
+	color: hsl(var(--foreground));
+	width: var(--button-window-control-size);
+	height: var(--button-window-control-size);
+	min-width: var(--button-window-control-size);
+	min-height: var(--button-window-control-size);
 	padding: 0;
 	border-radius: 0;
 	margin: 0;
 }
 
 .title-bar-control-btn:hover {
-	background-color: rgba(255, 255, 255, 0.1) !important;
+	background: transparent !important;
+	color: hsl(var(--hover-color)) !important;
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity)) !important;
+}
+
+.title-bar-control-btn:hover .material-symbols-rounded {
+	color: hsl(var(--hover-color)) !important;
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	) !important;
 }
 
 .title-bar-control-btn.close-btn:hover {
-	background-color: rgba(232, 17, 35, 0.2) !important;
+	background: transparent !important;
+	color: #e81123 !important;
+}
+
+.title-bar-control-btn.close-btn:hover .material-symbols-rounded {
+	color: #e81123 !important;
+	filter: none !important;
+}
+
+/* Sidebar item hover effects - using unified system */
+.sidebar-item {
+	transition:
+		background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		text-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-item:hover:not(:disabled) {
+	background: transparent !important;
+	color: hsl(var(--hover-color)) !important;
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
+}
+
+.sidebar-item:hover:not(:disabled) .material-symbols-rounded {
+	color: hsl(var(--hover-color)) !important;
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 /* Grid number input arrow buttons */
@@ -673,13 +801,13 @@
 
 .control-btn:disabled:hover {
 	background: transparent;
-	color: #0a5da3;
+	color: hsl(var(--foreground));
 	opacity: 0.7;
 }
 
 .control-btn:disabled:hover svg,
 .control-btn:disabled:hover .material-symbols-rounded {
-	color: #0a5da3;
+	color: hsl(var(--foreground));
 }
 
 /* Light theme disabled buttons */
@@ -712,9 +840,10 @@
 
 /* Material Icons alignment in buttons */
 .control-btn .material-symbols-rounded {
-	font-size: 16px;
+	font-size: var(--small-icon-size);
 	line-height: 1;
-	height: 16px;
+	width: var(--small-icon-size);
+	height: var(--small-icon-size);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -726,13 +855,13 @@
 [data-theme='light'] .control-btn:not(:hover),
 [data-theme='light'] .play-pause-btn:not(:hover),
 [data-theme='light'] .small-btn:not(:hover) {
-	color: #1a1a1a;
+	color: hsl(var(--foreground));
 }
 
 [data-theme='light'] .control-btn:not(:hover) .material-symbols-rounded,
 [data-theme='light'] .play-pause-btn:not(:hover) .material-symbols-rounded,
 [data-theme='light'] .small-btn:not(:hover) .material-symbols-rounded {
-	color: #1a1a1a;
+	color: hsl(var(--foreground));
 }
 
 /* Force same bright purple hover with glow in light theme */
@@ -953,6 +1082,20 @@
 	filter: drop-shadow(0 0.5px 0.5px rgba(0, 0, 0, 0.2));
 }
 
+/* Normal icons for all demo buttons (32px buttons) */
+.button-demo-large-icons .small-btn .material-symbols-rounded,
+.button-demo-large-icons .trigger-btn .material-symbols-rounded,
+.button-demo-large-icons .play-pause-btn .material-symbols-rounded,
+.button-demo-large-icons .minimize-btn .material-symbols-rounded,
+.button-demo-large-icons .maximize-btn .material-symbols-rounded,
+.button-demo-large-icons .close-btn .material-symbols-rounded,
+.button-demo-large-icons .control-btn .material-symbols-rounded {
+	font-size: var(--small-icon-size) !important;
+	width: var(--small-icon-size) !important;
+	height: var(--small-icon-size) !important;
+	line-height: 1 !important;
+}
+
 .control-btn,
 .play-pause-btn,
 .small-btn {
@@ -995,15 +1138,15 @@
 
 /* TechChip light theme adaptation */
 [data-theme='light'] span[data-status] {
-	color: #1a1a1a !important;
+	color: hsl(var(--foreground)) !important;
 }
 
 [data-theme='light'] span[data-status] .material-symbols-rounded {
-	color: #1a1a1a !important;
+	color: hsl(var(--foreground)) !important;
 }
 
 [data-theme='light'] span[data-status] span:not(.material-symbols-rounded) {
-	color: #1a1a1a !important;
+	color: hsl(var(--foreground)) !important;
 }
 
 /* Hide native scrollbars - use Scrollbar component instead */
@@ -1085,11 +1228,11 @@
 }
 
 [cmdk-input]::placeholder {
-	color: rgba(255, 255, 255, 0.5);
+	color: hsla(var(--muted-foreground) / 0.7);
 }
 
 [data-theme='light'] [cmdk-input]::placeholder {
-	color: rgba(26, 26, 26, 0.5);
+	color: hsla(var(--muted-foreground) / 0.7);
 }
 
 [cmdk-group-heading] {
@@ -1106,21 +1249,21 @@
 }
 
 [data-theme='light'] [cmdk-group-heading] {
-	color: rgba(26, 26, 26, 0.6);
+	color: hsla(var(--muted-foreground) / 0.8);
 }
 
 /* NumberInput theme-aware CSS variables */
 :root {
 	--number-input-border: rgba(0, 0, 0, 0.1);
 	--number-input-bg: rgba(0, 0, 0, 0.02);
-	--number-input-text: #1a1a1a;
+	--number-input-text: hsl(var(--foreground));
 	--number-input-border-focus: hsla(var(--primary) / 0.3);
 }
 
 [data-theme='dark'] {
 	--number-input-border: rgba(255, 255, 255, 0.1);
 	--number-input-bg: rgba(255, 255, 255, 0.05);
-	--number-input-text: #f6f6f6;
+	--number-input-text: hsl(var(--foreground));
 	--number-input-border-focus: hsla(var(--primary) / 0.5);
 }
 

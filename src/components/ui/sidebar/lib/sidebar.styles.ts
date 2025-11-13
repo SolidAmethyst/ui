@@ -25,9 +25,7 @@ export const sidebarStyles = {
 						position: 'relative' as const,
 						'z-index': '100'
 				  }),
-			background: isDark
-				? 'hsla(240, 5.9%, 10%, 0.95)'
-				: 'hsla(0, 0%, 98%, 0.95)',
+			background: 'hsl(var(--sidebar-background))',
 			'backdrop-filter': 'blur(20px) saturate(180%)',
 			'-webkit-backdrop-filter': 'blur(20px) saturate(180%)',
 			border: 'none',
@@ -54,9 +52,7 @@ export const sidebarStyles = {
 	}),
 	separator: (isDark: boolean): JSX.CSSProperties => ({
 		height: 'var(--sidebar-separator-height)',
-		'background-color': isDark
-			? 'hsla(240, 3.7%, 15.9%, 1)'
-			: 'hsla(220, 13%, 91%, 1)',
+		'background-color': 'hsl(var(--border))',
 		margin: 'var(--sidebar-separator-margin)'
 	}),
 	button: (disabled: boolean, isDark: boolean): JSX.CSSProperties => ({
@@ -69,12 +65,8 @@ export const sidebarStyles = {
 		cursor: disabled ? 'not-allowed' : 'pointer',
 		'font-size': 'var(--sidebar-button-font-size)',
 		color: disabled
-			? isDark
-				? 'hsla(240, 4.8%, 95.9%, 0.4)'
-				: 'hsla(240, 5.3%, 26.1%, 0.4)'
-			: isDark
-				? 'hsla(240, 4.8%, 95.9%, 1)'
-				: 'hsla(240, 5.3%, 26.1%, 1)',
+			? 'hsla(var(--foreground) / 0.4)'
+			: 'hsl(var(--foreground))',
 		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
 		'background-color': 'transparent',
 		border: 'none',

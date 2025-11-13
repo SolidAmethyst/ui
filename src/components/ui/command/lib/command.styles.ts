@@ -16,14 +16,12 @@ export const commandStyles = {
 		display: 'flex',
 		'flex-direction': 'column',
 		overflow: 'hidden',
-		'background-color': options?.isDark ? '#242424' : '#ffffff',
+		'background-color': 'hsl(var(--background))',
 		'border-radius': '8px',
 		'box-shadow': options?.isDark
 			? '0 8px 32px rgba(0, 0, 0, 0.6)'
 			: '0 8px 32px rgba(0, 0, 0, 0.15)',
-		border: `1px solid ${
-			options?.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
-		}`
+		border: `1px solid hsl(var(--border))`
 	}),
 
 	dialog: (options?: CommandStyleOptions): JSX.CSSProperties => ({
@@ -46,10 +44,8 @@ export const commandStyles = {
 		border: 'none',
 		outline: 'none',
 		background: 'transparent',
-		color: options?.isDark ? '#f6f6f6' : '#1a1a1a',
-		'border-bottom': `1px solid ${
-			options?.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
-		}`
+		color: 'hsl(var(--foreground))',
+		'border-bottom': `1px solid hsl(var(--border))`
 	}),
 
 	list: (): JSX.CSSProperties => ({
@@ -76,14 +72,10 @@ export const commandStyles = {
 			? 'hsla(var(--primary) / 0.1)'
 			: 'transparent',
 		color: options?.disabled
-			? options?.isDark
-				? 'rgba(255, 255, 255, 0.3)'
-				: 'rgba(26, 26, 26, 0.3)'
+			? 'hsla(var(--foreground) / 0.3)'
 			: options?.selected
 				? 'hsl(var(--primary))'
-				: options?.isDark
-					? '#ffffff'
-					: '#1a1a1a',
+				: 'hsl(var(--foreground))',
 		transition: 'background-color 0.15s ease, color 0.15s ease, text-shadow 0.15s ease'
 	}),
 	itemHover: (
@@ -96,9 +88,7 @@ export const commandStyles = {
 				: 'hsla(var(--primary-hover) / 0.1)',
 		color: options?.selected
 			? 'hsl(var(--hover-color))'
-			: options?.isDark
-				? '#ffffff'
-				: '#1a1a1a',
+			: 'hsl(var(--foreground))',
 		'text-shadow': options?.selected
 			? `0 0 var(--hover-text-shadow-blur) hsla(var(--primary-hover) / var(--hover-text-shadow-opacity))`
 			: 'none',
@@ -120,17 +110,13 @@ export const commandStyles = {
 		padding: 'var(--command-group-heading-padding)',
 		'margin-top': 'var(--command-group-heading-margin-top)',
 		'margin-bottom': 'var(--command-group-heading-margin-bottom)',
-		color: options?.isDark
-			? 'rgba(255, 255, 255, 0.6)'
-			: 'rgba(26, 26, 26, 0.6)',
+		color: 'hsla(var(--muted-foreground) / 0.8)',
 		'user-select': 'none'
 	}),
 
 	separator: (options?: CommandStyleOptions): JSX.CSSProperties => ({
 		height: 'var(--command-separator-height)',
-		'background-color': options?.isDark
-			? 'rgba(255, 255, 255, 0.1)'
-			: 'rgba(0, 0, 0, 0.1)',
+		'background-color': 'hsl(var(--border))',
 		margin: 'var(--command-separator-margin)'
 	}),
 
@@ -138,17 +124,13 @@ export const commandStyles = {
 		padding: 'var(--command-empty-padding)',
 		'text-align': 'center',
 		'font-size': 'var(--command-empty-font-size)',
-		color: options?.isDark
-			? 'rgba(246, 246, 246, 0.5)'
-			: 'rgba(26, 26, 26, 0.5)'
+		color: 'hsla(var(--muted-foreground) / 0.7)'
 	}),
 
 	loading: (options?: CommandStyleOptions): JSX.CSSProperties => ({
 		padding: 'var(--command-empty-padding)',
 		'text-align': 'center',
 		'font-size': 'var(--command-empty-font-size)',
-		color: options?.isDark
-			? 'rgba(246, 246, 246, 0.5)'
-			: 'rgba(26, 26, 26, 0.5)'
+		color: 'hsla(var(--muted-foreground) / 0.7)'
 	})
 }

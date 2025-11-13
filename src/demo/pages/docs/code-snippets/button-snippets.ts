@@ -43,15 +43,20 @@ export const buttonSnippets = {
 />
 <Button
   variant="maximize"
-  icon="crop_square"
   iconPosition="only"
-  title="Maximize"
+  title="Maximize / Restore Down"
 />
 <Button
   variant="close"
   icon="close"
   iconPosition="only"
   title="Close"
+/>
+<Button
+  variant="small"
+  icon="push_pin"
+  iconPosition="only"
+  title="Pin"
 />`,
 
 		actionButtons: `<Button variant="back" iconPosition="only" title="Back" />

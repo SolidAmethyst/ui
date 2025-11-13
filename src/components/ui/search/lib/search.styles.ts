@@ -47,12 +47,8 @@ export const searchStyles = {
 				? 'rgba(255, 255, 255, 0.05)'
 				: '#ffffff',
 		color: options.isDisabled
-			? options.isDark
-				? 'rgba(246, 246, 246, 0.4)'
-				: 'rgba(26, 26, 26, 0.4)'
-			: options.isDark
-				? '#f6f6f6'
-				: '#1a1a1a',
+			? 'hsla(var(--foreground) / 0.4)'
+			: 'hsl(var(--foreground))',
 		cursor: options.isDisabled ? 'not-allowed' : 'text',
 		transition: 'all 0.2s ease',
 		'box-sizing': 'border-box',
@@ -70,12 +66,8 @@ export const searchStyles = {
 		left: 'var(--search-icon-left, 12px)',
 		'font-size': 'var(--search-icon-size, 20px)',
 		color: options.isDisabled
-			? options.isDark
-				? 'rgba(246, 246, 246, 0.3)'
-				: 'rgba(26, 26, 26, 0.3)'
-			: options.isDark
-				? 'rgba(246, 246, 246, 0.6)'
-				: 'rgba(26, 26, 26, 0.6)',
+			? 'hsla(var(--foreground) / 0.3)'
+			: 'hsla(var(--muted-foreground) / 0.8)',
 		'pointer-events': 'none',
 		'z-index': '1',
 		transition: 'color 0.2s ease'
@@ -94,9 +86,7 @@ export const searchStyles = {
 		border: 'none',
 		'border-radius': 'var(--radius-sm, 4px)',
 		background: 'transparent',
-		color: options.isDark
-			? 'rgba(246, 246, 246, 0.6)'
-			: 'rgba(26, 26, 26, 0.6)',
+		color: 'hsla(var(--muted-foreground) / 0.8)',
 		cursor: 'pointer',
 		transition: 'all 0.2s ease',
 		'z-index': '1',

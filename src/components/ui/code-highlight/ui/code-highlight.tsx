@@ -60,12 +60,12 @@ export const CodeHighlight: Component<CodeHighlightProps> = props => {
 				onClick={copyToClipboard}
 				style={codeHighlightStyles.copyButton({ isDark: isDark() })}
 				onMouseEnter={e => {
-					e.currentTarget.style.color = isDark() ? '#f6f6f6' : '#1a1a1a'
+					e.currentTarget.style.color = 'hsl(var(--hover-color))'
 				}}
 				onMouseLeave={e => {
 					e.currentTarget.style.color = isDark()
-						? 'rgba(246, 246, 246, 0.6)'
-						: 'rgba(26, 26, 26, 0.6)'
+						? 'hsla(var(--muted-foreground) / 0.8)'
+						: 'hsla(var(--muted-foreground) / 0.8)'
 				}}
 				title={props.copyButtonTitle ?? 'Copy code'}
 			>

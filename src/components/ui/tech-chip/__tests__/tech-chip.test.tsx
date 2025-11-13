@@ -2,32 +2,9 @@
  * TechChip Component Tests
  */
 
-import { render } from "@solidjs/testing-library";
+import { fireEvent, render } from "@solidjs/testing-library";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { TechChip } from "../ui/tech-chip";
-
-// Mock ResizeObserver
-const mockResizeObserver = vi.fn();
-global.ResizeObserver = mockResizeObserver.mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
-
-// Mock MutationObserver
-const mockMutationObserver = vi.fn();
-global.MutationObserver = mockMutationObserver.mockImplementation(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
-
-// Mock getComputedStyle
-Object.defineProperty(window, "getComputedStyle", {
-  value: vi.fn(() => ({
-    getPropertyValue: vi.fn(() => "1"),
-  })),
-});
 
 describe("TechChip", () => {
   beforeEach(() => {
@@ -90,7 +67,7 @@ describe("TechChip", () => {
 
     const chip = container.querySelector('[role="status"]');
     expect(chip).toBeInTheDocument();
-    chip?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    fireEvent.click(chip!);
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
@@ -172,7 +149,7 @@ describe("TechChip", () => {
     expect(chip).toBeInTheDocument();
 
     // Should not throw when clicked without onClick
-    chip?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    fireEvent.click(chip!);
 
     // Verify component still exists after click
     expect(chip).toBeInTheDocument();

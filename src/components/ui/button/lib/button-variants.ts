@@ -88,6 +88,16 @@ export const buttonVariants = (options: ButtonVariantsOptions = {}): string => {
 		baseClass = 'control-btn attach-btn'
 	} else if (variant === 'trigger') {
 		baseClass = 'control-btn trigger-btn'
+	} else if (variant === 'back') {
+		baseClass = 'control-btn back-btn'
+	} else if (variant === 'save') {
+		baseClass = 'control-btn save-btn'
+	} else if (variant === 'delete') {
+		baseClass = 'control-btn delete-btn'
+	} else if (variant === 'search') {
+		baseClass = 'control-btn search-btn'
+	} else if (variant === 'share') {
+		baseClass = 'control-btn share-btn'
 	}
 
 	// Size classes (if needed in future)

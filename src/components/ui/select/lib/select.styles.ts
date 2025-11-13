@@ -34,12 +34,8 @@ export const selectStyles = {
 				? 'rgba(255, 255, 255, 0.05)'
 				: '#ffffff',
 		color: options.isDisabled
-			? options.isDark
-				? 'rgba(246, 246, 246, 0.4)'
-				: 'rgba(26, 26, 26, 0.4)'
-			: options.isDark
-				? '#f6f6f6'
-				: '#1a1a1a',
+			? 'hsla(var(--foreground) / 0.4)'
+			: 'hsl(var(--foreground))',
 		cursor: options.isDisabled ? 'not-allowed' : 'pointer',
 		transition: 'all 0.2s ease',
 		display: 'flex',
@@ -69,9 +65,7 @@ export const selectStyles = {
 	}),
 	icon: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		'font-size': 'var(--select-icon-font-size)',
-		color: options.isDark
-			? 'rgba(246, 246, 246, 0.6)'
-			: 'rgba(26, 26, 26, 0.6)',
+		color: 'hsla(var(--muted-foreground) / 0.8)',
 		transition: 'transform 0.2s ease',
 		transform: options.isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
 		'flex-shrink': '0',
@@ -85,7 +79,7 @@ export const selectStyles = {
 		'margin-top': 'var(--select-dropdown-margin-top)',
 		padding: 'var(--select-dropdown-padding)',
 		'border-radius': 'var(--select-border-radius)',
-		background: options.isDark ? '#1a1a1f' : '#ffffff',
+		background: 'hsl(var(--background))',
 		border: `1px solid ${
 			options.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
 		}`,
@@ -103,7 +97,7 @@ export const selectStyles = {
 		padding: 'var(--select-option-padding)',
 		'font-size': 'var(--select-option-font-size)',
 		'line-height': '1.5',
-		color: options.isDark ? '#f6f6f6' : '#1a1a1a',
+		color: 'hsl(var(--foreground))',
 		cursor: 'pointer',
 		'border-radius': 'var(--radius-sm)',
 		transition: 'background-color var(--transition-fast)',
@@ -138,6 +132,6 @@ export const selectStyles = {
 		display: 'block',
 		'font-size': 'var(--select-option-description-font-size)',
 		'margin-top': 'var(--select-option-description-margin-top)',
-		color: options.isDark ? 'rgba(246, 246, 246, 0.6)' : 'rgba(26, 26, 26, 0.6)'
+		color: 'hsla(var(--muted-foreground) / 0.8)'
 	})
 } as const
