@@ -73,9 +73,7 @@ export const commandStyles = {
 		cursor: options?.disabled ? 'not-allowed' : 'pointer',
 		'user-select': 'none',
 		'background-color': options?.selected
-			? options?.isDark
-				? 'rgba(255, 255, 255, 0.1)'
-				: 'rgba(0, 0, 0, 0.05)'
+			? 'hsla(var(--primary) / 0.1)'
 			: 'transparent',
 		color: options?.disabled
 			? options?.isDark

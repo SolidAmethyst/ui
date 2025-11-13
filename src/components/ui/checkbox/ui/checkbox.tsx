@@ -51,7 +51,7 @@ export const Checkbox: Component<CheckboxProps> = props => {
 		const checkedValue = checked()
 		const indeterminateValue = indeterminate()
 		if (checkedValue || indeterminateValue) {
-			return isDarkValue ? '#3b82f6' : '#2563eb'
+			return 'hsl(var(--primary))'
 		}
 		return isDarkValue ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'
 	}

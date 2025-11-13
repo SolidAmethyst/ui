@@ -27,12 +27,12 @@ export const dragDropStyles = {
 		transform: isDragging ? 'scale(1.02)' : 'scale(1)',
 		transition: 'transform 0.2s ease, opacity 0.2s ease, background 0.2s ease',
 		background: isDragging
-			? 'rgba(59, 130, 246, 0.15)'
+			? 'hsla(var(--primary) / 0.15)'
 			: isOver
-				? 'rgba(59, 130, 246, 0.12)'
-				: 'rgba(59, 130, 246, 0.08)',
+				? 'hsla(var(--primary) / 0.12)'
+				: 'hsla(var(--primary) / 0.08)',
 		border: `1px solid ${
-			isOver ? 'rgba(59, 130, 246, 0.4)' : 'rgba(59, 130, 246, 0.2)'
+			isOver ? 'hsla(var(--primary) / 0.4)' : 'hsla(var(--primary) / 0.2)'
 		}`,
 		'border-radius': 'var(--drag-drop-item-border-radius)',
 		padding: 'var(--drag-drop-item-padding)',
@@ -56,9 +56,8 @@ export const dragDropStyles = {
 		'justify-content': 'center',
 		width: '20px',
 		height: '20px',
-		// Use theme-aware color for future flexibility
-		// Currently same color for both themes, but can be adjusted if needed
-		color: 'rgba(59, 130, 246, 0.4)',
+		// Use CSS variable for theme-aware color and easy customization
+		color: 'hsla(var(--primary) / 0.4)',
 		opacity: 1,
 		transition: 'opacity 0.2s ease',
 		cursor: 'grab',
@@ -75,18 +74,41 @@ export const dragDropStyles = {
 	dropIndicator: (
 		isDark: boolean,
 		orientation: 'vertical' | 'horizontal'
-	): JSX.CSSProperties => ({
-		position: 'absolute',
-		[orientation === 'vertical' ? 'left' : 'top']: '0',
-		[orientation === 'vertical' ? 'right' : 'bottom']: '0',
-		[orientation === 'vertical' ? 'width' : 'height']: '2px',
-		[orientation === 'vertical' ? 'height' : 'width']: '100%',
-		background: isDark
-			? 'hsla(var(--drag-drop-indicator-color-dark))'
-			: 'hsla(var(--drag-drop-indicator-color-light))',
-		'border-radius': '1px',
-		opacity: 0.8,
-		'z-index': 1001,
-		'pointer-events': 'none'
-	})
+	): JSX.CSSProperties => {
+		if (orientation === 'vertical') {
+			// Vertical orientation: items stacked vertically, indicator is vertical line (left side)
+			return {
+				position: 'absolute',
+				left: '-1px',
+				top: '0',
+				bottom: '0',
+				width: '2px',
+				height: '100%',
+				background: isDark
+					? 'hsla(var(--drag-drop-indicator-color-dark))'
+					: 'hsla(var(--drag-drop-indicator-color-light))',
+				'border-radius': '1px',
+				opacity: 0.8,
+				'z-index': 1001,
+				'pointer-events': 'none'
+			}
+		} else {
+			// Horizontal orientation: items side by side, indicator is horizontal line (top)
+			return {
+				position: 'absolute',
+				top: '-1px',
+				left: '0',
+				right: '0',
+				width: '100%',
+				height: '2px',
+				background: isDark
+					? 'hsla(var(--drag-drop-indicator-color-dark))'
+					: 'hsla(var(--drag-drop-indicator-color-light))',
+				'border-radius': '1px',
+				opacity: 0.8,
+				'z-index': 1001,
+				'pointer-events': 'none'
+			}
+		}
+	}
 } as const

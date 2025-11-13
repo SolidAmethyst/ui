@@ -38,7 +38,7 @@ export const tabsStyles = {
 				? 'rgba(246, 246, 246, 0.5)'
 				: 'rgba(26, 26, 26, 0.5)',
 		cursor: 'pointer',
-		'border-bottom': `2px solid ${options.isActive ? '#3b82f6' : 'transparent'}`,
+		'border-bottom': `2px solid ${options.isActive ? 'hsl(var(--primary))' : 'transparent'}`,
 		transition: 'all 0.2s ease',
 		margin: `0 0 var(--tabs-button-margin-bottom) 0`
 	}),

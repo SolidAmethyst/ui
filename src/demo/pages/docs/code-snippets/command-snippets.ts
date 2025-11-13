@@ -131,7 +131,8 @@ export const commandSnippets = {
     --command-background: 0 0% 100%;
     --command-foreground: 240 5.3% 10.2%;
     --command-border: 220 13% 91%;
-    --command-selected: 0 0% 96.1%;
+    /* Selected item uses primary color */
+    --command-selected: var(--primary) / 0.1;
     --command-disabled: 240 5.3% 26.1%;
     --command-group-heading: 240 5.3% 26.1%;
     --command-empty: 240 5.3% 26.1%;
@@ -142,7 +143,8 @@ export const commandSnippets = {
     --command-background: 240 5.9% 14.1%;
     --command-foreground: 0 0% 96.1%;
     --command-border: 240 3.7% 15.9%;
-    --command-selected: 240 3.7% 15.9%;
+    /* Selected item uses primary color */
+    --command-selected: var(--primary) / 0.1;
     --command-disabled: 240 5.3% 26.1%;
     --command-group-heading: 240 4.8% 95.9%;
     --command-empty: 240 4.8% 95.9%;

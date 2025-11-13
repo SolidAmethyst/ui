@@ -113,9 +113,9 @@ export const NumberInput: Component<NumberInputProps> = props => {
 					// Apply focus styles
 					if (props.themeAware) {
 						target.style.borderColor =
-							'var(--number-input-border-focus, rgba(59, 130, 246, 0.5))'
+							'var(--number-input-border-focus, hsla(var(--primary) / 0.5))'
 					} else {
-						target.style.borderColor = 'rgba(59, 130, 246, 0.5)'
+						target.style.borderColor = 'hsla(var(--primary) / 0.5)'
 					}
 					if (props.onFocus) props.onFocus(e)
 				}}

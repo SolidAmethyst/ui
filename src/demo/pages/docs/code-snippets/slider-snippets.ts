@@ -46,5 +46,23 @@ export const sliderSnippets = {
   label="Volume"
   showValue={false}
 />`
-	}
+	},
+
+	customization: `@layer base {
+  :root {
+    /* Slider thumb uses primary color */
+    --slider-thumb: var(--primary);
+    --slider-thumb-hover: var(--primary);
+    --slider-track: 0 0% 0% / 0.1;
+    --slider-track-dark: 255 255 255 / 0.1;
+  }
+
+  [data-theme="dark"] {
+    /* Slider thumb uses primary color */
+    --slider-thumb: var(--primary);
+    --slider-thumb-hover: var(--primary);
+    --slider-track: 255 255 255 / 0.1;
+    --slider-track-dark: 255 255 255 / 0.1;
+  }
+}`
 } as const

@@ -1,6 +1,6 @@
 import { Accessor, Component, createSignal } from 'solid-js'
-import { DragDrop, type DragDropItem } from '../../../components/ui/drag-drop'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
+import { DragDrop, type DragDropItem } from '../../../components/ui/drag-drop'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
@@ -35,7 +35,11 @@ export const DragDropDocs: Component<DragDropDocsProps> = props => {
 		{ id: '3', content: <div>Item 3</div>, data: { title: 'Third Item' } }
 	])
 
-	const handleDrop = (item: DragDropItem, fromIndex: number, toIndex: number) => {
+	const handleDrop = (
+		item: DragDropItem,
+		fromIndex: number,
+		toIndex: number
+	) => {
 		const newItems = [...basicItems()]
 		const [removed] = newItems.splice(fromIndex, 1)
 		newItems.splice(toIndex, 0, removed)
@@ -60,10 +64,7 @@ export const DragDropDocs: Component<DragDropDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={dragDropSnippets.imports}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={dragDropSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			{/* Basic Usage */}
@@ -117,9 +118,7 @@ export const DragDropDocs: Component<DragDropDocsProps> = props => {
 										console.log('Drag started:', item.id, index)
 									}
 									onDrop={(item, fromIndex, toIndex) => {
-										console.log(
-											`Moved from ${fromIndex} to ${toIndex}`
-										)
+										console.log(`Moved from ${fromIndex} to ${toIndex}`)
 										handleDrop(item, fromIndex, toIndex)
 									}}
 									onDragEnd={(item, index) =>
@@ -177,10 +176,7 @@ export const DragDropDocs: Component<DragDropDocsProps> = props => {
 									margin: '0 auto'
 								}}
 							>
-								<DragDrop
-									items={disabledItems()}
-									isDark={props.isDark()}
-								/>
+								<DragDrop items={disabledItems()} isDark={props.isDark()} />
 							</div>
 						</div>
 					}
@@ -247,13 +243,11 @@ export const DragDropDocs: Component<DragDropDocsProps> = props => {
 												style={{
 													display: 'block',
 													'margin-bottom': '4px',
-													color: props.isDark()
-														? '#f6f6f6'
-														: '#1a1a1a'
+													color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
 												}}
 											>
-												{(item.data as { title: string })
-													?.title || `Item ${index + 1}`}
+												{(item.data as { title: string })?.title ||
+													`Item ${index + 1}`}
 											</strong>
 											{item.content}
 										</div>
@@ -264,6 +258,28 @@ export const DragDropDocs: Component<DragDropDocsProps> = props => {
 					}
 					code={dragDropSnippets.usage.customRender}
 				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
+					The DragDrop component uses CSS custom properties for theming. These
+					variables are already defined in the library, but you can override
+					them in your application's stylesheet to match your design system.
+				</Typography>
+				<CodeHighlight
+					code={dragDropSnippets.customization}
+					isDark={props.isDark}
+				/>
+				<Typography variant='body' isDark={props.isDark()}>
+					The DragDrop component automatically uses these CSS variables. You can
+					override them in your application to match your design system. The
+					component uses primary color for borders, indicators, and drag handles
+					when items are being dragged or hovered over.
+				</Typography>
 			</section>
 		</article>
 	)

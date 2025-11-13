@@ -58,10 +58,8 @@ export const selectStyles = {
 			: 'rgba(0, 0, 0, 0.02)'
 	}),
 	triggerOpen: (options: SelectStyleOptions): JSX.CSSProperties => ({
-		'border-color': options.isDark ? '#3b82f6' : '#2563eb',
-		background: options.isDark
-			? 'rgba(59, 130, 246, 0.1)'
-			: 'rgba(37, 99, 235, 0.05)'
+		'border-color': 'hsl(var(--primary))',
+		background: 'hsla(var(--primary) / 0.1)'
 	}),
 	icon: (options: SelectStyleOptions): JSX.CSSProperties => ({
 		'font-size': 'var(--select-icon-font-size)',
@@ -111,10 +109,8 @@ export const selectStyles = {
 			: 'rgba(0, 0, 0, 0.05)'
 	}),
 	optionSelected: (options: SelectStyleOptions): JSX.CSSProperties => ({
-		background: options.isDark
-			? 'rgba(59, 130, 246, 0.2)'
-			: 'rgba(37, 99, 235, 0.1)',
-		color: options.isDark ? '#60a5fa' : '#2563eb',
+		background: 'hsla(var(--primary) / 0.2)',
+		color: 'hsl(var(--primary))',
 		'font-weight': '500'
 	}),
 	optionDisabled: (): JSX.CSSProperties => ({

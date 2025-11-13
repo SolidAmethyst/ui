@@ -59,13 +59,13 @@ export const buttonStyles = {
   // Hover effects
   hover: `
     background: transparent;
-    color: #3b82f6;
+    color: hsl(var(--primary));
     box-shadow: none;
   `,
 
   // Active state
   active: `
-    color: #3b82f6;
+    color: hsl(var(--primary));
   `,
 
   // Close button hover

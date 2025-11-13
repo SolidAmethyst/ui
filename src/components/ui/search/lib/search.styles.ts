@@ -33,9 +33,7 @@ export const searchStyles = {
 		'line-height': '1.5',
 		border: `1px solid ${
 			options.isFocused
-				? options.isDark
-					? '#3b82f6'
-					: '#2563eb'
+				? 'hsl(var(--primary))'
 				: options.isDark
 					? 'rgba(255, 255, 255, 0.1)'
 					: 'rgba(0, 0, 0, 0.1)'

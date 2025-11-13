@@ -154,7 +154,7 @@ export const settingsCompositeStyles = {
 		border: 'none',
 		cursor: 'pointer',
 		'border-bottom': isActive
-			? `2px solid ${isDark ? '#3b82f6' : '#2563eb'}`
+			? `2px solid hsl(var(--primary))`
 			: '2px solid transparent',
 		transition:
 			'color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
@@ -234,7 +234,7 @@ export const settingsCompositeStyles = {
 		width: '18px',
 		height: '18px',
 		cursor: 'pointer',
-		accentColor: isDark ? '#3b82f6' : '#2563eb'
+		accentColor: 'hsl(var(--primary))'
 	}),
 
 	checkboxLabel: (isDark: boolean) => ({
