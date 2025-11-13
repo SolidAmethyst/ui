@@ -19,6 +19,7 @@ import {
 	IntroductionDocs,
 	NumberInputDocs,
 	ScrollbarDocs,
+	SearchDocs,
 	SidebarDocs,
 	SliderDocs,
 	TabsDocs,
@@ -299,6 +300,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'scrollbar'}>
 											<ScrollbarDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'search'}>
+											<SearchDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'slider'}>
 											<SliderDocs isDark={isDark} />

@@ -29,6 +29,7 @@ const componentGroups: ComponentGroup[] = [
 			{ name: 'Drawer', id: 'drawer' },
 			{ name: 'Grid', id: 'grid' },
 			{ name: 'NumberInput', id: 'number-input' },
+			{ name: 'Search', id: 'search' },
 			{ name: 'Sidebar', id: 'sidebar' },
 			{ name: 'Slider', id: 'slider' },
 			{ name: 'Tabs', id: 'tabs' },

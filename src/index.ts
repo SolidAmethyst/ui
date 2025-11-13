@@ -11,6 +11,7 @@ export * from './components/ui/menu'
 export * from './components/ui/number-input'
 // Settings moved to composites
 export * from './components/ui/scrollbar'
+export * from './components/ui/search'
 export * from './components/ui/select'
 export * from './components/ui/sidebar'
 export * from './components/ui/slider'
