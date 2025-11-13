@@ -346,20 +346,7 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 					them in your application's stylesheet to match your design system.
 				</Typography>
 				<CodeHighlight
-					code={`@layer base {
-  :root {
-    --button-hover: 221.2 83.2% 53.3%;
-    --button-close-hover: 0 84.2% 60.2%;
-    --button-close-active: 0 62.8% 30.6%;
-  }
-
-  .dark,
-  [data-theme="dark"] {
-    --button-hover: 217.2 91.2% 59.8%;
-    --button-close-hover: 0 62.8% 30.6%;
-    --button-close-active: 0 84.2% 60.2%;
-  }
-}`}
+					code={buttonSnippets.customization}
 					isDark={props.isDark}
 				/>
 				<Typography variant='body' isDark={props.isDark()}>

@@ -1,6 +1,6 @@
 /**
  * Universal Tabs UI Component Styles
- * For real application tabs (not Preview/Code)
+ * Unified style with documentation tabs (border-bottom indicator)
  */
 
 import type { JSX } from 'solid-js'
@@ -13,61 +13,53 @@ export interface TabsUIStyleOptions {
 export const tabsUIStyles = {
 	root: (): JSX.CSSProperties => ({
 		width: '100%',
-		display: 'flex',
-		'flex-direction': 'column'
+		'max-width': '100%',
+		'box-sizing': 'border-box',
+		margin: 'var(--tabs-container-margin)'
 	}),
 	list: (options: TabsUIStyleOptions): JSX.CSSProperties => ({
 		display: 'flex',
-		height: '38px',
-		'align-items': 'center',
-		'justify-content': 'center',
-		'border-radius': '6px',
-		background: options.isDark
-			? 'rgba(255, 255, 255, 0.1)'
-			: 'rgba(0, 0, 0, 0.1)',
-		padding: '4px',
-		'box-sizing': 'border-box',
-		width: '100%',
-		'max-width': '100%',
-		'flex-wrap': 'nowrap',
-		gap: '4px'
+		gap: 'var(--tabs-button-gap)',
+		'border-bottom': `1px solid ${
+			options.isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+		}`,
+		margin: `0 0 var(--tabs-buttons-margin-bottom) 0`
+		// Note: justify-content and align-items should be set via inline styles when center prop is used
 	}),
 	trigger: (options: TabsUIStyleOptions): JSX.CSSProperties => ({
-		display: 'inline-flex',
-		'align-items': 'center',
-		'justify-content': 'center',
-		'white-space': 'nowrap',
-		'border-radius': '4px',
-		'font-size': '14px',
-		'font-weight': '500',
-		transition:
-			'background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
-		padding: '6px 12px',
-		cursor: 'pointer',
+		padding: 'var(--tabs-button-padding)',
+		'font-size': 'var(--tabs-button-font-size)',
+		'font-weight': 'var(--tabs-button-font-weight)',
 		border: 'none',
-		'box-sizing': 'border-box',
-		background: options.isActive
-			? options.isDark
-				? 'rgba(255, 255, 255, 0.15)'
-				: 'rgba(0, 0, 0, 0.15)'
-			: 'transparent',
+		background: 'transparent',
 		color: options.isActive
 			? options.isDark
-				? '#ffffff'
-				: '#000000'
+				? '#f6f6f6'
+				: '#1a1a1a'
 			: options.isDark
-				? 'rgba(255, 255, 255, 0.8)'
-				: 'rgba(0, 0, 0, 0.8)',
-		'box-shadow': options.isActive
-			? options.isDark
-				? '0 1px 3px rgba(0, 0, 0, 0.3)'
-				: '0 1px 3px rgba(0, 0, 0, 0.15)'
-			: 'none',
-		'min-width': '60px',
-		height: '30px'
+				? 'rgba(246, 246, 246, 0.5)'
+				: 'rgba(26, 26, 26, 0.5)',
+		cursor: 'pointer',
+		'border-bottom': `2px solid ${options.isActive ? 'hsl(var(--primary))' : 'transparent'}`,
+		transition: 'all 0.2s ease',
+		margin: `0 0 var(--tabs-button-margin-bottom) 0`
+	}),
+	triggerHover: (options: TabsUIStyleOptions): JSX.CSSProperties => ({
+		color: options.isActive
+			? 'hsl(var(--hover-color))'
+			: options.isDark
+				? '#f6f6f6'
+				: '#1a1a1a',
+		'border-bottom': `2px solid ${
+			options.isActive
+				? 'hsl(var(--hover-color))'
+				: 'transparent'
+		}`,
+		'text-shadow': options.isActive
+			? `0 0 var(--hover-text-shadow-blur) hsla(var(--hover-color) / var(--hover-text-shadow-opacity))`
+			: 'none'
 	}),
 	content: (): JSX.CSSProperties => ({
-		'margin-top': '16px',
 		outline: 'none'
 	})
 }

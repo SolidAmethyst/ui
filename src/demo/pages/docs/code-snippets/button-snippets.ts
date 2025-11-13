@@ -65,5 +65,22 @@ export const buttonSnippets = {
 <Button maximized>Maximized</Button>
 <Button loading>Loading</Button>
 <Button disabled>Disabled</Button>`
-	}
+	},
+
+	customization: `@layer base {
+  :root {
+    /* Button hover uses primary color */
+    --button-hover: var(--primary);
+    --button-close-hover: 0 84.2% 60.2%;
+    --button-close-active: 0 62.8% 30.6%;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    /* Button hover uses primary color */
+    --button-hover: var(--primary);
+    --button-close-hover: 0 62.8% 30.6%;
+    --button-close-active: 0 84.2% 60.2%;
+  }
+}`
 } as const

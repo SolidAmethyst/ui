@@ -190,7 +190,7 @@ export const DragDrop: Component<DragDropProps> = props => {
 										'pointer-events': 'none'
 									}}
 								>
-									drag_handle
+									{props.dragHandleIcon ?? 'drag_handle'}
 								</span>
 							</div>
 						</Show>

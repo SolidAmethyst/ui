@@ -26,5 +26,30 @@ export const scrollbarSnippets = {
     </div>
   </Scrollbar>
 </ScrollbarProvider>`
-	}
+	},
+
+	customization: `@layer base {
+  :root {
+    --scrollbar-thumb: 0 0% 100% / 0.3;
+    --scrollbar-thumb-hover: 0 0% 100% / 0.5;
+    --scrollbar-thumb-active: 0 0% 100% / 0.7;
+    --scrollbar-arrow: 0 0% 100%;
+    /* Arrow hover uses primary color */
+    --scrollbar-arrow-hover: var(--primary);
+    --scrollbar-arrow-active: var(--primary);
+    --scrollbar-arrow-disabled: 0 0% 100% / 0.3;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    --scrollbar-thumb: 0 0% 100% / 0.3;
+    --scrollbar-thumb-hover: 0 0% 100% / 0.5;
+    --scrollbar-thumb-active: 0 0% 100% / 0.7;
+    --scrollbar-arrow: 0 0% 100%;
+    /* Arrow hover uses primary color */
+    --scrollbar-arrow-hover: var(--primary);
+    --scrollbar-arrow-active: var(--primary);
+    --scrollbar-arrow-disabled: 0 0% 100% / 0.3;
+  }
+}`
 } as const

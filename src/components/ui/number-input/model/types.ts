@@ -110,4 +110,20 @@ export interface NumberInputProps {
 	 * If true, uses CSS variables for colors based on data-theme attribute
 	 */
 	themeAware?: boolean
+
+	/**
+	 * Title for increase button (default: "Increase")
+	 */
+	increaseButtonTitle?: string
+
+	/**
+	 * Title for decrease button (default: "Decrease")
+	 */
+	decreaseButtonTitle?: string
+
+	/**
+	 * Unit pattern regex for validation (default: /^-?\d+px$/)
+	 * Only used when type="text" and autoValidate is true
+	 */
+	unitPattern?: RegExp
 }

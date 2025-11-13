@@ -36,7 +36,7 @@ export const checkboxStyles = {
 			height: '18px',
 			margin: '0',
 			cursor: disabled ? 'not-allowed' : 'pointer',
-			'accent-color': isDark ? '#3b82f6' : '#2563eb',
+			'accent-color': 'hsl(var(--primary))',
 			// Custom styling for checkbox
 			appearance: 'none',
 			'-webkit-appearance': 'none',
@@ -44,18 +44,14 @@ export const checkboxStyles = {
 			'border-radius': '4px',
 			border: `2px solid ${
 				checked || indeterminate
-					? isDark
-						? '#3b82f6'
-						: '#2563eb'
+					? 'hsl(var(--primary))'
 					: isDark
 						? 'rgba(255, 255, 255, 0.3)'
 						: 'rgba(0, 0, 0, 0.3)'
 			}`,
 			background:
 				checked || indeterminate
-					? isDark
-						? '#3b82f6'
-						: '#2563eb'
+					? 'hsl(var(--primary))'
 					: isDark
 						? 'rgba(255, 255, 255, 0.05)'
 						: 'rgba(0, 0, 0, 0.02)',
@@ -80,12 +76,13 @@ export const checkboxStyles = {
 		return {
 			'border-color':
 				checked || indeterminate
-					? isDark
-						? '#60a5fa'
-						: '#3b82f6'
+					? 'hsl(var(--hover-color))'
 					: isDark
 						? 'rgba(255, 255, 255, 0.5)'
-						: 'rgba(0, 0, 0, 0.5)'
+						: 'rgba(0, 0, 0, 0.5)',
+			'box-shadow': checked || indeterminate
+				? `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
+				: 'none'
 		}
 	},
 
@@ -94,9 +91,7 @@ export const checkboxStyles = {
 
 		return {
 			outline: 'none',
-			'box-shadow': `0 0 0 3px ${
-				isDark ? 'rgba(59, 130, 246, 0.3)' : 'rgba(37, 99, 235, 0.3)'
-			}`
+			'box-shadow': `0 0 0 3px hsla(var(--primary) / 0.3)`
 		}
 	},
 

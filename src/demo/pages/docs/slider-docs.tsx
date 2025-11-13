@@ -269,21 +269,7 @@ export const SliderDocs: Component<SliderDocsProps> = props => {
 					them in your application's stylesheet to match your design system.
 				</Typography>
 				<CodeHighlight
-					code={`@layer base {
-  :root {
-    --slider-thumb: 59 130 246;
-    --slider-thumb-hover: 37 99 235;
-    --slider-track: 0 0% 0% / 0.1;
-    --slider-track-dark: 255 255 255 / 0.1;
-  }
-
-  [data-theme="dark"] {
-    --slider-thumb: 59 130 246;
-    --slider-thumb-hover: 37 99 235;
-    --slider-track: 255 255 255 / 0.1;
-    --slider-track-dark: 255 255 255 / 0.1;
-  }
-}`}
+					code={sliderSnippets.customization}
 					isDark={props.isDark}
 				/>
 				<Typography variant='body' isDark={props.isDark()}>

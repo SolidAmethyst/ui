@@ -73,18 +73,38 @@ export const commandStyles = {
 		cursor: options?.disabled ? 'not-allowed' : 'pointer',
 		'user-select': 'none',
 		'background-color': options?.selected
-			? options?.isDark
-				? 'rgba(255, 255, 255, 0.1)'
-				: 'rgba(0, 0, 0, 0.05)'
+			? 'hsla(var(--primary) / 0.1)'
 			: 'transparent',
 		color: options?.disabled
 			? options?.isDark
 				? 'rgba(255, 255, 255, 0.3)'
 				: 'rgba(26, 26, 26, 0.3)'
+			: options?.selected
+				? 'hsl(var(--primary))'
+				: options?.isDark
+					? '#ffffff'
+					: '#1a1a1a',
+		transition: 'background-color 0.15s ease, color 0.15s ease, text-shadow 0.15s ease'
+	}),
+	itemHover: (
+		options?: CommandStyleOptions & { selected?: boolean; disabled?: boolean }
+	): JSX.CSSProperties => ({
+		'background-color': options?.selected
+			? 'hsla(var(--primary-hover) / 0.18)'
+			: options?.isDark
+				? 'hsla(var(--primary-hover) / 0.18)'
+				: 'hsla(var(--primary-hover) / 0.1)',
+		color: options?.selected
+			? 'hsl(var(--hover-color))'
 			: options?.isDark
 				? '#ffffff'
 				: '#1a1a1a',
-		transition: 'background-color 0.15s ease'
+		'text-shadow': options?.selected
+			? `0 0 var(--hover-text-shadow-blur) hsla(var(--primary-hover) / var(--hover-text-shadow-opacity))`
+			: 'none',
+		'box-shadow': options?.selected
+			? `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
+			: 'none'
 	}),
 
 	group: (): JSX.CSSProperties => ({

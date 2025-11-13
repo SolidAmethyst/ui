@@ -47,7 +47,8 @@ function MyComponent() {
   :root {
     --tabs-background: 0 0% 98%;
     --tabs-foreground: 240 5.3% 26.1%;
-    --tabs-active: 217 91% 60%;
+    /* Active tab uses primary color */
+    --tabs-active: var(--primary);
     --tabs-border: 220 13% 91%;
   }
 
@@ -55,7 +56,8 @@ function MyComponent() {
   [data-theme="dark"] {
     --tabs-background: 240 5.9% 10%;
     --tabs-foreground: 240 4.8% 95.9%;
-    --tabs-active: 217 91% 60%;
+    /* Active tab uses primary color */
+    --tabs-active: var(--primary);
     --tabs-border: 240 3.7% 15.9%;
   }
 }
@@ -106,7 +108,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
 							<TabsRoot defaultValue='tab1' isDark={props.isDark()}>
-								<TabsList style={{ width: '100%', 'max-width': '100%' }}>
+								<TabsList center style={{ width: '100%', 'max-width': '100%' }}>
 									<TabsTrigger value='tab1'>Overview</TabsTrigger>
 									<TabsTrigger value='tab2'>Settings</TabsTrigger>
 									<TabsTrigger value='tab3'>Analytics</TabsTrigger>

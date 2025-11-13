@@ -74,4 +74,24 @@ export interface SearchProps {
 	 * Auto-focus the input
 	 */
 	autofocus?: boolean
+
+	/**
+	 * Default placeholder text (default: "Search...")
+	 */
+	defaultPlaceholder?: string
+
+	/**
+	 * Aria label for clear button (default: "Clear search")
+	 */
+	clearButtonAriaLabel?: string
+
+	/**
+	 * Search icon name (default: "search")
+	 */
+	searchIcon?: string
+
+	/**
+	 * Clear icon name (default: "close")
+	 */
+	clearIcon?: string
 }

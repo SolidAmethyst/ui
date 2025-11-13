@@ -182,18 +182,27 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 											activeSubcategory() === subcategory.id
 										)}
 										onMouseEnter={e => {
-											if (activeSubcategory() !== subcategory.id) {
+											const isActive = activeSubcategory() === subcategory.id
+											if (isActive) {
+												Object.assign(
+													e.currentTarget.style,
+													settingsCompositeStyles.tabButtonHover(
+														isDark(),
+														isActive
+													)
+												)
+											} else {
 												e.currentTarget.style.color = isDark()
 													? 'rgba(246, 246, 246, 0.9)'
 													: 'rgba(26, 26, 26, 0.9)'
 											}
 										}}
 										onMouseLeave={e => {
-											if (activeSubcategory() !== subcategory.id) {
-												e.currentTarget.style.color = isDark()
-													? 'rgba(246, 246, 246, 0.7)'
-													: 'rgba(26, 26, 26, 0.7)'
-											}
+											const isActive = activeSubcategory() === subcategory.id
+											Object.assign(
+												e.currentTarget.style,
+												settingsCompositeStyles.tabButton(isDark(), isActive)
+											)
 										}}
 									>
 										{subcategory.label}

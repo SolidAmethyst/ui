@@ -10,7 +10,12 @@
 	--card-foreground: 222.2 84% 4.9%;
 	--popover: 0 0% 100%;
 	--popover-foreground: 222.2 84% 4.9%;
-	--primary: 221.2 83.2% 53.3%;
+	/* Mace Windu Lightsaber Purple - Primary color for light theme */
+	--primary: 271 81% 53%;
+	/* Primary hover with glow effect - lighter and brighter */
+	--primary-hover: 271 81% 63%;
+	/* Unified hover color - maximum saturation for vibrant noble appearance */
+	--hover-color: 271 100% 58%;
 	--primary-foreground: 210 40% 98%;
 	--secondary: 210 40% 96%;
 	--secondary-foreground: 222.2 84% 4.9%;
@@ -22,7 +27,7 @@
 	--destructive-foreground: 210 40% 98%;
 	--border: 214.3 31.8% 91.4%;
 	--input: 214.3 31.8% 91.4%;
-	--ring: 221.2 83.2% 53.3%;
+	--ring: var(--primary);
 	--radius: 0.5rem;
 	/* Sidebar colors */
 	--sidebar-background: 0 0% 98%;
@@ -31,7 +36,7 @@
 	--sidebar-accent-foreground: 240 5.9% 10%;
 	--sidebar-border: 220 13% 91%;
 	/* Button colors */
-	--button-hover: 221.2 83.2% 53.3%;
+	--button-hover: var(--primary);
 	--button-close-hover: 0 84.2% 60.2%;
 	--button-close-active: 0 62.8% 30.6%;
 	/* Scrollbar colors */
@@ -39,8 +44,8 @@
 	--scrollbar-thumb-hover: 0 0% 100% / 0.5;
 	--scrollbar-thumb-active: 0 0% 100% / 0.7;
 	--scrollbar-arrow: 0 0% 100%;
-	--scrollbar-arrow-hover: 221.2 83.2% 53.3%;
-	--scrollbar-arrow-active: 221.2 83.2% 53.3%;
+	--scrollbar-arrow-hover: var(--primary);
+	--scrollbar-arrow-active: var(--primary);
 	--scrollbar-arrow-disabled: 0 0% 100% / 0.3;
 	/* Menu colors */
 	--menu-background: 0 0% 100%;
@@ -48,9 +53,9 @@
 	--menu-accent: 210 40% 96%;
 	--menu-border: 214.3 31.8% 91.4%;
 	--menu-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-	/* Slider colors */
-	--slider-thumb: 59 130 246;
-	--slider-thumb-hover: 37 99 235;
+	/* Slider colors - use primary color */
+	--slider-thumb: var(--primary);
+	--slider-thumb-hover: var(--primary);
 	--slider-track: 0 0% 0% / 0.1;
 	--slider-track-dark: 255 255 255 / 0.1;
 	/* TitleBar colors */
@@ -238,12 +243,12 @@
 	--drag-drop-item-drag-bg-light: 0 0 0 / 0.05;
 	--drag-drop-item-over-bg-dark: 255 255 255 / 0.08;
 	--drag-drop-item-over-bg-light: 0 0 0 / 0.04;
-	--drag-drop-item-over-border-dark: 217.2 91.2% 59.8% / 0.5;
-	--drag-drop-item-over-border-light: 221.2 83.2% 53.3% / 0.3;
+	--drag-drop-item-over-border-dark: var(--primary) / 0.5;
+	--drag-drop-item-over-border-light: var(--primary) / 0.3;
 	--drag-drop-handle-color-dark: 255 255 255 / 0.6;
 	--drag-drop-handle-color-light: 0 0 0 / 0.4;
-	--drag-drop-indicator-color-dark: 217.2 91.2% 59.8%;
-	--drag-drop-indicator-color-light: 221.2 83.2% 53.3%;
+	--drag-drop-indicator-color-dark: var(--primary);
+	--drag-drop-indicator-color-light: var(--primary);
 	--techchip-icon-size: 16px;
 	/* Settings composite variables */
 	--settings-section-gap: 24px;
@@ -265,8 +270,22 @@
 	--card-foreground: 210 40% 98%;
 	--popover: 222.2 84% 4.9%;
 	--popover-foreground: 210 40% 98%;
-	--primary: 217.2 91.2% 59.8%;
+	/* Sapphire Blue - Primary color for dark theme (lighter for better contrast) */
+	--primary: 271 81% 63%;
+	/* Primary hover with glow effect - lighter and brighter */
+	--primary-hover: 271 81% 73%;
+	/* Unified hover color - maximum saturation for vibrant noble appearance */
+	--hover-color: 271 100% 66%;
 	--primary-foreground: 222.2 84% 4.9%;
+	/* Hover effect system - unified parameters (same as light theme) */
+	--hover-glow-blur: 1.5px;
+	--hover-glow-opacity: 1;
+	--hover-glow-box-blur: 1.5px;
+	--hover-glow-box-opacity: 0.7;
+	--hover-color-mix-primary: 100%;
+	--hover-color-mix-white: 0%;
+	--hover-text-shadow-blur: 1.5px;
+	--hover-text-shadow-opacity: 1;
 	--secondary: 217.2 32.6% 17.5%;
 	--secondary-foreground: 210 40% 98%;
 	--muted: 217.2 32.6% 17.5%;
@@ -285,7 +304,7 @@
 	--sidebar-accent-foreground: 240 4.8% 95.9%;
 	--sidebar-border: 240 3.7% 15.9%;
 	/* Button colors */
-	--button-hover: 217.2 91.2% 59.8%;
+	--button-hover: var(--primary);
 	--button-close-hover: 0 62.8% 30.6%;
 	--button-close-active: 0 84.2% 60.2%;
 	/* Scrollbar colors */
@@ -293,8 +312,8 @@
 	--scrollbar-thumb-hover: 0 0% 100% / 0.5;
 	--scrollbar-thumb-active: 0 0% 100% / 0.7;
 	--scrollbar-arrow: 0 0% 100%;
-	--scrollbar-arrow-hover: 217.2 91.2% 59.8%;
-	--scrollbar-arrow-active: 217.2 91.2% 59.8%;
+	--scrollbar-arrow-hover: var(--primary);
+	--scrollbar-arrow-active: var(--primary);
 	--scrollbar-arrow-disabled: 0 0% 100% / 0.3;
 	/* Menu colors */
 	--menu-background: 222.2 84% 4.9%;
@@ -314,8 +333,8 @@
 	--techchip-ready: 142.1 76.2% 36.3%;
 	--techchip-error: 0 62.8% 30.6%;
 	/* DragDrop component variables - dark theme */
-	--drag-drop-item-over-border-dark: 217.2 91.2% 59.8% / 0.5;
-	--drag-drop-indicator-color-dark: 217.2 91.2% 59.8%;
+	--drag-drop-item-over-border-dark: var(--primary) / 0.5;
+	--drag-drop-indicator-color-dark: var(--primary);
 }
 
 /* Dark theme variables - defined outside @layer for library compatibility */
@@ -327,8 +346,22 @@
 	--card-foreground: 210 40% 98%;
 	--popover: 222.2 84% 4.9%;
 	--popover-foreground: 210 40% 98%;
-	--primary: 217.2 91.2% 59.8%;
+	/* Sapphire Blue - Primary color for dark theme (lighter for better contrast) */
+	--primary: 271 81% 63%;
+	/* Primary hover with glow effect - lighter and brighter */
+	--primary-hover: 271 81% 73%;
+	/* Unified hover color - maximum saturation for vibrant noble appearance */
+	--hover-color: 271 100% 66%;
 	--primary-foreground: 222.2 84% 4.9%;
+	/* Hover effect system - unified parameters (same as light theme) */
+	--hover-glow-blur: 1.5px;
+	--hover-glow-opacity: 1;
+	--hover-glow-box-blur: 1.5px;
+	--hover-glow-box-opacity: 0.7;
+	--hover-color-mix-primary: 100%;
+	--hover-color-mix-white: 0%;
+	--hover-text-shadow-blur: 1.5px;
+	--hover-text-shadow-opacity: 1;
 	--secondary: 217.2 32.6% 17.5%;
 	--secondary-foreground: 210 40% 98%;
 	--muted: 217.2 32.6% 17.5%;
@@ -347,7 +380,7 @@
 	--sidebar-accent-foreground: 240 4.8% 95.9%;
 	--sidebar-border: 240 3.7% 15.9%;
 	/* Button colors */
-	--button-hover: 217.2 91.2% 59.8%;
+	--button-hover: var(--primary);
 	--button-close-hover: 0 62.8% 30.6%;
 	--button-close-active: 0 84.2% 60.2%;
 	/* Scrollbar colors */
@@ -355,8 +388,8 @@
 	--scrollbar-thumb-hover: 0 0% 100% / 0.5;
 	--scrollbar-thumb-active: 0 0% 100% / 0.7;
 	--scrollbar-arrow: 0 0% 100%;
-	--scrollbar-arrow-hover: 217.2 91.2% 59.8%;
-	--scrollbar-arrow-active: 217.2 91.2% 59.8%;
+	--scrollbar-arrow-hover: var(--primary);
+	--scrollbar-arrow-active: var(--primary);
 	--scrollbar-arrow-disabled: 0 0% 100% / 0.3;
 	/* Menu colors */
 	--menu-background: 222.2 84% 4.9%;
@@ -376,8 +409,8 @@
 	--techchip-ready: 142.1 76.2% 36.3%;
 	--techchip-error: 0 62.8% 30.6%;
 	/* DragDrop component variables - dark theme */
-	--drag-drop-item-over-border-dark: 217.2 91.2% 59.8% / 0.5;
-	--drag-drop-indicator-color-dark: 217.2 91.2% 59.8%;
+	--drag-drop-item-over-border-dark: var(--primary) / 0.5;
+	--drag-drop-indicator-color-dark: var(--primary);
 }
 
 @layer base {
@@ -431,14 +464,20 @@
 
 .control-btn:hover {
 	background: transparent;
-	color: #0d8bf2;
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
 	box-shadow: none;
 	transform: none;
 }
 
 .control-btn:hover svg,
 .control-btn:hover .material-symbols-rounded {
-	color: #0d8bf2;
+	color: hsl(var(--hover-color));
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 .control-btn:active {
@@ -474,13 +513,20 @@
 
 .play-pause-btn:hover {
 	background: transparent;
-	color: #0d8bf2;
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
 	border: 2px solid transparent;
+	box-shadow: none;
 }
 
 .play-pause-btn:hover svg,
 .play-pause-btn:hover .material-symbols-rounded {
-	color: #0d8bf2;
+	color: hsl(var(--hover-color));
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 .play-pause-btn:active {
@@ -517,12 +563,37 @@
 	justify-content: center;
 }
 
-.control-btn.active {
-	color: #3b82f6;
+.small-btn:hover {
+	background: transparent;
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
+	box-shadow: none;
 }
 
-.control-btn.active svg {
-	color: #3b82f6;
+.small-btn:hover svg,
+.small-btn:hover .material-symbols-rounded {
+	color: hsl(var(--hover-color));
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
+}
+
+.control-btn.active {
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
+	box-shadow: none;
+}
+
+.control-btn.active svg,
+.control-btn.active .material-symbols-rounded {
+	color: hsl(var(--hover-color));
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 .close-btn .material-symbols-rounded {
@@ -664,11 +735,14 @@
 	color: #1a1a1a;
 }
 
-/* Force same bright blue hover in light theme */
+/* Force same bright purple hover with glow in light theme */
 [data-theme='light'] .play-pause-btn:hover,
 [data-theme='light'] .control-btn:not(.close-btn):hover,
 [data-theme='light'] .small-btn:hover {
-	color: #0d8bf2 !important;
+	color: hsl(var(--primary-hover)) !important;
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity)) !important;
+	box-shadow: none !important;
 }
 
 /* Light theme sun icon color */
@@ -683,7 +757,11 @@
 	.control-btn:not(.close-btn):hover
 	.material-symbols-rounded,
 [data-theme='light'] .small-btn:hover .material-symbols-rounded {
-	color: #0d8bf2 !important;
+	color: hsl(var(--primary-hover)) !important;
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	) !important;
 }
 
 /* Light theme close button stays red */
@@ -752,7 +830,7 @@
 
 .scrollbar-thumb {
 	position: absolute;
-	background: rgba(59, 130, 246, 0.6);
+	background: hsla(var(--primary) / 0.6);
 	border-radius: 2px;
 	cursor: grab;
 	transition:
@@ -764,12 +842,12 @@
 }
 
 .scrollbar-thumb:hover {
-	background: rgba(59, 130, 246, 0.9);
+	background: hsla(var(--primary) / 0.9);
 }
 
 .scrollbar-thumb:active,
 .scrollbar-thumb.dragging {
-	background: rgba(59, 130, 246, 1);
+	background: hsl(var(--primary));
 	cursor: grabbing;
 }
 
@@ -795,12 +873,17 @@
 }
 
 .scrollbar-arrow:hover {
-	color: #3b82f6;
+	color: hsl(var(--hover-color));
 	transform: scale(1.1);
+	filter: drop-shadow(
+		0 0 var(--hover-glow-blur)
+			hsla(var(--hover-color) / var(--hover-glow-opacity))
+	);
 }
 
 .scrollbar-arrow:active {
-	color: #1d4ed8;
+	color: hsl(var(--primary));
+	opacity: 0.8;
 }
 
 .scrollbar-arrow:disabled {
@@ -971,11 +1054,29 @@
 }
 
 [cmdk-item]:hover {
-	background-color: rgba(255, 255, 255, 0.1);
+	background-color: hsla(var(--primary-hover) / 0.18);
+	box-shadow: 0 0 var(--hover-glow-box-blur)
+		hsla(var(--hover-color) / var(--hover-glow-box-opacity));
 }
 
 [data-theme='light'] [cmdk-item]:hover {
-	background-color: rgba(0, 0, 0, 0.05);
+	background-color: hsla(var(--primary-hover) / 0.1);
+	box-shadow: 0 0 var(--hover-glow-box-blur)
+		hsla(var(--hover-color) / var(--hover-glow-box-opacity));
+}
+
+[cmdk-item][data-selected='true'] {
+	background-color: hsla(var(--primary) / 0.1);
+	color: hsl(var(--primary));
+}
+
+[cmdk-item][data-selected='true']:hover {
+	background-color: hsla(var(--primary-hover) / 0.18);
+	color: hsl(var(--hover-color));
+	text-shadow: 0 0 var(--hover-text-shadow-blur)
+		hsla(var(--hover-color) / var(--hover-text-shadow-opacity));
+	box-shadow: 0 0 var(--hover-glow-box-blur)
+		hsla(var(--hover-color) / var(--hover-glow-box-opacity));
 }
 
 [cmdk-shortcuts] {
@@ -1013,14 +1114,14 @@
 	--number-input-border: rgba(0, 0, 0, 0.1);
 	--number-input-bg: rgba(0, 0, 0, 0.02);
 	--number-input-text: #1a1a1a;
-	--number-input-border-focus: rgba(59, 130, 246, 0.3);
+	--number-input-border-focus: hsla(var(--primary) / 0.3);
 }
 
 [data-theme='dark'] {
 	--number-input-border: rgba(255, 255, 255, 0.1);
 	--number-input-bg: rgba(255, 255, 255, 0.05);
 	--number-input-text: #f6f6f6;
-	--number-input-border-focus: rgba(59, 130, 246, 0.5);
+	--number-input-border-focus: hsla(var(--primary) / 0.5);
 }
 
 /* Slider styles */
@@ -1089,7 +1190,8 @@
 	/* Grid preserve area variables */
 	--grid-row-1-height: auto;
 	--grid-row-2-height: 1fr;
-	--grid-preserve-area-transition: var(--grid-transition-duration) var(--grid-transition-timing);
+	--grid-preserve-area-transition: var(--grid-transition-duration)
+		var(--grid-transition-timing);
 }
 
 /* Global scroll containment - prevents scroll chaining */
@@ -1141,7 +1243,7 @@
 
 .custom-scrollbar-thumb {
 	position: absolute;
-	background: rgba(59, 130, 246, 0.6);
+	background: hsla(var(--primary) / 0.6);
 	border-radius: 2px;
 	cursor: grab;
 	transition: background 150ms;
@@ -1149,11 +1251,11 @@
 }
 
 .custom-scrollbar-thumb:hover {
-	background: rgba(59, 130, 246, 0.8);
+	background: hsla(var(--primary) / 0.8);
 }
 
 .custom-scrollbar-thumb:active,
 .custom-scrollbar-thumb.dragging {
-	background: rgba(59, 130, 246, 1);
+	background: hsl(var(--primary));
 	cursor: grabbing;
 }

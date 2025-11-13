@@ -1,7 +1,7 @@
-import { render, screen, fireEvent } from '@solidjs/testing-library'
+import { fireEvent, render, screen } from '@solidjs/testing-library'
 import { describe, expect, it, vi } from 'vitest'
-import { DragDrop } from '../ui/drag-drop'
 import type { DragDropItem } from '../model/types'
+import { DragDrop } from '../ui/drag-drop'
 
 describe('DragDrop', () => {
 	const getMockItems = (): DragDropItem[] => [
@@ -11,20 +11,29 @@ describe('DragDrop', () => {
 	]
 
 	it('renders items correctly', () => {
-		render(() => <DragDrop items={getMockItems()} />)
+		render(() => {
+			const items = getMockItems()
+			return <DragDrop items={items} />
+		})
 		expect(screen.getByText('Item 1')).toBeInTheDocument()
 		expect(screen.getByText('Item 2')).toBeInTheDocument()
 		expect(screen.getByText('Item 3')).toBeInTheDocument()
 	})
 
 	it('applies default orientation vertical', () => {
-		render(() => <DragDrop items={getMockItems()} />)
+		render(() => {
+			const items = getMockItems()
+			return <DragDrop items={items} />
+		})
 		const container = screen.getByText('Item 1').closest('.drag-drop-container')
 		expect(container).toHaveStyle({ 'flex-direction': 'column' })
 	})
 
 	it('applies horizontal orientation when specified', () => {
-		render(() => <DragDrop items={getMockItems()} orientation='horizontal' />)
+		render(() => {
+			const items = getMockItems()
+			return <DragDrop items={items} orientation='horizontal' />
+		})
 		const container = screen.getByText('Item 1').closest('.drag-drop-container')
 		expect(container).toHaveStyle({ 'flex-direction': 'row' })
 	})
@@ -32,7 +41,9 @@ describe('DragDrop', () => {
 	it('calls onDragStart when item is dragged', () => {
 		const onDragStart = vi.fn()
 		const items = getMockItems()
-		render(() => <DragDrop items={items} onDragStart={onDragStart} />)
+		render(() => {
+			return <DragDrop items={items} onDragStart={onDragStart} />
+		})
 		const item = screen.getByText('Item 1').closest('.drag-drop-item')
 
 		if (item) {
@@ -44,7 +55,9 @@ describe('DragDrop', () => {
 	it('calls onDrop when item is dropped', () => {
 		const onDrop = vi.fn()
 		const items = getMockItems()
-		render(() => <DragDrop items={items} onDrop={onDrop} />)
+		render(() => {
+			return <DragDrop items={items} onDrop={onDrop} />
+		})
 		const item1 = screen.getByText('Item 1').closest('.drag-drop-item')
 		const item2 = screen.getByText('Item 2').closest('.drag-drop-item')
 
@@ -57,30 +70,41 @@ describe('DragDrop', () => {
 	})
 
 	it('disables drag when disabled prop is true', () => {
-		render(() => <DragDrop items={getMockItems()} disabled />)
+		render(() => {
+			const items = getMockItems()
+			return <DragDrop items={items} disabled />
+		})
 		const item = screen.getByText('Item 1').closest('.drag-drop-item')
 		expect(item).toHaveAttribute('draggable', 'false')
 	})
 
 	it('disables drag for disabled items', () => {
-		const getItemsWithDisabled = (): DragDropItem[] => [
-			{ id: '1', content: <div>Item 1</div>, disabled: true },
-			{ id: '2', content: <div>Item 2</div> }
-		]
-		render(() => <DragDrop items={getItemsWithDisabled()} />)
+		render(() => {
+			const items: DragDropItem[] = [
+				{ id: '1', content: <div>Item 1</div>, disabled: true },
+				{ id: '2', content: <div>Item 2</div> }
+			]
+			return <DragDrop items={items} />
+		})
 		const item = screen.getByText('Item 1').closest('.drag-drop-item')
 		expect(item).toHaveAttribute('draggable', 'false')
 		expect(item).toHaveClass('disabled')
 	})
 
 	it('applies custom class names', () => {
-		render(() => <DragDrop items={getMockItems()} class='custom-class' />)
+		render(() => {
+			const items = getMockItems()
+			return <DragDrop items={items} class='custom-class' />
+		})
 		const container = screen.getByText('Item 1').closest('.drag-drop-container')
 		expect(container).toHaveClass('custom-class')
 	})
 
 	it('applies custom gap', () => {
-		render(() => <DragDrop items={getMockItems()} gap='16px' />)
+		render(() => {
+			const items = getMockItems()
+			return <DragDrop items={items} gap='16px' />
+		})
 		const container = screen.getByText('Item 1').closest('.drag-drop-container')
 		expect(container).toHaveStyle({ gap: '16px' })
 	})
@@ -88,7 +112,9 @@ describe('DragDrop', () => {
 	it('calls onDragEnd when drag ends', () => {
 		const onDragEnd = vi.fn()
 		const items = getMockItems()
-		render(() => <DragDrop items={items} onDragEnd={onDragEnd} />)
+		render(() => {
+			return <DragDrop items={items} onDragEnd={onDragEnd} />
+		})
 		const item = screen.getByText('Item 1').closest('.drag-drop-item')
 
 		if (item) {
@@ -99,10 +125,11 @@ describe('DragDrop', () => {
 	})
 
 	it('uses custom renderItem when provided', () => {
-		const renderItem = vi.fn((item, index) => (
-			<div>Custom: {item.id}</div>
-		))
-		render(() => <DragDrop items={getMockItems()} renderItem={renderItem} />)
+		const renderItem = vi.fn((item, index) => <div>Custom: {item.id}</div>)
+		render(() => {
+			const items = getMockItems()
+			return <DragDrop items={items} renderItem={renderItem} />
+		})
 		expect(renderItem).toHaveBeenCalled()
 		expect(screen.getByText('Custom: 1')).toBeInTheDocument()
 	})

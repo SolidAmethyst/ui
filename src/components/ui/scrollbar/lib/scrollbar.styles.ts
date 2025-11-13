@@ -40,7 +40,7 @@ export const scrollbarStyles = `
 }
 .scrollbar-thumb {
   position: absolute;
-  background: rgba(59, 130, 246, 0.6);
+  background: hsla(var(--primary) / 0.6);
   border-radius: 2px;
   cursor: grab;
   transition: background 150ms cubic-bezier(0.4, 0, 0.2, 1), opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -49,11 +49,11 @@ export const scrollbarStyles = `
   min-height: 1px;
 }
 .scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.9);
+  background: hsla(var(--primary) / 0.9);
 }
 .scrollbar-thumb:active,
 .scrollbar-thumb.dragging {
-  background: rgba(59, 130, 246, 1);
+  background: hsl(var(--primary));
   cursor: grabbing;
 }
 .scrollbar-arrow {
@@ -75,11 +75,13 @@ export const scrollbarStyles = `
   margin: 0;
 }
 .scrollbar-arrow:hover {
-  color: #3b82f6;
+  color: hsl(var(--hover-color));
   transform: scale(1.1);
+  filter: drop-shadow(0 0 var(--hover-glow-blur) hsla(var(--primary-hover) / var(--hover-glow-opacity)));
 }
 .scrollbar-arrow:active {
-  color: #1d4ed8;
+  color: hsl(var(--primary));
+  opacity: 0.8;
 }
 .scrollbar-arrow:disabled {
   color: #9ca3af;

@@ -49,7 +49,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<div style={{ width: '100%' }}>
+							<div style={{ width: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}>
 							<Button onClick={() => setRightOpen(true)}>Open Drawer</Button>
 							<Drawer
 								isOpen={rightOpen()}
@@ -93,7 +93,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<div style={{ width: '100%', display: 'flex', gap: '12px' }}>
+							<div style={{ width: '100%', display: 'flex', gap: '12px', 'justify-content': 'center', 'align-items': 'center' }}>
 							<Button onClick={() => setLeftOpen(true)}>Left</Button>
 							<Button onClick={() => setTopOpen(true)}>Top</Button>
 							<Button onClick={() => setBottomOpen(true)}>Bottom</Button>
@@ -208,7 +208,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<div style={{ width: '100%' }}>
+							<div style={{ width: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}>
 							<Button onClick={() => setWideOpen(true)}>
 								Open Wide Drawer
 							</Button>
@@ -252,7 +252,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<div style={{ width: '100%' }}>
+							<div style={{ width: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}>
 							<Button onClick={() => setNoBackdropOpen(!noBackdropOpen())}>
 								{noBackdropOpen()
 									? 'Close Drawer'
@@ -298,7 +298,7 @@ export const DrawerDocs: Component<DrawerDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<div style={{ width: '100%' }}>
+							<div style={{ width: '100%', display: 'flex', 'justify-content': 'center', 'align-items': 'center' }}>
 							<Button onClick={() => setControlledOpen(true)}>
 								Open Drawer
 							</Button>

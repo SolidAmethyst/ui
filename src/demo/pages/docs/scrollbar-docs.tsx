@@ -152,28 +152,7 @@ export const ScrollbarDocs: Component<ScrollbarDocsProps> = props => {
 					them in your application's stylesheet to match your design system.
 				</Typography>
 				<CodeHighlight
-					code={`@layer base {
-  :root {
-    --scrollbar-thumb: 0 0% 100% / 0.3;
-    --scrollbar-thumb-hover: 0 0% 100% / 0.5;
-    --scrollbar-thumb-active: 0 0% 100% / 0.7;
-    --scrollbar-arrow: 0 0% 100%;
-    --scrollbar-arrow-hover: 221.2 83.2% 53.3%;
-    --scrollbar-arrow-active: 221.2 83.2% 53.3%;
-    --scrollbar-arrow-disabled: 0 0% 100% / 0.3;
-  }
-
-  .dark,
-  [data-theme="dark"] {
-    --scrollbar-thumb: 0 0% 100% / 0.3;
-    --scrollbar-thumb-hover: 0 0% 100% / 0.5;
-    --scrollbar-thumb-active: 0 0% 100% / 0.7;
-    --scrollbar-arrow: 0 0% 100%;
-    --scrollbar-arrow-hover: 217.2 91.2% 59.8%;
-    --scrollbar-arrow-active: 217.2 91.2% 59.8%;
-    --scrollbar-arrow-disabled: 0 0% 100% / 0.3;
-  }
-}`}
+					code={scrollbarSnippets.customization}
 					isDark={props.isDark}
 				/>
 				<Typography variant='body' isDark={props.isDark()}>

@@ -87,4 +87,9 @@ export interface DragDropProps {
 	 * Custom render function for items
 	 */
 	renderItem?: (item: DragDropItem, index: number, isDragging: boolean) => JSX.Element
+
+	/**
+	 * Drag handle icon name (default: "drag_handle")
+	 */
+	dragHandleIcon?: string
 }

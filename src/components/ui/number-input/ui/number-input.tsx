@@ -31,11 +31,15 @@ export const NumberInput: Component<NumberInputProps> = props => {
 		if (!value.trim()) return null
 
 		const trimmed = value.trim()
-		// Check if it's a number with unit (e.g., "12px", "-5px")
-		if (/^-?\d+px$/.test(trimmed)) {
+		const unitPattern = props.unitPattern ?? /^-?\d+px$/
+
+		// Check if it matches the unit pattern (e.g., "12px", "-5px")
+		if (unitPattern.test(trimmed)) {
 			const num = parseInt(trimmed, 10)
 			const minValue = props.min !== undefined ? props.min : 0
-			return `${Math.max(minValue, num)}px`
+			// Extract unit from pattern or use defaultUnit
+			const unit = props.defaultUnit || trimmed.replace(/^-?\d+/, '') || ''
+			return `${Math.max(minValue, num)}${unit}`
 		}
 		// Check if it's just a number
 		if (/^-?\d+$/.test(trimmed)) {
@@ -113,9 +117,9 @@ export const NumberInput: Component<NumberInputProps> = props => {
 					// Apply focus styles
 					if (props.themeAware) {
 						target.style.borderColor =
-							'var(--number-input-border-focus, rgba(59, 130, 246, 0.5))'
+							'var(--number-input-border-focus, hsla(var(--primary) / 0.5))'
 					} else {
-						target.style.borderColor = 'rgba(59, 130, 246, 0.5)'
+						target.style.borderColor = 'hsla(var(--primary) / 0.5)'
 					}
 					if (props.onFocus) props.onFocus(e)
 				}}
@@ -159,7 +163,7 @@ export const NumberInput: Component<NumberInputProps> = props => {
 						iconPosition='only'
 						disabled={props.disabled || isAtMax()}
 						onClick={() => modifyValue(1)}
-						title='Increase'
+						title={props.increaseButtonTitle ?? 'Increase'}
 						class='number-input-arrow'
 						style={numberInputStyles.arrowButton}
 					/>
@@ -169,7 +173,7 @@ export const NumberInput: Component<NumberInputProps> = props => {
 						iconPosition='only'
 						disabled={props.disabled || isAtMin()}
 						onClick={() => modifyValue(-1)}
-						title='Decrease'
+						title={props.decreaseButtonTitle ?? 'Decrease'}
 						class='number-input-arrow'
 						style={numberInputStyles.arrowButton}
 					/>

@@ -33,9 +33,7 @@ export const searchStyles = {
 		'line-height': '1.5',
 		border: `1px solid ${
 			options.isFocused
-				? options.isDark
-					? '#3b82f6'
-					: '#2563eb'
+				? 'hsl(var(--primary))'
 				: options.isDark
 					? 'rgba(255, 255, 255, 0.1)'
 					: 'rgba(0, 0, 0, 0.1)'
@@ -107,9 +105,9 @@ export const searchStyles = {
 
 	clearButtonHover: (options: SearchStyleOptions): JSX.CSSProperties => ({
 		background: options.isDark
-			? 'rgba(255, 255, 255, 0.1)'
-			: 'rgba(0, 0, 0, 0.05)',
-		color: options.isDark ? '#f6f6f6' : '#1a1a1a'
+			? 'hsla(var(--primary-hover) / 0.18)'
+			: 'hsla(var(--primary-hover) / 0.1)',
+		color: 'hsl(var(--hover-color))',
+		'box-shadow': `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
 	})
 } as const
-

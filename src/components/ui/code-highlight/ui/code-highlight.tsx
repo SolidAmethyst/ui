@@ -42,7 +42,7 @@ export const CodeHighlight: Component<CodeHighlightProps> = props => {
 		try {
 			await navigator.clipboard.writeText(props.code)
 			setCopied(true)
-			setTimeout(() => setCopied(false), 2000)
+			setTimeout(() => setCopied(false), props.copiedTimeout ?? 2000)
 		} catch (err) {
 			console.error('Failed to copy:', err)
 		}
@@ -67,9 +67,9 @@ export const CodeHighlight: Component<CodeHighlightProps> = props => {
 						? 'rgba(246, 246, 246, 0.6)'
 						: 'rgba(26, 26, 26, 0.6)'
 				}}
-				title='Copy code'
+				title={props.copyButtonTitle ?? 'Copy code'}
 			>
-				{copied() ? 'Copied!' : 'Copy'}
+				{copied() ? (props.copiedButtonText ?? 'Copied!') : (props.copyButtonText ?? 'Copy')}
 			</button>
 			<Scrollbar
 				direction='vertical'
