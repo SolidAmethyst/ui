@@ -4,7 +4,7 @@
  */
 
 import type { JSX } from 'solid-js'
-import { tabsUIStyles, type TabsUIStyleOptions } from './tabs-ui.styles'
+import { tabsUIStyles } from './tabs-ui.styles'
 
 export interface TabsStyleOptions {
 	isDark: boolean

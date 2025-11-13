@@ -19,7 +19,7 @@ export const Button: Component<ButtonProps> = props => {
 
 	// Get CSS variable value as number for DrawerIcon
 	const getIconSizeNumber = () => {
-		if (typeof window !== 'undefined' && window.getComputedStyle) {
+		if (typeof window !== 'undefined' && typeof getComputedStyle !== 'undefined') {
 			const value = getComputedStyle(document.documentElement)
 				.getPropertyValue('--small-icon-size')
 				.trim()

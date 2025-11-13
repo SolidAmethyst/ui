@@ -36,7 +36,7 @@ export const DragDropDocs: Component<DragDropDocsProps> = props => {
 	])
 
 	const handleDrop = (
-		item: DragDropItem,
+		_item: DragDropItem,
 		fromIndex: number,
 		toIndex: number
 	) => {

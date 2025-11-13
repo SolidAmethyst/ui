@@ -80,14 +80,16 @@ export const checkboxStyles = {
 					: isDark
 						? 'rgba(255, 255, 255, 0.5)'
 						: 'rgba(0, 0, 0, 0.5)',
-			'box-shadow': checked || indeterminate
-				? `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
-				: 'none'
+			'box-shadow':
+				checked || indeterminate
+					? `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
+					: 'none'
 		}
 	},
 
 	inputFocus: (options?: CheckboxStyleOptions): JSX.CSSProperties => {
 		const isDark = options?.isDark ?? false
+		void isDark // Reserved for future theme support
 
 		return {
 			outline: 'none',
