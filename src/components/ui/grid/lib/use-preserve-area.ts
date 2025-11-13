@@ -18,9 +18,6 @@ export const usePreserveArea = (
 ) => {
 	let resizeObserver: ResizeObserver | null = null
 	let baseArea = 0
-	// baseWidth is stored for potential future recalculation but not currently used
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	let _baseWidth = 0
 	let initialized = false
 	let currentConfig: PreserveAreaConfig | undefined = undefined
 
@@ -31,7 +28,6 @@ export const usePreserveArea = (
 			resizeObserver = null
 		}
 		baseArea = 0
-		_baseWidth = 0
 		initialized = false
 		currentConfig = undefined
 	}
@@ -53,21 +49,21 @@ export const usePreserveArea = (
 			const rect = element.getBoundingClientRect()
 			const containerRect = container.getBoundingClientRect()
 
-			// Use provided baseWidth or current container width
-			// Store for potential future recalculation
-			_baseWidth = activeConfig.baseWidth || containerRect.width
-			// baseWidth is stored but may be used in future enhancements
+			// Calculate base area from CURRENT element width (which should be full width at init)
+			// and its current height - this establishes the reference area
+			const elementWidth = rect.width
+			const elementHeight = rect.height
+			baseArea = elementWidth * elementHeight
 
-		// Calculate base area from CURRENT element width (which should be full width at init)
-		// and its current height - this establishes the reference area
-		const elementWidth = rect.width
-		const elementHeight = rect.height
-		baseArea = elementWidth * elementHeight
+			console.log('[PA Init]', {
+				elementWidth,
+				elementHeight,
+				baseArea,
+				containerWidth: containerRect.width
+			})
 
-		console.log('[PA Init]', { elementWidth, elementHeight, baseArea, containerWidth: containerRect.width })
-
-		initialized = true
-		currentConfig = activeConfig
+			initialized = true
+			currentConfig = activeConfig
 		}
 
 		// Get current width
@@ -78,19 +74,26 @@ export const usePreserveArea = (
 		// Calculate new height to maintain area
 		let newHeight = baseArea / currentWidth
 
-		console.log('[PA Update]', { currentWidth, baseArea, newHeight, oldHeight: elementRect.height })
+		console.log('[PA Update]', {
+			currentWidth,
+			baseArea,
+			newHeight,
+			oldHeight: elementRect.height
+		})
 
 		// Apply constraints (parse string values like '200px' to numbers)
 		if (activeConfig.minHeight) {
-			const minHeightNum = typeof activeConfig.minHeight === 'string'
-				? parseFloat(activeConfig.minHeight)
-				: activeConfig.minHeight
+			const minHeightNum =
+				typeof activeConfig.minHeight === 'string'
+					? parseFloat(activeConfig.minHeight)
+					: activeConfig.minHeight
 			newHeight = Math.max(newHeight, minHeightNum)
 		}
 		if (activeConfig.maxHeight) {
-			const maxHeightNum = typeof activeConfig.maxHeight === 'string'
-				? parseFloat(activeConfig.maxHeight)
-				: activeConfig.maxHeight
+			const maxHeightNum =
+				typeof activeConfig.maxHeight === 'string'
+					? parseFloat(activeConfig.maxHeight)
+					: activeConfig.maxHeight
 			newHeight = Math.min(newHeight, maxHeightNum)
 		}
 
@@ -146,7 +149,14 @@ export const usePreserveArea = (
 					const newGridTemplateRows = rowValues.join(' ')
 					container.style.gridTemplateRows = newGridTemplateRows
 
-					console.log('[PA Applied]', { rowIndex, newGridTemplateRows, currentRows, remainingHeight, containerHeight, otherRowsCount: otherRowIndices.length })
+					console.log('[PA Applied]', {
+						rowIndex,
+						newGridTemplateRows,
+						currentRows,
+						remainingHeight,
+						containerHeight,
+						otherRowsCount: otherRowIndices.length
+					})
 				}
 			}
 		}
