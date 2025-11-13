@@ -4,7 +4,7 @@
  */
 
 export const techChipStyles = {
-	base: `
+  base: `
 		display: inline-flex
 		align-items: center
 		gap: 4px
@@ -17,36 +17,36 @@ export const techChipStyles = {
 		vertical-align: middle
 	`,
 
-	text: `
+  text: `
 		color: white
 		font-size: 12px
 		line-height: 1
 	`,
 
-	variants: {
-		frontend: `
+  variants: {
+    frontend: `
 			color: white
 		`,
-		backend: `
+    backend: `
 			color: white
 		`,
-		engine: `
+    engine: `
 			color: white
-		`
-	},
+		`,
+  },
 
-	hover: `
+  hover: `
 		opacity: 0.8
 	`,
 
-	indicator: `
+  indicator: `
 		width: 6px
 		height: 6px
 		border-radius: 50%
 		flex-shrink: 0
 	`,
 
-	icon: `
+  icon: `
 		color: white
 		font-size: 12px
 		line-height: 1
@@ -57,21 +57,21 @@ export const techChipStyles = {
 		justify-content: center
 	`,
 
-	status: {
-		loading: `
+  status: {
+    loading: `
 			bg-[#ff9800]
 			animate-pulse
 		`,
-		ready: `
+    ready: `
 			bg-[#4caf50]
 			shadow-[0_0_8px_rgba(76,175,80,0.5)]
 		`,
-		error: `
+    error: `
 			bg-[#f44336]
 			animate-pulse
-		`
-	}
-}
+		`,
+  },
+};
 
 /**
  * Keyframe animations
@@ -96,4 +96,4 @@ export const animations = `
 		opacity: 0.3;
 	}
 }
-`
+`;

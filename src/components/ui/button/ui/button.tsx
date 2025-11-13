@@ -3,46 +3,25 @@
  * Based on Tauri project button implementation
  */
 
+import type { JSX } from 'solid-js'
 import { Component, Show } from 'solid-js'
+import { Dynamic } from 'solid-js/web'
+import { buttonVariants } from '../lib/button-variants'
+import { DrawerIcon } from './drawer-icon'
 import type { ButtonProps } from '../model/types'
 
 export const Button: Component<ButtonProps> = props => {
 	const getButtonClass = () => {
-		let baseClass = 'control-btn'
-
-		if (props.variant === 'play-pause') {
-			baseClass = 'play-pause-btn'
-		} else if (props.variant === 'small') {
-			baseClass = 'control-btn small-btn'
-		} else if (props.variant === 'close') {
-			baseClass = 'control-btn close-btn'
-		} else if (props.variant === 'minimize') {
-			baseClass = 'control-btn minimize-btn'
-		} else if (props.variant === 'maximize') {
-			baseClass = 'control-btn maximize-btn'
-		} else if (props.variant === 'pin') {
-			baseClass = 'control-btn pin-btn'
-		} else if (props.variant === 'expand') {
-			baseClass = 'control-btn expand-btn'
-		} else if (props.variant === 'copy') {
-			baseClass = 'control-btn copy-btn'
-		} else if (props.variant === 'attach') {
-			baseClass = 'control-btn attach-btn'
-		}
-
-		if (props.active) {
-			baseClass += ' active'
-		}
-
-		if (props.pinned) {
-			baseClass += ' pinned'
-		}
-
-		if (props.maximized) {
-			baseClass += ' maximized'
-		}
-
-		return `${baseClass} ${props.class || ''}`
+		return buttonVariants({
+			variant: props.variant,
+			size: props.size,
+			disabled: props.disabled,
+			loading: props.loading,
+			active: props.active,
+			pinned: props.pinned,
+			maximized: props.maximized,
+			class: props.class
+		})
 	}
 
 	const getIconSize = () => {
@@ -51,7 +30,8 @@ export const Button: Component<ButtonProps> = props => {
 		if (
 			props.variant === 'expand' ||
 			props.variant === 'copy' ||
-			props.variant === 'attach'
+			props.variant === 'attach' ||
+			props.variant === 'trigger'
 		)
 			return '16px'
 		return '14px'
@@ -62,6 +42,7 @@ export const Button: Component<ButtonProps> = props => {
 		if (props.variant === 'expand' && !props.icon) return 'open_in_full'
 		if (props.variant === 'copy' && !props.icon) return 'content_copy'
 		if (props.variant === 'attach' && !props.icon) return 'attach_file'
+		if (props.variant === 'trigger' && !props.icon) return 'menu_open'
 		return props.icon
 	}
 
@@ -74,6 +55,7 @@ export const Button: Component<ButtonProps> = props => {
 			props.variant === 'expand' ||
 			props.variant === 'copy' ||
 			props.variant === 'attach' ||
+			props.variant === 'trigger' ||
 			props.variant === 'close' ||
 			props.variant === 'minimize' ||
 			props.variant === 'maximize' ||
@@ -90,14 +72,67 @@ export const Button: Component<ButtonProps> = props => {
 		hasIcon() && (props.iconPosition === 'left' || !props.iconPosition)
 	const showRightIcon = () => hasIcon() && props.iconPosition === 'right'
 
-	return (
-		<button
-			type={props.type || 'button'}
-			class={getButtonClass()}
-			disabled={props.disabled || props.loading}
-			onClick={() => props.onClick?.()}
-			title={props.title}
-		>
+	// Determine the element/component to render
+	const getComponent = () => {
+		if (props.as) {
+			return props.as
+		}
+		return 'button'
+	}
+
+	// Prepare common props
+	const commonProps = (): JSX.ButtonHTMLAttributes<HTMLButtonElement> &
+		JSX.AnchorHTMLAttributes<HTMLAnchorElement> & {
+			class?: string
+			style?: JSX.CSSProperties
+			onClick?: () => void
+		} => ({
+		class: getButtonClass(),
+		style: props.style,
+		onClick: () => props.onClick?.(),
+		title: props.title
+	})
+
+	// Button-specific props
+	const buttonProps = () => ({
+		...commonProps(),
+		type: (props.type || 'button') as 'button' | 'submit' | 'reset',
+		disabled: props.disabled || props.loading
+	})
+
+	// Anchor-specific props (when as="a")
+	const anchorProps = (): JSX.AnchorHTMLAttributes<HTMLAnchorElement> & {
+		class?: string
+		style?: JSX.CSSProperties
+		onClick?: () => void
+	} => ({
+		...commonProps(),
+		href: (props as unknown as { href?: string }).href,
+		target: (props as unknown as { target?: string }).target,
+		rel: (props as unknown as { rel?: string }).rel
+	})
+
+	// Get props based on component type
+	const getProps = (): Record<string, unknown> => {
+		const component = getComponent()
+		if (
+			component === 'a' ||
+			(typeof component === 'string' && component === 'a')
+		) {
+			return anchorProps() as Record<string, unknown>
+		}
+		if (typeof component === 'string' && component === 'button') {
+			return buttonProps() as Record<string, unknown>
+		}
+		// For custom components, pass all props
+		return {
+			...commonProps(),
+			...props
+		} as Record<string, unknown>
+	}
+
+	const buttonContent = () => (
+		<>
 			<Show when={props.loading}>
 				<span
 					class='material-symbols-rounded'
@@ -111,13 +146,26 @@ export const Button: Component<ButtonProps> = props => {
 			</Show>
 
 			<Show when={!props.loading && (showLeftIcon() || isIconOnly())}>
-				<span
-					class={`material-symbols-rounded ${props.iconFilled ? 'filled' : ''}`}
-					aria-hidden='true'
-					style={{ 'font-size': getIconSize() }}
-				>
-					{getDefaultIcon()}
-				</span>
+				{props.variant === 'trigger' && !props.icon ? (
+					<DrawerIcon
+						isOpen={props.active ?? false}
+						size={parseInt(getIconSize().replace('px', '')) || 16}
+						color={props.style?.color as string}
+					/>
+				) : (
+					<span
+						class={`material-symbols-rounded ${
+							props.iconFilled ? 'filled' : ''
+						}`}
+						aria-hidden='true'
+						style={{
+							'font-size': getIconSize(),
+							color: props.style?.color || 'inherit'
+						}}
+					>
+						{getDefaultIcon()}
+					</span>
+				)}
 			</Show>
 
 			<Show when={!isIconOnly()}>{props.children}</Show>
@@ -126,11 +174,20 @@ export const Button: Component<ButtonProps> = props => {
 				<span
 					class={`material-symbols-rounded ${props.iconFilled ? 'filled' : ''}`}
 					aria-hidden='true'
-					style={{ 'font-size': getIconSize() }}
+					style={{
+						'font-size': getIconSize(),
+						color: props.style?.color || 'inherit'
+					}}
 				>
 					{getDefaultIcon()}
 				</span>
 			</Show>
-		</button>
+		</>
+	)
+
+	return (
+		<Dynamic component={getComponent()} {...getProps()}>
+			{buttonContent()}
+		</Dynamic>
 	)
 }

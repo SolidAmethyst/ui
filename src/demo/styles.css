@@ -1,0 +1,292 @@
+/* Demo-specific styles */
+
+/* Prevent horizontal scrolling globally */
+html {
+	overflow-x: hidden;
+	width: 100%;
+	max-width: 100%;
+	scrollbar-gutter: stable;
+}
+
+body {
+	overflow-x: hidden;
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Code syntax highlighting */
+.code-block {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	color: var(--code-foreground, #e5e7eb);
+	font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+	font-size: 13px;
+	line-height: 1.6;
+}
+
+.code-block .code-keyword {
+	color: var(--code-keyword, #c792ea);
+	font-weight: 500;
+}
+
+.code-block .code-string {
+	color: var(--code-string, #c3e88d);
+}
+
+.code-block .code-comment {
+	color: var(--code-comment, #546e7a);
+	font-style: italic;
+}
+
+.code-block .code-tag {
+	color: var(--code-tag, #f07178);
+}
+
+.code-block .code-tag-name {
+	color: var(--code-tag, #82aaff);
+	font-weight: 500;
+}
+
+.code-block .code-attr {
+	color: var(--code-attribute, #ffcb6b);
+	font-weight: 500;
+}
+
+.code-block .code-operator {
+	color: var(--code-operator, #89ddff);
+	opacity: 0.85;
+}
+
+/* Prevent layout shifts on docs pages */
+div[data-docs-container] {
+	contain: layout style;
+	overflow: hidden;
+	width: 100% !important;
+}
+
+aside[data-sidebar] {
+	flex-shrink: 0 !important;
+	width: 220px !important;
+	min-width: 220px !important;
+	max-width: 220px !important;
+}
+
+main {
+	contain: layout;
+	flex: 1;
+	min-width: 0;
+	width: 100%;
+}
+
+main > div {
+	contain: layout;
+	overflow-x: hidden;
+	width: 100% !important;
+	max-width: 100% !important;
+	box-sizing: border-box !important;
+}
+
+article {
+	contain: layout;
+	width: 100% !important;
+	max-width: 700px !important;
+	margin: 0 auto !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+	overflow-x: hidden !important;
+}
+
+/* Adaptive layout for larger screens */
+@media (min-width: 1600px) {
+	/* Keep max-width consistent */
+	article {
+		max-width: 750px !important;
+	}
+}
+
+@media (min-width: 1920px) {
+	/* Keep max-width consistent */
+	article {
+		max-width: 800px !important;
+	}
+}
+
+/* Responsive layout for docs pages */
+@media (max-width: 1024px) {
+	/* Make sidebar smaller on tablets */
+	aside[data-sidebar] {
+		width: 200px !important;
+		min-width: 200px !important;
+		max-width: 200px !important;
+		border-right: none !important;
+		max-height: calc(100vh - 60px) !important;
+	}
+
+	main {
+		width: 100% !important;
+		max-width: 100% !important;
+	}
+}
+
+@media (max-width: 900px) {
+	/* Hide sidebar earlier to prevent content compression at 400% zoom */
+	aside[data-sidebar] {
+		display: none !important;
+	}
+
+	div[data-docs-container] {
+		padding: 24px 32px 0 32px !important;
+		justify-content: flex-start !important;
+	}
+
+	/* Hide invisible spacer when sidebar is hidden */
+	div[data-docs-container] > div:last-child {
+		display: none !important;
+	}
+
+	/* Make article content full width */
+	article {
+		max-width: 100% !important;
+		padding: 24px 0 !important;
+		margin: 0 auto !important;
+	}
+
+	/* Ensure footer and content have same horizontal padding */
+	footer {
+		padding: 32px 32px !important;
+	}
+}
+
+@media (max-width: 768px) {
+	/* Hide sidebar on mobile and when zoomed in */
+	aside[data-sidebar] {
+		display: none !important;
+	}
+
+	div[data-docs-container] {
+		padding: 24px 32px 0 32px !important;
+		justify-content: flex-start !important;
+	}
+
+	/* Hide invisible spacer when sidebar is hidden */
+	div[data-docs-container] > div:last-child {
+		display: none !important;
+	}
+
+	/* Make article content full width on mobile */
+	article {
+		max-width: 100% !important;
+		padding: 24px 0 !important;
+		margin: 0 auto !important;
+	}
+
+	/* Ensure footer and content have same horizontal padding */
+	footer {
+		padding: 32px 32px !important;
+	}
+}
+
+/* Extra small screens and high zoom levels */
+@media (max-width: 600px) {
+	aside[data-sidebar] {
+		display: none !important;
+	}
+
+	div[data-docs-container] {
+		padding: 16px 32px 0 32px !important;
+		justify-content: flex-start !important;
+	}
+
+	/* Hide invisible spacer when sidebar is hidden */
+	div[data-docs-container] > div:last-child {
+		display: none !important;
+	}
+
+	/* Ensure footer and content have same horizontal padding */
+	footer {
+		padding: 32px 32px !important;
+	}
+}
+
+@media (max-width: 480px) {
+	/* Extra small devices */
+	article {
+		padding: 20px 0 !important;
+	}
+}
+
+/* Fix content clipping at high zoom levels - make Window fit container */
+div[data-app-preview] {
+	width: 100% !important;
+	min-width: 0 !important;
+	max-width: none !important;
+	box-sizing: border-box !important;
+	overflow: hidden !important;
+}
+
+div[data-app-preview] > * {
+	height: 100% !important;
+	max-height: 100% !important;
+	width: 100% !important;
+	min-width: 0 !important;
+	max-width: none !important;
+	border-radius: 0 !important;
+	overflow: hidden !important;
+}
+
+div[data-app-preview] .window {
+	height: 100% !important;
+	max-height: 100% !important;
+	width: 100% !important;
+	min-width: 0 !important;
+	max-width: none !important;
+	border-radius: 0 !important;
+	overflow: hidden !important;
+	padding: 1px !important;
+	box-sizing: border-box !important;
+}
+
+/* Remove border-radius from TitleBar */
+div[data-app-preview] .window > div:first-child {
+	border-radius: 0 !important;
+	overflow: hidden !important;
+}
+
+div[data-app-preview] .window > div:first-child .title-bar {
+	border-radius: 0 !important;
+}
+
+/* Remove border-radius from content area */
+div[data-app-preview] .window > div:last-child {
+	border-radius: 0 !important;
+	overflow: hidden !important;
+}
+
+div[data-app-preview] .window > div:last-child main {
+	border-radius: 0 !important;
+}
+
+/* Compensate for padding by adjusting inner content */
+div[data-app-preview] .window > * {
+	margin: -1px !important;
+	width: calc(100% + 2px) !important;
+	height: calc(100% + 2px) !important;
+}
+
+/* Ensure article doesn't clip preview containers - override all constraints */
+article div[data-app-preview] {
+	max-width: none !important;
+	width: 100% !important;
+	min-width: 0 !important;
+	overflow: visible !important;
+}
+
+/* Ensure parent containers don't constrain preview */
+article section div[data-app-preview] {
+	max-width: none !important;
+	width: 100% !important;
+}

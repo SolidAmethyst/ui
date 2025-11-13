@@ -1,2 +1,2 @@
 /* eslint-env node */
-module.exports = new Map()
+export default new Map()

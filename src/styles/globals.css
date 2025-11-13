@@ -2,56 +2,364 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-	:root {
-		--background: 0 0% 100%;
-		--foreground: 222.2 84% 4.9%;
-		--card: 0 0% 100%;
-		--card-foreground: 222.2 84% 4.9%;
-		--popover: 0 0% 100%;
-		--popover-foreground: 222.2 84% 4.9%;
-		--primary: 221.2 83.2% 53.3%;
-		--primary-foreground: 210 40% 98%;
-		--secondary: 210 40% 96%;
-		--secondary-foreground: 222.2 84% 4.9%;
-		--muted: 210 40% 96%;
-		--muted-foreground: 215.4 16.3% 46.9%;
-		--accent: 210 40% 96%;
-		--accent-foreground: 222.2 84% 4.9%;
-		--destructive: 0 84.2% 60.2%;
-		--destructive-foreground: 210 40% 98%;
-		--border: 214.3 31.8% 91.4%;
-		--input: 214.3 31.8% 91.4%;
-		--ring: 221.2 83.2% 53.3%;
-		--radius: 0.5rem;
-	}
+/* CSS Variables - defined outside @layer for library compatibility */
+:root {
+	--background: 0 0% 100%;
+	--foreground: 222.2 84% 4.9%;
+	--card: 0 0% 100%;
+	--card-foreground: 222.2 84% 4.9%;
+	--popover: 0 0% 100%;
+	--popover-foreground: 222.2 84% 4.9%;
+	--primary: 221.2 83.2% 53.3%;
+	--primary-foreground: 210 40% 98%;
+	--secondary: 210 40% 96%;
+	--secondary-foreground: 222.2 84% 4.9%;
+	--muted: 210 40% 96%;
+	--muted-foreground: 215.4 16.3% 46.9%;
+	--accent: 210 40% 96%;
+	--accent-foreground: 222.2 84% 4.9%;
+	--destructive: 0 84.2% 60.2%;
+	--destructive-foreground: 210 40% 98%;
+	--border: 214.3 31.8% 91.4%;
+	--input: 214.3 31.8% 91.4%;
+	--ring: 221.2 83.2% 53.3%;
+	--radius: 0.5rem;
+	/* Sidebar colors */
+	--sidebar-background: 0 0% 98%;
+	--sidebar-foreground: 240 5.3% 26.1%;
+	--sidebar-accent: 240 4.8% 95.9%;
+	--sidebar-accent-foreground: 240 5.9% 10%;
+	--sidebar-border: 220 13% 91%;
+	/* Button colors */
+	--button-hover: 221.2 83.2% 53.3%;
+	--button-close-hover: 0 84.2% 60.2%;
+	--button-close-active: 0 62.8% 30.6%;
+	/* Scrollbar colors */
+	--scrollbar-thumb: 0 0% 100% / 0.3;
+	--scrollbar-thumb-hover: 0 0% 100% / 0.5;
+	--scrollbar-thumb-active: 0 0% 100% / 0.7;
+	--scrollbar-arrow: 0 0% 100%;
+	--scrollbar-arrow-hover: 221.2 83.2% 53.3%;
+	--scrollbar-arrow-active: 221.2 83.2% 53.3%;
+	--scrollbar-arrow-disabled: 0 0% 100% / 0.3;
+	/* Menu colors */
+	--menu-background: 0 0% 100%;
+	--menu-foreground: 222.2 84% 4.9%;
+	--menu-accent: 210 40% 96%;
+	--menu-border: 214.3 31.8% 91.4%;
+	--menu-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+	/* Slider colors */
+	--slider-thumb: 59 130 246;
+	--slider-thumb-hover: 37 99 235;
+	--slider-track: 0 0% 0% / 0.1;
+	--slider-track-dark: 255 255 255 / 0.1;
+	/* TitleBar colors */
+	--title-bar-background: 0 0% 100%;
+	--title-bar-foreground: 222.2 84% 4.9%;
+	--title-bar-accent: 210 40% 96%;
+	--title-bar-separator: 214.3 31.8% 91.4%;
+	--title-bar-close-hover: 0 84.2% 60.2%;
+	/* TechChip colors */
+	--techchip-foreground: 222.2 84% 4.9%;
+	--techchip-loading: 217.2 91.2% 59.8%;
+	--techchip-ready: 142.1 76.2% 36.3%;
+	--techchip-error: 0 84.2% 60.2%;
+	/* Command component variables */
+	--command-item-font-size: 14px;
+	--command-item-height: 32px;
+	--command-item-padding: 2px 0;
+	--command-item-line-height: 1;
+	--command-group-heading-font-size: 12px;
+	--command-group-heading-font-weight: 500;
+	--command-group-heading-line-height: 1;
+	--command-group-heading-padding: 0;
+	--command-group-heading-margin-top: 8px;
+	--command-group-heading-margin-bottom: 4px;
+	--command-input-font-size: 14px;
+	--command-input-padding: 12px 16px;
+	--command-input-line-height: 1.5;
+	/* Select component variables */
+	--select-font-size: 14px;
+	--select-padding: 10px 12px;
+	--select-border-radius: 6px;
+	--select-option-font-size: 14px;
+	--select-option-padding: 10px 12px;
+	--select-option-description-font-size: 12px;
+	--select-icon-font-size: 18px;
+	--select-dropdown-max-height: 300px;
+	--select-dropdown-padding: 4px;
+	--select-dropdown-margin-top: 4px;
+	/* Sidebar component variables */
+	--sidebar-width: 250px;
+	--sidebar-padding: 16px 0;
+	--sidebar-button-padding: 10px 16px;
+	--sidebar-button-font-size: 14px;
+	--sidebar-button-gap: 12px;
+	--sidebar-icon-font-size: 20px;
+	--sidebar-icon-size: 20px;
+	--sidebar-separator-margin: 8px 12px;
+	--sidebar-list-gap: 4px;
+	/* Tabs component variables */
+	--tabs-button-padding: 10px 20px;
+	--tabs-button-font-size: 14px;
+	--tabs-button-font-weight: 500;
+	--tabs-button-gap: 8px;
+	--tabs-container-margin: 24px 0;
+	--tabs-preview-padding: 8px 12px;
+	--tabs-preview-gap: 12px;
+	/* Common spacing variables */
+	--spacing-xs: 4px;
+	--spacing-sm: 8px;
+	--spacing-md: 12px;
+	--spacing-lg: 16px;
+	--spacing-xl: 20px;
+	--spacing-2xl: 24px;
+	/* Common font sizes */
+	--font-size-xs: 10px;
+	--font-size-sm: 12px;
+	--font-size-base: 14px;
+	--font-size-lg: 16px;
+	--font-size-xl: 18px;
+	--font-size-2xl: 20px;
+	/* Common border radius */
+	--radius-sm: 4px;
+	--radius-md: 6px;
+	--radius-lg: 8px;
+	/* Common transitions */
+	--transition-fast: 0.15s ease;
+	--transition-base: 0.2s ease;
+	--transition-slow: 0.3s ease;
+	/* Command additional variables */
+	--command-border-radius: 4px;
+	--command-empty-padding: 24px;
+	--command-empty-font-size: 14px;
+	--command-separator-height: 1px;
+	--command-separator-margin: 8px 0;
+	--command-list-padding-horizontal: 12px;
+	--command-list-padding-bottom: 16px;
+	--command-input-container-padding: 0 12px;
+	/* Select additional variables */
+	--select-icon-margin-left: 8px;
+	--select-option-description-margin-top: 2px;
+	/* Sidebar additional variables */
+	--sidebar-separator-height: 1px;
+	/* Tabs additional variables */
+	--tabs-buttons-margin-bottom: 20px;
+	--tabs-button-margin-bottom: -1px;
+	/* Button component variables */
+	--button-font-size: 12px;
+	--button-height: 32px;
+	--button-padding: 8px 16px;
+	--button-border-radius: 0px;
+	--button-icon-size-small: 12px;
+	--button-icon-size-normal: 14px;
+	--button-icon-size-large: 20px;
+	--button-play-pause-size: 50px;
+	--button-small-size: 32px;
+	/* Menu component variables */
+	--menu-min-width: 200px;
+	--menu-border-radius: 8px;
+	--menu-padding: 4px;
+	--menu-item-padding: 8px 12px;
+	--menu-item-font-size: 13px;
+	--menu-item-border-radius: 6px;
+	--menu-item-gap: 12px;
+	--menu-item-icon-size: 20px;
+	--menu-item-icon-font-size: 18px;
+	--menu-separator-height: 1px;
+	--menu-separator-margin: 4px 0;
+	--menu-list-gap: 2px;
+	/* Drawer component variables */
+	--drawer-backdrop-opacity: 0.3;
+	--drawer-backdrop-blur: 2px;
+	--drawer-panel-blur: 20px;
+	--drawer-panel-saturate: 180%;
+	--drawer-transition-duration: 300ms;
+	/* NumberInput component variables */
+	--number-input-width: 60px;
+	--number-input-padding: 4px 20px 4px 8px;
+	--number-input-border-radius: 4px;
+	--number-input-font-size: 0.875rem;
+	--number-input-arrow-size: 12px;
+	--number-input-arrow-height: 10px;
+	--number-input-arrow-gap: 2px;
+	--number-input-arrow-right: 4px;
+	/* Slider component variables */
+	--slider-gap: 8px;
+	--slider-label-font-size: 14px;
+	--slider-label-font-weight: 500;
+	--slider-value-font-size: 12px;
+	--slider-value-min-width: 40px;
+	--slider-height: 6px;
+	--slider-border-radius: 3px;
+	/* Container component variables */
+	--container-max-width: 1400px;
+	--container-padding: 0 32px;
+	/* Window component variables */
+	--window-border-radius: 8px;
+	--window-padding: 16px;
+	/* Grid component variables */
+	--grid-gap: 8px;
+	--grid-gap-row: var(--grid-gap);
+	--grid-gap-column: var(--grid-gap);
+	--grid-item-padding: 16px;
+	--grid-transition-duration: 200ms;
+	--grid-transition-timing: linear;
+	--grid-preserve-area-min-row-height: 60px;
+	--grid-preserve-area-min-card-height: 200px;
+	/* CodeHighlight component variables */
+	--code-highlight-font-size: 13px;
+	--code-highlight-line-height: 1.6;
+	--code-highlight-padding: 16px;
+	--code-highlight-border-radius: 8px;
+	/* Typography component variables */
+	--typography-h1-font-size: 2.5rem;
+	--typography-h2-font-size: 2rem;
+	--typography-h3-font-size: 1.75rem;
+	--typography-h4-font-size: 1.5rem;
+	--typography-h5-font-size: 1.25rem;
+	--typography-h6-font-size: 1rem;
+	--typography-body-font-size: 1rem;
+	--typography-small-font-size: 0.875rem;
+	--typography-line-height: 1.5;
+	/* TechChip component variables */
+	--techchip-padding: 6px 12px;
+	--techchip-font-size: 12px;
+	--techchip-border-radius: 16px;
+	--techchip-gap: 6px;
+	--techchip-icon-size: 16px;
+	/* Settings composite variables */
+	--settings-section-gap: 24px;
+	--settings-item-gap: 16px;
+	--settings-label-font-size: 14px;
+	--settings-description-font-size: 12px;
+	/* TitleBar composite variables */
+	--title-bar-height: 32px;
+	--title-bar-padding: 0 8px;
+	--title-bar-button-size: 32px;
+	--title-bar-icon-size: 18px;
+}
 
-	.dark {
-		--background: 222.2 84% 4.9%;
-		--foreground: 210 40% 98%;
-		--card: 222.2 84% 4.9%;
-		--card-foreground: 210 40% 98%;
-		--popover: 222.2 84% 4.9%;
-		--popover-foreground: 210 40% 98%;
-		--primary: 217.2 91.2% 59.8%;
-		--primary-foreground: 222.2 84% 4.9%;
-		--secondary: 217.2 32.6% 17.5%;
-		--secondary-foreground: 210 40% 98%;
-		--muted: 217.2 32.6% 17.5%;
-		--muted-foreground: 215 20.2% 65.1%;
-		--accent: 217.2 32.6% 17.5%;
-		--accent-foreground: 210 40% 98%;
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 210 40% 98%;
-		--border: 217.2 32.6% 17.5%;
-		--input: 217.2 32.6% 17.5%;
-		--ring: 224.3 76.3% 94.1%;
-	}
+.dark,
+[data-theme='dark'] {
+	--background: 222.2 84% 4.9%;
+	--foreground: 210 40% 98%;
+	--card: 222.2 84% 4.9%;
+	--card-foreground: 210 40% 98%;
+	--popover: 222.2 84% 4.9%;
+	--popover-foreground: 210 40% 98%;
+	--primary: 217.2 91.2% 59.8%;
+	--primary-foreground: 222.2 84% 4.9%;
+	--secondary: 217.2 32.6% 17.5%;
+	--secondary-foreground: 210 40% 98%;
+	--muted: 217.2 32.6% 17.5%;
+	--muted-foreground: 215 20.2% 65.1%;
+	--accent: 217.2 32.6% 17.5%;
+	--accent-foreground: 210 40% 98%;
+	--destructive: 0 62.8% 30.6%;
+	--destructive-foreground: 210 40% 98%;
+	--border: 217.2 32.6% 17.5%;
+	--input: 217.2 32.6% 17.5%;
+	--ring: 224.3 76.3% 94.1%;
+	/* Sidebar colors */
+	--sidebar-background: 240 5.9% 10%;
+	--sidebar-foreground: 240 4.8% 95.9%;
+	--sidebar-accent: 240 3.7% 15.9%;
+	--sidebar-accent-foreground: 240 4.8% 95.9%;
+	--sidebar-border: 240 3.7% 15.9%;
+	/* Button colors */
+	--button-hover: 217.2 91.2% 59.8%;
+	--button-close-hover: 0 62.8% 30.6%;
+	--button-close-active: 0 84.2% 60.2%;
+	/* Scrollbar colors */
+	--scrollbar-thumb: 0 0% 100% / 0.3;
+	--scrollbar-thumb-hover: 0 0% 100% / 0.5;
+	--scrollbar-thumb-active: 0 0% 100% / 0.7;
+	--scrollbar-arrow: 0 0% 100%;
+	--scrollbar-arrow-hover: 217.2 91.2% 59.8%;
+	--scrollbar-arrow-active: 217.2 91.2% 59.8%;
+	--scrollbar-arrow-disabled: 0 0% 100% / 0.3;
+	/* Menu colors */
+	--menu-background: 222.2 84% 4.9%;
+	--menu-foreground: 210 40% 98%;
+	--menu-accent: 217.2 32.6% 17.5%;
+	--menu-border: 217.2 32.6% 17.5%;
+	--menu-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+	/* TitleBar colors */
+	--title-bar-background: 222.2 84% 4.9%;
+	--title-bar-foreground: 210 40% 98%;
+	--title-bar-accent: 217.2 32.6% 17.5%;
+	--title-bar-separator: 217.2 32.6% 17.5%;
+	--title-bar-close-hover: 0 62.8% 30.6%;
+	/* TechChip colors */
+	--techchip-foreground: 210 40% 98%;
+	--techchip-loading: 217.2 91.2% 59.8%;
+	--techchip-ready: 142.1 76.2% 36.3%;
+	--techchip-error: 0 62.8% 30.6%;
+}
+
+/* Dark theme variables - defined outside @layer for library compatibility */
+.dark,
+[data-theme='dark'] {
+	--background: 222.2 84% 4.9%;
+	--foreground: 210 40% 98%;
+	--card: 222.2 84% 4.9%;
+	--card-foreground: 210 40% 98%;
+	--popover: 222.2 84% 4.9%;
+	--popover-foreground: 210 40% 98%;
+	--primary: 217.2 91.2% 59.8%;
+	--primary-foreground: 222.2 84% 4.9%;
+	--secondary: 217.2 32.6% 17.5%;
+	--secondary-foreground: 210 40% 98%;
+	--muted: 217.2 32.6% 17.5%;
+	--muted-foreground: 215 20.2% 65.1%;
+	--accent: 217.2 32.6% 17.5%;
+	--accent-foreground: 210 40% 98%;
+	--destructive: 0 62.8% 30.6%;
+	--destructive-foreground: 210 40% 98%;
+	--border: 217.2 32.6% 17.5%;
+	--input: 217.2 32.6% 17.5%;
+	--ring: 224.3 76.3% 94.1%;
+	/* Sidebar colors */
+	--sidebar-background: 240 5.9% 10%;
+	--sidebar-foreground: 240 4.8% 95.9%;
+	--sidebar-accent: 240 3.7% 15.9%;
+	--sidebar-accent-foreground: 240 4.8% 95.9%;
+	--sidebar-border: 240 3.7% 15.9%;
+	/* Button colors */
+	--button-hover: 217.2 91.2% 59.8%;
+	--button-close-hover: 0 62.8% 30.6%;
+	--button-close-active: 0 84.2% 60.2%;
+	/* Scrollbar colors */
+	--scrollbar-thumb: 0 0% 100% / 0.3;
+	--scrollbar-thumb-hover: 0 0% 100% / 0.5;
+	--scrollbar-thumb-active: 0 0% 100% / 0.7;
+	--scrollbar-arrow: 0 0% 100%;
+	--scrollbar-arrow-hover: 217.2 91.2% 59.8%;
+	--scrollbar-arrow-active: 217.2 91.2% 59.8%;
+	--scrollbar-arrow-disabled: 0 0% 100% / 0.3;
+	/* Menu colors */
+	--menu-background: 222.2 84% 4.9%;
+	--menu-foreground: 210 40% 98%;
+	--menu-accent: 217.2 32.6% 17.5%;
+	--menu-border: 217.2 32.6% 17.5%;
+	--menu-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3);
+	/* TitleBar colors */
+	--title-bar-background: 222.2 84% 4.9%;
+	--title-bar-foreground: 210 40% 98%;
+	--title-bar-accent: 217.2 32.6% 17.5%;
+	--title-bar-separator: 217.2 32.6% 17.5%;
+	--title-bar-close-hover: 0 62.8% 30.6%;
+	/* TechChip colors */
+	--techchip-foreground: 210 40% 98%;
+	--techchip-loading: 217.2 91.2% 59.8%;
+	--techchip-ready: 142.1 76.2% 36.3%;
+	--techchip-error: 0 62.8% 30.6%;
 }
 
 @layer base {
 	* {
-		@apply border-border;
+		border-color: hsl(var(--border));
 	}
 	body {
 		margin: 0;
@@ -218,110 +526,50 @@
 	color: #b00000 !important;
 }
 
-/* Pin button - existing variant, just styling */
-.pin-btn {
-	width: var(--small-btn-size);
-	height: var(--small-btn-size);
-	min-height: var(--small-btn-size);
+/* Minimize and Maximize buttons for title bar */
+.minimize-btn,
+.maximize-btn {
+	width: 32px;
+	height: 32px;
+	min-width: 32px;
+	min-height: 32px;
 	padding: 0;
+	border-radius: 0;
 }
 
-/* Expand button (26x26px) */
-.expand-btn {
-	width: 26px;
-	height: 26px;
-	min-width: 26px;
-	min-height: 26px;
+.minimize-btn .material-symbols-rounded,
+.maximize-btn .material-symbols-rounded {
+	font-size: 18px !important;
+}
+
+/* Title bar control buttons */
+.title-bar-control-btn {
+	width: 32px;
+	height: 32px;
+	min-width: 32px;
+	min-height: 32px;
 	padding: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	border-radius: 0;
+	margin: 0;
 }
 
-.expand-btn .material-symbols-rounded {
-	font-size: 16px !important;
+.title-bar-control-btn:hover {
+	background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-.expand-btn:hover {
-	color: #0d8bf2 !important;
+.title-bar-control-btn.close-btn:hover {
+	background-color: rgba(232, 17, 35, 0.2) !important;
 }
 
-.expand-btn:hover .material-symbols-rounded {
-	color: #0d8bf2 !important;
+/* Grid number input arrow buttons */
+.grid-number-arrow {
+	font-size: 10px !important;
 }
 
-/* Copy button (26x26px) */
-.copy-btn {
-	width: 26px;
-	height: 26px;
-	min-width: 26px;
-	min-height: 26px;
-	padding: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.copy-btn .material-symbols-rounded {
-	font-size: 16px !important;
-}
-
-.copy-btn:hover {
-	color: #0d8bf2 !important;
-}
-
-.copy-btn:hover .material-symbols-rounded {
-	color: #0d8bf2 !important;
-}
-
-/* Attach button (26x26px) - канцелярская скрепка */
-.attach-btn {
-	width: 26px;
-	height: 26px;
-	min-width: 26px;
-	min-height: 26px;
-	padding: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.attach-btn .material-symbols-rounded {
-	font-size: 16px !important;
-	transform: rotate(45deg);
-}
-
-.attach-btn:hover {
-	color: #0d8bf2 !important;
-}
-
-.attach-btn:hover .material-symbols-rounded {
-	color: #0d8bf2 !important;
-}
-
-/* Light theme adaptations for new buttons */
-[data-theme='light'] .expand-btn:not(:hover),
-[data-theme='light'] .copy-btn:not(:hover),
-[data-theme='light'] .attach-btn:not(:hover) {
-	color: #1a1a1a;
-}
-
-[data-theme='light'] .expand-btn:not(:hover) .material-symbols-rounded,
-[data-theme='light'] .copy-btn:not(:hover) .material-symbols-rounded,
-[data-theme='light'] .attach-btn:not(:hover) .material-symbols-rounded {
-	color: #1a1a1a;
-}
-
-[data-theme='light'] .expand-btn:hover,
-[data-theme='light'] .copy-btn:hover,
-[data-theme='light'] .attach-btn:hover {
-	color: #0d8bf2 !important;
-}
-
-[data-theme='light'] .expand-btn:hover .material-symbols-rounded,
-[data-theme='light'] .copy-btn:hover .material-symbols-rounded,
-[data-theme='light'] .attach-btn:hover .material-symbols-rounded {
-	color: #0d8bf2 !important;
+.grid-number-arrow .material-symbols-rounded {
+	font-size: 10px !important;
+	width: 10px !important;
+	height: 10px !important;
 }
 
 .control-btn:disabled {
@@ -438,17 +686,37 @@
 	overflow: hidden;
 }
 
+.scrollbar-content {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: auto;
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+}
+
+.scrollbar-content::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
 .scrollbar-track {
 	position: absolute;
-	background: rgba(255, 255, 255, 0.1);
-	border-radius: 4px;
-	z-index: 10;
+	z-index: 999;
+	background: transparent;
+	opacity: 0;
+	transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scrollbar-track.visible {
+	opacity: 1;
 }
 
 .scrollbar-track-vertical {
-	right: 0;
 	top: 0;
-	width: 8px;
+	right: 0;
+	width: 12px;
 	height: 100%;
 }
 
@@ -456,71 +724,121 @@
 	bottom: 0;
 	left: 0;
 	width: 100%;
-	height: 8px;
+	height: 12px;
 }
 
 .scrollbar-thumb {
-	background: rgba(255, 255, 255, 0.3);
-	border-radius: 4px;
-	cursor: pointer;
-	transition: background 0.2s ease;
+	position: absolute;
+	background: rgba(59, 130, 246, 0.6);
+	border-radius: 2px;
+	cursor: grab;
+	transition:
+		background 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	z-index: 99999;
+	min-width: 1px;
+	min-height: 1px;
 }
 
 .scrollbar-thumb:hover {
-	background: rgba(255, 255, 255, 0.5);
+	background: rgba(59, 130, 246, 0.9);
 }
 
-.scrollbar-thumb-vertical {
-	width: 100%;
-	min-height: 20px;
-}
-
-.scrollbar-thumb-horizontal {
-	height: 100%;
-	min-width: 20px;
+.scrollbar-thumb:active,
+.scrollbar-thumb.dragging {
+	background: rgba(59, 130, 246, 1);
+	cursor: grabbing;
 }
 
 .scrollbar-arrow {
 	position: absolute;
+	width: 12px;
+	height: 12px;
 	background: transparent;
 	border: none;
-	color: #ffffff;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transition: color 0.2s ease;
-	z-index: 11;
+	font-size: 12px;
+	font-weight: bold;
+	color: #6b7280;
+	transition:
+		color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+		transform 100ms cubic-bezier(0.4, 0, 0.2, 1);
+	z-index: 1000;
+	padding: 0;
+	margin: 0;
 }
 
 .scrollbar-arrow:hover {
-	color: #0d8bf2;
+	color: #3b82f6;
+	transform: scale(1.1);
 }
 
-.scrollbar-arrow-vertical {
-	width: 100%;
-	height: 20px;
+.scrollbar-arrow:active {
+	color: #1d4ed8;
 }
 
-.scrollbar-arrow-horizontal {
-	width: 20px;
-	height: 100%;
+.scrollbar-arrow:disabled {
+	color: #9ca3af;
+	cursor: not-allowed;
 }
 
 .scrollbar-arrow-up {
+	position: absolute;
 	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
+	padding: 0;
+	margin: 0;
 }
 
 .scrollbar-arrow-down {
+	position: absolute;
 	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
+	padding: 0;
+	margin: 0;
 }
 
 .scrollbar-arrow-left {
+	position: absolute;
+	top: 50%;
 	left: 0;
+	width: 12px;
+	height: 12px;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
 }
 
 .scrollbar-arrow-right {
+	position: absolute;
+	top: 50%;
 	right: 0;
+	width: 12px;
+	height: 12px;
+	transform: translateY(-50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1001;
 }
 
 /* Icon and button text shadows - Sharp glass effect */
@@ -580,4 +898,239 @@
 
 [data-theme='light'] span[data-status] span:not(.material-symbols-rounded) {
 	color: #1a1a1a !important;
+}
+
+/* Hide native scrollbars - use Scrollbar component instead */
+* {
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
+/* Hide default spinner arrows for number inputs */
+.number-input[type='number']::-webkit-inner-spin-button,
+.number-input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.number-input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+/* Number input arrow buttons styling */
+.number-input-arrow {
+	font-size: 12px !important;
+}
+
+.number-input-arrow .material-symbols-rounded {
+	font-size: 12px !important;
+}
+
+/* Command component styles - using CSS variables */
+[cmdk-item] {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	line-height: var(--command-item-line-height);
+	font-size: var(--command-item-font-size);
+	height: var(--command-item-height);
+	padding: var(--command-item-padding);
+}
+
+[cmdk-item] > * {
+	flex-shrink: 0;
+}
+
+[cmdk-item]:hover {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='light'] [cmdk-item]:hover {
+	background-color: rgba(0, 0, 0, 0.05);
+}
+
+[cmdk-shortcuts] {
+	margin-left: 48px;
+	margin-right: 0;
+}
+
+[cmdk-input]::placeholder {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+[data-theme='light'] [cmdk-input]::placeholder {
+	color: rgba(26, 26, 26, 0.5);
+}
+
+[cmdk-group-heading] {
+	font-size: var(--command-group-heading-font-size);
+	font-weight: var(--command-group-heading-font-weight);
+	text-transform: none;
+	letter-spacing: 0;
+	line-height: var(--command-group-heading-line-height);
+	padding: var(--command-group-heading-padding);
+	margin-top: var(--command-group-heading-margin-top);
+	margin-bottom: var(--command-group-heading-margin-bottom);
+	color: rgba(255, 255, 255, 0.6);
+	user-select: none;
+}
+
+[data-theme='light'] [cmdk-group-heading] {
+	color: rgba(26, 26, 26, 0.6);
+}
+
+/* NumberInput theme-aware CSS variables */
+:root {
+	--number-input-border: rgba(0, 0, 0, 0.1);
+	--number-input-bg: rgba(0, 0, 0, 0.02);
+	--number-input-text: #1a1a1a;
+	--number-input-border-focus: rgba(59, 130, 246, 0.3);
+}
+
+[data-theme='dark'] {
+	--number-input-border: rgba(255, 255, 255, 0.1);
+	--number-input-bg: rgba(255, 255, 255, 0.05);
+	--number-input-text: #f6f6f6;
+	--number-input-border-focus: rgba(59, 130, 246, 0.5);
+}
+
+/* Slider styles */
+.slider-input[type='range'] {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.slider-input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: hsl(var(--slider-thumb));
+	cursor: pointer;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	transition:
+		background 0.2s ease,
+		transform 0.1s ease;
+}
+
+.slider-input[type='range']::-webkit-slider-thumb:hover {
+	background: hsl(var(--slider-thumb-hover));
+	transform: scale(1.1);
+}
+
+.slider-input[type='range']::-webkit-slider-thumb:active {
+	transform: scale(0.95);
+}
+
+.slider-input[type='range']::-moz-range-thumb {
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: hsl(var(--slider-thumb));
+	cursor: pointer;
+	border: none;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	transition:
+		background 0.2s ease,
+		transform 0.1s ease;
+}
+
+.slider-input[type='range']::-moz-range-thumb:hover {
+	background: hsl(var(--slider-thumb-hover));
+	transform: scale(1.1);
+}
+
+.slider-input[type='range']::-moz-range-thumb:active {
+	transform: scale(0.95);
+}
+
+.slider-input[type='range']:disabled::-webkit-slider-thumb {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.slider-input[type='range']:disabled::-moz-range-thumb {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+/* Grid Component Styles - CSS Variables for preserve area */
+.grid {
+	/* Grid preserve area variables */
+	--grid-row-1-height: auto;
+	--grid-row-2-height: 1fr;
+	--grid-preserve-area-transition: var(--grid-transition-duration) var(--grid-transition-timing);
+}
+
+/* Global scroll containment - prevents scroll chaining */
+* {
+	overscroll-behavior: contain;
+}
+
+/* Scrollbar Component Styles */
+.custom-scrollbar-container {
+	position: relative;
+	overflow: hidden;
+}
+
+.custom-scrollbar-content {
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: auto;
+	scrollbar-width: none !important;
+	-ms-overflow-style: none !important;
+	overscroll-behavior: contain;
+}
+
+.custom-scrollbar-content::-webkit-scrollbar {
+	display: none !important;
+	width: 0 !important;
+	height: 0 !important;
+}
+
+.custom-scrollbar-track {
+	position: absolute;
+	z-index: 999;
+	background: transparent;
+}
+
+.custom-scrollbar-track-vertical {
+	top: 0;
+	right: 0;
+	width: 10px;
+	height: 100%;
+}
+
+.custom-scrollbar-track-horizontal {
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 12px;
+}
+
+.custom-scrollbar-thumb {
+	position: absolute;
+	background: rgba(59, 130, 246, 0.6);
+	border-radius: 2px;
+	cursor: grab;
+	transition: background 150ms;
+	z-index: 99999;
+}
+
+.custom-scrollbar-thumb:hover {
+	background: rgba(59, 130, 246, 0.8);
+}
+
+.custom-scrollbar-thumb:active,
+.custom-scrollbar-thumb.dragging {
+	background: rgba(59, 130, 246, 1);
+	cursor: grabbing;
 }

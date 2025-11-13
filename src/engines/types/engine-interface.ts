@@ -16,6 +16,11 @@ export interface UIEngine {
     worldY: number,
   ): Promise<{ x: number; y: number }>;
 
+  // Glass effects
+  applyGlassEffect(config: GlassEffectConfig): Promise<void>;
+  updateGlassEffect(config: Partial<GlassEffectConfig>): Promise<void>;
+  removeGlassEffect(): Promise<void>;
+
   // Engine state
   getEngineState(): Promise<EngineState>;
   isAvailable(): Promise<boolean>;
@@ -35,4 +40,16 @@ export interface EngineConfig {
   fallbackToJS: boolean;
   physicsEnabled: boolean;
   zoomEnabled: boolean;
+}
+
+export type GlassEffectType = 'mica' | 'acrylic' | 'blur' | 'matte';
+
+export interface GlassEffectConfig {
+  type: GlassEffectType;
+  blur?: number;
+  opacity?: number;
+  tintColor?: string;
+  tintOpacity?: number;
+  saturation?: number;
+  darkness?: number;
 }

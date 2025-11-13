@@ -3,7 +3,7 @@
  * Based on Tauri project button styles
  */
 
-import type { JSX } from 'solid-js'
+import type { Component, JSX } from 'solid-js'
 
 export type ButtonVariant =
 	| 'primary'
@@ -22,6 +22,27 @@ export type ButtonVariant =
 	| 'expand'
 	| 'copy'
 	| 'attach'
+	| 'back'
+	| 'forward'
+	| 'refresh'
+	| 'home'
+	| 'save'
+	| 'download'
+	| 'upload'
+	| 'edit'
+	| 'delete'
+	| 'cancel'
+	| 'stop'
+	| 'skip-next'
+	| 'skip-previous'
+	| 'fullscreen'
+	| 'view-list'
+	| 'view-grid'
+	| 'search'
+	| 'filter'
+	| 'share'
+	| 'favorite'
+	| 'trigger'
 
 export type ButtonSize = 'sm' | 'md' | 'lg'
 
@@ -102,4 +123,22 @@ export interface ButtonProps {
 	 * Whether the button is maximized (for maximize buttons)
 	 */
 	maximized?: boolean
+
+	/**
+	 * Inline CSS styles
+	 */
+	style?: JSX.CSSProperties
+
+	/**
+	 * Polymorphic component - render as different element/component
+	 * Examples: "a", Component, etc.
+	 */
+	as?: Component<Record<string, unknown>> | keyof JSX.IntrinsicElements | string
+
+	/**
+	 * Anchor-specific props (when as="a")
+	 */
+	href?: string
+	target?: string
+	rel?: string
 }
