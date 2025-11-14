@@ -2,6 +2,7 @@
 export * from './components/ui/alert'
 export * from './components/ui/button'
 export * from './components/ui/checkbox'
+export * from './components/ui/checkbox-tree'
 export * from './components/ui/code-highlight'
 export * from './components/ui/command'
 export * from './components/ui/container'
