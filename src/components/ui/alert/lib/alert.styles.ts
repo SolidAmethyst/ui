@@ -110,4 +110,3 @@ export const alertStyles = {
 		'flex-shrink': 0
 	})
 } as const
-

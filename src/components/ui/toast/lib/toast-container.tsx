@@ -30,4 +30,3 @@ export const ToastContainer: Component<ToastContainerProps> = props => {
 		</div>
 	)
 }
-

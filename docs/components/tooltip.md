@@ -173,4 +173,3 @@ Follows Material 3 design principles:
 - Arrow indicator
 - Theme-aware colors
 - Responsive positioning
-

@@ -53,4 +53,3 @@ export interface AlertProps {
 	 */
 	children?: JSX.Element
 }
-

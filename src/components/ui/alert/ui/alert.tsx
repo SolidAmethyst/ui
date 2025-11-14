@@ -67,4 +67,3 @@ export const Alert: Component<AlertProps> = props => {
 		</div>
 	)
 }
-

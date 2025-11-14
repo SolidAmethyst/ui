@@ -5,4 +5,3 @@
 
 export { Alert } from './ui/alert'
 export type { AlertProps, AlertVariant } from './model/types'
-

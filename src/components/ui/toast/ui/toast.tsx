@@ -69,4 +69,3 @@ export const Toast: Component<ToastProps> = props => {
 		</div>
 	)
 }
-

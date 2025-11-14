@@ -14,4 +14,3 @@ export type {
 	ToastVariant,
 	ToastPosition
 } from './model/types'
-

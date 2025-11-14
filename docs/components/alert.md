@@ -222,4 +222,3 @@ Follows Material 3 design principles:
 - Icon indicators
 - Theme-aware colors
 - Responsive sizing
-

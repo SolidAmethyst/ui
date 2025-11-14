@@ -107,4 +107,3 @@ describe('Alert', () => {
 		expect(screen.getByText('info')).toBeInTheDocument()
 	})
 })
-

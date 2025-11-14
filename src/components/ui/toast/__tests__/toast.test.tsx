@@ -127,4 +127,3 @@ describe('Toast System', () => {
 		console.error = consoleError
 	})
 })
-

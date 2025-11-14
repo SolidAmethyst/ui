@@ -257,4 +257,3 @@ Follows Material 3 design principles:
 - Color-coded variants
 - Responsive sizing
 - Theme-aware colors
-
