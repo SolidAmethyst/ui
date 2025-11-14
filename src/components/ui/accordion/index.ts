@@ -5,4 +5,3 @@
 
 export { Accordion } from './ui/accordion'
 export type { AccordionProps, AccordionItem } from './model/types'
-

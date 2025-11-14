@@ -5,4 +5,3 @@
 
 export { Table } from './ui/table'
 export type { TableProps, TableColumn, SortDirection } from './model/types'
-

@@ -46,4 +46,3 @@ export interface EmptyStateProps {
 	 */
 	children?: JSX.Element
 }
-

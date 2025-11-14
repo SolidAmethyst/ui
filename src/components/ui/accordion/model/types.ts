@@ -63,4 +63,3 @@ export interface AccordionProps {
 	 */
 	style?: JSX.CSSProperties
 }
-

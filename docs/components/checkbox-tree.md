@@ -216,4 +216,3 @@ Follows Material 3 design principles:
 - Hover effects
 - Theme-aware colors
 - Smooth transitions
-

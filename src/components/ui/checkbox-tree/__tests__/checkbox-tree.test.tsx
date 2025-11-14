@@ -99,4 +99,3 @@ describe('CheckboxTree', () => {
 		expect(container).toHaveClass('custom-tree')
 	})
 })
-

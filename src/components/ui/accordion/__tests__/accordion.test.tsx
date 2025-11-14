@@ -150,4 +150,3 @@ describe('Accordion', () => {
 		expect(screen.getByTestId('jsx-content')).toBeInTheDocument()
 	})
 })
-

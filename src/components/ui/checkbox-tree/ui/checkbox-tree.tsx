@@ -145,4 +145,3 @@ export const CheckboxTree: Component<CheckboxTreeProps> = props => {
 		</div>
 	)
 }
-

@@ -44,4 +44,3 @@ export const emptyStateStyles = {
 		'margin-top': '8px'
 	})
 } as const
-

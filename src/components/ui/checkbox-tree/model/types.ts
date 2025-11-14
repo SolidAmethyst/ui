@@ -63,4 +63,3 @@ export interface CheckboxTreeProps {
 	 */
 	style?: JSX.CSSProperties
 }
-

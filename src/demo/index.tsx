@@ -9,24 +9,32 @@ import '../styles/globals.css'
 import { Footer, Sidebar, TopNav } from './components/layout'
 import { BlocksPage } from './pages/blocks-page'
 import {
+	AccordionDocs,
+	AlertDocs,
 	AppDocs,
 	ButtonDocs,
+	CheckboxTreeDocs,
 	CodeHighlightDocs,
 	CommandDocs,
 	DragDropDocs,
 	DrawerDocs,
+	EmptyStateDocs,
 	GridDocs,
 	InstallationDocs,
 	IntroductionDocs,
 	ModalDocs,
 	NumberInputDocs,
+	ProgressBarDocs,
 	ScrollbarDocs,
 	SearchDocs,
 	SidebarDocs,
 	SliderDocs,
+	TableDocs,
 	TabsDocs,
 	TechChipDocs,
-	TitleBarDocs
+	TitleBarDocs,
+	ToastDocs,
+	TooltipDocs
 } from './pages/docs'
 import { SettingsPage } from './pages/settings-page'
 import { TestPage } from './pages/test-page'
@@ -276,8 +284,17 @@ function App() {
 										<Show when={currentComponent() === 'installation'}>
 											<InstallationDocs isDark={isDark} />
 										</Show>
+										<Show when={currentComponent() === 'accordion'}>
+											<AccordionDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'alert'}>
+											<AlertDocs isDark={isDark} />
+										</Show>
 										<Show when={currentComponent() === 'button'}>
 											<ButtonDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'checkbox-tree'}>
+											<CheckboxTreeDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'code-highlight'}>
 											<CodeHighlightDocs isDark={isDark} />
@@ -291,6 +308,9 @@ function App() {
 										<Show when={currentComponent() === 'drag-drop'}>
 											<DragDropDocs isDark={isDark} />
 										</Show>
+										<Show when={currentComponent() === 'empty-state'}>
+											<EmptyStateDocs isDark={isDark} />
+										</Show>
 										<Show when={currentComponent() === 'grid'}>
 											<GridDocs isDark={isDark} />
 										</Show>
@@ -300,11 +320,8 @@ function App() {
 										<Show when={currentComponent() === 'number-input'}>
 											<NumberInputDocs isDark={isDark} />
 										</Show>
-										<Show when={currentComponent() === 'sidebar'}>
-											<SidebarDocs isDark={isDark} />
-										</Show>
-										<Show when={currentComponent() === 'techchip'}>
-											<TechChipDocs isDark={isDark} />
+										<Show when={currentComponent() === 'progress-bar'}>
+											<ProgressBarDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'scrollbar'}>
 											<ScrollbarDocs isDark={isDark} />
@@ -312,11 +329,26 @@ function App() {
 										<Show when={currentComponent() === 'search'}>
 											<SearchDocs isDark={isDark} />
 										</Show>
+										<Show when={currentComponent() === 'sidebar'}>
+											<SidebarDocs isDark={isDark} />
+										</Show>
 										<Show when={currentComponent() === 'slider'}>
 											<SliderDocs isDark={isDark} />
 										</Show>
+										<Show when={currentComponent() === 'table'}>
+											<TableDocs isDark={isDark} />
+										</Show>
 										<Show when={currentComponent() === 'tabs'}>
 											<TabsDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'techchip'}>
+											<TechChipDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'toast'}>
+											<ToastDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'tooltip'}>
+											<TooltipDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'titlebar'}>
 											<TitleBarDocs isDark={isDark} />

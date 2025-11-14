@@ -46,4 +46,3 @@ export const EmptyState: Component<EmptyStateProps> = props => {
 		</div>
 	)
 }
-

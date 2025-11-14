@@ -71,4 +71,3 @@ export const accordionStyles = {
 		'line-height': '1.5'
 	})
 } as const
-

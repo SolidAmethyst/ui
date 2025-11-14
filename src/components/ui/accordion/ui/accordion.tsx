@@ -115,4 +115,3 @@ export const Accordion: Component<AccordionProps> = props => {
 		</div>
 	)
 }
-

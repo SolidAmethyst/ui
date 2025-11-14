@@ -50,4 +50,3 @@ export const checkboxTreeStyles = {
 		cursor: disabled ? 'not-allowed' : 'pointer'
 	})
 } as const
-

@@ -183,4 +183,3 @@ describe('Table', () => {
 		expect(header).toHaveStyle({ 'text-align': 'center' })
 	})
 })
-

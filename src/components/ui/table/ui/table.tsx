@@ -262,4 +262,3 @@ export const Table = <T,>(props: TableProps<T>) => {
 		</div>
 	)
 }
-

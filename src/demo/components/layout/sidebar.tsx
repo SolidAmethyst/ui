@@ -23,20 +23,28 @@ const componentGroups: ComponentGroup[] = [
 	{
 		title: 'Components',
 		items: [
+			{ name: 'Accordion', id: 'accordion' },
+			{ name: 'Alert', id: 'alert' },
 			{ name: 'Button', id: 'button' },
+			{ name: 'CheckboxTree', id: 'checkbox-tree' },
 			{ name: 'CodeHighlight', id: 'code-highlight' },
 			{ name: 'Command', id: 'command' },
 			{ name: 'DragDrop', id: 'drag-drop' },
 			{ name: 'Drawer', id: 'drawer' },
+			{ name: 'EmptyState', id: 'empty-state' },
 			{ name: 'Grid', id: 'grid' },
 			{ name: 'Modal', id: 'modal' },
 			{ name: 'NumberInput', id: 'number-input' },
+			{ name: 'ProgressBar', id: 'progress-bar' },
+			{ name: 'Scrollbar', id: 'scrollbar' },
 			{ name: 'Search', id: 'search' },
 			{ name: 'Sidebar', id: 'sidebar' },
 			{ name: 'Slider', id: 'slider' },
+			{ name: 'Table', id: 'table' },
 			{ name: 'Tabs', id: 'tabs' },
 			{ name: 'TechChip', id: 'techchip' },
-			{ name: 'Scrollbar', id: 'scrollbar' }
+			{ name: 'Toast', id: 'toast' },
+			{ name: 'Tooltip', id: 'tooltip' }
 		]
 	},
 	{

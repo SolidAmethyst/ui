@@ -282,4 +282,3 @@ Follows Material 3 design principles:
 - Sort indicators
 - Theme-aware colors
 - Responsive layout
-

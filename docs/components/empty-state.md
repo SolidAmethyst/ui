@@ -190,4 +190,3 @@ Follows Material 3 design principles:
 - Centered layout
 - Theme-aware colors
 - Spacious padding
-

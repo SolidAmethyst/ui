@@ -1,0 +1,105 @@
+import { Accessor, Component, createSignal } from 'solid-js'
+import { Button } from '../../../components/ui/button'
+import { CodeHighlight } from '../../../components/ui/code-highlight'
+import { ProgressBar } from '../../../components/ui/progress-bar'
+import { Tabs } from '../../../components/ui/tabs'
+import { Typography } from '../../../components/ui/typography'
+import { docsStyles } from '../../lib/docs.styles'
+
+interface ProgressBarDocsProps {
+	isDark: Accessor<boolean>
+}
+
+export const ProgressBarDocs: Component<ProgressBarDocsProps> = props => {
+	const [progress, setProgress] = createSignal(25)
+	const [isIndeterminate, setIsIndeterminate] = createSignal(false)
+	const theme = () => ({ isDark: props.isDark() })
+
+	return (
+		<article style={docsStyles.article(theme())}>
+			<Typography variant='h1' isDark={props.isDark()}>
+				ProgressBar
+			</Typography>
+			<Typography variant='body' isDark={props.isDark()}>
+				Progress bar component with determinate and indeterminate states.
+			</Typography>
+
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Installation
+				</Typography>
+				<CodeHighlight
+					code={`import { ProgressBar } from '@sapphiresolid/ui'`}
+					isDark={props.isDark}
+				/>
+			</section>
+
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Basic Usage
+				</Typography>
+				<Tabs
+					isDark={props.isDark}
+					preview={
+						<div style={docsStyles.previewContainer(theme())}>
+							<div style={{ width: '100%', 'max-width': '400px' }}>
+								<ProgressBar value={progress()} isDark={props.isDark()} />
+								<div style={{ display: 'flex', gap: '8px', 'margin-top': '16px' }}>
+									<Button
+										size='sm'
+										onClick={() => setProgress(p => Math.max(0, p - 10))}
+									>
+										Decrease
+									</Button>
+									<Button
+										size='sm'
+										onClick={() => setProgress(p => Math.min(100, p + 10))}
+									>
+										Increase
+									</Button>
+								</div>
+							</div>
+						</div>
+					}
+					code={`import { createSignal } from 'solid-js'
+import { ProgressBar } from '@sapphiresolid/ui'
+
+function MyComponent() {
+  const [progress, setProgress] = createSignal(50)
+
+  return <ProgressBar value={progress()} />
+}`}
+				/>
+			</section>
+
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Indeterminate
+				</Typography>
+				<Tabs
+					isDark={props.isDark}
+					preview={
+						<div style={docsStyles.previewContainer(theme())}>
+							<div style={{ width: '100%', 'max-width': '400px' }}>
+								<ProgressBar
+									variant={isIndeterminate() ? 'indeterminate' : 'determinate'}
+									value={isIndeterminate() ? undefined : 50}
+									isDark={props.isDark()}
+								/>
+								<Button
+									size='sm'
+									onClick={() => setIsIndeterminate(!isIndeterminate())}
+									style={{ 'margin-top': '16px' }}
+								>
+									Toggle Indeterminate
+								</Button>
+							</div>
+						</div>
+					}
+					code={`<ProgressBar isIndeterminate={true} />`}
+				/>
+			</section>
+		</article>
+	)
+}
+

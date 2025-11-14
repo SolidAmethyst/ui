@@ -110,4 +110,3 @@ export interface TableProps<T = unknown> {
 	 */
 	style?: JSX.CSSProperties
 }
-

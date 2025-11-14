@@ -5,4 +5,3 @@
 
 export { CheckboxTree } from './ui/checkbox-tree'
 export type { CheckboxTreeProps, CheckboxTreeNode } from './model/types'
-
