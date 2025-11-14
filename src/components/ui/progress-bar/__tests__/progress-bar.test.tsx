@@ -1,0 +1,82 @@
+import { render, screen } from '@solidjs/testing-library'
+import { describe, expect, it } from 'vitest'
+import { ProgressBar } from '../ui/progress-bar'
+
+describe('ProgressBar', () => {
+	it('renders determinate progress bar', () => {
+		render(() => <ProgressBar value={50} isDark={false} />)
+		const progressBar = screen.getByRole('progressbar')
+		expect(progressBar).toBeInTheDocument()
+		expect(progressBar).toHaveAttribute('aria-valuenow', '50')
+		expect(progressBar).toHaveAttribute('aria-valuemin', '0')
+		expect(progressBar).toHaveAttribute('aria-valuemax', '100')
+	})
+
+	it('renders indeterminate progress bar', () => {
+		render(() => <ProgressBar variant="indeterminate" isDark={false} />)
+		const progressBar = screen.getByRole('progressbar')
+		expect(progressBar).toBeInTheDocument()
+		expect(progressBar).not.toHaveAttribute('aria-valuenow')
+	})
+
+	it('clamps value between 0 and 100', () => {
+		render(() => <ProgressBar value={150} isDark={false} />)
+		const progressBar = screen.getByRole('progressbar')
+		expect(progressBar).toHaveAttribute('aria-valuenow', '100')
+	})
+
+	it('clamps negative value to 0', () => {
+		render(() => <ProgressBar value={-10} isDark={false} />)
+		const progressBar = screen.getByRole('progressbar')
+		expect(progressBar).toHaveAttribute('aria-valuenow', '0')
+	})
+
+	it('shows label when showLabel is true', () => {
+		render(() => <ProgressBar value={75} showLabel={true} isDark={false} />)
+		expect(screen.getByText('75%')).toBeInTheDocument()
+	})
+
+	it('shows custom label when provided', () => {
+		render(() => (
+			<ProgressBar value={50} showLabel={true} label="Loading..." isDark={false} />
+		))
+		expect(screen.getByText('Loading...')).toBeInTheDocument()
+		expect(screen.queryByText('50%')).not.toBeInTheDocument()
+	})
+
+	it('does not show label by default', () => {
+		render(() => <ProgressBar value={50} isDark={false} />)
+		expect(screen.queryByText('50%')).not.toBeInTheDocument()
+	})
+
+	it('applies custom height', () => {
+		render(() => <ProgressBar value={50} height="16px" isDark={false} />)
+		const container = screen.getByRole('progressbar')
+		expect(container).toHaveStyle({ height: '16px' })
+	})
+
+	it('applies custom class name', () => {
+		render(() => <ProgressBar value={50} class="custom-progress" isDark={false} />)
+		const container = screen.getByRole('progressbar')
+		expect(container).toHaveClass('custom-progress')
+	})
+
+	it('has default height of 8px', () => {
+		render(() => <ProgressBar value={50} isDark={false} />)
+		const container = screen.getByRole('progressbar')
+		expect(container).toHaveStyle({ height: '8px' })
+	})
+
+	it('uses determinate variant by default', () => {
+		render(() => <ProgressBar value={50} isDark={false} />)
+		const progressBar = screen.getByRole('progressbar')
+		expect(progressBar).toHaveAttribute('aria-valuenow', '50')
+	})
+
+	it('renders track element', () => {
+		const { container } = render(() => <ProgressBar value={50} isDark={false} />)
+		const track = container.querySelector('.progress-bar-track')
+		expect(track).toBeInTheDocument()
+	})
+})
+

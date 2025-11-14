@@ -1402,3 +1402,16 @@
 	background: hsl(var(--primary));
 	cursor: grabbing;
 }
+
+/* Progress bar indeterminate animation */
+@keyframes progress-indeterminate {
+	0% {
+		transform: translateX(-100%);
+	}
+	50% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(400%);
+	}
+}
