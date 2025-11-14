@@ -207,4 +207,3 @@ export const timelineStyles = {
 		'word-wrap': 'break-word'
 	})
 } as const
-

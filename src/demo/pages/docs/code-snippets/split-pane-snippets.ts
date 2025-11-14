@@ -51,4 +51,3 @@ export const splitPaneSnippets = {
   }
 }`
 } as const
-

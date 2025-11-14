@@ -83,4 +83,3 @@ export interface TimelineProps {
 	 */
 	style?: JSX.CSSProperties
 }
-

@@ -199,4 +199,3 @@ export const TimelineDocs: Component<TimelineDocsProps> = props => {
 		</article>
 	)
 }
-

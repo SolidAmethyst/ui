@@ -37,25 +37,36 @@ export const SplitPane: Component<SplitPaneProps> = props => {
 
 	const handleMouseDown = (e: MouseEvent) => {
 		e.preventDefault()
+		e.stopPropagation()
 		setIsDragging(true)
 
-		const startPos = direction() === 'horizontal' ? e.clientX : e.clientY
 		const container = containerRef
 		if (!container) return
 
+		const containerRect = container.getBoundingClientRect()
+		const containerStart =
+			direction() === 'horizontal' ? containerRect.left : containerRect.top
 		const containerSize =
 			direction() === 'horizontal'
-				? container.offsetWidth
-				: container.offsetHeight
+				? containerRect.width
+				: containerRect.height
+
+		const startPos =
+			direction() === 'horizontal' ? e.clientX : e.clientY
+		const startSplit = getSplit()
 
 		const handleMouseMove = (moveEvent: MouseEvent) => {
+			moveEvent.preventDefault()
+			moveEvent.stopPropagation()
+
 			const currentPos =
 				direction() === 'horizontal' ? moveEvent.clientX : moveEvent.clientY
-			const delta = currentPos - startPos
-			const deltaPercent = (delta / containerSize) * 100
+			const relativePos = currentPos - containerStart
+			const newSplitPercent = (relativePos / containerSize) * 100
+
 			const newSplit = Math.max(
 				minFirst(),
-				Math.min(maxFirst(), getSplit() + deltaPercent)
+				Math.min(maxFirst(), newSplitPercent)
 			)
 
 			setLocalSplit(newSplit)
@@ -66,9 +77,16 @@ export const SplitPane: Component<SplitPaneProps> = props => {
 			setIsDragging(false)
 			document.removeEventListener('mousemove', handleMouseMove)
 			document.removeEventListener('mouseup', handleMouseUp)
+			document.body.style.cursor = ''
+			document.body.style.userSelect = ''
 		}
 
-		document.addEventListener('mousemove', handleMouseMove)
+		// Prevent text selection and set cursor
+		document.body.style.cursor =
+			direction() === 'horizontal' ? 'col-resize' : 'row-resize'
+		document.body.style.userSelect = 'none'
+
+		document.addEventListener('mousemove', handleMouseMove, { passive: false })
 		document.addEventListener('mouseup', handleMouseUp)
 	}
 
@@ -122,4 +140,3 @@ export const SplitPane: Component<SplitPaneProps> = props => {
 		</div>
 	)
 }
-

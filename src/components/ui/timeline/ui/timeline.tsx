@@ -101,4 +101,3 @@ export const Timeline: Component<TimelineProps> = props => {
 		</div>
 	)
 }
-

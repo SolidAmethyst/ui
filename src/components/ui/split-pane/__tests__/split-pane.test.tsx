@@ -136,4 +136,3 @@ describe('SplitPane', () => {
 		expect(container).toHaveClass('custom-split')
 	})
 })
-

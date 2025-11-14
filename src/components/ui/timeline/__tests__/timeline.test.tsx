@@ -103,4 +103,3 @@ describe('Timeline', () => {
 		expect(screen.getByTestId('custom-content')).toBeInTheDocument()
 	})
 })
-

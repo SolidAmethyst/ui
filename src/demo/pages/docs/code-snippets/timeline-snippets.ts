@@ -121,4 +121,3 @@ export const timelineSnippets = {
   }
 }`
 } as const
-

@@ -244,4 +244,3 @@ export const SplitPaneDocs: Component<SplitPaneDocsProps> = props => {
 		</article>
 	)
 }
-
