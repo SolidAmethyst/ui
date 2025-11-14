@@ -51,10 +51,6 @@ export const SplitPane: Component<SplitPaneProps> = props => {
 				? containerRect.width
 				: containerRect.height
 
-		const startPos =
-			direction() === 'horizontal' ? e.clientX : e.clientY
-		const startSplit = getSplit()
-
 		const handleMouseMove = (moveEvent: MouseEvent) => {
 			moveEvent.preventDefault()
 			moveEvent.stopPropagation()
