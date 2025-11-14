@@ -9,6 +9,7 @@ export * from './components/ui/drawer'
 export * from './components/ui/glass'
 export * from './components/ui/grid'
 export * from './components/ui/menu'
+export * from './components/ui/modal'
 export * from './components/ui/number-input'
 // Settings moved to composites
 export * from './components/ui/scrollbar'

@@ -36,23 +36,28 @@
 ## 🏗️ Архитектура
 
 ### Обзор
+
 - [Архитектура системы](architecture/overview.md) - Общая архитектура компонентов
 - [Модули системы](architecture/modules.md) - Описание модулей
 - [Потоки данных](architecture/data-flows.md) - Схемы потоков данных
 
-### API
-- [Button API](api/reference.md#button) - API компонента Button
-- [Scrollbar API](api/reference.md#scrollbar) - API компонента Scrollbar
-- [TechChip API](api/reference.md#techchip) - API компонента TechChip
+### Components
+
+- [Button](components/button.md) - Button component documentation
+- [Modal](components/modal.md) - Modal component documentation
+- [Scrollbar](components/scrollbar.md) - Scrollbar component documentation
+- [TechChip](components/techchip.md) - TechChip component documentation
 
 ## 📖 Руководства
 
 ### Для пользователей
+
 - [Руководство пользователя](guides/usage.md) - Полное руководство по компонентам
 - [Быстрый старт](guides/usage.md#быстрый-старт) - Начало работы с библиотекой
 - [Использование компонентов](guides/usage.md#использование-компонентов) - Примеры использования
 
 ### Для разработчиков
+
 - [Руководство разработчика](guides/developer-guide.md) - Разработка новых компонентов
 - [Настройка окружения](guides/developer-guide.md#настройка-окружения-разработки) - Установка
 - [Архитектура проекта](guides/developer-guide.md#архитектура-проекта) - Структура проекта
@@ -61,35 +66,41 @@
 ## 📋 Требования
 
 ### Системные требования
+
 - [Минимальные требования](requirements/requirements.md#минимальные-требования)
 - [Рекомендуемые требования](requirements/requirements.md#рекомендуемые-требования)
 - [Требования к зависимостям](requirements/requirements.md#требования-к-зависимостям)
 
 ### Производительность
+
 - [Требования к производительности](requirements/requirements.md#требования-к-производительности)
 - [Требования безопасности](requirements/requirements.md#требования-безопасности)
 
 ## 🗺️ Планирование
 
 ### Роадмап
+
 - [Текущий статус](roadmap/roadmap.md#текущий-статус) - Что уже реализовано
 - [Ближайшие планы](roadmap/roadmap.md#ближайшие-планы) - TODO список
 - [Среднесрочные цели](roadmap/roadmap.md#среднесрочные-цели) - Планы на будущее
 - [Долгосрочные планы](roadmap/roadmap.md#долгосрочные-планы) - Видение проекта
 
 ### Изменения
+
 - [Журнал изменений](changelog/changelog.md) - История изменений
 - [Планируемые изменения](roadmap/roadmap.md) - Будущие обновления
 
 ## 🔍 Поиск по документации
 
 ### По типу проблемы
+
 - **Проблемы с компонентами**: [Руководство пользователя](guides/usage.md#решение-проблем) → Компоненты
 - **UI/UX проблемы**: [Журнал изменений](changelog/changelog.md) → UI/UX исправления
 - **Архитектурные решения**: [Архитектура](architecture/overview.md)
 - **Планы развития**: [Роадмап](roadmap/roadmap.md)
 
 ### По роли
+
 - **Пользователь**: [Руководство пользователя](guides/usage.md)
 - **Разработчик**: [Руководство разработчика](guides/developer-guide.md)
 - **Контрибьютор**: [Системные требования](requirements/requirements.md)
@@ -119,6 +130,5 @@
 
 ---
 
-**Последнее обновление**: Декабрь 2024  
+**Последнее обновление**: Декабрь 2024
 **Версия документации**: 0.1.0
-

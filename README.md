@@ -22,6 +22,8 @@ node scripts/add-component.js list
 
 ## 📦 Available Components
 
+- **Button** - Versatile button component with multiple variants
+- **Modal** - Modal dialog with overlay, focus trap, and keyboard navigation
 - **Scrollbar** - Customizable scrollbar with Material 3 styling
 
 ## 🛠️ Development

@@ -18,6 +18,7 @@ import {
 	GridDocs,
 	InstallationDocs,
 	IntroductionDocs,
+	ModalDocs,
 	NumberInputDocs,
 	ScrollbarDocs,
 	SearchDocs,
@@ -292,6 +293,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'grid'}>
 											<GridDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'modal'}>
+											<ModalDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'number-input'}>
 											<NumberInputDocs isDark={isDark} />
