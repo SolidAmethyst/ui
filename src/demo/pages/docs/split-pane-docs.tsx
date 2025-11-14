@@ -189,7 +189,7 @@ export const SplitPaneDocs: Component<SplitPaneDocsProps> = props => {
 											}}
 										>
 											<Typography variant='body' isDark={props.isDark()}>
-												Left Panel ({split()}%)
+												Left Panel ({Math.round(split() * 10) / 10}%)
 											</Typography>
 										</div>
 									}
@@ -207,7 +207,7 @@ export const SplitPaneDocs: Component<SplitPaneDocsProps> = props => {
 											}}
 										>
 											<Typography variant='body' isDark={props.isDark()}>
-												Right Panel ({100 - split()}%)
+												Right Panel ({Math.round((100 - split()) * 10) / 10}%)
 											</Typography>
 										</div>
 									}

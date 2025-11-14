@@ -2,6 +2,7 @@ import { Component, Show } from 'solid-js'
 import { Button } from '../../../components/ui/button'
 import { Container } from '../../../components/ui/container'
 import { Glass } from '../../../components/ui/glass'
+import { TabsRoot, TabsList, TabsTrigger } from '../../../components/ui/tabs'
 
 interface TopNavProps {
 	isDark: () => boolean
