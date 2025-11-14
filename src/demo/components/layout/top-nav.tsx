@@ -71,77 +71,65 @@ export const TopNav: Component<TopNavProps> = props => (
 					{/* Navigation */}
 					<nav
 						style={{
-							display: 'flex',
-							gap: '8px',
-							'align-items': 'center',
 							position: 'absolute',
 							left: '50%',
-							transform: 'translateX(-50%)'
+							transform: 'translateX(-50%)',
+							height: '100%',
+							display: 'flex',
+							'align-items': 'center'
 						}}
 					>
-						<button
-							onClick={() => props.onPageChange('docs')}
+						<TabsRoot
+							value={props.currentPage}
+							onValueChange={value => props.onPageChange(value as 'docs' | 'blocks' | 'settings')}
+							isDark={props.isDark()}
 							style={{
-								padding: '8px 16px',
-								'font-size': '14px',
-								'font-weight': '500',
-								border: 'none',
-								background:
-									props.currentPage === 'docs'
-										? props.isDark()
-											? 'rgba(255, 255, 255, 0.1)'
-											: 'rgba(0, 0, 0, 0.05)'
-										: 'transparent',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-								cursor: 'pointer',
-								'border-radius': '6px',
-								transition: 'all 0.2s ease'
+								margin: '0',
+								width: 'auto'
 							}}
 						>
-							Docs
-						</button>
-						<button
-							onClick={() => props.onPageChange('blocks')}
-							style={{
-								padding: '8px 16px',
-								'font-size': '14px',
-								'font-weight': '500',
-								border: 'none',
-								background:
-									props.currentPage === 'blocks'
-										? props.isDark()
-											? 'rgba(255, 255, 255, 0.1)'
-											: 'rgba(0, 0, 0, 0.05)'
-										: 'transparent',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-								cursor: 'pointer',
-								'border-radius': '6px',
-								transition: 'all 0.2s ease'
-							}}
-						>
-							Blocks
-						</button>
-						<button
-							onClick={() => props.onPageChange('settings')}
-							style={{
-								padding: '8px 16px',
-								'font-size': '14px',
-								'font-weight': '500',
-								border: 'none',
-								background:
-									props.currentPage === 'settings'
-										? props.isDark()
-											? 'rgba(255, 255, 255, 0.1)'
-											: 'rgba(0, 0, 0, 0.05)'
-										: 'transparent',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-								cursor: 'pointer',
-								'border-radius': '6px',
-								transition: 'all 0.2s ease'
-							}}
-						>
-							Settings
-						</button>
+							<TabsList
+								style={{
+									'border-bottom': 'none',
+									margin: '0',
+									gap: '8px'
+								}}
+							>
+								<TabsTrigger
+									value='docs'
+									padding='8px 16px'
+									fontSize='14px'
+									fontWeight='500'
+									style={{
+										'margin-bottom': '-2px'
+									}}
+								>
+									Docs
+								</TabsTrigger>
+								<TabsTrigger
+									value='blocks'
+									padding='8px 16px'
+									fontSize='14px'
+									fontWeight='500'
+									style={{
+										'margin-bottom': '-2px'
+									}}
+								>
+									Blocks
+								</TabsTrigger>
+								<TabsTrigger
+									value='settings'
+									padding='8px 16px'
+									fontSize='14px'
+									fontWeight='500'
+									style={{
+										'margin-bottom': '-2px'
+									}}
+								>
+									Settings
+								</TabsTrigger>
+							</TabsList>
+						</TabsRoot>
 					</nav>
 
 					{/* Right controls */}
@@ -229,77 +217,65 @@ export const TopNav: Component<TopNavProps> = props => (
 					{/* Navigation */}
 					<nav
 						style={{
-							display: 'flex',
-							gap: '8px',
-							'align-items': 'center',
 							position: 'absolute',
 							left: '50%',
-							transform: 'translateX(-50%)'
+							transform: 'translateX(-50%)',
+							height: '100%',
+							display: 'flex',
+							'align-items': 'center'
 						}}
 					>
-						<button
-							onClick={() => props.onPageChange('docs')}
+						<TabsRoot
+							value={props.currentPage}
+							onValueChange={value => props.onPageChange(value as 'docs' | 'blocks' | 'settings')}
+							isDark={props.isDark()}
 							style={{
-								padding: '8px 16px',
-								'font-size': '14px',
-								'font-weight': '500',
-								border: 'none',
-								background:
-									props.currentPage === 'docs'
-										? props.isDark()
-											? 'rgba(255, 255, 255, 0.1)'
-											: 'rgba(0, 0, 0, 0.05)'
-										: 'transparent',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-								cursor: 'pointer',
-								'border-radius': '6px',
-								transition: 'all 0.2s ease'
+								margin: '0',
+								width: 'auto'
 							}}
 						>
-							Docs
-						</button>
-						<button
-							onClick={() => props.onPageChange('blocks')}
-							style={{
-								padding: '8px 16px',
-								'font-size': '14px',
-								'font-weight': '500',
-								border: 'none',
-								background:
-									props.currentPage === 'blocks'
-										? props.isDark()
-											? 'rgba(255, 255, 255, 0.1)'
-											: 'rgba(0, 0, 0, 0.05)'
-										: 'transparent',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-								cursor: 'pointer',
-								'border-radius': '6px',
-								transition: 'all 0.2s ease'
-							}}
-						>
-							Blocks
-						</button>
-						<button
-							onClick={() => props.onPageChange('settings')}
-							style={{
-								padding: '8px 16px',
-								'font-size': '14px',
-								'font-weight': '500',
-								border: 'none',
-								background:
-									props.currentPage === 'settings'
-										? props.isDark()
-											? 'rgba(255, 255, 255, 0.1)'
-											: 'rgba(0, 0, 0, 0.05)'
-										: 'transparent',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
-								cursor: 'pointer',
-								'border-radius': '6px',
-								transition: 'all 0.2s ease'
-							}}
-						>
-							Settings
-						</button>
+							<TabsList
+								style={{
+									'border-bottom': 'none',
+									margin: '0',
+									gap: '8px'
+								}}
+							>
+								<TabsTrigger
+									value='docs'
+									padding='8px 16px'
+									fontSize='14px'
+									fontWeight='500'
+									style={{
+										'margin-bottom': '-2px'
+									}}
+								>
+									Docs
+								</TabsTrigger>
+								<TabsTrigger
+									value='blocks'
+									padding='8px 16px'
+									fontSize='14px'
+									fontWeight='500'
+									style={{
+										'margin-bottom': '-2px'
+									}}
+								>
+									Blocks
+								</TabsTrigger>
+								<TabsTrigger
+									value='settings'
+									padding='8px 16px'
+									fontSize='14px'
+									fontWeight='500'
+									style={{
+										'margin-bottom': '-2px'
+									}}
+								>
+									Settings
+								</TabsTrigger>
+							</TabsList>
+						</TabsRoot>
 					</nav>
 
 					{/* Right controls */}
