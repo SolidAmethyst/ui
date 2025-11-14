@@ -1,4 +1,5 @@
 // Main entry point for the library
+export * from './components/ui/alert'
 export * from './components/ui/button'
 export * from './components/ui/checkbox'
 export * from './components/ui/code-highlight'
