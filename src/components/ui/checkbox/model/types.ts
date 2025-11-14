@@ -64,5 +64,9 @@ export interface CheckboxProps {
 	 * HTML input id attribute
 	 */
 	id?: string
-}
 
+	/**
+	 * Material 3 style - no border, just checkmark icon
+	 */
+	material3?: boolean
+}

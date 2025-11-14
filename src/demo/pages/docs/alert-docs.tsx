@@ -43,7 +43,8 @@ export const AlertDocs: Component<AlertDocsProps> = props => {
 									'flex-direction': 'column',
 									gap: '16px',
 									width: '100%',
-									'max-width': '500px'
+									'max-width': '500px',
+									margin: '0 auto'
 								}}
 							>
 								<Alert
@@ -75,6 +76,23 @@ export const AlertDocs: Component<AlertDocsProps> = props => {
 					}
 					code={alertSnippets.usage.variants}
 				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
+					The Alert component uses CSS custom properties for theming. These variables
+					are already defined in the library, but you can override them in your
+					application's stylesheet to match your design system.
+				</Typography>
+				<CodeHighlight code={alertSnippets.customization} isDark={props.isDark} />
+				<Typography variant='body' isDark={props.isDark()}>
+					The Alert component automatically uses these CSS variables. You can override
+					them in your application to match your design system.
+				</Typography>
 			</section>
 		</article>
 	)

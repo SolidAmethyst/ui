@@ -1,8 +1,8 @@
 import { Accessor, Component } from 'solid-js'
 import { Button } from '../../../components/ui/button'
 import { CodeHighlight } from '../../../components/ui/code-highlight'
-import { ToastProvider, useToast } from '../../../components/ui/toast'
 import { Tabs } from '../../../components/ui/tabs'
+import { ToastProvider, useToast } from '../../../components/ui/toast'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
 import { toastSnippets } from './code-snippets/toast-snippets'
@@ -11,7 +11,16 @@ const ToastDemo: Component<{ isDark: Accessor<boolean> }> = props => {
 	const toast = useToast()
 
 	return (
-		<div style={{ display: 'flex', gap: '8px', 'flex-wrap': 'wrap' }}>
+		<div
+			style={{
+				display: 'flex',
+				gap: '8px',
+				'flex-wrap': 'wrap',
+				'justify-content': 'center',
+				'align-items': 'center',
+				width: '100%'
+			}}
+		>
 			<Button
 				size='sm'
 				onClick={() =>
@@ -77,7 +86,8 @@ export const ToastDocs: Component<ToastDocsProps> = props => {
 				Toast
 			</Typography>
 			<Typography variant='body' isDark={props.isDark()}>
-				Toast notification system with success, error, warning, and info variants.
+				Toast notification system with success, error, warning, and info
+				variants.
 			</Typography>
 
 			<section style={docsStyles.section()}>
@@ -95,13 +105,33 @@ export const ToastDocs: Component<ToastDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<ToastProvider isDark={props.isDark()}>
+							<ToastProvider
+								isDark={props.isDark()}
+								position='top-center'
+							>
 								<ToastDemo isDark={props.isDark} />
 							</ToastProvider>
 						</div>
 					}
 					code={toastSnippets.usage.basicUsage}
 				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
+					The Toast component uses CSS custom properties for theming. These variables
+					are already defined in the library, but you can override them in your
+					application's stylesheet to match your design system.
+				</Typography>
+				<CodeHighlight code={toastSnippets.customization} isDark={props.isDark} />
+				<Typography variant='body' isDark={props.isDark()}>
+					The Toast component automatically uses these CSS variables. You can override
+					them in your application to match your design system.
+				</Typography>
 			</section>
 		</article>
 	)

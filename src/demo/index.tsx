@@ -19,6 +19,7 @@ import {
 	DragDropDocs,
 	DrawerDocs,
 	EmptyStateDocs,
+	FilterBarDocs,
 	GridDocs,
 	InstallationDocs,
 	IntroductionDocs,
@@ -310,6 +311,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'empty-state'}>
 											<EmptyStateDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'filter-bar'}>
+											<FilterBarDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'grid'}>
 											<GridDocs isDark={isDark} />

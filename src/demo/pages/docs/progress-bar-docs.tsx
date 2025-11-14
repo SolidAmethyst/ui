@@ -40,9 +40,22 @@ export const ProgressBarDocs: Component<ProgressBarDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<div style={{ width: '100%', 'max-width': '400px' }}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto'
+								}}
+							>
 								<ProgressBar value={progress()} isDark={props.isDark()} />
-								<div style={{ display: 'flex', gap: '8px', 'margin-top': '16px' }}>
+								<div
+									style={{
+										display: 'flex',
+										gap: '8px',
+										'margin-top': '16px',
+										'justify-content': 'center'
+									}}
+								>
 									<Button
 										size='sm'
 										onClick={() => setProgress(p => Math.max(0, p - 10))}
@@ -89,6 +102,26 @@ export const ProgressBarDocs: Component<ProgressBarDocsProps> = props => {
 					}
 					code={progressBarSnippets.usage.indeterminate}
 				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
+					The ProgressBar component uses CSS custom properties for theming. These
+					variables are already defined in the library, but you can override them in
+					your application's stylesheet to match your design system.
+				</Typography>
+				<CodeHighlight
+					code={progressBarSnippets.customization}
+					isDark={props.isDark}
+				/>
+				<Typography variant='body' isDark={props.isDark()}>
+					The ProgressBar component automatically uses these CSS variables. You can
+					override them in your application to match your design system.
+				</Typography>
 			</section>
 		</article>
 	)

@@ -25,7 +25,44 @@ const columns = [
   }
 ]
 
-<Table data={data} columns={columns} />`
-	}
-} as const
+<Table data={data} columns={columns} />`,
 
+		pagination: `const data = [
+  { id: 1, name: 'Alice', age: 25 },
+  { id: 2, name: 'Bob', age: 30 },
+  // ... more items
+]
+
+<Table
+  data={data}
+  columns={columns}
+  paginated={true}
+  pageSize={10}
+/>`
+	},
+
+	customization: `@layer base {
+  :root {
+    --table-border-color-dark: rgba(255, 255, 255, 0.1);
+    --table-border-color-light: rgba(0, 0, 0, 0.1);
+    --table-header-background-dark: rgba(255, 255, 255, 0.05);
+    --table-header-background-light: rgba(0, 0, 0, 0.05);
+    --table-row-hover-dark: rgba(255, 255, 255, 0.05);
+    --table-row-hover-light: rgba(0, 0, 0, 0.05);
+    --table-cell-padding: 12px 16px;
+    --table-border-radius: 8px;
+  }
+
+  .dark,
+  [data-theme="dark"] {
+    --table-border-color-dark: rgba(255, 255, 255, 0.1);
+    --table-border-color-light: rgba(0, 0, 0, 0.1);
+    --table-header-background-dark: rgba(255, 255, 255, 0.05);
+    --table-header-background-light: rgba(0, 0, 0, 0.05);
+    --table-row-hover-dark: rgba(255, 255, 255, 0.05);
+    --table-row-hover-light: rgba(0, 0, 0, 0.05);
+    --table-cell-padding: 12px 16px;
+    --table-border-radius: 8px;
+  }
+}`
+} as const

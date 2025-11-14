@@ -44,6 +44,11 @@ export interface CheckboxTreeProps {
 	isDark?: boolean
 
 	/**
+	 * Use Material 3 style checkboxes (no border, just checkmark)
+	 */
+	material3?: boolean
+
+	/**
 	 * Callback when node state changes
 	 */
 	onChange?: (nodeId: string, checked: boolean) => void

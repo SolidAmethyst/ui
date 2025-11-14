@@ -83,13 +83,12 @@ export const CheckboxTree: Component<CheckboxTreeProps> = props => {
 		props.onTreeChange
 	)
 
-	const getNodeState = (nodeId: string) => {
-		return nodeStates().get(nodeId) ?? { checked: false, indeterminate: false }
-	}
-
 	// Recursive render function
 	const renderNode = (node: CheckboxTreeNode, level: number) => {
-		const state = getNodeState(node.id)
+		// Use createMemo to make state reactive
+		const state = createMemo(() => {
+			return nodeStates().get(node.id) ?? { checked: false, indeterminate: false }
+		})
 		const hasChildren = node.children && node.children.length > 0
 
 		return (
@@ -109,10 +108,11 @@ export const CheckboxTree: Component<CheckboxTreeProps> = props => {
 					}}
 				>
 					<Checkbox
-						checked={state.checked}
-						indeterminate={state.indeterminate}
+						checked={state().checked}
+						indeterminate={state().indeterminate}
 						disabled={node.disabled ?? false}
 						isDark={isDark()}
+						material3={props.material3 ?? false}
 						onChange={checked => updateNode(node.id, checked)}
 					/>
 					<span

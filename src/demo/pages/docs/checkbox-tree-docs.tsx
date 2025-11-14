@@ -55,13 +55,66 @@ export const CheckboxTreeDocs: Component<CheckboxTreeDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<div style={{ width: '100%', 'max-width': '400px' }}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto'
+								}}
+							>
 								<CheckboxTree nodes={mockTree} isDark={props.isDark()} />
 							</div>
 						</div>
 					}
 					code={checkboxTreeSnippets.usage.basicUsage}
 				/>
+			</section>
+
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Material 3 Style
+				</Typography>
+				<Tabs
+					isDark={props.isDark}
+					preview={
+						<div style={docsStyles.previewContainer(theme())}>
+							<div
+								style={{
+									width: '100%',
+									'max-width': '400px',
+									margin: '0 auto'
+								}}
+							>
+								<CheckboxTree
+									nodes={mockTree}
+									material3={true}
+									isDark={props.isDark()}
+								/>
+							</div>
+						</div>
+					}
+					code={checkboxTreeSnippets.usage.material3}
+				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
+					The CheckboxTree component uses CSS custom properties for theming. These
+					variables are already defined in the library, but you can override them in
+					your application's stylesheet to match your design system.
+				</Typography>
+				<CodeHighlight
+					code={checkboxTreeSnippets.customization}
+					isDark={props.isDark}
+				/>
+				<Typography variant='body' isDark={props.isDark()}>
+					The CheckboxTree component automatically uses these CSS variables. You can
+					override them in your application to match your design system.
+				</Typography>
 			</section>
 		</article>
 	)

@@ -21,7 +21,8 @@ export const Checkbox: Component<CheckboxProps> = props => {
 		'style',
 		'name',
 		'value',
-		'id'
+		'id',
+		'material3'
 	])
 
 	const isDark = () => local.isDark ?? false
@@ -108,7 +109,8 @@ export const Checkbox: Component<CheckboxProps> = props => {
 			isDark: isDark(),
 			disabled: disabled(),
 			checked: checked(),
-			indeterminate: indeterminate()
+			indeterminate: indeterminate(),
+			material3: local.material3 ?? false
 		})
 
 	const labelStyle = (): JSX.CSSProperties =>
@@ -150,7 +152,7 @@ export const Checkbox: Component<CheckboxProps> = props => {
 					style={inputStyle()}
 					{...others}
 				/>
-				<Show when={checked() && !indeterminate()}>
+				<Show when={local.material3 || (checked() && !indeterminate())}>
 					<svg
 						style={{
 							position: 'absolute',
@@ -159,7 +161,8 @@ export const Checkbox: Component<CheckboxProps> = props => {
 							transform: 'translate(-50%, -50%)',
 							width: '12px',
 							height: '12px',
-							'pointer-events': 'none'
+							'pointer-events': 'none',
+							opacity: local.material3 && !checked() ? '0.5' : '1'
 						}}
 						viewBox='0 0 12 12'
 						fill='none'
@@ -167,7 +170,17 @@ export const Checkbox: Component<CheckboxProps> = props => {
 					>
 						<path
 							d='M2 6L5 9L10 2'
-							stroke={isDark() ? '#ffffff' : '#ffffff'}
+							stroke={
+								local.material3
+									? checked()
+										? 'hsl(var(--primary))'
+										: isDark()
+											? 'rgba(255, 255, 255, 0.5)'
+											: 'rgba(0, 0, 0, 0.5)'
+									: isDark()
+										? '#ffffff'
+										: '#ffffff'
+							}
 							stroke-width='2'
 							stroke-linecap='round'
 							stroke-linejoin='round'
@@ -183,7 +196,11 @@ export const Checkbox: Component<CheckboxProps> = props => {
 							transform: 'translate(-50%, -50%)',
 							width: '8px',
 							height: '2px',
-							background: isDark() ? '#ffffff' : '#ffffff',
+							background: local.material3
+								? 'hsl(var(--primary))'
+								: isDark()
+									? '#ffffff'
+									: '#ffffff',
 							'border-radius': '1px',
 							'pointer-events': 'none'
 						}}

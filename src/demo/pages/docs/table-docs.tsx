@@ -72,13 +72,37 @@ export const TableDocs: Component<TableDocsProps> = props => {
 					isDark={props.isDark}
 					preview={
 						<div style={docsStyles.previewContainer(theme())}>
-							<div style={{ width: '100%', overflow: 'auto' }}>
+							<div
+								style={{
+									width: '100%',
+									overflow: 'auto',
+									display: 'flex',
+									'justify-content': 'center'
+								}}
+							>
 								<Table data={mockData} columns={columns} isDark={props.isDark()} />
 							</div>
 						</div>
 					}
 					code={tableSnippets.usage.basicUsage}
 				/>
+			</section>
+
+			{/* Customization */}
+			<section style={docsStyles.section()}>
+				<Typography variant='h3' as='h2' isDark={props.isDark()}>
+					Customization
+				</Typography>
+				<Typography variant='body' isDark={props.isDark()}>
+					The Table component uses CSS custom properties for theming. These variables
+					are already defined in the library, but you can override them in your
+					application's stylesheet to match your design system.
+				</Typography>
+				<CodeHighlight code={tableSnippets.customization} isDark={props.isDark} />
+				<Typography variant='body' isDark={props.isDark()}>
+					The Table component automatically uses these CSS variables. You can override
+					them in your application to match your design system.
+				</Typography>
 			</section>
 		</article>
 	)
