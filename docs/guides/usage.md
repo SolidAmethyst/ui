@@ -30,7 +30,9 @@ function MyComponent() {
 
 - **Button** - Универсальный компонент кнопки с различными вариантами
 - **Modal** - Модальное окно с overlay, focus trap и навигацией с клавиатуры
+- **ProgressBar** - Индикатор прогресса с determinate и indeterminate вариантами
 - **Scrollbar** - Кастомный скроллбар с Material 3 стилизацией
+- **Toast** - Система уведомлений с вариантами success, error, warning, info
 
 ## 🛠️ Разработка
 

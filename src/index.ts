@@ -11,6 +11,7 @@ export * from './components/ui/grid'
 export * from './components/ui/menu'
 export * from './components/ui/modal'
 export * from './components/ui/number-input'
+export * from './components/ui/toast'
 // Settings moved to composites
 export * from './components/ui/progress-bar'
 export * from './components/ui/scrollbar'
