@@ -43,6 +43,7 @@ const componentGroups: ComponentGroup[] = [
 			{ name: 'Slider', id: 'slider' },
 			{ name: 'Table', id: 'table' },
 			{ name: 'Tabs', id: 'tabs' },
+			{ name: 'Timeline', id: 'timeline' },
 			{ name: 'TechChip', id: 'techchip' },
 			{ name: 'Toast', id: 'toast' },
 			{ name: 'Tooltip', id: 'tooltip' }

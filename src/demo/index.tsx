@@ -33,6 +33,7 @@ import {
 	TableDocs,
 	TabsDocs,
 	TechChipDocs,
+	TimelineDocs,
 	TitleBarDocs,
 	ToastDocs,
 	TooltipDocs
@@ -344,6 +345,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'tabs'}>
 											<TabsDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'timeline'}>
+											<TimelineDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'techchip'}>
 											<TechChipDocs isDark={isDark} />
