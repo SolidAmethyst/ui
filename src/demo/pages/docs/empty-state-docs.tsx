@@ -5,6 +5,7 @@ import { EmptyState } from '../../../components/ui/empty-state'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { emptyStateSnippets } from './code-snippets/empty-state-snippets'
 
 interface EmptyStateDocsProps {
 	isDark: Accessor<boolean>
@@ -27,10 +28,7 @@ export const EmptyStateDocs: Component<EmptyStateDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={`import { EmptyState } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={emptyStateSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={docsStyles.section()}>
@@ -52,15 +50,9 @@ export const EmptyStateDocs: Component<EmptyStateDocsProps> = props => {
 							</div>
 						</div>
 					}
-					code={`<EmptyState
-  icon="inbox"
-  title="No items"
-  description="There are no items to display"
-  action={<Button>Add Item</Button>}
-/>`}
+					code={emptyStateSnippets.usage.basicUsage}
 				/>
 			</section>
 		</article>
 	)
 }
-

@@ -5,6 +5,7 @@ import { Tooltip } from '../../../components/ui/tooltip'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { tooltipSnippets } from './code-snippets/tooltip-snippets'
 
 interface TooltipDocsProps {
 	isDark: Accessor<boolean>
@@ -26,10 +27,7 @@ export const TooltipDocs: Component<TooltipDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={`import { Tooltip } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={tooltipSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={docsStyles.section()}>
@@ -72,12 +70,9 @@ export const TooltipDocs: Component<TooltipDocsProps> = props => {
 							</div>
 						</div>
 					}
-					code={`<Tooltip content="Tooltip text" position="top">
-  <button>Hover me</button>
-</Tooltip>`}
+					code={tooltipSnippets.usage.basicUsage}
 				/>
 			</section>
 		</article>
 	)
 }
-

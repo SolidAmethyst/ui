@@ -5,6 +5,7 @@ import { ToastProvider, useToast } from '../../../components/ui/toast'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { toastSnippets } from './code-snippets/toast-snippets'
 
 const ToastDemo: Component<{ isDark: Accessor<boolean> }> = props => {
 	const toast = useToast()
@@ -83,10 +84,7 @@ export const ToastDocs: Component<ToastDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={`import { ToastProvider, useToast } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={toastSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={docsStyles.section()}>
@@ -102,28 +100,9 @@ export const ToastDocs: Component<ToastDocsProps> = props => {
 							</ToastProvider>
 						</div>
 					}
-					code={`import { ToastProvider, useToast } from '@sapphiresolid/ui'
-
-function MyComponent() {
-  const toast = useToast()
-
-  return (
-    <ToastProvider>
-      <button onClick={() => 
-        toast.showToast({
-          title: 'Success!',
-          description: 'Operation completed.',
-          variant: 'success'
-        })
-      }>
-        Show Toast
-      </button>
-    </ToastProvider>
-  )
-}`}
+					code={toastSnippets.usage.basicUsage}
 				/>
 			</section>
 		</article>
 	)
 }
-

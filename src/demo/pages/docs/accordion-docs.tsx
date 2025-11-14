@@ -4,6 +4,7 @@ import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { accordionSnippets } from './code-snippets/accordion-snippets'
 import type { AccordionItem } from '../../../components/ui/accordion'
 
 interface AccordionDocsProps {
@@ -45,10 +46,7 @@ export const AccordionDocs: Component<AccordionDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={`import { Accordion } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={accordionSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={docsStyles.section()}>
@@ -64,23 +62,9 @@ export const AccordionDocs: Component<AccordionDocsProps> = props => {
 							</div>
 						</div>
 					}
-					code={`const items = [
-  {
-    id: '1',
-    header: 'Section 1',
-    content: 'Content of section 1'
-  },
-  {
-    id: '2',
-    header: 'Section 2',
-    content: 'Content of section 2'
-  }
-]
-
-<Accordion items={items} />`}
+					code={accordionSnippets.usage.basicUsage}
 				/>
 			</section>
 		</article>
 	)
 }
-

@@ -4,6 +4,7 @@ import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { alertSnippets } from './code-snippets/alert-snippets'
 
 interface AlertDocsProps {
 	isDark: Accessor<boolean>
@@ -25,10 +26,7 @@ export const AlertDocs: Component<AlertDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={`import { Alert } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={alertSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={docsStyles.section()}>
@@ -75,20 +73,9 @@ export const AlertDocs: Component<AlertDocsProps> = props => {
 							</div>
 						</div>
 					}
-					code={`<Alert
-  variant="success"
-  title="Success!"
-  description="Operation completed successfully."
-/>
-
-<Alert
-  variant="error"
-  title="Error!"
-  description="Something went wrong."
-/>`}
+					code={alertSnippets.usage.variants}
 				/>
 			</section>
 		</article>
 	)
 }
-

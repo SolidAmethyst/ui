@@ -4,6 +4,7 @@ import { CodeHighlight } from '../../../components/ui/code-highlight'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { checkboxTreeSnippets } from './code-snippets/checkbox-tree-snippets'
 import type { CheckboxTreeNode } from '../../../components/ui/checkbox-tree'
 
 interface CheckboxTreeDocsProps {
@@ -43,10 +44,7 @@ export const CheckboxTreeDocs: Component<CheckboxTreeDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={`import { CheckboxTree } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={checkboxTreeSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={docsStyles.section()}>
@@ -62,21 +60,9 @@ export const CheckboxTreeDocs: Component<CheckboxTreeDocsProps> = props => {
 							</div>
 						</div>
 					}
-					code={`const treeData = [
-  {
-    id: '1',
-    label: 'Documents',
-    children: [
-      { id: '1-1', label: 'File 1.txt' },
-      { id: '1-2', label: 'File 2.txt' }
-    ]
-  }
-]
-
-<CheckboxTree nodes={treeData} />`}
+					code={checkboxTreeSnippets.usage.basicUsage}
 				/>
 			</section>
 		</article>
 	)
 }
-

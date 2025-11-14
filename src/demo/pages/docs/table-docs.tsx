@@ -4,6 +4,7 @@ import { Table } from '../../../components/ui/table'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { tableSnippets } from './code-snippets/table-snippets'
 import type { TableColumn } from '../../../components/ui/table'
 
 interface TableDocsProps {
@@ -60,10 +61,7 @@ export const TableDocs: Component<TableDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={`import { Table } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={tableSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={docsStyles.section()}>
@@ -79,29 +77,9 @@ export const TableDocs: Component<TableDocsProps> = props => {
 							</div>
 						</div>
 					}
-					code={`const data = [
-  { id: 1, name: 'Alice', email: 'alice@example.com', age: 25 },
-  { id: 2, name: 'Bob', email: 'bob@example.com', age: 30 }
-]
-
-const columns = [
-  {
-    id: 'name',
-    header: 'Name',
-    accessor: (row) => row.name,
-    sortable: true
-  },
-  {
-    id: 'email',
-    header: 'Email',
-    accessor: (row) => row.email
-  }
-]
-
-<Table data={data} columns={columns} />`}
+					code={tableSnippets.usage.basicUsage}
 				/>
 			</section>
 		</article>
 	)
 }
-

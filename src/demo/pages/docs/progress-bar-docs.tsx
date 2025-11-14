@@ -5,6 +5,7 @@ import { ProgressBar } from '../../../components/ui/progress-bar'
 import { Tabs } from '../../../components/ui/tabs'
 import { Typography } from '../../../components/ui/typography'
 import { docsStyles } from '../../lib/docs.styles'
+import { progressBarSnippets } from './code-snippets/progress-bar-snippets'
 
 interface ProgressBarDocsProps {
 	isDark: Accessor<boolean>
@@ -28,10 +29,7 @@ export const ProgressBarDocs: Component<ProgressBarDocsProps> = props => {
 				<Typography variant='h3' as='h2' isDark={props.isDark()}>
 					Installation
 				</Typography>
-				<CodeHighlight
-					code={`import { ProgressBar } from '@sapphiresolid/ui'`}
-					isDark={props.isDark}
-				/>
+				<CodeHighlight code={progressBarSnippets.imports} isDark={props.isDark} />
 			</section>
 
 			<section style={docsStyles.section()}>
@@ -61,14 +59,7 @@ export const ProgressBarDocs: Component<ProgressBarDocsProps> = props => {
 							</div>
 						</div>
 					}
-					code={`import { createSignal } from 'solid-js'
-import { ProgressBar } from '@sapphiresolid/ui'
-
-function MyComponent() {
-  const [progress, setProgress] = createSignal(50)
-
-  return <ProgressBar value={progress()} />
-}`}
+					code={progressBarSnippets.usage.basicUsage}
 				/>
 			</section>
 
@@ -96,10 +87,9 @@ function MyComponent() {
 							</div>
 						</div>
 					}
-					code={`<ProgressBar isIndeterminate={true} />`}
+					code={progressBarSnippets.usage.indeterminate}
 				/>
 			</section>
 		</article>
 	)
 }
-
