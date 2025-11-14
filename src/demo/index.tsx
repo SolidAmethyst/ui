@@ -30,6 +30,7 @@ import {
 	SearchDocs,
 	SidebarDocs,
 	SliderDocs,
+	SplitPaneDocs,
 	TableDocs,
 	TabsDocs,
 	TechChipDocs,
@@ -339,6 +340,9 @@ function App() {
 										</Show>
 										<Show when={currentComponent() === 'slider'}>
 											<SliderDocs isDark={isDark} />
+										</Show>
+										<Show when={currentComponent() === 'split-pane'}>
+											<SplitPaneDocs isDark={isDark} />
 										</Show>
 										<Show when={currentComponent() === 'table'}>
 											<TableDocs isDark={isDark} />

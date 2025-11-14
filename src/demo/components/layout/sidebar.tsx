@@ -41,6 +41,7 @@ const componentGroups: ComponentGroup[] = [
 			{ name: 'Search', id: 'search' },
 			{ name: 'Sidebar', id: 'sidebar' },
 			{ name: 'Slider', id: 'slider' },
+			{ name: 'SplitPane', id: 'split-pane' },
 			{ name: 'Table', id: 'table' },
 			{ name: 'Tabs', id: 'tabs' },
 			{ name: 'Timeline', id: 'timeline' },

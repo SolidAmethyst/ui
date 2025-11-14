@@ -124,6 +124,8 @@
 	--timeline-description-margin: 4px 0 0 0;
 	--timeline-date-font-size: 12px;
 	--timeline-date-margin: 4px 0 0 0;
+	/* SplitPane component variables */
+	--split-pane-handle-size: 4px;
 	/* Sidebar component variables */
 	--sidebar-width: 250px;
 	--sidebar-padding: 16px 0;
