@@ -86,7 +86,7 @@ export const highlightCode = (code: string): string => {
 					}
 					return propPart.replace(
 						/(--[\w-]+)(\s*:)/g,
-						(_m: string, prop: string, colon: string) => {
+						(match: string, prop: string, colon: string) => {
 							return `<span class="code-attr">${prop}</span><span class="code-operator">${colon}</span>`
 						}
 					)
@@ -159,7 +159,7 @@ export const highlightCode = (code: string): string => {
 			return part.replace(
 				/(&lt;)(\/?)([\w-]+)([^&]*?)(\/?)(&gt;)/g,
 				(
-					_match: string,
+					match: string,
 					open: string,
 					slash: string,
 					tag: string,
@@ -172,7 +172,7 @@ export const highlightCode = (code: string): string => {
 					// First, highlight JSX expressions {value} - must be before string values
 					attrsHighlighted = attrsHighlighted.replace(
 						/(\w+)(=)(\{[^}]*?\})/g,
-						(_m: string, name: string, eq: string, value: string) => {
+						(match: string, name: string, eq: string, value: string) => {
 							const innerValue = value.slice(1, -1).trim()
 							// Check if it's a number
 							if (/^\d+$/.test(innerValue)) {
@@ -218,7 +218,7 @@ export const highlightCode = (code: string): string => {
 									const regex = new RegExp(`\\b(${prop})\\s*:`, 'g')
 									highlightedCSS = highlightedCSS.replace(
 										regex,
-										(_match: string, propName: string) => {
+										(match: string, propName: string) => {
 											return `<span class="code-attr">${propName}</span><span class="code-operator">:</span>`
 										}
 									)
@@ -226,7 +226,7 @@ export const highlightCode = (code: string): string => {
 								// Highlight string values in CSS
 								highlightedCSS = highlightedCSS.replace(
 									/(['"])([^'"]*?)\1/g,
-									(_m: string, quote: string, strValue: string) => {
+									(match: string, quote: string, strValue: string) => {
 										return `${quote}<span class="code-string">${strValue}</span>${quote}`
 									}
 								)
@@ -241,10 +241,10 @@ export const highlightCode = (code: string): string => {
 					// Then highlight attributes with string values (quoted)
 					attrsHighlighted = attrsHighlighted.replace(
 						/(\w+)(=)(&quot;[^&]*?&quot;|&apos;[^&]*?&apos;)/g,
-						(_m: string, name: string, eq: string, value: string) => {
+						(match: string, name: string, eq: string, value: string) => {
 							// Skip if already processed (inside a span)
 							if (name.includes('<span') || value.includes('<span')) {
-								return _m
+								return match
 							}
 							return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span><span class="code-string">${value}</span>`
 						}
@@ -253,10 +253,10 @@ export const highlightCode = (code: string): string => {
 					// Finally, highlight remaining attributes without values or with plain values
 					attrsHighlighted = attrsHighlighted.replace(
 						/(\w+)(=)(\w+)/g,
-						(_m: string, name: string, eq: string, value: string) => {
+						(match: string, name: string, eq: string, value: string) => {
 							// Skip if already processed
 							if (name.includes('<span') || value.includes('<span')) {
-								return _m
+								return match
 							}
 							return `<span class="code-attr">${name}</span><span class="code-operator">${eq}</span>${value}`
 						}
@@ -297,4 +297,3 @@ export const highlightCode = (code: string): string => {
 
 	return highlighted
 }
-

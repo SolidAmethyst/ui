@@ -7,7 +7,7 @@ export function useScrollbarHandlers(
 	state: Accessor<ScrollbarState>,
 	setState: Setter<ScrollbarState>,
 	direction: () => string,
-	_containerRef: () => HTMLDivElement | undefined,
+	containerRef: () => HTMLDivElement | undefined,
 	contentRef: () => HTMLDivElement | undefined,
 	trackRef: () => HTMLDivElement | undefined,
 	thumbRef: () => HTMLDivElement | undefined,

@@ -55,7 +55,7 @@ export const createEventTests = <T extends Record<string, any>>(
   eventTests: Array<{
     eventName: string;
     triggerFn: (element: HTMLElement) => void;
-    expectedBehavior: (_container: HTMLElement) => void;
+    expectedBehavior: (container: HTMLElement) => void;
   }>,
 ) => {
   return eventTests.map(({ eventName, triggerFn, expectedBehavior }) => ({
@@ -89,7 +89,7 @@ export const createAccessibilityTest = <T extends Record<string, any>>(
       const interactiveElements = container.querySelectorAll(
         "button, input, select, textarea, [tabindex]",
       );
-      interactiveElements.forEach((_element: any) => {
+      interactiveElements.forEach((element: any) => {
         // Elements should have proper roles or be focusable
         // expect(element).toBeInTheDocument()
       });

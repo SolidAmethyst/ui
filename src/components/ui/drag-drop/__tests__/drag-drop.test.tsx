@@ -4,7 +4,6 @@ import type { DragDropItem } from '../model/types'
 import { DragDrop } from '../ui/drag-drop'
 
 describe('DragDrop', () => {
-
 	it('renders items correctly', () => {
 		render(() => {
 			const items: DragDropItem[] = [
@@ -156,7 +155,7 @@ describe('DragDrop', () => {
 	})
 
 	it('uses custom renderItem when provided', () => {
-		const renderItem = vi.fn((item, _index) => <div>Custom: {item.id}</div>)
+		const renderItem = vi.fn((item, index) => <div>Custom: {item.id}</div>)
 		render(() => {
 			const items: DragDropItem[] = [
 				{ id: '1', content: <div>Item 1</div> },

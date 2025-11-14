@@ -7,9 +7,9 @@ import {
 	Component,
 	For,
 	Show,
+	createEffect,
 	createSignal,
-	onCleanup,
-	onMount
+	onCleanup
 } from 'solid-js'
 import { dragDropStyles } from '../lib/drag-drop.styles'
 import type { DragDropItem, DragDropProps } from '../model/types'
@@ -27,20 +27,12 @@ export const DragDrop: Component<DragDropProps> = props => {
 	const [draggedOverIndex, setDraggedOverIndex] = createSignal<number | null>(
 		null
 	)
-	const [items, setItems] = createSignal<DragDropItem[]>(props.items)
+	const [items, setItems] = createSignal<DragDropItem[]>([])
 
-	// Update items when props.items changes
-	onMount(() => {
+	// Sync items with props when props.items changes
+	createEffect(() => {
 		setItems(props.items)
 	})
-
-	// Sync items with props
-	const syncItems = () => {
-		if (props.items !== items()) {
-			setItems(props.items)
-		}
-	}
-	syncItems()
 
 	const handleDragStart = (e: DragEvent, item: DragDropItem, index: number) => {
 		if (disabled() || item.disabled) {
@@ -196,10 +188,7 @@ export const DragDrop: Component<DragDropProps> = props => {
 						</Show>
 						<Show when={isItemOver(index())}>
 							<div
-								style={dragDropStyles.dropIndicator(
-									isDark(),
-									orientation()
-								)}
+								style={dragDropStyles.dropIndicator(isDark(), orientation())}
 							/>
 						</Show>
 						<div style={dragDropStyles.itemContent()}>

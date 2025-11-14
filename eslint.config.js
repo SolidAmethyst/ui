@@ -50,7 +50,16 @@ export default [
 		rules: {
 			...typescript.configs.recommended.rules,
 			...solid.configs.recommended.rules,
-			'@typescript-eslint/no-unused-vars': 'warn',
+			// Override to ignore unused function parameters (needed for library API compatibility)
+			'@typescript-eslint/no-unused-vars': [
+				'warn',
+				{
+					args: 'none', // Ignore all unused function parameters
+					varsIgnorePattern: '^_', // Still warn about unused variables unless prefixed with _
+					caughtErrors: 'none',
+					ignoreRestSiblings: true
+				}
+			],
 			'@typescript-eslint/no-explicit-any': 'warn',
 			'solid/reactivity': 'warn',
 			'solid/no-destructure': 'warn',

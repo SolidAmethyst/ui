@@ -11,9 +11,9 @@ global.ResizeObserver = class ResizeObserver {
 	observe = vi.fn()
 	unobserve = vi.fn()
 	disconnect = vi.fn()
-	constructor(_callback: (entries: ResizeObserverEntry[]) => void) {
+	constructor(callback: (entries: ResizeObserverEntry[]) => void) {
 		// Store callback for potential use in tests
-		;(this as any)._callback = _callback
+		;(this as any)._callback = callback
 	}
 } as any
 
