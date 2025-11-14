@@ -25,7 +25,9 @@ export const checkboxStyles = {
 		opacity: '0.5'
 	}),
 
-	input: (options?: CheckboxStyleOptions & { material3?: boolean }): JSX.CSSProperties => {
+	input: (
+		options?: CheckboxStyleOptions & { material3?: boolean }
+	): JSX.CSSProperties => {
 		const isDark = options?.isDark ?? false
 		const disabled = options?.disabled ?? false
 		const checked = options?.checked ?? false
@@ -66,11 +68,7 @@ export const checkboxStyles = {
 			'-moz-appearance': 'none',
 			'border-radius': '4px',
 			border: `2px solid ${
-				checked || indeterminate
-					? 'hsl(var(--primary))'
-					: isDark
-						? 'rgba(255, 255, 255, 0.3)'
-						: 'rgba(0, 0, 0, 0.3)'
+				isDark ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'
 			}`,
 			background:
 				checked || indeterminate
@@ -97,12 +95,9 @@ export const checkboxStyles = {
 		}
 
 		return {
-			'border-color':
-				checked || indeterminate
-					? 'hsl(var(--hover-color))'
-					: isDark
-						? 'rgba(255, 255, 255, 0.5)'
-						: 'rgba(0, 0, 0, 0.5)',
+			'border-color': isDark
+				? 'rgba(255, 255, 255, 0.5)'
+				: 'rgba(0, 0, 0, 0.5)',
 			'box-shadow':
 				checked || indeterminate
 					? `0 0 var(--hover-glow-box-blur) hsla(var(--primary-hover) / var(--hover-glow-box-opacity))`
@@ -116,7 +111,7 @@ export const checkboxStyles = {
 
 		return {
 			outline: 'none',
-			'box-shadow': `0 0 0 3px hsla(var(--primary) / 0.3)`
+			'box-shadow': 'none'
 		}
 	},
 

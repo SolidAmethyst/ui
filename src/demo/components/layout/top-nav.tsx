@@ -2,7 +2,7 @@ import { Component, Show } from 'solid-js'
 import { Button } from '../../../components/ui/button'
 import { Container } from '../../../components/ui/container'
 import { Glass } from '../../../components/ui/glass'
-import { TabsRoot, TabsList, TabsTrigger } from '../../../components/ui/tabs'
+import { TabsList, TabsRoot, TabsTrigger } from '../../../components/ui/tabs'
 
 interface TopNavProps {
 	isDark: () => boolean
@@ -61,7 +61,11 @@ export const TopNav: Component<TopNavProps> = props => (
 								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
 								'font-size': '1.25rem',
 								'font-weight': '700',
-								'letter-spacing': '-0.02em'
+								'letter-spacing': '-0.02em',
+								'line-height': '1',
+								display: 'flex',
+								'align-items': 'center',
+								'padding-left': '16px'
 							}}
 						>
 							Solid UI Toolkit
@@ -81,7 +85,10 @@ export const TopNav: Component<TopNavProps> = props => (
 					>
 						<TabsRoot
 							value={props.currentPage}
-							onValueChange={value => props.onPageChange(value as 'docs' | 'blocks' | 'settings')}
+							defaultValue={props.currentPage}
+							onValueChange={value =>
+								props.onPageChange(value as 'docs' | 'blocks' | 'settings')
+							}
 							isDark={props.isDark()}
 							style={{
 								margin: '0',
@@ -207,7 +214,11 @@ export const TopNav: Component<TopNavProps> = props => (
 								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
 								'font-size': '1.25rem',
 								'font-weight': '700',
-								'letter-spacing': '-0.02em'
+								'letter-spacing': '-0.02em',
+								'line-height': '1',
+								display: 'flex',
+								'align-items': 'center',
+								'padding-left': '16px'
 							}}
 						>
 							Solid UI Toolkit
@@ -227,7 +238,10 @@ export const TopNav: Component<TopNavProps> = props => (
 					>
 						<TabsRoot
 							value={props.currentPage}
-							onValueChange={value => props.onPageChange(value as 'docs' | 'blocks' | 'settings')}
+							defaultValue={props.currentPage}
+							onValueChange={value =>
+								props.onPageChange(value as 'docs' | 'blocks' | 'settings')
+							}
 							isDark={props.isDark()}
 							style={{
 								margin: '0',

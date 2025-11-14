@@ -10,7 +10,7 @@ export const checkboxTreeStyles = {
 		display: 'flex',
 		'flex-direction': 'column',
 		gap: '4px',
-		width: '100%'
+		width: 'auto'
 	}),
 
 	node: (isDark: boolean, level: number): JSX.CSSProperties => ({

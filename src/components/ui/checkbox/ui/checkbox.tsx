@@ -49,11 +49,6 @@ export const Checkbox: Component<CheckboxProps> = props => {
 
 	const getBaseBorderColor = (): string => {
 		const isDarkValue = isDark()
-		const checkedValue = checked()
-		const indeterminateValue = indeterminate()
-		if (checkedValue || indeterminateValue) {
-			return 'hsl(var(--primary))'
-		}
 		return isDarkValue ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.3)'
 	}
 
@@ -152,7 +147,7 @@ export const Checkbox: Component<CheckboxProps> = props => {
 					style={inputStyle()}
 					{...others}
 				/>
-				<Show when={local.material3 || (checked() && !indeterminate())}>
+				<Show when={!indeterminate() && (local.material3 || checked())}>
 					<svg
 						style={{
 							position: 'absolute',
