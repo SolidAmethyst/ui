@@ -122,6 +122,22 @@ export const FilterBarDocs: Component<FilterBarDocsProps> = (props) => {
           code={filterBarSnippets.usage.filterPanel}
         />
       </section>
+      {/* Customization */}
+      <section style={docsStyles.section()}>
+        <Typography variant="h3" as="h2">
+          Customization
+        </Typography>
+        <Typography variant="body">
+          The FilterBar component uses CSS custom properties for theming. These
+          variables are already defined in the library, but you can override
+          them in your application's stylesheet to match your design system.
+        </Typography>
+        <CodeHighlight code={filterBarSnippets.customization} />
+        <Typography variant="body">
+          The FilterBar component automatically uses these CSS variables. You
+          can override them in your application to match your design system.
+        </Typography>
+      </section>
     </article>
   );
 };

@@ -109,4 +109,19 @@ function MyComponent() {
   )
 }`,
   },
+
+  customization: `@layer base {
+  :root {
+    /* Drawer component styling */
+    --drawer-backdrop-opacity: 0.3;
+    --drawer-backdrop-blur: 4px;
+    --drawer-panel-blur: 10px;
+    --drawer-transition-duration: 300ms;
+  }
+
+  [data-theme="dark"] {
+    /* Drawer uses same values in dark theme */
+    --drawer-backdrop-opacity: 0.3;
+  }
+}`,
 } as const;

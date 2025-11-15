@@ -114,4 +114,20 @@ function MyComponent() {
   )
 }`,
   },
+
+  customization: `@layer base {
+  :root {
+    /* Modal component styling */
+    --modal-backdrop-opacity: 0.4;
+    --modal-backdrop-blur: 4px;
+    --modal-border-radius: 8px;
+    --modal-shadow: 0 25px 50px hsl(var(--shadow) / 0.25);
+    --modal-transition-duration: 300ms;
+  }
+
+  [data-theme="dark"] {
+    /* Modal uses same values in dark theme */
+    --modal-backdrop-opacity: 0.4;
+  }
+}`,
 } as const;

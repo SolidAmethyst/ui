@@ -30,4 +30,19 @@ import type { SidebarItem } from '@sapphiresolid/ui'`,
   </div>
 </App>`,
   },
+
+  customization: `@layer base {
+  :root {
+    /* App component uses theme colors for layout */
+    /* Top navigation uses --top-nav-background */
+    /* Page background uses --background */
+    --app-border-radius: 8px;
+    --app-transition-duration: 200ms;
+  }
+
+  [data-theme="dark"] {
+    /* App automatically adapts to dark theme */
+    --app-border-radius: 8px;
+  }
+}`,
 } as const;
