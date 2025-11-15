@@ -15,12 +15,12 @@ export interface ThemeColors {
 }
 
 export const getThemeColors = (isDark: boolean): ThemeColors => ({
-	text: isDark ? '#f6f6f6' : '#1a1a1a',
-	textMuted: isDark ? 'rgba(246, 246, 246, 0.7)' : 'rgba(26, 26, 26, 0.7)',
-	background: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
-	border: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
-	borderFocus: isDark ? 'rgba(59, 130, 246, 0.5)' : 'rgba(59, 130, 246, 0.3)',
-	inputBackground: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
-	cardBackground: isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.02)',
-	cardBorder: isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+	text: 'hsl(var(--foreground))',
+	textMuted: 'hsl(var(--muted-foreground))',
+	background: 'hsl(var(--muted) / 0.5)',
+	border: 'hsl(var(--border))',
+	borderFocus: 'hsl(var(--accent) / 0.5)',
+	inputBackground: 'hsl(var(--input))',
+	cardBackground: 'hsl(var(--card))',
+	cardBorder: 'hsl(var(--border))'
 })

@@ -188,8 +188,8 @@ export const AppDemo: Component<AppDemoProps> = props => {
 	return (
 		<Window
 			style={{
-				background: props.isDark() ? 'hsl(240 20% 8%)' : '#ffffff',
-				color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+				background: props.isDark() ? 'hsl(var(--secondary))' : 'hsl(var(--page-background))',
+				color: 'hsl(var(--foreground))'
 			}}
 			titleBar={
 				<TitleBar

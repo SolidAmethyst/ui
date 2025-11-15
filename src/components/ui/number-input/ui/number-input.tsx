@@ -114,23 +114,29 @@ export const NumberInput: Component<NumberInputProps> = props => {
 				onWheel={handleWheel}
 				onFocus={e => {
 					const target = e.currentTarget
-					// Apply focus styles
-					if (props.themeAware) {
-						target.style.borderColor =
-							'var(--number-input-border-focus, hsla(var(--primary) / 0.5))'
-					} else {
-						target.style.borderColor = 'hsla(var(--primary) / 0.5)'
+					// Apply focus styles only if custom border is not provided
+					const customBorder = (props.style as JSX.CSSProperties)?.border
+					if (!customBorder) {
+						if (props.themeAware) {
+							target.style.borderColor =
+								'var(--number-input-border-focus, hsla(var(--primary) / 0.5))'
+						} else {
+							target.style.borderColor = 'hsla(var(--primary) / 0.5)'
+						}
 					}
 					if (props.onFocus) props.onFocus(e)
 				}}
 				onBlur={e => {
 					const target = e.currentTarget
-					// Reset border color
-					if (props.themeAware) {
-						target.style.borderColor =
-							'var(--number-input-border, rgba(255, 255, 255, 0.1))'
-					} else {
-						target.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+					// Reset border color only if custom border is not provided
+					const customBorder = (props.style as JSX.CSSProperties)?.border
+					if (!customBorder) {
+						if (props.themeAware) {
+							target.style.borderColor =
+								'var(--number-input-border, rgba(255, 255, 255, 0.1))'
+						} else {
+							target.style.borderColor = 'rgba(255, 255, 255, 0.1)'
+						}
 					}
 
 					// Auto-validate if enabled (for string values with units)

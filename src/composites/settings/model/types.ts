@@ -8,7 +8,7 @@ import type { JSX } from 'solid-js'
 /**
  * Main category types
  */
-export type MainCategory = 'appearance' | 'fonts'
+export type MainCategory = 'appearance' | 'typography'
 
 /**
  * Appearance subcategory types
@@ -42,6 +42,29 @@ export type HighlightProfile =
  */
 export interface HighlightsSettings {
 	profile: HighlightProfile
+}
+
+/**
+ * Font family options
+ */
+export type FontFamily =
+	| 'Inter'
+	| 'Geist Sans'
+	| 'Plus Jakarta Sans'
+	| 'Sora'
+	| 'Outfit'
+	| 'Space Grotesk'
+	| 'Manrope'
+	| 'Poppins'
+	| 'DM Sans'
+	| 'Work Sans'
+	| 'Bebas Neue'
+
+/**
+ * Font settings
+ */
+export interface FontSettings {
+	family: FontFamily
 }
 
 export interface SettingsProps {
@@ -126,6 +149,16 @@ export interface SettingsCompositeProps {
 	 * Callback when highlights settings change
 	 */
 	onHighlightsSettingsChange?: (settings: HighlightsSettings) => void
+
+	/**
+	 * Font settings
+	 */
+	fontSettings?: FontSettings
+
+	/**
+	 * Callback when font settings change
+	 */
+	onFontSettingsChange?: (settings: FontSettings) => void
 
 	/**
 	 * Additional CSS class names

@@ -1,278 +1,247 @@
-# Роадмап проекта
+# Project Roadmap
 
-План развития Solid UI Toolkit и переноса компонентов из physics-engine-tauri-demo.
+Development plan for Solid UI Toolkit and migration of components from physics-engine-tauri-demo.
 
-## 🎯 Текущий статус
+## 🎯 Current Status
 
-### ✅ Завершено
+### ✅ Completed
 
-- [x] Базовая архитектура Solid.js + TypeScript
-- [x] Компонент Button (базовые варианты: control, play-pause, small, close, minimize, maximize)
-- [x] Компонент Scrollbar (вертикальный и горизонтальный)
-- [x] Компонент TechChip
-- [x] Система темизации (dark/light)
-- [x] Демо приложение с примерами использования
-- [x] Система тестирования (Vitest)
+#### Core Infrastructure
+- [x] Basic Solid.js + TypeScript architecture
+- [x] FSD (Feature-Sliced Design) architecture
+- [x] Theming system (dark/light) with CSS variables
+- [x] Demo application with usage examples
+- [x] Testing system (Vitest)
 - [x] CI/CD pipeline
-- [x] Базовая документация
+- [x] Documentation system
+- [x] Troubleshooting guides
 
-## 🚀 Ближайшие планы - Перенос компонентов из physics-engine-tauri-demo
+#### UI Components
+- [x] **Accordion** - Collapsible content sections
+- [x] **Alert** - Alert messages with variants
+- [x] **Button** - Versatile button with multiple variants:
+  - [x] Basic variants: control, play-pause, small, close, minimize, maximize
+  - [x] Pin variant (push_pin icon)
+  - [x] Expand variant (open_in_full icon)
+  - [x] Copy variant (content_copy icon)
+- [x] **Checkbox** - Checkbox input component
+- [x] **Checkbox Tree** - Hierarchical checkbox selection
+- [x] **Code Highlight** - Syntax highlighting component
+- [x] **Command** - Command palette component
+- [x] **Container** - Layout container component
+- [x] **Drag Drop** - Drag and drop functionality
+- [x] **Drawer** - Side drawer component
+- [x] **Empty State** - Empty state placeholder
+- [x] **Glass** - Glass morphism effect component
+- [x] **Grid** - Grid layout component
+- [x] **Menu** - Menu component
+- [x] **Modal** - Modal dialog with overlay, focus trap, and keyboard navigation
+- [x] **Number Input** - Number input with increment/decrement
+- [x] **Progress Bar** - Progress indicator (determinate and indeterminate)
+- [x] **Scrollbar** - Custom scrollbar (vertical and horizontal) with Material 3 styling
+- [x] **Search** - Search input component
+- [x] **Select** - Select dropdown component
+- [x] **Sidebar** - Sidebar navigation component
+- [x] **Slider** - Range slider component
+- [x] **Split Pane** - Resizable split pane component
+- [x] **Table** - Data table component
+- [x] **Tabs** - Tab navigation component
+- [x] **Tech Chip** - Technology chip component
+- [x] **Timeline** - Timeline component
+- [x] **Toast** - Notification system (success, error, warning, info)
+- [x] **Tooltip** - Tooltip component
+- [x] **Typography** - Typography component with variants
+- [x] **Window** - Window component
 
-### 🔴 Высокий приоритет
+#### Composite Components
+- [x] **App** - Main application layout composite
+- [x] **File Manager** - File management composite with navigation and filtering
+- [x] **Filter** - Filter panel composite with file type filtering
+- [x] **Settings** - Settings panel composite
+- [x] **Title Bar** - Title bar composite with window controls
 
-#### 1. Расширение компонента Button
+## 🚀 Near-term Plans
 
-- [ ] **Добавить вариант Button для pin (скрепка)**
+### 🔴 High Priority
 
-  - Добавить `variant: 'pin'` в типы Button
-  - Добавить стили для pin кнопки
-  - Поддержка состояния `pinned` (уже есть prop, нужно доработать стили)
-  - Иконка `push_pin` из Material Symbols
-  - Hover эффекты (синий цвет #3b82f6)
-  - Active состояние
+#### 1. Component Documentation
+- [ ] Complete API documentation for all components
+- [ ] Add usage examples for each component
+- [ ] Create interactive demos in docs
+- [ ] Add TypeScript type definitions documentation
 
-- [ ] **Добавить кнопки для debug меню**
-  - Кнопка expand (вариант или отдельный компонент)
-    - Иконка: `open_in_full` (диагональные стрелки)
-    - Стили: `expand-logs-btn` из Tauri проекта
-    - Размер: 26x26px
-    - Hover: синий цвет #3b82f6
-  - Кнопка copy (вариант или отдельный компонент)
-    - Иконка: `content_copy` (два квадрата)
-    - Стили: `copy-logs-btn` из Tauri проекта
-    - Размер: 26x26px
-    - Hover: синий цвет #3b82f6
-  - Решение: создать общий вариант `variant: 'icon-action'` или отдельные `'expand'`, `'copy'`
+#### 2. Testing Coverage
+- [ ] Increase test coverage to > 80% for all components
+- [ ] Add integration tests for composite components
+- [ ] Add E2E tests for critical user flows
+- [ ] Performance testing and optimization
 
-#### 2. Компонент Checkbox
+#### 3. Accessibility Improvements
+- [ ] ARIA attributes audit and improvements
+- [ ] Keyboard navigation enhancements
+- [ ] Screen reader compatibility testing
+- [ ] Focus management improvements
 
-- [ ] **Создать компонент Checkbox**
-  - Структура по FSD:
-    - `src/components/ui/checkbox/`
-    - `model/types.ts` - типы и интерфейсы
-    - `lib/checkbox.styles.ts` - стили
-    - `ui/checkbox.tsx` - основной компонент
-    - `__tests__/checkbox.test.tsx` - тесты
-    - `index.ts` - экспорты
-  - Props:
-    - `checked?: boolean`
-    - `disabled?: boolean`
-    - `onChange?: (checked: boolean) => void`
-    - `label?: string`
-    - `class?: string`
-  - Стили из Tauri проекта:
-    - Размер: 18x18px
-    - Border: none
-    - Background: transparent
-    - Checkmark: синий #3b82f6 при checked
-    - Плавные переходы
-  - Состояния:
-    - Default (unchecked): прозрачный фон, тонкая синяя линия
-    - Checked: прозрачный фон, синяя галочка (rotate 45deg)
-    - Disabled: opacity 0.5
-    - Hover: легкий фон rgba(255, 255, 255, 0.15)
-  - Тесты:
-    - Рендеринг с checked/unchecked
-    - Обработка onChange
-    - Disabled состояние
-    - Keyboard navigation
+### 🟡 Medium Priority
 
-### 🟡 Средний приоритет
+#### 4. Performance Optimization
+- [ ] Code splitting for better bundle size
+- [ ] Lazy loading for heavy components
+- [ ] Memoization improvements
+- [ ] Render performance optimization
 
-#### 3. Компоненты Debug панели
+#### 5. Additional Features
+- [ ] Animation system improvements
+- [ ] More theme customization options
+- [ ] Internationalization (i18n) support
+- [ ] RTL (Right-to-Left) language support
 
-- [ ] **Создать компонент DebugPanel**
+#### 6. Developer Experience
+- [ ] Storybook stories for all components
+- [ ] Component playground
+- [ ] Better TypeScript autocomplete
+- [ ] Migration guides
 
-  - Заголовок с FPS counter
-  - Секция TechChip статусов
-  - Секция Gradient Info
-  - Секция Logs с кнопками expand/copy
-  - Закрытие панели
-  - Позиционирование и стили из Tauri проекта
+### 🟢 Low Priority
 
-- [ ] **Создать компонент LogsPanel**
+#### 7. Advanced Components
+- [ ] Data visualization components (charts, graphs)
+- [ ] Rich text editor
+- [ ] Calendar/Date picker
+- [ ] Color picker
+- [ ] Image viewer
 
-  - Полноэкранная панель логов
-  - Заголовок с кнопками copy и collapse
-  - Прокручиваемый список логов
-  - Стилизация разных типов логов (physics, init, error)
-  - Overlay фоновый слой
+#### 8. Utilities and Helpers
+- [ ] Form validation utilities
+- [ ] Date/time utilities
+- [ ] Formatting utilities
+- [ ] Animation utilities
 
-- [ ] **Создать компонент SettingsMenu**
-  - Попап меню настроек
-  - Использование Checkbox компонента
-  - Настройки: Maximize Button, Window Resize
-  - Закрытие меню
+## 📋 Detailed Implementation Plan
 
-#### 4. Компонент TitleBar
+### Stage 1: Documentation and Testing (Current Focus)
 
-- [ ] **Создать компонент TitleBar**
-  - Burger menu button
-  - Draggable title area
-  - Small control buttons (theme, debug, pin, settings)
-  - Window controls (minimize, maximize, close)
-  - Поддержка Tauri drag region
-  - Адаптация под веб (без drag region)
-  - Стили из Tauri проекта
+1. **Component Documentation**
+   - Create comprehensive API docs
+   - Add code examples
+   - Document all props and events
+   - Add accessibility guidelines
 
-### 🟢 Низкий приоритет
+2. **Testing**
+   - Unit tests for all components
+   - Integration tests for composites
+   - Visual regression tests
+   - Performance benchmarks
 
-#### 5. Дополнительные утилиты
+3. **Examples**
+   - Real-world usage examples
+   - Best practices guide
+   - Common patterns documentation
 
-- [ ] **Иконки Material Symbols**
+### Stage 2: Performance and Optimization
 
-  - Система загрузки иконок
-  - Типизация доступных иконок
-  - Оптимизация загрузки
+1. **Bundle Size**
+   - Analyze bundle size
+   - Implement tree shaking
+   - Code splitting strategies
+   - Lazy loading implementation
 
-- [ ] **Утилиты для темизации**
-  - CSS переменные для всех компонентов
-  - Автоматическое переключение тем
-  - Сохранение предпочтений темы
+2. **Runtime Performance**
+   - Profile component rendering
+   - Optimize re-renders
+   - Memoization strategies
+   - Virtual scrolling for large lists
 
-## 📋 Детальный план реализации
+### Stage 3: Accessibility and Internationalization
 
-### Этап 1: Button расширение (Текущая задача)
+1. **Accessibility**
+   - WCAG 2.1 AA compliance
+   - Keyboard navigation
+   - Screen reader support
+   - Focus management
 
-1. **Добавить variant 'pin'**
+2. **Internationalization**
+   - i18n framework integration
+   - RTL support
+   - Locale-specific formatting
+   - Translation system
 
-   ```typescript
-   export type ButtonVariant =
-   	| 'control'
-   	| 'play-pause'
-   	| 'small'
-   	| 'pin' // Новый
-   	| 'close'
-   	| 'minimize'
-   	| 'maximize'
-   ```
-
-2. **Добавить варианты для debug кнопок**
-
-   ```typescript
-   export type ButtonVariant =
-     | ...
-     | 'expand'  // Новый
-     | 'copy'    // Новый
-   ```
-
-   Или создать отдельный тип `IconButtonVariant`
-
-3. **Обновить стили**
-
-   - Добавить стили для `pin` в `button.styles.ts`
-   - Добавить стили для `expand` и `copy`
-   - Убедиться, что размеры и hover эффекты соответствуют Tauri проекту
-
-4. **Обновить демо**
-   - Добавить примеры новых вариантов в `buttons-section.tsx`
-
-### Этап 2: Checkbox компонент
-
-1. **Создать структуру папок**
-
-   ```
-   src/components/ui/checkbox/
-   ├── __tests__/
-   │   └── checkbox.test.tsx
-   ├── lib/
-   │   └── checkbox.styles.ts
-   ├── model/
-   │   └── types.ts
-   ├── ui/
-   │   └── checkbox.tsx
-   └── index.ts
-   ```
-
-2. **Реализовать компонент**
-
-   - Типы и интерфейсы
-   - Стили (точная копия из Tauri проекта)
-   - Логика checked/unchecked
-   - Keyboard support (Space, Enter)
-
-3. **Тесты**
-
-   - Все состояния и взаимодействия
-
-4. **Добавить в демо**
-   - Примеры использования в новой секции
-
-### Этап 3: Debug панель
-
-1. **Создать компонент DebugPanel**
-2. **Создать компонент LogsPanel**
-3. **Интегрировать в демо**
-
-### Этап 4: TitleBar
-
-1. **Создать компонент TitleBar**
-2. **Интегрировать в демо**
-
-## 🎯 Метрики успеха
+## 🎯 Success Metrics
 
 ### 🎨 UI/UX
+- **Component completeness**: 100% of planned components
+- **Theming**: Full dark/light theme support with customization
+- **Accessibility**: WCAG 2.1 AA compliance
+- **Responsive**: Mobile-first design
 
-- **Соответствие стилям**: 100% соответствие Tauri проекту
-- **Темизация**: Полная поддержка dark/light тем
-- **Доступность**: Keyboard navigation, ARIA атрибуты
+### 🔧 Technical
+- **Tests**: > 80% coverage
+- **TypeScript**: Strict typing, no `any`
+- **Performance**: Rendering < 16ms (60 FPS)
+- **Bundle size**: Optimized and tree-shakeable
 
-### 🔧 Технические
+### 📚 Documentation
+- **API documentation**: Complete for all components
+- **Examples**: Minimum 3 examples per component
+- **Guides**: Step-by-step instructions
+- **Troubleshooting**: Common issues documented
 
-- **Тесты**: > 80% покрытие
-- **TypeScript**: Строгая типизация, нет `any`
-- **Производительность**: Рендеринг < 16ms (60 FPS)
+## 🗓️ Timeline
 
-### 📚 Документация
+| Task                          | Estimate | Priority | Status         |
+| ----------------------------- | -------- | -------- | -------------- |
+| Component documentation       | 20h      | High     | ⏳ In Progress |
+| Test coverage improvement     | 16h      | High     | ⏳ Planned     |
+| Accessibility audit           | 12h      | High     | ⏳ Planned     |
+| Performance optimization      | 16h      | Medium   | ⏳ Planned     |
+| Storybook stories             | 12h      | Medium   | ⏳ Planned     |
+| i18n support                  | 20h      | Medium   | ⏳ Planned     |
+| Advanced components           | 40h      | Low      | ⏳ Planned     |
 
-- **API документация**: Полное описание всех props
-- **Примеры**: Минимум 3 примера на компонент
-- **Руководства**: Пошаговые инструкции
+**Total estimate**: ~136 hours
 
-## 🗓️ Временные рамки
+## 🎯 Priorities
 
-| Задача                          | Оценка | Приоритет | Статус         |
-| ------------------------------- | ------ | --------- | -------------- |
-| Button variant 'pin'            | 2ч     | Высокий   | ⏳ Планируется |
-| Button variants 'expand'/'copy' | 2ч     | Высокий   | ⏳ Планируется |
-| Checkbox компонент              | 4ч     | Высокий   | ⏳ Планируется |
-| DebugPanel компонент            | 6ч     | Средний   | ⏳ Планируется |
-| LogsPanel компонент             | 4ч     | Средний   | ⏳ Планируется |
-| SettingsMenu компонент          | 3ч     | Средний   | ⏳ Планируется |
-| TitleBar компонент              | 8ч     | Средний   | ⏳ Планируется |
+### Critical (do first)
 
-**Общая оценка**: ~29 часов
+1. Complete component documentation
+2. Achieve > 80% test coverage
+3. Accessibility improvements
 
-## 🎯 Приоритеты
+### Important (next stage)
 
-### Критический (делать в первую очередь)
+4. Performance optimization
+5. Storybook integration
+6. Developer experience improvements
 
-1. ✅ Button variant 'pin'
-2. ✅ Button variants 'expand'/'copy'
-3. ✅ Checkbox компонент
+### Desirable (when time permits)
 
-### Важный (следующий этап)
+7. Advanced components
+8. Internationalization
+9. Additional utilities
 
-4. DebugPanel компонент
-5. LogsPanel компонент
-6. SettingsMenu компонент
+## 📝 Notes
 
-### Желательный (когда будет время)
+- All components follow FSD architecture
+- Components use CSS variables for theming
+- Tests are mandatory for all new components
+- Documentation must be up to date
+- Examples in demo are required
+- TypeScript strict mode enabled
+- All components are accessible by default
 
-7. TitleBar компонент
-8. Утилиты для иконок
-9. Расширенная темизация
+## 🔄 Recent Updates
 
-## 📝 Примечания
-
-- Все компоненты должны следовать FSD архитектуре
-- Стили должны точно соответствовать Tauri проекту
-- Обязательны тесты для всех компонентов
-- Документация должна быть актуальной
-- Примеры в демо обязательны
+### December 2024
+- ✅ Completed all core UI components
+- ✅ Completed all composite components
+- ✅ Added Button variants (pin, expand, copy)
+- ✅ Fixed Scrollbar layout issues in FilterPanel and Sidebar
+- ✅ Created troubleshooting documentation
+- ✅ Translated all documentation to English
 
 ---
 
-**Последнее обновление**: Декабрь 2024
-**Ответственный**: Development Team
-**Следующий обзор**: После завершения текущих задач
+**Last Updated**: December 2024
+**Responsible**: Development Team
+**Next Review**: After documentation completion

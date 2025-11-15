@@ -22,7 +22,8 @@ export const searchStyles = {
 		display: 'flex',
 		'align-items': 'center',
 		width: '100%',
-		'box-sizing': 'border-box'
+		'box-sizing': 'border-box',
+		cursor: 'text'
 	}),
 
 	input: (options: SearchStyleOptions): JSX.CSSProperties => ({
@@ -53,7 +54,8 @@ export const searchStyles = {
 		transition: 'all 0.2s ease',
 		'box-sizing': 'border-box',
 		outline: 'none',
-		'text-align': 'left'
+		'text-align': 'left',
+		'pointer-events': 'auto'
 	}),
 
 	inputHover: (): JSX.CSSProperties => ({

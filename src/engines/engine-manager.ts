@@ -1,6 +1,6 @@
 // Engine manager for dynamic loading and fallback
-import { mockEngine } from "./mock/mock-engine";
-import type { EngineConfig, UIEngine } from "./types/engine-interface";
+import { mockEngine } from "./mock/mock-engine"
+import type { EngineConfig, UIEngine } from "./types/engine-interface"
 
 // Extended engine interface with DLL methods
 interface ScrollbarPhysicsConfig {
@@ -94,7 +94,6 @@ export class EngineManager {
           const engineWithDLL = tauriEngine as TauriEngineWithDLL;
           if (engineWithDLL.initPhysicsEngine) {
             await engineWithDLL.initPhysicsEngine();
-            console.log("Physics engine DLL initialized successfully");
           }
         } catch (error) {
           console.warn("Failed to initialize physics engine DLL:", error);

@@ -63,7 +63,8 @@ export const buttonSnippets = {
 <Button variant="save" iconPosition="only" title="Save" />
 <Button variant="delete" iconPosition="only" title="Delete" />
 <Button variant="search" iconPosition="only" title="Search" />
-<Button variant="share" iconPosition="only" title="Share" />`,
+<Button variant="share" iconPosition="only" title="Share" />
+<Button variant="small" icon="restart_alt" iconPosition="only" title="Reset" />`,
 
 		buttonStates: `<Button active>Active</Button>
 <Button pinned>Pinned</Button>

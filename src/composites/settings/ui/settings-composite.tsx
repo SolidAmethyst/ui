@@ -10,6 +10,8 @@ import { Slider } from '../../../components/ui/slider'
 import { settingsCompositeStyles } from '../lib/settings-composite.styles'
 import type {
 	AppearanceSubcategory,
+	FontFamily,
+	FontSettings,
 	GlassSettings,
 	HighlightProfile,
 	HighlightsSettings,
@@ -42,6 +44,10 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 		profile: props.highlightsSettings?.profile ?? 'default'
 	}))
 
+	const fontSettings = createMemo<FontSettings>(() => ({
+		family: props.fontSettings?.family ?? 'Inter'
+	}))
+
 	const handleGlassChange = (
 		key: keyof GlassSettings,
 		value: boolean | number
@@ -59,6 +65,29 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 			props.onHighlightsSettingsChange({
 				profile
 			})
+		}
+	}
+
+	const handleFontChange = (family: FontFamily) => {
+		if (props.onFontSettingsChange) {
+			props.onFontSettingsChange({
+				family
+			})
+			// Apply font immediately via CSS variable
+			const fontFamilyMap: Record<FontFamily, string> = {
+				'Inter': "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+				'Geist Sans': "'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+				'Plus Jakarta Sans': "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+				'Sora': "'Sora', -apple-system, BlinkMacSystemFont, sans-serif",
+				'Outfit': "'Outfit', -apple-system, BlinkMacSystemFont, sans-serif",
+				'Space Grotesk': "'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif",
+				'Manrope': "'Manrope', -apple-system, BlinkMacSystemFont, sans-serif",
+				'Poppins': "'Poppins', -apple-system, BlinkMacSystemFont, sans-serif",
+				'DM Sans': "'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+				'Work Sans': "'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+				'Bebas Neue': "'Bebas Neue', 'Impact', 'Arial Black', sans-serif"
+			}
+			document.documentElement.style.setProperty('--font-family', fontFamilyMap[family])
 		}
 	}
 
@@ -93,7 +122,7 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 		icon: string
 	}> = [
 		{ id: 'appearance', label: 'Appearance', icon: 'palette' },
-		{ id: 'fonts', label: 'Fonts', icon: 'text_fields' }
+		{ id: 'typography', label: 'Typography', icon: 'text_fields' }
 	]
 
 	const appearanceSubcategories: Array<{
@@ -135,9 +164,7 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 								)}
 								onMouseEnter={e => {
 									if (activeMainCategory() !== category.id) {
-										e.currentTarget.style.backgroundColor = isDark()
-											? 'hsla(240, 3.7%, 15.9%, 0.5)'
-											: 'hsla(220, 13%, 91%, 0.5)'
+										e.currentTarget.style.backgroundColor = 'hsl(var(--muted) / 0.5)'
 									}
 								}}
 								onMouseLeave={e => {
@@ -392,16 +419,74 @@ export const SettingsComposite: Component<SettingsCompositeProps> = props => {
 							</section>
 						</Show>
 
-						<Show when={activeMainCategory() === 'fonts'}>
+						<Show when={activeMainCategory() === 'typography'}>
 							<section style={settingsCompositeStyles.section(isDark())}>
 								<h4 style={settingsCompositeStyles.sectionTitle(isDark())}>
-									Fonts
+									Font Family
 								</h4>
 								<p style={settingsCompositeStyles.sectionDescription(isDark())}>
-									Customize font settings for the application.
+									Choose the font family for the entire application.
 								</p>
-								<div style={settingsCompositeStyles.placeholder(isDark())}>
-									Font settings coming soon...
+
+								<div
+									style={{
+										'margin-top': '24px'
+									}}
+								>
+									<Select
+										options={[
+											{ value: 'Inter', label: 'Inter', description: 'Modern, clean sans-serif (default)' },
+											{ value: 'Geist Sans', label: 'Geist Sans', description: 'Vercel\'s premium font' },
+											{ value: 'Plus Jakarta Sans', label: 'Plus Jakarta Sans', description: 'Geometric, modern sans-serif' },
+											{ value: 'Sora', label: 'Sora', description: 'Futuristic, tech-inspired' },
+											{ value: 'Outfit', label: 'Outfit', description: 'Geometric, minimal design' },
+											{ value: 'Space Grotesk', label: 'Space Grotesk', description: 'Unique, tech-style font' },
+											{ value: 'Manrope', label: 'Manrope', description: 'Rounded, friendly sans-serif' },
+											{ value: 'Poppins', label: 'Poppins', description: 'Geometric, versatile font' },
+											{ value: 'DM Sans', label: 'DM Sans', description: 'Clean, professional sans-serif' },
+											{ value: 'Work Sans', label: 'Work Sans', description: 'Optimized for screens' },
+											{ value: 'Bebas Neue', label: 'Bebas Neue', description: 'Bold, condensed display font' }
+										]}
+										value={fontSettings().family}
+										onChange={value => handleFontChange(value as FontFamily)}
+										isDark={isDark()}
+									/>
+								</div>
+							</section>
+						</Show>
+
+						<Show when={activeMainCategory() === 'appearance' && activeSubcategory() === 'typography'}>
+							<section style={settingsCompositeStyles.section(isDark())}>
+								<h4 style={settingsCompositeStyles.sectionTitle(isDark())}>
+									Font Family
+								</h4>
+								<p style={settingsCompositeStyles.sectionDescription(isDark())}>
+									Choose the font family for the entire application.
+								</p>
+
+								<div
+									style={{
+										'margin-top': '24px'
+									}}
+								>
+									<Select
+										options={[
+											{ value: 'Inter', label: 'Inter', description: 'Modern, clean sans-serif (default)' },
+											{ value: 'Geist Sans', label: 'Geist Sans', description: 'Vercel\'s premium font' },
+											{ value: 'Plus Jakarta Sans', label: 'Plus Jakarta Sans', description: 'Geometric, modern sans-serif' },
+											{ value: 'Sora', label: 'Sora', description: 'Futuristic, tech-inspired' },
+											{ value: 'Outfit', label: 'Outfit', description: 'Geometric, minimal design' },
+											{ value: 'Space Grotesk', label: 'Space Grotesk', description: 'Unique, tech-style font' },
+											{ value: 'Manrope', label: 'Manrope', description: 'Rounded, friendly sans-serif' },
+											{ value: 'Poppins', label: 'Poppins', description: 'Geometric, versatile font' },
+											{ value: 'DM Sans', label: 'DM Sans', description: 'Clean, professional sans-serif' },
+											{ value: 'Work Sans', label: 'Work Sans', description: 'Optimized for screens' },
+											{ value: 'Bebas Neue', label: 'Bebas Neue', description: 'Bold, condensed display font' }
+										]}
+										value={fontSettings().family}
+										onChange={value => handleFontChange(value as FontFamily)}
+										isDark={isDark()}
+									/>
 								</div>
 							</section>
 						</Show>

@@ -37,12 +37,8 @@ export const sliderStyles = {
 		height: 'var(--slider-height)',
 		'border-radius': 'var(--slider-border-radius)',
 		background: disabled
-			? isDark
-				? 'rgba(255, 255, 255, 0.05)'
-				: 'rgba(0, 0, 0, 0.05)'
-			: isDark
-				? 'rgba(255, 255, 255, 0.1)'
-				: 'rgba(0, 0, 0, 0.1)',
+			? 'hsl(var(--muted) / 0.5)'
+			: 'hsl(var(--muted))',
 		outline: 'none',
 		cursor: disabled ? 'not-allowed' : 'pointer',
 		opacity: disabled ? 0.5 : 1,

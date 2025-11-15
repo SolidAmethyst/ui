@@ -114,10 +114,8 @@ export const Table = <T,>(props: TableProps<T>) => {
 										}}
 										onMouseEnter={e => {
 											if (sortableColumn) {
-												Object.assign(
-													e.currentTarget.style,
-													tableStyles.thHover(isDark())
-												)
+												const hoverStyles = tableStyles.thHover(isDark())
+												e.currentTarget.style.background = hoverStyles.background as string
 											}
 										}}
 										onMouseLeave={e => {
@@ -157,10 +155,8 @@ export const Table = <T,>(props: TableProps<T>) => {
 								<tr
 									style={tableStyles.tr(isDark(), isEven)}
 									onMouseEnter={e => {
-										Object.assign(
-											e.currentTarget.style,
-											tableStyles.trHover(isDark())
-										)
+										const hoverStyles = tableStyles.trHover(isDark())
+										e.currentTarget.style.background = hoverStyles.background as string
 									}}
 									onMouseLeave={e => {
 										const isEvenRow = index() % 2 === 0
@@ -205,10 +201,11 @@ export const Table = <T,>(props: TableProps<T>) => {
 							)}
 							onMouseEnter={e => {
 								if (currentPage() !== 1) {
-									Object.assign(
-										e.currentTarget.style,
-										tableStyles.paginationButtonHover(isDark(), false)
-									)
+									const hoverStyles = tableStyles.paginationButtonHover(isDark(), false)
+									e.currentTarget.style.background = hoverStyles.background as string
+									if (hoverStyles['border-color']) {
+										e.currentTarget.style.borderColor = hoverStyles['border-color'] as string
+									}
 								}
 							}}
 							onMouseLeave={e => {
@@ -240,10 +237,11 @@ export const Table = <T,>(props: TableProps<T>) => {
 							)}
 							onMouseEnter={e => {
 								if (currentPage() !== totalPages()) {
-									Object.assign(
-										e.currentTarget.style,
-										tableStyles.paginationButtonHover(isDark(), false)
-									)
+									const hoverStyles = tableStyles.paginationButtonHover(isDark(), false)
+									e.currentTarget.style.background = hoverStyles.background as string
+									if (hoverStyles['border-color']) {
+										e.currentTarget.style.borderColor = hoverStyles['border-color'] as string
+									}
 								}
 							}}
 							onMouseLeave={e => {

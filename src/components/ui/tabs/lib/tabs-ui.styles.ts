@@ -36,15 +36,19 @@ export const tabsUIStyles = {
 			? 'hsl(var(--foreground))'
 			: 'hsla(var(--muted-foreground) / 0.7)',
 		cursor: 'pointer',
-		'border-bottom': `2px solid ${options.isActive ? 'hsl(var(--primary))' : 'transparent'}`,
-		transition: 'all 0.2s ease',
-		margin: `0 0 var(--tabs-button-margin-bottom) 0`
+		'border-bottom': `var(--tabs-button-border-bottom-width) solid ${options.isActive ? 'hsl(var(--primary))' : 'transparent'}`,
+		transition: 'var(--tabs-button-transition)',
+		margin: `0 0 var(--tabs-button-margin-bottom) 0`,
+		display: 'var(--tabs-button-display, flex)',
+		'align-items': 'var(--tabs-button-align-items, center)',
+		'justify-content': 'var(--tabs-button-justify-content, center)',
+		'box-sizing': 'border-box'
 	}),
 	triggerHover: (options: TabsUIStyleOptions): JSX.CSSProperties => ({
 		color: options.isActive
 			? 'hsl(var(--hover-color))'
 			: 'hsl(var(--foreground))',
-		'border-bottom': `2px solid ${
+		'border-bottom': `var(--tabs-button-border-bottom-width) solid ${
 			options.isActive
 				? 'hsl(var(--hover-color))'
 				: 'transparent'

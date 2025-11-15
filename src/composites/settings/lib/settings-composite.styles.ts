@@ -16,10 +16,8 @@ export const settingsCompositeStyles = {
 		width: '220px',
 		'min-width': '220px',
 		'flex-shrink': '0',
-		'border-right': `1px solid ${
-			isDark ? 'hsla(240, 3.7%, 15.9%, 1)' : 'hsla(220, 13%, 91%, 1)'
-		}`,
-		background: isDark ? 'hsla(240, 5.9%, 8%, 0.95)' : 'hsla(0, 0%, 98%, 0.95)',
+		'border-right': `1px solid hsl(var(--border))`,
+		background: isDark ? `hsl(var(--secondary))` : `hsl(var(--card))`,
 		overflow: 'hidden' as const,
 		'box-sizing': 'border-box' as const,
 		display: 'flex',
@@ -36,18 +34,12 @@ export const settingsCompositeStyles = {
 		cursor: 'pointer',
 		'font-size': 'var(--settings-label-font-size)',
 		color: isActive
-			? isDark
-				? '#f6f6f6'
-				: '#1a1a1a'
-			: isDark
-			? 'rgba(246, 246, 246, 0.7)'
-			: 'rgba(26, 26, 26, 0.7)',
+			? `hsl(var(--foreground))`
+			: `hsl(var(--muted-foreground))`,
 		transition:
 			'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
 		'background-color': isActive
-			? isDark
-				? 'hsla(240, 3.7%, 15.9%, 1)'
-				: 'hsla(220, 13%, 91%, 1)'
+			? `hsl(var(--muted))`
 			: 'transparent',
 		border: 'none',
 		'text-align': 'left' as const,
@@ -70,9 +62,7 @@ export const settingsCompositeStyles = {
 
 	subcategoryContainer: (isDark: boolean) => ({
 		padding: '4px 0',
-		'border-top': `1px solid ${
-			isDark ? 'hsla(240, 3.7%, 15.9%, 0.3)' : 'hsla(220, 13%, 91%, 0.3)'
-		}`,
+		'border-top': `1px solid hsl(var(--border) / 0.3)`,
 		'margin-top': '4px'
 	}),
 
@@ -86,18 +76,12 @@ export const settingsCompositeStyles = {
 		cursor: 'pointer',
 		'font-size': 'var(--settings-description-font-size)',
 		color: isActive
-			? isDark
-				? '#f6f6f6'
-				: '#1a1a1a'
-			: isDark
-			? 'rgba(246, 246, 246, 0.6)'
-			: 'rgba(26, 26, 26, 0.6)',
+			? `hsl(var(--foreground))`
+			: `hsl(var(--muted-foreground))`,
 		transition:
 			'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
 		'background-color': isActive
-			? isDark
-				? 'hsla(240, 3.7%, 15.9%, 0.6)'
-				: 'hsla(220, 13%, 91%, 0.6)'
+			? `hsl(var(--muted) / 0.6)`
 			: 'transparent',
 		border: 'none',
 		'text-align': 'left' as const,
@@ -121,9 +105,7 @@ export const settingsCompositeStyles = {
 	content: (isDark: boolean) => ({
 		flex: '1',
 		overflow: 'hidden' as const,
-		background: isDark
-			? 'hsla(240, 5.9%, 10%, 0.95)'
-			: 'hsla(0, 0%, 98%, 0.95)',
+		background: isDark ? `hsl(var(--secondary))` : `hsl(var(--card))`,
 		'box-sizing': 'border-box' as const,
 		display: 'flex' as const,
 		'flex-direction': 'column' as const
@@ -132,11 +114,9 @@ export const settingsCompositeStyles = {
 	tabsContainer: (isDark: boolean) => ({
 		display: 'flex',
 		gap: '0',
-		'border-bottom': `1px solid ${
-			isDark ? 'hsla(240, 3.7%, 15.9%, 1)' : 'hsla(220, 13%, 91%, 1)'
-		}`,
+		'border-bottom': `1px solid hsl(var(--border))`,
 		padding: '0 20px',
-		background: isDark ? 'hsla(240, 5.9%, 10%, 0.95)' : 'hsla(0, 0%, 98%, 0.95)'
+		background: isDark ? `hsl(240, 20%, 8%)` : `hsl(var(--card))`
 	}),
 
 	tabButton: (isDark: boolean, isActive: boolean) => ({
@@ -144,12 +124,8 @@ export const settingsCompositeStyles = {
 		'font-size': 'var(--settings-label-font-size)',
 		'font-weight': isActive ? '500' : '400',
 		color: isActive
-			? isDark
-				? '#f6f6f6'
-				: '#1a1a1a'
-			: isDark
-			? 'rgba(246, 246, 246, 0.7)'
-			: 'rgba(26, 26, 26, 0.7)',
+			? `hsl(var(--foreground))`
+			: `hsl(var(--muted-foreground))`,
 		background: 'transparent',
 		border: 'none',
 		cursor: 'pointer',
@@ -164,9 +140,7 @@ export const settingsCompositeStyles = {
 	tabButtonHover: (isDark: boolean, isActive: boolean) => ({
 		color: isActive
 			? 'hsl(var(--hover-color))'
-			: isDark
-			? '#f6f6f6'
-			: '#1a1a1a',
+			: `hsl(var(--foreground))`,
 		'border-bottom': isActive
 			? `2px solid color-mix(in hsl, hsl(var(--primary-hover)) var(--hover-color-mix-primary), white var(--hover-color-mix-white))`
 			: '2px solid transparent',
@@ -182,9 +156,7 @@ export const settingsCompositeStyles = {
 	}),
 	section: (isDark: boolean) => ({
 		padding: '24px 20px',
-		'border-bottom': `1px solid ${
-			isDark ? 'hsla(240, 3.7%, 15.9%, 1)' : 'hsla(220, 13%, 91%, 1)'
-		}`,
+		'border-bottom': `1px solid hsl(var(--border))`,
 		'&:last-child': {
 			'border-bottom': 'none'
 		}
@@ -193,14 +165,14 @@ export const settingsCompositeStyles = {
 	sectionTitle: (isDark: boolean) => ({
 		'font-size': '16px',
 		'font-weight': '600',
-		color: isDark ? '#f6f6f6' : '#1a1a1a',
+		color: `hsl(var(--foreground))`,
 		margin: '0 0 8px 0',
 		'letter-spacing': '-0.01em'
 	}),
 
 	sectionDescription: (isDark: boolean) => ({
 		'font-size': 'var(--settings-description-font-size)',
-		color: isDark ? 'rgba(246, 246, 246, 0.7)' : 'rgba(26, 26, 26, 0.7)',
+		color: `hsl(var(--muted-foreground))`,
 		'margin-bottom': '20px',
 		'line-height': '1.5'
 	}),
@@ -209,9 +181,7 @@ export const settingsCompositeStyles = {
 		padding: isLast ? '16px 0 0 0' : '16px 0',
 		'border-bottom': isLast
 			? 'none'
-			: `1px solid ${
-					isDark ? 'hsla(240, 3.7%, 15.9%, 0.5)' : 'hsla(220, 13%, 91%, 0.5)'
-			  }`
+			: `1px solid hsl(var(--border) / 0.5)`
 	}),
 
 	controlLabel: (isDark: boolean) => ({
@@ -220,13 +190,13 @@ export const settingsCompositeStyles = {
 		'align-items': 'center',
 		'margin-bottom': '8px',
 		'font-size': 'var(--settings-label-font-size)',
-		color: isDark ? '#f6f6f6' : '#1a1a1a',
+		color: `hsl(var(--foreground))`,
 		'font-weight': '500'
 	}),
 
 	controlValue: (isDark: boolean) => ({
 		'font-size': '12px',
-		color: isDark ? 'rgba(246, 246, 246, 0.6)' : 'rgba(26, 26, 26, 0.6)',
+		color: `hsl(var(--muted-foreground))`,
 		'font-weight': '400',
 		'min-width': '40px',
 		'text-align': 'right' as const
@@ -238,9 +208,7 @@ export const settingsCompositeStyles = {
 		gap: '12px',
 		padding: '16px 0',
 		'margin-bottom': '8px',
-		'border-bottom': `1px solid ${
-			isDark ? 'hsla(240, 3.7%, 15.9%, 0.5)' : 'hsla(220, 13%, 91%, 0.5)'
-		}`
+		'border-bottom': `1px solid hsl(var(--border) / 0.5)`
 	}),
 
 	checkbox: (isDark: boolean) => ({
@@ -252,7 +220,7 @@ export const settingsCompositeStyles = {
 
 	checkboxLabel: (isDark: boolean) => ({
 		'font-size': 'var(--settings-label-font-size)',
-		color: isDark ? '#f6f6f6' : '#1a1a1a',
+		color: `hsl(var(--foreground))`,
 		cursor: 'pointer',
 		'user-select': 'none' as const
 	}),
@@ -260,7 +228,7 @@ export const settingsCompositeStyles = {
 	placeholder: (isDark: boolean) => ({
 		padding: '20px',
 		'text-align': 'center' as const,
-		color: isDark ? 'rgba(246, 246, 246, 0.5)' : 'rgba(26, 26, 26, 0.5)',
+		color: `hsl(var(--muted-foreground) / 0.5)`,
 		'font-size': 'var(--settings-label-font-size)',
 		'font-style': 'italic'
 	})

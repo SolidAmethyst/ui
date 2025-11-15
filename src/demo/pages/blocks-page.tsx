@@ -53,8 +53,8 @@ export const BlocksPage: Component<BlocksPageProps> = props => {
 				position: 'relative',
 				display: 'flex',
 				'flex-direction': 'column',
-				background: props.isDark() ? 'hsl(240 20% 8%)' : '#ffffff',
-				color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+				background: props.isDark() ? 'hsl(var(--secondary))' : 'hsl(var(--page-background))',
+				color: 'hsl(var(--foreground))'
 			}}
 		>
 			<Container
@@ -94,7 +94,7 @@ export const BlocksPage: Component<BlocksPageProps> = props => {
 								'letter-spacing': '-0.04em',
 								margin: '0',
 								'line-height': '1.1',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+								color: 'hsl(var(--foreground))'
 							}}
 						>
 							Building Blocks for the Web
@@ -127,8 +127,8 @@ export const BlocksPage: Component<BlocksPageProps> = props => {
 									'font-size': '14px',
 									'font-weight': '500',
 									'text-decoration': 'none',
-									color: props.isDark() ? '#1a1a1a' : '#ffffff',
-									background: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+									color: 'hsl(var(--foreground))',
+									background: 'hsl(var(--muted))',
 									'border-radius': '6px',
 									transition: 'all 0.2s ease',
 									display: 'inline-block'
@@ -214,7 +214,7 @@ const BlockCard: Component<BlockCardProps> = props => {
 					style={{
 						'font-size': '1.25rem',
 						'font-weight': '600',
-						color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+						color: 'hsl(var(--foreground))',
 						'text-decoration': 'none',
 						transition: 'opacity 0.2s ease'
 					}}
@@ -321,7 +321,7 @@ const BlockCard: Component<BlockCardProps> = props => {
 							padding: '6px 12px',
 							'font-size': '14px',
 							'text-decoration': 'none',
-							color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+							color: 'hsl(var(--foreground))',
 							'border-radius': '6px',
 							transition: 'background 0.2s ease'
 						}}
@@ -365,7 +365,7 @@ const BlockCard: Component<BlockCardProps> = props => {
 							style={{
 								'font-size': '14px',
 								'text-decoration': 'none',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								color: 'hsl(var(--foreground))',
 								transition: 'opacity 0.2s ease'
 							}}
 							onMouseEnter={e => {
@@ -389,7 +389,7 @@ const BlockCard: Component<BlockCardProps> = props => {
 					height: '600px',
 					margin: '0 auto',
 					overflow: 'hidden',
-					background: props.isDark() ? '#1a1a1a' : '#ffffff',
+					background: 'hsl(var(--muted))',
 					'border-radius': '8px',
 					transition: 'width 0.3s ease',
 					position: 'relative',

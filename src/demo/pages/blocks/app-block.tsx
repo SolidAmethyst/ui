@@ -88,7 +88,7 @@ export const AppBlock: Component<AppBlockProps> = props => {
 							'font-size': '2rem',
 							'font-weight': '700',
 							margin: '0 0 16px 0',
-							color: props.isDark ? '#f6f6f6' : '#1a1a1a'
+							color: 'hsl(var(--foreground))'
 						}}
 					>
 						Welcome to My Application

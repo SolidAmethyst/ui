@@ -9,7 +9,9 @@ export type {
 	MainCategory,
 	AppearanceSubcategory,
 	HighlightProfile,
-	HighlightsSettings
+	HighlightsSettings,
+	FontSettings,
+	FontFamily
 } from './model/types'
 
 // Export base Settings component

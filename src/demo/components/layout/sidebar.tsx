@@ -26,26 +26,25 @@ const componentGroups: ComponentGroup[] = [
 			{ name: 'Accordion', id: 'accordion' },
 			{ name: 'Alert', id: 'alert' },
 			{ name: 'Button', id: 'button' },
-			{ name: 'CheckboxTree', id: 'checkbox-tree' },
-			{ name: 'CodeHighlight', id: 'code-highlight' },
+			{ name: 'Checkbox Tree', id: 'checkbox-tree' },
+			{ name: 'Code Highlight', id: 'code-highlight' },
 			{ name: 'Command', id: 'command' },
-			{ name: 'DragDrop', id: 'drag-drop' },
+			{ name: 'Drag Drop', id: 'drag-drop' },
 			{ name: 'Drawer', id: 'drawer' },
-			{ name: 'EmptyState', id: 'empty-state' },
-			{ name: 'FilterBar', id: 'filter-bar' },
+			{ name: 'Empty State', id: 'empty-state' },
 			{ name: 'Grid', id: 'grid' },
 			{ name: 'Modal', id: 'modal' },
-			{ name: 'NumberInput', id: 'number-input' },
-			{ name: 'ProgressBar', id: 'progress-bar' },
+			{ name: 'Number Input', id: 'number-input' },
+			{ name: 'Progress Bar', id: 'progress-bar' },
 			{ name: 'Scrollbar', id: 'scrollbar' },
 			{ name: 'Search', id: 'search' },
 			{ name: 'Sidebar', id: 'sidebar' },
 			{ name: 'Slider', id: 'slider' },
-			{ name: 'SplitPane', id: 'split-pane' },
+			{ name: 'Split Pane', id: 'split-pane' },
 			{ name: 'Table', id: 'table' },
 			{ name: 'Tabs', id: 'tabs' },
 			{ name: 'Timeline', id: 'timeline' },
-			{ name: 'TechChip', id: 'techchip' },
+			{ name: 'Tech Chip', id: 'techchip' },
 			{ name: 'Toast', id: 'toast' },
 			{ name: 'Tooltip', id: 'tooltip' }
 		]
@@ -54,7 +53,9 @@ const componentGroups: ComponentGroup[] = [
 		title: 'Composites',
 		items: [
 			{ name: 'App', id: 'app' },
-			{ name: 'TitleBar', id: 'titlebar' }
+			{ name: 'File Manager', id: 'file-manager' },
+			{ name: 'Filter', id: 'filter-bar' },
+			{ name: 'Title Bar', id: 'titlebar' }
 		]
 	},
 	{
@@ -73,6 +74,7 @@ export const Sidebar: Component<SidebarProps> = props => (
 			position: 'sticky',
 			top: '0',
 			'align-self': 'flex-start',
+			height: 'calc(100vh - 60px)',
 			'max-height': 'calc(100vh - 60px)',
 			overflow: 'hidden',
 			'flex-shrink': '0',
@@ -86,7 +88,8 @@ export const Sidebar: Component<SidebarProps> = props => (
 			'padding-right': '24px',
 			'margin-right': '24px',
 			display: 'flex',
-			'flex-direction': 'column'
+			'flex-direction': 'column',
+			'min-height': '0'
 		}}
 	>
 		<Scrollbar
@@ -101,7 +104,6 @@ export const Sidebar: Component<SidebarProps> = props => (
 			<div
 				style={{
 					padding: '8px 0 0 0',
-					height: '100%',
 					'box-sizing': 'border-box',
 					margin: '0'
 				}}
@@ -147,46 +149,39 @@ export const Sidebar: Component<SidebarProps> = props => (
 											padding:
 												props.currentComponent === item.id
 													? itemIndex() === 0
-														? '0 0 6px 16px'
-														: '6px 0 6px 16px'
+														? '0 0 8px 16px'
+														: '8px 0 8px 16px'
 													: itemIndex() === 0
-														? '0 0 6px 19px'
-														: '6px 0 6px 19px',
+														? '0 0 8px 19px'
+														: '8px 0 8px 19px',
 											'text-align': 'left',
 											border: 'none',
 											background: 'transparent',
 											color:
 												props.currentComponent === item.id
-													? props.isDark()
-														? '#f6f6f6'
-														: '#1a1a1a'
-													: props.isDark()
-														? 'rgba(246, 246, 246, 0.6)'
-														: 'rgba(26, 26, 26, 0.6)',
+													? 'hsl(var(--foreground))'
+													: 'hsl(var(--foreground) / 0.6)',
 											cursor: 'pointer',
 											'font-size': '13px',
 											'font-weight':
 												props.currentComponent === item.id ? '500' : '400',
+											'line-height': '1.6',
 											transition: 'all 0.15s ease',
 											'border-left': `3px solid ${
 												props.currentComponent === item.id
-													? '#3b82f6'
+													? 'hsl(var(--accent))'
 													: 'transparent'
 											}`,
 											'box-sizing': 'border-box'
 										}}
 										onMouseEnter={e => {
 											if (props.currentComponent !== item.id) {
-												e.currentTarget.style.color = props.isDark()
-													? '#f6f6f6'
-													: '#1a1a1a'
+												e.currentTarget.style.color = 'hsl(var(--foreground))'
 											}
 										}}
 										onMouseLeave={e => {
 											if (props.currentComponent !== item.id) {
-												e.currentTarget.style.color = props.isDark()
-													? 'rgba(246, 246, 246, 0.6)'
-													: 'rgba(26, 26, 26, 0.6)'
+												e.currentTarget.style.color = 'hsl(var(--foreground) / 0.6)'
 											}
 										}}
 									>

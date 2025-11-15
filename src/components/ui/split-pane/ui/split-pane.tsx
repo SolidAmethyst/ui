@@ -115,10 +115,8 @@ export const SplitPane: Component<SplitPaneProps> = props => {
 					}}
 					onMouseEnter={e => {
 						if (!isDragging()) {
-							Object.assign(
-								e.currentTarget.style,
-								splitPaneStyles.handleHover(direction(), isDark())
-							)
+							const hoverStyles = splitPaneStyles.handleHover(direction(), isDark())
+							e.currentTarget.style.background = hoverStyles.background as string
 						}
 					}}
 					onMouseLeave={e => {

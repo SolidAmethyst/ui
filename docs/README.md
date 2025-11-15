@@ -1,45 +1,46 @@
-# Документация проекта
+# Project Documentation
 
-Централизованная документация для Solid UI Toolkit.
+Centralized documentation for Solid UI Toolkit.
 
-## 📚 Основная документация
+## 📚 Core Documentation
 
-- **[README](../README.md)** - Главная страница проекта
-- **[Архитектура](architecture/overview.md)** - Техническая архитектура системы
-- **[API документация](api/reference.md)** - Документация по API компонентов
-- **[Журнал изменений](changelog/changelog.md)** - История всех изменений
+- **[README](../README.md)** - Project homepage
+- **[Architecture](architecture/overview.md)** - Technical system architecture
+- **[API Documentation](api/reference.md)** - Component API documentation
+- **[Changelog](changelog/changelog.md)** - History of all changes
 
-## 📖 Руководства
+## 📖 Guides
 
-- **[Руководство пользователя](guides/usage.md)** - Как использовать компоненты
-- **[Руководство разработчика](guides/developer-guide.md)** - Разработка и контрибьюция
-- **[Настройка GitHub CI/CD](guides/github-setup.md)** - Настройка CI/CD для проекта
-- **[Установка и настройка](guides/installation.md)** - Детальная установка
+- **[User Guide](guides/usage.md)** - How to use components
+- **[Developer Guide](guides/developer-guide.md)** - Development and contribution
+- **[GitHub CI/CD Setup](guides/github-setup.md)** - CI/CD configuration for the project
+- **[Installation Guide](guides/installation.md)** - Detailed installation instructions
+- **[Troubleshooting](guides/troubleshooting/)** - Common issues and solutions
 
-## 📋 Требования и планирование
+## 📋 Requirements and Planning
 
-- **[Системные требования](requirements/requirements.md)** - Минимальные требования
-- **[Роадмап](roadmap/roadmap.md)** - План развития проекта и TODO список
+- **[System Requirements](requirements/requirements.md)** - Minimum requirements
+- **[Roadmap](roadmap/roadmap.md)** - Project development plan and TODO list
 
-## ⚖️ Правовая информация
+## ⚖️ Legal Information
 
-- **[Лицензия](legal/LICENSE)** - MIT License
-- **[Политика конфиденциальности](legal/PRIVACY.md)** - Обработка данных
-- **[Политика безопасности](legal/SECURITY.md)** - Сообщение об уязвимостях
-- **[Кодекс поведения](legal/CODE_OF_CONDUCT.md)** - Правила сообщества
-- **[Руководство по контрибьюции](legal/CONTRIBUTING.md)** - Как внести вклад
+- **[License](legal/LICENSE)** - MIT License
+- **[Privacy Policy](legal/PRIVACY.md)** - Data handling
+- **[Security Policy](legal/SECURITY.md)** - Vulnerability reporting
+- **[Code of Conduct](legal/CODE_OF_CONDUCT.md)** - Community rules
+- **[Contributing Guide](legal/CONTRIBUTING.md)** - How to contribute
 
-## 📁 Архив
+## 📁 Archive
 
-- **[Старый TODO список](archive/todo.md)** - Старый список задач (теперь используется roadmap.md)
+- **[Old TODO List](archive/todo.md)** - Old task list (now using roadmap.md)
 
-## 🏗️ Архитектура
+## 🏗️ Architecture
 
-### Обзор
+### Overview
 
-- [Архитектура системы](architecture/overview.md) - Общая архитектура компонентов
-- [Модули системы](architecture/modules.md) - Описание модулей
-- [Потоки данных](architecture/data-flows.md) - Схемы потоков данных
+- [System Architecture](architecture/overview.md) - Overall component architecture
+- [System Modules](architecture/modules.md) - Module descriptions
+- [Data Flows](architecture/data-flows.md) - Data flow diagrams
 
 ### Components
 
@@ -48,87 +49,89 @@
 - [Scrollbar](components/scrollbar.md) - Scrollbar component documentation
 - [TechChip](components/techchip.md) - TechChip component documentation
 
-## 📖 Руководства
+## 📖 Guides
 
-### Для пользователей
+### For Users
 
-- [Руководство пользователя](guides/usage.md) - Полное руководство по компонентам
-- [Быстрый старт](guides/usage.md#быстрый-старт) - Начало работы с библиотекой
-- [Использование компонентов](guides/usage.md#использование-компонентов) - Примеры использования
+- [User Guide](guides/usage.md) - Complete component guide
+- [Quick Start](guides/usage.md#quick-start) - Getting started with the library
+- [Using Components](guides/usage.md#using-components) - Usage examples
 
-### Для разработчиков
+### For Developers
 
-- [Руководство разработчика](guides/developer-guide.md) - Разработка новых компонентов
-- [Настройка окружения](guides/developer-guide.md#настройка-окружения-разработки) - Установка
-- [Архитектура проекта](guides/developer-guide.md#архитектура-проекта) - Структура проекта
-- [Стандарты кодирования](guides/developer-guide.md#стандарты-кодирования) - Стиль кода
+- [Developer Guide](guides/developer-guide.md) - Developing new components
+- [Environment Setup](guides/developer-guide.md#development-environment-setup) - Installation
+- [Project Architecture](guides/developer-guide.md#project-architecture) - Project structure
+- [Coding Standards](guides/developer-guide.md#coding-standards) - Code style
+- [Troubleshooting](guides/troubleshooting/) - Component integration issues
 
-## 📋 Требования
+## 📋 Requirements
 
-### Системные требования
+### System Requirements
 
-- [Минимальные требования](requirements/requirements.md#минимальные-требования)
-- [Рекомендуемые требования](requirements/requirements.md#рекомендуемые-требования)
-- [Требования к зависимостям](requirements/requirements.md#требования-к-зависимостям)
+- [Minimum Requirements](requirements/requirements.md#minimum-requirements)
+- [Recommended Requirements](requirements/requirements.md#recommended-requirements)
+- [Dependency Requirements](requirements/requirements.md#dependency-requirements)
 
-### Производительность
+### Performance
 
-- [Требования к производительности](requirements/requirements.md#требования-к-производительности)
-- [Требования безопасности](requirements/requirements.md#требования-безопасности)
+- [Performance Requirements](requirements/requirements.md#performance-requirements)
+- [Security Requirements](requirements/requirements.md#security-requirements)
 
-## 🗺️ Планирование
+## 🗺️ Planning
 
-### Роадмап
+### Roadmap
 
-- [Текущий статус](roadmap/roadmap.md#текущий-статус) - Что уже реализовано
-- [Ближайшие планы](roadmap/roadmap.md#ближайшие-планы) - TODO список
-- [Среднесрочные цели](roadmap/roadmap.md#среднесрочные-цели) - Планы на будущее
-- [Долгосрочные планы](roadmap/roadmap.md#долгосрочные-планы) - Видение проекта
+- [Current Status](roadmap/roadmap.md#current-status) - What's already implemented
+- [Near-term Plans](roadmap/roadmap.md#near-term-plans) - TODO list
+- [Medium-term Goals](roadmap/roadmap.md#medium-term-goals) - Future plans
+- [Long-term Plans](roadmap/roadmap.md#long-term-plans) - Project vision
 
-### Изменения
+### Changes
 
-- [Журнал изменений](changelog/changelog.md) - История изменений
-- [Планируемые изменения](roadmap/roadmap.md) - Будущие обновления
+- [Changelog](changelog/changelog.md) - Change history
+- [Planned Changes](roadmap/roadmap.md) - Future updates
 
-## 🔍 Поиск по документации
+## 🔍 Documentation Search
 
-### По типу проблемы
+### By Problem Type
 
-- **Проблемы с компонентами**: [Руководство пользователя](guides/usage.md#решение-проблем) → Компоненты
-- **UI/UX проблемы**: [Журнал изменений](changelog/changelog.md) → UI/UX исправления
-- **Архитектурные решения**: [Архитектура](architecture/overview.md)
-- **Планы развития**: [Роадмап](roadmap/roadmap.md)
+- **Component Issues**: [Troubleshooting](guides/troubleshooting/) → Components
+- **Scrollbar Issues**: [Scrollbar Layout Issues](guides/troubleshooting/scrollbar-layout-issues.md)
+- **UI/UX Issues**: [Changelog](changelog/changelog.md) → UI/UX fixes
+- **Architectural Decisions**: [Architecture](architecture/overview.md)
+- **Development Plans**: [Roadmap](roadmap/roadmap.md)
 
-### По роли
+### By Role
 
-- **Пользователь**: [Руководство пользователя](guides/usage.md)
-- **Разработчик**: [Руководство разработчика](guides/developer-guide.md)
-- **Контрибьютор**: [Системные требования](requirements/requirements.md)
+- **User**: [User Guide](guides/usage.md)
+- **Developer**: [Developer Guide](guides/developer-guide.md)
+- **Contributor**: [System Requirements](requirements/requirements.md)
 
-## 📝 Обновление документации
+## 📝 Updating Documentation
 
-При внесении изменений в проект:
+When making changes to the project:
 
-1. **Обновите соответствующие разделы** в документации
-2. **Добавьте новые изменения** в [Журнал изменений](changelog/changelog.md)
-3. **Обновите роадмап** при изменении планов
-4. **Проверьте актуальность** всех ссылок
+1. **Update relevant sections** in the documentation
+2. **Add new changes** to the [Changelog](changelog/changelog.md)
+3. **Update the roadmap** when plans change
+4. **Verify accuracy** of all links
 
-## 🏷️ Версионирование документации
+## 🏷️ Documentation Versioning
 
-- **Major** (1.0.0) - Кардинальные изменения в архитектуре
-- **Minor** (1.1.0) - Новые компоненты и возможности
-- **Patch** (1.0.1) - Исправления и улучшения
+- **Major** (1.0.0) - Major architectural changes
+- **Minor** (1.1.0) - New components and features
+- **Patch** (1.0.1) - Fixes and improvements
 
-## 📊 Статистика документации
+## 📊 Documentation Statistics
 
-- **Всего страниц**: Обновляется автоматически
-- **Руководств**: Обновляется автоматически
-- **API компонентов**: Обновляется автоматически
-- **Примеров кода**: Обновляется автоматически
-- **Последнее обновление**: См. роадмап
+- **Total Pages**: Updated automatically
+- **Guides**: Updated automatically
+- **Component APIs**: Updated automatically
+- **Code Examples**: Updated automatically
+- **Last Update**: See roadmap
 
 ---
 
-**Последнее обновление**: Декабрь 2024
-**Версия документации**: 0.1.0
+**Last Updated**: December 2024
+**Documentation Version**: 0.1.0

@@ -64,9 +64,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 
 	const sliderContainerStyles = () => ({
 		padding: '16px 20px',
-		'border-bottom': `1px solid ${
-			props.isDark() ? 'hsla(240, 3.7%, 15.9%, 1)' : 'hsla(220, 13%, 91%, 1)'
-		}`
+		'border-bottom': `1px solid hsl(var(--border))`
 	})
 
 	const labelStyles = () => ({
@@ -75,15 +73,13 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 		'align-items': 'center',
 		'margin-bottom': '8px',
 		'font-size': '14px',
-		color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+		color: 'hsl(var(--foreground))',
 		'font-weight': '500'
 	})
 
 	const valueStyles = () => ({
 		'font-size': '12px',
-		color: props.isDark()
-			? 'rgba(246, 246, 246, 0.6)'
-			: 'rgba(26, 26, 26, 0.6)',
+		color: 'hsl(var(--muted-foreground))',
 		'font-weight': '400',
 		'min-width': '40px',
 		'text-align': 'right' as const
@@ -93,9 +89,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 		width: '100%',
 		height: '6px',
 		'border-radius': '3px',
-		background: props.isDark()
-			? 'rgba(255, 255, 255, 0.1)'
-			: 'rgba(0, 0, 0, 0.1)',
+		background: 'hsl(var(--muted))',
 		outline: 'none',
 		appearance: 'none' as const,
 		cursor: 'pointer',
@@ -104,7 +98,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 			width: '16px',
 			height: '16px',
 			'border-radius': '50%',
-			background: props.isDark() ? '#3b82f6' : '#2563eb',
+			background: 'hsl(var(--accent))',
 			cursor: 'pointer',
 			'box-shadow': '0 2px 4px rgba(0, 0, 0, 0.2)'
 		},
@@ -112,7 +106,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 			width: '16px',
 			height: '16px',
 			'border-radius': '50%',
-			background: props.isDark() ? '#3b82f6' : '#2563eb',
+			background: 'hsl(var(--accent))',
 			cursor: 'pointer',
 			border: 'none',
 			'box-shadow': '0 2px 4px rgba(0, 0, 0, 0.2)'
@@ -124,23 +118,19 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 		'align-items': 'center',
 		gap: '12px',
 		padding: '16px 20px',
-		'border-bottom': `1px solid ${
-			props.isDark() ? 'hsla(240, 3.7%, 15.9%, 1)' : 'hsla(220, 13%, 91%, 1)'
-		}`
+		'border-bottom': `1px solid hsl(var(--border))`
 	})
 
 	const checkboxStyles = () => ({
 		width: '18px',
 		height: '18px',
 		cursor: 'pointer',
-		accentColor: props.isDark() ? '#3b82f6' : '#2563eb'
+		accentColor: 'hsl(var(--accent))'
 	})
 
 	const headerStyles = () => ({
 		padding: '20px',
-		'border-bottom': `1px solid ${
-			props.isDark() ? 'hsla(240, 3.7%, 15.9%, 1)' : 'hsla(220, 13%, 91%, 1)'
-		}`,
+		'border-bottom': `1px solid hsl(var(--border))`,
 		display: 'flex',
 		'justify-content': 'space-between',
 		'align-items': 'center'
@@ -149,7 +139,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 	const titleStyles = () => ({
 		'font-size': '18px',
 		'font-weight': '600',
-		color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+		color: 'hsl(var(--foreground))',
 		margin: '0'
 	})
 
@@ -164,7 +154,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 					left: '0',
 					right: '0',
 					bottom: '0',
-					background: 'rgba(0, 0, 0, 0.3)',
+					background: 'hsl(var(--muted) / 0.3)',
 					'backdrop-filter': 'blur(2px)',
 					'z-index': '999',
 					opacity: props.isOpen ? '1' : '0',
@@ -184,7 +174,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 						style={{
 							background: 'transparent',
 							border: 'none',
-							color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+							color: 'hsl(var(--foreground))',
 							cursor: 'pointer',
 							padding: '4px',
 							display: 'flex',
@@ -194,9 +184,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 							transition: 'background-color 0.2s ease'
 						}}
 						onMouseEnter={e => {
-							e.currentTarget.style.backgroundColor = props.isDark()
-								? 'rgba(255, 255, 255, 0.1)'
-								: 'rgba(0, 0, 0, 0.05)'
+							e.currentTarget.style.backgroundColor = 'hsl(var(--muted))'
 						}}
 						onMouseLeave={e => {
 							e.currentTarget.style.backgroundColor = 'transparent'
@@ -226,7 +214,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 						style={{
 							'font-size': '16px',
 							'font-weight': '600',
-							color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+							color: 'hsl(var(--foreground))',
 							margin: '0 0 16px 0'
 						}}
 					>
@@ -247,7 +235,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = props => {
 							style={{
 								'font-size': '14px',
 								'font-weight': '500',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								color: 'hsl(var(--foreground))',
 								cursor: 'pointer',
 								'user-select': 'none'
 							}}

@@ -37,13 +37,13 @@ export function useScrollbarHandlers(
 	}
 
 	const handleWheel = (e: WheelEvent) => {
-		if (!contentRef()) return
+		if (!contentRef() || !containerRef()) return
 
 		// Check if content actually needs scrolling
 		const containerSize =
 			direction() === 'horizontal'
-				? contentRef()!.clientWidth
-				: contentRef()!.clientHeight
+				? containerRef()!.clientWidth
+				: containerRef()!.clientHeight
 		const contentSize =
 			direction() === 'horizontal'
 				? contentRef()!.scrollWidth
@@ -88,6 +88,7 @@ export function useScrollbarHandlers(
 
 		// Only prevent default if we actually need to scroll
 		e.preventDefault()
+		e.stopPropagation()
 
 		// Handle delta based on deltaMode for standard scroll behavior
 		let scrollAmount: number
@@ -96,9 +97,6 @@ export function useScrollbarHandlers(
 			scrollAmount = delta * 16
 		} else if (e.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
 			// Delta is in pages - use container height/width
-			const containerSize = isHorizontal
-				? contentRef()!.clientWidth
-				: contentRef()!.clientHeight
 			scrollAmount = delta * containerSize
 		} else {
 			// DOM_DELTA_PIXEL - use delta directly but normalize for standard behavior
@@ -153,7 +151,7 @@ export function useScrollbarHandlers(
 	}
 
 	const handleMouseMove = async (e: MouseEvent) => {
-		if (!state().isDragging || !trackRef() || !contentRef()) return
+		if (!state().isDragging || !trackRef() || !contentRef() || !containerRef()) return
 		e.preventDefault()
 
 		const trackRect = trackRef()!.getBoundingClientRect()
@@ -184,11 +182,11 @@ export function useScrollbarHandlers(
 		// First update thumb position
 		setState(prev => ({ ...prev, thumbPosition: clampedPos }))
 
-		// Then update scroll position
+		// Then update scroll position - use container size, not track size
 		const containerSize =
 			direction() === 'horizontal'
-				? trackRef()!.clientWidth
-				: trackRef()!.clientHeight
+				? containerRef()!.clientWidth
+				: containerRef()!.clientHeight
 		const contentSize =
 			direction() === 'horizontal'
 				? contentRef()!.scrollWidth
@@ -221,7 +219,7 @@ export function useScrollbarHandlers(
 	}
 
 	const handleTrackClick = (e: MouseEvent) => {
-		if (!trackRef() || !contentRef() || !thumbRef()) return
+		if (!trackRef() || !contentRef() || !thumbRef() || !containerRef()) return
 		if (e.target === thumbRef()) return
 
 		const trackRect = trackRef()!.getBoundingClientRect()
@@ -244,10 +242,11 @@ export function useScrollbarHandlers(
 
 		setState(prev => ({ ...prev, thumbPosition: clampedThumbPos }))
 
+		// Use container size, not track size
 		const containerSize =
 			direction() === 'horizontal'
-				? trackRef()!.clientWidth
-				: trackRef()!.clientHeight
+				? containerRef()!.clientWidth
+				: containerRef()!.clientHeight
 		const contentSize =
 			direction() === 'horizontal'
 				? contentRef()!.scrollWidth

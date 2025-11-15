@@ -55,13 +55,6 @@ export const usePreserveArea = (
 			const elementHeight = rect.height
 			baseArea = elementWidth * elementHeight
 
-			console.log('[PA Init]', {
-				elementWidth,
-				elementHeight,
-				baseArea,
-				containerWidth: containerRect.width
-			})
-
 			initialized = true
 			currentConfig = activeConfig
 		}
@@ -73,13 +66,6 @@ export const usePreserveArea = (
 
 		// Calculate new height to maintain area
 		let newHeight = baseArea / currentWidth
-
-		console.log('[PA Update]', {
-			currentWidth,
-			baseArea,
-			newHeight,
-			oldHeight: elementRect.height
-		})
 
 		// Apply constraints (parse string values like '200px' to numbers)
 		if (activeConfig.minHeight) {
@@ -148,15 +134,6 @@ export const usePreserveArea = (
 					// Apply new grid-template-rows
 					const newGridTemplateRows = rowValues.join(' ')
 					container.style.gridTemplateRows = newGridTemplateRows
-
-					console.log('[PA Applied]', {
-						rowIndex,
-						newGridTemplateRows,
-						currentRows,
-						remainingHeight,
-						containerHeight,
-						otherRowsCount: otherRowIndices.length
-					})
 				}
 			}
 		}

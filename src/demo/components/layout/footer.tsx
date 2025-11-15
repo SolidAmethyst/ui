@@ -39,7 +39,7 @@ export const Footer: Component<FooterProps> = (props) => (
         <a
           href="#"
           style={{
-            color: props.isDark() ? "#f6f6f6" : "#1a1a1a",
+            color: "hsl(var(--foreground))",
             "text-decoration": "none",
             "font-size": "14px",
             "font-weight": "500",
@@ -57,7 +57,7 @@ export const Footer: Component<FooterProps> = (props) => (
         <a
           href="#"
           style={{
-            color: props.isDark() ? "#f6f6f6" : "#1a1a1a",
+            color: "hsl(var(--foreground))",
             "text-decoration": "none",
             "font-size": "14px",
             "font-weight": "500",
@@ -75,7 +75,7 @@ export const Footer: Component<FooterProps> = (props) => (
         <a
           href="#"
           style={{
-            color: props.isDark() ? "#f6f6f6" : "#1a1a1a",
+            color: "hsl(var(--foreground))",
             "text-decoration": "none",
             "font-size": "14px",
             "font-weight": "500",

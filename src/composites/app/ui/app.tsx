@@ -23,7 +23,6 @@ export const App: Component<AppProps> = props => {
 	const sidebarItems = createMemo(() => props.sidebarItems ?? [])
 
 	const handleMinimize = () => {
-		console.log('Minimize clicked')
 		props.titleBarProps?.onMinimizeClick?.()
 	}
 
@@ -33,7 +32,6 @@ export const App: Component<AppProps> = props => {
 	}
 
 	const handleClose = () => {
-		console.log('Close clicked')
 		props.titleBarProps?.onCloseClick?.()
 	}
 
@@ -43,12 +41,10 @@ export const App: Component<AppProps> = props => {
 	}
 
 	const handleDebug = () => {
-		console.log('Debug clicked')
 		props.titleBarProps?.onDebugClick?.()
 	}
 
 	const handleSettings = () => {
-		console.log('Settings clicked')
 		props.titleBarProps?.onSettingsClick?.()
 	}
 

@@ -69,4 +69,9 @@ export interface CheckboxProps {
 	 * Material 3 style - no border, just checkmark icon
 	 */
 	material3?: boolean
+
+	/**
+	 * HTML title attribute for tooltip
+	 */
+	title?: string
 }

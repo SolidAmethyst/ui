@@ -61,6 +61,7 @@ export const Slider: Component<SliderProps> = props => {
 				class='slider-input'
 				style={{
 					...sliderStyles.slider(isDark(), props.disabled ?? false),
+					'--slider-fill-percent': `${((props.value - min()) / (max() - min())) * 100}%`,
 					...props.style
 				}}
 			/>

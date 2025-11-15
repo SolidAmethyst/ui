@@ -28,10 +28,8 @@ const TreeNode: Component<TreeNodeProps> = props => {
 				style={checkboxTreeStyles.nodeContent(props.isDark)}
 				onMouseEnter={e => {
 					if (!props.disabled) {
-						Object.assign(
-							e.currentTarget.style,
-							checkboxTreeStyles.nodeContentHover(props.isDark)
-						)
+						const hoverStyles = checkboxTreeStyles.nodeContentHover(props.isDark)
+						e.currentTarget.style.background = hoverStyles.background as string
 					}
 				}}
 				onMouseLeave={e => {
@@ -97,10 +95,8 @@ export const CheckboxTree: Component<CheckboxTreeProps> = props => {
 					style={checkboxTreeStyles.nodeContent(isDark())}
 					onMouseEnter={e => {
 						if (!(node.disabled ?? false)) {
-							Object.assign(
-								e.currentTarget.style,
-								checkboxTreeStyles.nodeContentHover(isDark())
-							)
+							const hoverStyles = checkboxTreeStyles.nodeContentHover(isDark())
+							e.currentTarget.style.background = hoverStyles.background as string
 						}
 					}}
 					onMouseLeave={e => {

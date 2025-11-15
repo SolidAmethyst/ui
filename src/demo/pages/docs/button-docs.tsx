@@ -322,6 +322,12 @@ export const ButtonDocs: Component<ButtonDocsProps> = props => {
 									iconPosition='only'
 									title='Share'
 								/>
+								<Button
+									variant='small'
+									icon='restart_alt'
+									iconPosition='only'
+									title='Reset'
+								/>
 							</div>
 						</div>
 					}

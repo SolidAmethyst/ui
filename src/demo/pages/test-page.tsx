@@ -98,7 +98,7 @@ export const TestPage: Component<TestPageProps> = props => {
 								margin: '0',
 								'font-size': '1.5rem',
 								'font-weight': '700',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								color: 'hsl(var(--foreground))',
 								'line-height': '1.2'
 							}}
 						>
@@ -213,7 +213,7 @@ export const TestPage: Component<TestPageProps> = props => {
 								style={{
 									'font-size': '1.1rem',
 									'font-weight': '700',
-									color: props.isDark() ? '#3b82f6' : '#2563eb',
+									color: 'hsl(var(--accent))',
 									'white-space': 'nowrap'
 								}}
 							>

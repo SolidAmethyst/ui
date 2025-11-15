@@ -32,7 +32,6 @@ export const Menu: Component<MenuProps> = props => {
 		}
 
 		// Close menu if clicked outside both menu and anchor
-		console.log('Closing menu due to outside click')
 		props.onClose()
 	}
 
@@ -82,18 +81,6 @@ export const Menu: Component<MenuProps> = props => {
 		const menuRect = menuRef.getBoundingClientRect()
 		const position = props.position || 'bottom-left'
 
-		console.log('calculatePosition:', {
-			burgerButton: burgerButton,
-			anchorElement: anchorElement,
-			anchorRect: {
-				top: anchorRect.top,
-				left: anchorRect.left,
-				bottom: anchorRect.bottom,
-				right: anchorRect.right
-			},
-			position: position
-		})
-
 		let top = 0
 		let left = 0
 
@@ -136,8 +123,6 @@ export const Menu: Component<MenuProps> = props => {
 
 		menuRef.style.top = `${top}px`
 		menuRef.style.left = `${left}px`
-
-		console.log('Menu positioned at:', { top, left })
 	}
 
 	onMount(() => {

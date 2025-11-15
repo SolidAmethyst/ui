@@ -1,18 +1,18 @@
-# Как использовать Solid UI Toolkit
+# How to Use Solid UI Toolkit
 
-## 🚀 Быстрый старт
+## 🚀 Quick Start
 
-### 1. Добавить компонент в проект
+### 1. Add Component to Project
 
 ```bash
-# Из папки solid-ui-toolkit
+# From solid-ui-toolkit folder
 node scripts/add-component.js scrollbar
 
-# Или указать путь к проекту
+# Or specify project path
 node scripts/add-component.js scrollbar "F:\Workspace\L2_Dev\Luminary_V2\lineage2-toolkit"
 ```
 
-### 2. Использовать в коде
+### 2. Use in Code
 
 ```tsx
 import { Scrollbar } from "./shared/ui/scrollbar";
@@ -26,31 +26,31 @@ function MyComponent() {
 }
 ```
 
-## 📦 Доступные компоненты
+## 📦 Available Components
 
-- **Button** - Универсальный компонент кнопки с различными вариантами
-- **Modal** - Модальное окно с overlay, focus trap и навигацией с клавиатуры
-- **ProgressBar** - Индикатор прогресса с determinate и indeterminate вариантами
-- **Scrollbar** - Кастомный скроллбар с Material 3 стилизацией
-- **Toast** - Система уведомлений с вариантами success, error, warning, info
+- **Button** - Versatile button component with multiple variants
+- **Modal** - Modal dialog with overlay, focus trap, and keyboard navigation
+- **ProgressBar** - Progress indicator with determinate and indeterminate variants
+- **Scrollbar** - Custom scrollbar with Material 3 styling
+- **Toast** - Notification system with success, error, warning, info variants
 
-## 🛠️ Разработка
+## 🛠️ Development
 
 ```bash
-# Установить зависимости
+# Install dependencies
 npm install
 
-# Запустить dev сервер
+# Start dev server
 npm run dev
 
-# Собрать библиотеку
+# Build library
 npm run build
 
-# Запустить Storybook
+# Run Storybook
 npm run storybook
 ```
 
-## 📁 Структура после добавления
+## 📁 Structure After Adding
 
 ```
 your-project/
@@ -73,17 +73,17 @@ your-project/
 │               └── index.tsx
 ```
 
-## 🎨 Стилизация
+## 🎨 Styling
 
-Компоненты используют Tailwind CSS. Убедитесь, что в вашем проекте настроен Tailwind.
+Components use Tailwind CSS. Make sure Tailwind is configured in your project.
 
-## 🔄 Обновление компонентов
+## 🔄 Updating Components
 
-Чтобы обновить компонент, просто запустите команду добавления заново - файлы будут перезаписаны.
+To update a component, simply run the add command again - files will be overwritten.
 
-## 📝 Добавление новых компонентов
+## 📝 Adding New Components
 
-1. Создайте папку в `src/components/ui/your-component/`
-2. Добавьте экспорт в `src/index.ts`
-3. Обновите `scripts/add-component.js` если нужно
-4. Создайте Storybook story
+1. Create folder in `src/components/ui/your-component/`
+2. Add export to `src/index.ts`
+3. Update `scripts/add-component.js` if needed
+4. Create Storybook story

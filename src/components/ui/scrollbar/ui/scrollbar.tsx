@@ -1,12 +1,12 @@
-import { createSignal, onCleanup, onMount, createEffect } from "solid-js";
-import { ScrollbarProvider } from "../lib/scrollbar-provider";
-import { useScrollbarHandlers } from "../lib/use-scrollbar-handlers";
-import { useScrollbarLogic } from "../lib/use-scrollbar-logic";
-import { useScrollbarObservers } from "../lib/use-scrollbar-observers";
-import { useScrollbarState } from "../lib/use-scrollbar-state";
-import type { ScrollbarProps } from "../model/types";
-import { ScrollbarArrows } from "./scrollbar-arrows";
-import { ScrollbarThumb } from "./scrollbar-thumb";
+import { createEffect, createSignal, onCleanup, onMount } from "solid-js"
+import { ScrollbarProvider } from "../lib/scrollbar-provider"
+import { useScrollbarHandlers } from "../lib/use-scrollbar-handlers"
+import { useScrollbarLogic } from "../lib/use-scrollbar-logic"
+import { useScrollbarObservers } from "../lib/use-scrollbar-observers"
+import { useScrollbarState } from "../lib/use-scrollbar-state"
+import type { ScrollbarProps } from "../model/types"
+import { ScrollbarArrows } from "./scrollbar-arrows"
+import { ScrollbarThumb } from "./scrollbar-thumb"
 
 const ScrollbarComponent = (props: ScrollbarProps) => {
   // Refs
@@ -113,6 +113,8 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
     // Setup scroll listener
     if (contentRef()) {
       contentRef()!.addEventListener("scroll", handleScroll);
+      // Add wheel event listener directly to contentRef to ensure it works
+      contentRef()!.addEventListener("wheel", handleWheel, { passive: false });
     }
 
     // Setup observers
@@ -126,6 +128,7 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
       cleanupObservers?.();
       if (contentRef()) {
         contentRef()!.removeEventListener("scroll", handleScroll);
+        contentRef()!.removeEventListener("wheel", handleWheel);
       }
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
@@ -133,7 +136,7 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
   });
 
   return (
-    <div
+      <div
       ref={setContainerRef}
       class={`scrollbar-container ${props.class || ""}`}
       style={props.style}
@@ -142,14 +145,13 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
           updateScrollbar(); // Check if scrollbar is needed on hover
         }}
         onMouseLeave={handleMouseLeave}
-        onWheel={handleWheel}
       >
         <div
           ref={setContentRef}
           class="scrollbar-content"
           style={{
-            "overflow-y": "hidden",
-            "overflow-x": "hidden",
+            "overflow-y": direction() === "vertical" ? "scroll" : "hidden",
+            "overflow-x": direction() === "horizontal" ? "scroll" : "hidden",
           }}
         >
           {props.children}

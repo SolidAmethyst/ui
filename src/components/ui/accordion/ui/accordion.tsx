@@ -73,10 +73,8 @@ export const Accordion: Component<AccordionProps> = props => {
 								onClick={() => toggleItem(item.id)}
 								onMouseEnter={e => {
 									if (!(item.disabled ?? false)) {
-										Object.assign(
-											e.currentTarget.style,
-											accordionStyles.headerHover(isDark(), item.disabled ?? false)
-										)
+										const hoverStyles = accordionStyles.headerHover(isDark(), item.disabled ?? false)
+										e.currentTarget.style.background = hoverStyles.background as string
 									}
 								}}
 								onMouseLeave={e => {

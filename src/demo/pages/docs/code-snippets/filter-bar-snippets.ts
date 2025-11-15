@@ -3,7 +3,8 @@
  */
 
 export const filterBarSnippets = {
-	imports: `import { FilterBar } from '@sapphiresolid/ui'`,
+	imports: `import { FilterBar, FilterPanel } from '@sapphiresolid/ui'
+import type { FileTypeFilter } from '@sapphiresolid/ui'`,
 
 	usage: {
 		basicUsage: `const filters = [
@@ -69,7 +70,38 @@ export const filterBarSnippets = {
   }
 ]
 
-<FilterBar filters={filters} />`
+<FilterBar filters={filters} />`,
+
+		filterPanel: `const [filterPanelOpen, setFilterPanelOpen] = createSignal(false)
+const [fileTypes, setFileTypes] = createSignal<FileTypeFilter[]>([
+  { id: 'sql', label: '.sql', extension: 'sql', checked: true },
+  { id: 'txt', label: '.txt', extension: 'txt', checked: true },
+  { id: 'bat', label: '.bat', extension: 'bat', checked: true }
+])
+const [showHiddenFiles, setShowHiddenFiles] = createSignal(false)
+const [minFileSize, setMinFileSize] = createSignal(0)
+const [maxFileSize, setMaxFileSize] = createSignal(0)
+
+<button onClick={() => setFilterPanelOpen(true)}>
+  Open Filters
+</button>
+
+<FilterPanel
+  isOpen={filterPanelOpen()}
+  onClose={() => setFilterPanelOpen(false)}
+  fileTypes={fileTypes()}
+  onFileTypesChange={setFileTypes}
+  showHiddenFiles={showHiddenFiles()}
+  onShowHiddenFilesChange={setShowHiddenFiles}
+  minFileSize={minFileSize()}
+  maxFileSize={maxFileSize()}
+  onFileSizeChange={(min, max) => {
+    setMinFileSize(min)
+    setMaxFileSize(max)
+  }}
+  isDark={true}
+  size="md"
+/>`
 	},
 
 	customization: `@layer base {
@@ -109,4 +141,3 @@ export const filterBarSnippets = {
   }
 }`
 } as const
-

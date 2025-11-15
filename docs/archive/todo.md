@@ -2,28 +2,28 @@
 
 ## ⏳ Pending
 
-- [ ] Создать README с примерами использования Scrollbar компонента
+- [ ] Create README with Scrollbar component usage examples
 
-## 📝 Как использовать Scrollbar
+## 📝 How to Use Scrollbar
 
-### Горизонтальный скролл
+### Horizontal Scroll
 
 ```tsx
 <Scrollbar direction="horizontal" showArrows={true} autoHide={false}>
-  <div style="white-space: nowrap;">Длинный текст...</div>
+  <div style="white-space: nowrap;">Long text...</div>
 </Scrollbar>
 ```
 
-### Вертикальный скролл
+### Vertical Scroll
 
 ```tsx
 <Scrollbar direction="vertical" showArrows={true} autoHide={false}>
-  <div>Контент с вертикальным скроллом...</div>
+  <div>Content with vertical scroll...</div>
 </Scrollbar>
 ```
 
-### Важно
+### Important
 
-- Обернуть приложение в `<ScrollbarProvider>`
-- Использовать `direction='horizontal'` вместо `horizontal={true}`
-- Использовать `direction='vertical'` вместо `vertical={true}`
+- Wrap application in `<ScrollbarProvider>`
+- Use `direction='horizontal'` instead of `horizontal={true}`
+- Use `direction='vertical'` instead of `vertical={true}`

@@ -149,7 +149,7 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
       >
         <span
           style={{
-            color: props.isDark() ? "#ffffff" : "#1a1a1a",
+            color: "hsl(var(--foreground))",
           }}
         >
           Button states
@@ -162,7 +162,7 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
             transform: "translateX(-50%)",
             width: "40px",
             height: "1px",
-            background: props.isDark() ? "#ffffff" : "#1a1a1a",
+            background: "hsl(var(--foreground))",
             "border-radius": "1px",
             "box-shadow": "0 1px 1px rgba(0, 0, 0, 0.3)",
           }}

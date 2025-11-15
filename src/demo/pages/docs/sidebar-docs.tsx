@@ -94,7 +94,7 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 								overflow: 'hidden',
 								position: 'relative',
 								display: 'flex',
-								background: props.isDark() ? 'hsl(240 20% 8%)' : '#ffffff'
+								background: props.isDark() ? 'hsl(var(--secondary))' : 'hsl(var(--page-background))'
 							}}
 						>
 							<Sidebar
@@ -173,7 +173,7 @@ export const SidebarDocs: Component<SidebarDocsProps> = props => {
 											'font-size': '1.1rem',
 											'font-weight': '600',
 											margin: '0 0 12px 0',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'flex-shrink': '0'
 										}}
 									>

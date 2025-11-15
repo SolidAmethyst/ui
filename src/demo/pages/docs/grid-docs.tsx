@@ -95,7 +95,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -134,7 +134,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												background: props.isDark()
 													? 'rgba(255, 255, 255, 0.05)'
 													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+												color: 'hsl(var(--foreground))'
 											}}
 											onFocus={e => {
 												const target = e.currentTarget as HTMLInputElement
@@ -159,7 +159,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -219,7 +219,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 													style={{
 														'font-size': '1rem',
 														'font-weight': '600',
-														color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+														color: 'hsl(var(--foreground))'
 													}}
 												>
 													KPI {i() + 1}
@@ -259,7 +259,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -330,7 +330,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 													style={{
 														'font-size': '1rem',
 														'font-weight': '600',
-														color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+														color: 'hsl(var(--foreground))'
 													}}
 												>
 													KPI {i() + 1}
@@ -376,7 +376,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -415,7 +415,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												background: props.isDark()
 													? 'rgba(255, 255, 255, 0.05)'
 													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+												color: 'hsl(var(--foreground))'
 											}}
 											onFocus={e => {
 												const target = e.currentTarget as HTMLInputElement
@@ -440,7 +440,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -503,7 +503,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 													style={{
 														'font-size': '1rem',
 														'font-weight': '600',
-														color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+														color: 'hsl(var(--foreground))'
 													}}
 												>
 													KPI {i() + 1}
@@ -549,7 +549,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -588,7 +588,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 												background: props.isDark()
 													? 'rgba(255, 255, 255, 0.05)'
 													: 'rgba(0, 0, 0, 0.02)',
-												color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+												color: 'hsl(var(--foreground))'
 											}}
 											onFocus={e => {
 												const target = e.currentTarget as HTMLInputElement
@@ -613,7 +613,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -649,7 +649,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -722,7 +722,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 													style={{
 														'font-size': '1rem',
 														'font-weight': '600',
-														color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+														color: 'hsl(var(--foreground))'
 													}}
 												>
 													KPI {i() + 1}
@@ -762,7 +762,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 											display: 'flex',
 											'align-items': 'center',
 											gap: '8px',
-											color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											'font-size': '0.875rem'
 										}}
 									>
@@ -927,7 +927,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							display: 'flex',
 							'align-items': 'center',
 							gap: '20px',
-							color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+							color: 'hsl(var(--foreground))',
 							'font-size': '0.875rem'
 						}}
 					>
@@ -968,7 +968,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									'font-weight': '600',
 									'font-size': '0.9375rem',
 									'font-family': 'ui-monospace, monospace',
-									color: props.isDark() ? '#3b82f6' : '#2563eb'
+									color: 'hsl(var(--accent))'
 								}}
 							>
 								{sidebarAmount()}%
@@ -1070,7 +1070,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 													style={{
 														'font-size': '0.875rem',
 														'font-weight': '600',
-														color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+														color: 'hsl(var(--foreground))',
 														'margin-bottom': '4px'
 													}}
 												>
@@ -1138,7 +1138,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 							display: 'flex',
 							'align-items': 'center',
 							gap: '20px',
-							color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+							color: 'hsl(var(--foreground))',
 							'font-size': '0.875rem'
 						}}
 					>
@@ -1179,7 +1179,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 									'font-weight': '600',
 									'font-size': '0.9375rem',
 									'font-family': 'ui-monospace, monospace',
-									color: props.isDark() ? '#3b82f6' : '#2563eb'
+									color: 'hsl(var(--accent))'
 								}}
 							>
 								{sidebarAmount2()}%
@@ -1292,7 +1292,7 @@ export const GridDocs: Component<GridDocsProps> = props => {
 													style={{
 														'font-size': '0.875rem',
 														'font-weight': '600',
-														color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+														color: 'hsl(var(--foreground))',
 														'margin-bottom': '4px'
 													}}
 												>

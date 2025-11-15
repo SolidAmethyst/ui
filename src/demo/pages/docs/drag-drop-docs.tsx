@@ -243,7 +243,7 @@ export const DragDropDocs: Component<DragDropDocsProps> = props => {
 												style={{
 													display: 'block',
 													'margin-bottom': '4px',
-													color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+													color: 'hsl(var(--foreground))'
 												}}
 											>
 												{(item.data as { title: string })?.title ||

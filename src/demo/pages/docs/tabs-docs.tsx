@@ -148,7 +148,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 								overflow: 'hidden',
 								position: 'relative',
 								display: 'flex',
-								background: appDark() ? 'hsl(240 20% 8%)' : '#ffffff'
+								background: appDark() ? 'hsl(var(--secondary))' : 'hsl(var(--page-background))'
 							}}
 						>
 							<Sidebar
@@ -216,7 +216,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 											<div
 												style={{
 													margin: '20px 0',
-													color: appDark() ? '#ffffff' : '#000000'
+													color: 'hsl(var(--foreground))'
 												}}
 											>
 												<h3
@@ -224,7 +224,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 														margin: '0 0 16px 0',
 														'font-size': '18px',
 														'font-weight': '600',
-														color: appDark() ? '#ffffff' : '#000000'
+														color: 'hsl(var(--foreground))'
 													}}
 												>
 													Overview
@@ -247,7 +247,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 											<div
 												style={{
 													margin: '20px 0',
-													color: appDark() ? '#ffffff' : '#000000'
+													color: 'hsl(var(--foreground))'
 												}}
 											>
 												<h3
@@ -255,7 +255,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 														margin: '0 0 16px 0',
 														'font-size': '18px',
 														'font-weight': '600',
-														color: appDark() ? '#ffffff' : '#000000'
+														color: 'hsl(var(--foreground))'
 													}}
 												>
 													Analytics
@@ -278,7 +278,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 											<div
 												style={{
 													margin: '20px 0',
-													color: appDark() ? '#ffffff' : '#000000'
+													color: 'hsl(var(--foreground))'
 												}}
 											>
 												<h3
@@ -286,7 +286,7 @@ export const TabsDocs: Component<TabsDocsProps> = props => {
 														margin: '0 0 16px 0',
 														'font-size': '18px',
 														'font-weight': '600',
-														color: appDark() ? '#ffffff' : '#000000'
+														color: 'hsl(var(--foreground))'
 													}}
 												>
 													Reports

@@ -110,6 +110,7 @@ export const Drawer: Component<DrawerProps> = props => {
 					{/* Drawer Panel */}
 					<aside
 						class={`drawer-panel drawer-${position()} ${props.class || ''}`}
+						data-theme={isDark() ? 'dark' : 'light'}
 						style={{
 							...drawerStyles.panel(
 								localIsOpen(),
@@ -132,7 +133,16 @@ export const Drawer: Component<DrawerProps> = props => {
 	onMount(() => {
 		// Create container in body for portal
 		portalContainer = document.createElement('div')
+		// Set theme on portal container so CSS variables work correctly
+		portalContainer.setAttribute('data-theme', isDark() ? 'dark' : 'light')
 		document.body.appendChild(portalContainer)
+
+		// Update theme when it changes
+		createEffect(() => {
+			if (portalContainer) {
+				portalContainer.setAttribute('data-theme', isDark() ? 'dark' : 'light')
+			}
+		})
 
 		// Render once - Solid.js will handle reactive updates
 		renderPortal()

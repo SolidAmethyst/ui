@@ -14,10 +14,8 @@ export const codeHighlightStyles = {
 		width: '100%',
 		'max-width': '100%',
 		'box-sizing': 'border-box',
-		background: options.isDark ? '#1a1a1f' : '#f8f9fa',
-		border: `1px solid ${
-			options.isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)'
-		}`,
+		background: 'hsl(var(--code-background))',
+		border: `1px solid hsl(var(--border) / 0.12)`,
 		'border-radius': 'var(--code-highlight-border-radius)',
 		overflow: 'hidden',
 		'margin-bottom': '20px',
@@ -36,9 +34,7 @@ export const codeHighlightStyles = {
 		'font-weight': '500',
 		border: 'none',
 		background: 'transparent',
-		color: options.isDark
-			? 'rgba(246, 246, 246, 0.6)'
-			: 'rgba(26, 26, 26, 0.6)',
+		color: 'hsl(var(--muted-foreground))',
 		cursor: 'pointer',
 		transition: 'color 0.2s ease',
 		'z-index': '10'

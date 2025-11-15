@@ -28,7 +28,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
         <h3
           style={{
             "margin-bottom": "12px",
-            color: props.isDark() ? "#ffffff" : "#1a1a1a",
+            color: "hsl(var(--foreground))",
             "font-size": "18px",
             "font-weight": "700",
             "letter-spacing": "0.5px",
@@ -61,7 +61,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
             <div
               style={{
                 padding: "15px",
-                color: "#f6f6f6",
+                color: "hsl(var(--foreground))",
               }}
             >
               {Array.from({ length: 30 }, (_, i) => (
@@ -71,12 +71,12 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
                     "border-bottom": "1px solid rgba(255, 255, 255, 0.1)",
                   }}
                 >
-                  <h3 style={{ color: "#f6f6f6", margin: "0 0 5px 0" }}>
+                  <h3 style={{ color: "hsl(var(--foreground))", margin: "0 0 5px 0" }}>
                     Item {i + 1}
                   </h3>
                   <p
                     style={{
-                      color: "rgba(246, 246, 246, 0.7)",
+                      color: "hsl(var(--muted-foreground))",
                       margin: "0",
                     }}
                   >
@@ -96,7 +96,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
         <h3
           style={{
             "margin-bottom": "12px",
-            color: props.isDark() ? "#ffffff" : "#1a1a1a",
+            color: "hsl(var(--foreground))",
             "font-size": "18px",
             "font-weight": "700",
             "letter-spacing": "0.5px",
@@ -129,7 +129,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
             <div
               style={{
                 padding: "0 16px",
-                color: "#f6f6f6",
+                color: "hsl(var(--foreground))",
                 "white-space": "nowrap",
                 "min-width": "100%",
                 height: "100%",
@@ -154,7 +154,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
                 >
                   <h3
                     style={{
-                      color: "#f6f6f6",
+                      color: "hsl(var(--foreground))",
                       margin: "0 0 5px 0",
                       "font-size": "16px",
                     }}
@@ -163,7 +163,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
                   </h3>
                   <p
                     style={{
-                      color: "rgba(246, 246, 246, 0.7)",
+                      color: "hsl(var(--muted-foreground))",
                       margin: "0",
                       "font-size": "14px",
                     }}

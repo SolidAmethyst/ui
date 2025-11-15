@@ -21,8 +21,8 @@ export const Settings: Component<SettingsProps> = props => {
 			isDark={isDark()}
 			position='right'
 			size={width()}
-			showBackdrop={true}
-			closeOnBackdropClick={true}
+			showBackdrop={false}
+			closeOnBackdropClick={false}
 			zIndex={10000}
 			class={props.class}
 			style={props.style}
@@ -34,9 +34,7 @@ export const Settings: Component<SettingsProps> = props => {
 					onClick={() => props.onClose()}
 					style={settingsStyles.closeButton(isDark())}
 					onMouseEnter={e => {
-						e.currentTarget.style.backgroundColor = isDark()
-							? 'rgba(255, 255, 255, 0.1)'
-							: 'rgba(0, 0, 0, 0.05)'
+						e.currentTarget.style.backgroundColor = 'hsl(var(--muted) / 0.1)'
 					}}
 					onMouseLeave={e => {
 						e.currentTarget.style.backgroundColor = 'transparent'

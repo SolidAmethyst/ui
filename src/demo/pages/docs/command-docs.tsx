@@ -168,7 +168,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 								style={{
 									width: '100%',
 									'box-sizing': 'border-box',
-									'background-color': props.isDark() ? '#242424' : '#ffffff',
+									'background-color': props.isDark() ? 'hsl(var(--card))' : 'hsl(var(--page-background))',
 									'border-radius': '8px',
 									'box-shadow': props.isDark()
 										? '0 8px 32px rgba(0, 0, 0, 0.6)'
@@ -202,7 +202,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 											'justify-content': 'center',
 											width: '16px',
 											height: '16px',
-											color: props.isDark() ? '#ffffff' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											opacity: 0.5,
 											'flex-shrink': '0'
 										}}
@@ -217,7 +217,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 											border: 'none',
 											outline: 'none',
 											background: 'transparent',
-											color: props.isDark() ? '#ffffff' : '#1a1a1a',
+											color: 'hsl(var(--foreground))',
 											width: '100%',
 											flex: '1',
 											'margin-left': '4px'
@@ -241,7 +241,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												padding: '2px 0',
 												height: '28px',
 												'font-size': 'var(--command-item-font-size)',
-												color: props.isDark() ? '#ffffff' : '#1a1a1a',
+												color: 'hsl(var(--foreground))',
 												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
@@ -264,7 +264,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 													'justify-content': 'center',
 													width: '16px',
 													height: '16px',
-													color: props.isDark() ? '#ffffff' : '#1a1a1a',
+													color: 'hsl(var(--foreground))',
 													'flex-shrink': '0'
 												}}
 											>
@@ -290,7 +290,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												padding: '2px 0',
 												height: '28px',
 												'font-size': 'var(--command-item-font-size)',
-												color: props.isDark() ? '#ffffff' : '#1a1a1a',
+												color: 'hsl(var(--foreground))',
 												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
@@ -313,7 +313,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 													'justify-content': 'center',
 													width: '16px',
 													height: '16px',
-													color: props.isDark() ? '#ffffff' : '#1a1a1a',
+													color: 'hsl(var(--foreground))',
 													'flex-shrink': '0'
 												}}
 											>
@@ -341,7 +341,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												padding: '2px 0',
 												height: '28px',
 												'font-size': 'var(--command-item-font-size)',
-												color: props.isDark() ? '#ffffff' : '#1a1a1a',
+												color: 'hsl(var(--foreground))',
 												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
@@ -364,7 +364,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 													'justify-content': 'center',
 													width: '16px',
 													height: '16px',
-													color: props.isDark() ? '#ffffff' : '#1a1a1a',
+													color: 'hsl(var(--foreground))',
 													'flex-shrink': '0'
 												}}
 											>
@@ -393,7 +393,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												padding: '2px 0',
 												height: '28px',
 												'font-size': 'var(--command-item-font-size)',
-												color: props.isDark() ? '#ffffff' : '#1a1a1a',
+												color: 'hsl(var(--foreground))',
 												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
@@ -416,7 +416,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 														'justify-content': 'center',
 														width: '16px',
 														height: '16px',
-														color: props.isDark() ? '#ffffff' : '#1a1a1a',
+														color: 'hsl(var(--foreground))',
 														'flex-shrink': '0'
 													}}
 												>
@@ -442,7 +442,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												padding: '2px 0',
 												height: '28px',
 												'font-size': 'var(--command-item-font-size)',
-												color: props.isDark() ? '#ffffff' : '#1a1a1a',
+												color: 'hsl(var(--foreground))',
 												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
@@ -465,7 +465,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 														'justify-content': 'center',
 														width: '16px',
 														height: '16px',
-														color: props.isDark() ? '#ffffff' : '#1a1a1a',
+														color: 'hsl(var(--foreground))',
 														'flex-shrink': '0'
 													}}
 												>
@@ -491,7 +491,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 												padding: '2px 0',
 												height: '28px',
 												'font-size': 'var(--command-item-font-size)',
-												color: props.isDark() ? '#ffffff' : '#1a1a1a',
+												color: 'hsl(var(--foreground))',
 												'border-radius': 'var(--command-border-radius)',
 												'box-sizing': 'border-box',
 												width: '100%',
@@ -514,7 +514,7 @@ export const CommandDocs: Component<CommandDocsProps> = props => {
 														'justify-content': 'center',
 														width: '16px',
 														height: '16px',
-														color: props.isDark() ? '#ffffff' : '#1a1a1a',
+														color: 'hsl(var(--foreground))',
 														'flex-shrink': '0'
 													}}
 												>

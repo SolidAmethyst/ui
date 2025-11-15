@@ -364,7 +364,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -384,7 +384,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -412,7 +412,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Current search value (controlled)
@@ -430,7 +430,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -450,7 +450,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -468,7 +468,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -488,7 +488,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Placeholder text
@@ -506,7 +506,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -526,7 +526,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -544,7 +544,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -564,7 +564,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Whether the search is disabled
@@ -582,7 +582,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -602,7 +602,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -620,7 +620,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -640,7 +640,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Dark theme mode
@@ -658,7 +658,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -678,7 +678,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -696,7 +696,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -716,7 +716,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Debounce delay in milliseconds
@@ -734,7 +734,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -754,7 +754,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -782,7 +782,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Callback fired after debounce
@@ -800,7 +800,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -820,7 +820,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -848,7 +848,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Callback fired immediately on input change
@@ -866,7 +866,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -886,7 +886,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -904,7 +904,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -924,7 +924,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Show search icon
@@ -942,7 +942,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -962,7 +962,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -980,7 +980,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -1000,7 +1000,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Show clear button when value is present
@@ -1010,7 +1010,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -1030,7 +1030,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -1048,7 +1048,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									<code
@@ -1068,7 +1068,7 @@ export const SearchDocs: Component<SearchDocsProps> = props => {
 								<td
 									style={{
 										padding: '12px 16px',
-										color: props.isDark() ? '#f6f6f6' : '#1a1a1a'
+										color: 'hsl(var(--foreground))'
 									}}
 								>
 									Auto-focus the input on mount

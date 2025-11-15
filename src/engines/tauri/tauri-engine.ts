@@ -1,9 +1,9 @@
 // Tauri engine implementation for Solid UI Toolkit with DLL integration
 import type {
   EngineState,
-  UIEngine,
   GlassEffectConfig,
-} from "../types/engine-interface";
+  UIEngine,
+} from "../types/engine-interface"
 
 // Tauri API types (will be available when @tauri-apps/api is installed)
 declare global {

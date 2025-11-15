@@ -1,3 +1,3 @@
 export default {
-	presets: [['@babel/preset-env', { targets: { node: 'current' } }], 'solid']
+	presets: [['@babel/preset-env', { targets: { node: 'current' } }], 'babel-preset-solid']
 }

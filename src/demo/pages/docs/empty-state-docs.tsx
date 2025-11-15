@@ -41,9 +41,9 @@ export const EmptyStateDocs: Component<EmptyStateDocsProps> = props => {
 						<div style={docsStyles.previewContainer(theme())}>
 							<div
 								style={{
-									width: '100%',
-									'max-width': '500px',
-									margin: '0 auto'
+									display: 'flex',
+									'justify-content': 'center',
+									width: '100%'
 								}}
 							>
 								<EmptyState

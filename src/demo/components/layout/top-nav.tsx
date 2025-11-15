@@ -9,7 +9,6 @@ interface TopNavProps {
 	toggleTheme: () => void
 	currentPage: 'docs' | 'blocks' | 'settings'
 	onPageChange: (page: 'docs' | 'blocks' | 'settings') => void
-	onSettingsClick: () => void
 	glassEnabled: boolean
 	glassBlur: number
 	glassOpacity: number
@@ -17,17 +16,18 @@ interface TopNavProps {
 	glassSaturation: number
 }
 
-export const TopNav: Component<TopNavProps> = props => (
-	<Show
-		when={props.glassEnabled}
-		fallback={
+export const TopNav: Component<TopNavProps> = props => {
+	return (
+		<Show
+			when={props.glassEnabled}
+			fallback={
 			<header
 				style={{
 					position: 'fixed',
 					top: '0',
 					left: '0',
 					right: '0',
-					height: '60px',
+					height: 'var(--top-nav-height, 60px)',
 					'z-index': '100',
 					background: props.isDark()
 						? 'rgba(0, 0, 0, 0.8)'
@@ -58,7 +58,7 @@ export const TopNav: Component<TopNavProps> = props => (
 							href='/'
 							style={{
 								'text-decoration': 'none',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								color: 'hsl(var(--foreground))',
 								'font-size': '1.25rem',
 								'font-weight': '700',
 								'letter-spacing': '-0.02em',
@@ -74,6 +74,7 @@ export const TopNav: Component<TopNavProps> = props => (
 
 					{/* Navigation */}
 					<nav
+						ref={fixTabButtonStyles}
 						style={{
 							position: 'absolute',
 							left: '50%',
@@ -92,45 +93,63 @@ export const TopNav: Component<TopNavProps> = props => (
 							isDark={props.isDark()}
 							style={{
 								margin: '0',
-								width: 'auto'
+								width: 'auto',
+								height: 'var(--top-nav-height, 60px)'
 							}}
 						>
 							<TabsList
 								style={{
 									'border-bottom': 'none',
 									margin: '0',
-									gap: '8px'
+									gap: 'var(--tabs-button-gap)',
+									height: 'var(--top-nav-height, 60px)',
+									'align-items': 'flex-end'
 								}}
 							>
 								<TabsTrigger
 									value='docs'
-									padding='8px 16px'
-									fontSize='14px'
-									fontWeight='500'
+									padding='var(--top-nav-tab-padding, 8px 16px)'
+									fontSize='var(--top-nav-tab-font-size, 14px)'
+									fontWeight='var(--top-nav-tab-font-weight, 500)'
+									display='flex'
+									alignItems='center'
+									justifyContent='center'
 									style={{
-										'margin-bottom': '-2px'
+										margin: '0',
+										'margin-bottom': 'calc(-1 * var(--tabs-button-border-bottom-width))',
+										height: '100%'
 									}}
 								>
 									Docs
 								</TabsTrigger>
 								<TabsTrigger
 									value='blocks'
-									padding='8px 16px'
-									fontSize='14px'
-									fontWeight='500'
+									padding='var(--top-nav-tab-padding, 8px 16px)'
+									fontSize='var(--top-nav-tab-font-size, 14px)'
+									fontWeight='var(--top-nav-tab-font-weight, 500)'
+									display='flex'
+									alignItems='center'
+									justifyContent='center'
 									style={{
-										'margin-bottom': '-2px'
+										margin: '0',
+										'margin-bottom': 'calc(-1 * var(--tabs-button-border-bottom-width))',
+										height: '100%'
 									}}
 								>
 									Blocks
 								</TabsTrigger>
 								<TabsTrigger
 									value='settings'
-									padding='8px 16px'
-									fontSize='14px'
-									fontWeight='500'
+									padding='var(--top-nav-tab-padding, 8px 16px)'
+									fontSize='var(--top-nav-tab-font-size, 14px)'
+									fontWeight='var(--top-nav-tab-font-weight, 500)'
+									display='flex'
+									alignItems='center'
+									justifyContent='center'
 									style={{
-										'margin-bottom': '-2px'
+										margin: '0',
+										'margin-bottom': 'calc(-1 * var(--tabs-button-border-bottom-width))',
+										height: '100%'
 									}}
 								>
 									Settings
@@ -149,14 +168,6 @@ export const TopNav: Component<TopNavProps> = props => (
 							title='Toggle theme'
 							onClick={props.toggleTheme}
 						/>
-						<Button
-							variant='small'
-							icon='tune'
-							iconFilled={false}
-							iconPosition='only'
-							title='Glass settings'
-							onClick={props.onSettingsClick}
-						/>
 					</div>
 				</Container>
 			</header>
@@ -174,7 +185,7 @@ export const TopNav: Component<TopNavProps> = props => (
 				top: '0',
 				left: '0',
 				right: '0',
-				height: '60px',
+				height: 'var(--top-nav-height, 60px)',
 				'z-index': '100',
 				padding: '0',
 				display: 'flex',
@@ -211,7 +222,7 @@ export const TopNav: Component<TopNavProps> = props => (
 							href='/'
 							style={{
 								'text-decoration': 'none',
-								color: props.isDark() ? '#f6f6f6' : '#1a1a1a',
+								color: 'hsl(var(--foreground))',
 								'font-size': '1.25rem',
 								'font-weight': '700',
 								'letter-spacing': '-0.02em',
@@ -245,45 +256,63 @@ export const TopNav: Component<TopNavProps> = props => (
 							isDark={props.isDark()}
 							style={{
 								margin: '0',
-								width: 'auto'
+								width: 'auto',
+								height: 'var(--top-nav-height, 60px)'
 							}}
 						>
 							<TabsList
 								style={{
 									'border-bottom': 'none',
 									margin: '0',
-									gap: '8px'
+									gap: 'var(--tabs-button-gap)',
+									height: 'var(--top-nav-height, 60px)',
+									'align-items': 'flex-end'
 								}}
 							>
 								<TabsTrigger
 									value='docs'
-									padding='8px 16px'
-									fontSize='14px'
-									fontWeight='500'
+									padding='var(--top-nav-tab-padding, 8px 16px)'
+									fontSize='var(--top-nav-tab-font-size, 14px)'
+									fontWeight='var(--top-nav-tab-font-weight, 500)'
+									display='flex'
+									alignItems='center'
+									justifyContent='center'
 									style={{
-										'margin-bottom': '-2px'
+										margin: '0',
+										'margin-bottom': 'calc(-1 * var(--tabs-button-border-bottom-width))',
+										height: '100%'
 									}}
 								>
 									Docs
 								</TabsTrigger>
 								<TabsTrigger
 									value='blocks'
-									padding='8px 16px'
-									fontSize='14px'
-									fontWeight='500'
+									padding='var(--top-nav-tab-padding, 8px 16px)'
+									fontSize='var(--top-nav-tab-font-size, 14px)'
+									fontWeight='var(--top-nav-tab-font-weight, 500)'
+									display='flex'
+									alignItems='center'
+									justifyContent='center'
 									style={{
-										'margin-bottom': '-2px'
+										margin: '0',
+										'margin-bottom': 'calc(-1 * var(--tabs-button-border-bottom-width))',
+										height: '100%'
 									}}
 								>
 									Blocks
 								</TabsTrigger>
 								<TabsTrigger
 									value='settings'
-									padding='8px 16px'
-									fontSize='14px'
-									fontWeight='500'
+									padding='var(--top-nav-tab-padding, 8px 16px)'
+									fontSize='var(--top-nav-tab-font-size, 14px)'
+									fontWeight='var(--top-nav-tab-font-weight, 500)'
+									display='flex'
+									alignItems='center'
+									justifyContent='center'
 									style={{
-										'margin-bottom': '-2px'
+										margin: '0',
+										'margin-bottom': 'calc(-1 * var(--tabs-button-border-bottom-width))',
+										height: '100%'
 									}}
 								>
 									Settings
@@ -302,17 +331,10 @@ export const TopNav: Component<TopNavProps> = props => (
 							title='Toggle theme'
 							onClick={props.toggleTheme}
 						/>
-						<Button
-							variant='small'
-							icon='tune'
-							iconFilled={false}
-							iconPosition='only'
-							title='Glass settings'
-							onClick={props.onSettingsClick}
-						/>
 					</div>
 				</Container>
 			</header>
 		</Glass>
 	</Show>
-)
+	)
+}

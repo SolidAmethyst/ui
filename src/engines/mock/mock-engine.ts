@@ -74,17 +74,14 @@ export class MockEngine implements UIEngine {
   // Glass effects (mock - no-op, CSS fallback will be used)
   async applyGlassEffect(config: GlassEffectConfig): Promise<void> {
     // Mock implementation - no-op, component will use CSS fallback
-    console.log("[MockEngine] Glass effect requested (using CSS fallback):", config);
   }
 
   async updateGlassEffect(config: Partial<GlassEffectConfig>): Promise<void> {
     // Mock implementation - no-op, component will use CSS fallback
-    console.log("[MockEngine] Glass effect update requested (using CSS fallback):", config);
   }
 
   async removeGlassEffect(): Promise<void> {
     // Mock implementation - no-op, component will use CSS fallback
-    console.log("[MockEngine] Glass effect removal requested (using CSS fallback)");
   }
 }
 

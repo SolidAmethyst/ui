@@ -89,8 +89,10 @@ describe('CodeHighlight', () => {
 		const wrapper = container.firstChild as HTMLElement
 		expect(wrapper).toBeInTheDocument()
 
-		const styles = window.getComputedStyle(wrapper)
-		expect(styles.backgroundColor).toBeTruthy()
+		// Check that background style is applied (via inline styles)
+		// CSS variables may not resolve in test environment, so check inline style
+		const inlineStyle = wrapper.getAttribute('style') || ''
+		expect(inlineStyle).toContain('background')
 	})
 
 	it('applies light theme styles', () => {
@@ -101,8 +103,10 @@ describe('CodeHighlight', () => {
 		const wrapper = container.firstChild as HTMLElement
 		expect(wrapper).toBeInTheDocument()
 
-		const styles = window.getComputedStyle(wrapper)
-		expect(styles.backgroundColor).toBeTruthy()
+		// Check that background style is applied (via inline styles)
+		// CSS variables may not resolve in test environment, so check inline style
+		const inlineStyle = wrapper.getAttribute('style') || ''
+		expect(inlineStyle).toContain('background')
 	})
 
 	it('accepts custom class name', () => {

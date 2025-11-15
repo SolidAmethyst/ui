@@ -153,4 +153,3 @@ export const Modal: Component<ModalProps> = props => {
 	// Return empty fragment - content is rendered in portal
 	return <></>
 }
-

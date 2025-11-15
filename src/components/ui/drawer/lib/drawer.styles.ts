@@ -20,37 +20,49 @@ export const drawerStyles = {
 		}
 
 		// Calculate backdrop coverage based on position
+		// Backdrop should cover the area NOT occupied by the drawer
+		// Backdrop starts below top-nav (60px) to avoid blurring the header
+		const topNavHeight = '60px'
 		const backdropCoverage: Record<DrawerPosition, JSX.CSSProperties> = {
 			right: {
-				right: isOpen ? size : '0'
+				top: topNavHeight,
+				left: '0',
+				bottom: '0',
+				right: isOpen ? size : '100%'
 			},
 			left: {
-				left: isOpen ? size : '0'
+				top: topNavHeight,
+				left: isOpen ? size : '100%',
+				bottom: '0',
+				right: '0'
 			},
 			top: {
-				top: isOpen ? size : '0'
+				top: isOpen ? size : '100%',
+				left: '0',
+				bottom: '0',
+				right: '0'
 			},
 			bottom: {
-				bottom: isOpen ? size : '0'
+				top: topNavHeight,
+				left: '0',
+				bottom: isOpen ? size : '100%',
+				right: '0'
 			}
 		}
 
 		return {
 			position: 'fixed',
-			top: '0',
-			left: '0',
-			right: '0',
-			bottom: '0',
 			...backdropCoverage[position],
-			background: `rgba(0, 0, 0, var(--drawer-backdrop-opacity))`,
-			'backdrop-filter': `blur(var(--drawer-backdrop-blur))`,
-			'-webkit-backdrop-filter': `blur(var(--drawer-backdrop-blur))`,
-			'z-index': '9999',
+			background: `transparent`,
+			'backdrop-filter': 'none',
+			'-webkit-backdrop-filter': 'none',
+			'z-index': '50',
 			opacity: isOpen ? '1' : '0',
 			visibility: isOpen ? 'visible' : 'hidden',
 			transition:
-				`opacity var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), visibility var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), right var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), left var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), top var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), bottom var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1)`,
-			'pointer-events': isOpen ? 'auto' : 'none'
+				`opacity var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), visibility var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), backdrop-filter var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1)`,
+			'pointer-events': isOpen ? 'auto' : 'none',
+			'will-change': 'backdrop-filter'
 		}
 	},
 
@@ -64,9 +76,7 @@ export const drawerStyles = {
 		const baseStyles: JSX.CSSProperties = {
 			position: 'fixed',
 			'z-index': zIndex.toString(),
-			background: isDark
-				? 'hsla(240, 5.9%, 10%, 0.95)'
-				: 'hsla(0, 0%, 98%, 0.95)',
+			background: isDark ? `hsl(var(--secondary))` : `hsl(var(--card))`,
 			'backdrop-filter': `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
 			'-webkit-backdrop-filter': `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
 			border: 'none',
@@ -85,24 +95,25 @@ export const drawerStyles = {
 		}
 
 		// Position-specific styles
+		const topNavHeight = '60px'
 		switch (position) {
 			case 'right':
 				return {
 					...baseStyles,
-					top: '0',
+					top: topNavHeight,
 					right: '0',
 					width: size,
-					height: '100vh',
+					height: `calc(100vh - ${topNavHeight})`,
 					transform: isOpen ? 'translateX(0)' : `translateX(100%)`,
 					'pointer-events': isOpen ? 'auto' : 'none'
 				}
 			case 'left':
 				return {
 					...baseStyles,
-					top: '0',
+					top: topNavHeight,
 					left: '0',
 					width: size,
-					height: '100vh',
+					height: `calc(100vh - ${topNavHeight})`,
 					transform: isOpen ? 'translateX(0)' : `translateX(-100%)`,
 					'pointer-events': isOpen ? 'auto' : 'none'
 				}
