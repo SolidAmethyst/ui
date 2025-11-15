@@ -77,7 +77,7 @@ export const FileManagerDocs: Component<FileManagerDocsProps> = (props) => {
 
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">FileManager</Typography>
+      <Typography variant="h1">File Manager</Typography>
       <Typography variant="body">
         File manager component with navigation, search, filtering, and file
         selection. Supports breadcrumbs, sorting, and multiple selection modes.

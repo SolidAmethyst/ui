@@ -14,7 +14,7 @@ export const SplitPaneDocs: Component<SplitPaneDocsProps> = (props) => {
 
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">SplitPane</Typography>
+      <Typography variant="h1">Split Pane</Typography>
       <Typography variant="body">
         Split pane component for resizable panels. Supports both horizontal and
         vertical orientations with customizable split positions and constraints.

@@ -92,7 +92,7 @@ export const TitleBarDocs: Component = () => {
 
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">TitleBar</Typography>
+      <Typography variant="h1">Title Bar</Typography>
       <Typography variant="body">
         Composite component for application title bar with controls, burger
         menu, and window management buttons.

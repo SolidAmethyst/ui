@@ -9,7 +9,7 @@ import { techchipSnippets } from "./code-snippets/techchip-snippets";
 export const TechChipDocs: Component = () => {
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">TechChip</Typography>
+      <Typography variant="h1">Tech Chip</Typography>
       <Typography variant="body">
         Status indicator chip for displaying technology stack with real-time
         status updates. Built with Material 3 design principles.

@@ -13,7 +13,7 @@ export const ProgressBarDocs: Component = () => {
 
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">ProgressBar</Typography>
+      <Typography variant="h1">Progress Bar</Typography>
       <Typography variant="body">
         Progress bar component with determinate and indeterminate states.
       </Typography>

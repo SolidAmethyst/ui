@@ -13,7 +13,7 @@ export const NumberInputDocs: Component = () => {
 
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">NumberInput</Typography>
+      <Typography variant="h1">Number Input</Typography>
       <Typography variant="body">
         Numeric input component with arrow controls and wheel support. Supports
         min/max values, step increments, and theme-aware styling.

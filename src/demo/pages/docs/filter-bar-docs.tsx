@@ -40,7 +40,7 @@ export const FilterBarDocs: Component<FilterBarDocsProps> = (props) => {
 
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">FilterBar</Typography>
+      <Typography variant="h1">Filter Bar</Typography>
       <Typography variant="body">
         FilterPanel is a modal-based filter component with sections for file
         types, visibility, and size filtering. It provides a structured approach

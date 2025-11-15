@@ -44,7 +44,7 @@ export const DragDropDocs: Component = () => {
 
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">DragDrop</Typography>
+      <Typography variant="h1">Drag Drop</Typography>
       <Typography variant="body">
         Drag and drop component for creating reorderable lists. Supports both
         vertical and horizontal orientations, custom rendering, and full control

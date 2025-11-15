@@ -10,7 +10,7 @@ import { emptyStateSnippets } from "./code-snippets/empty-state-snippets";
 export const EmptyStateDocs: Component = () => {
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">EmptyState</Typography>
+      <Typography variant="h1">Empty State</Typography>
       <Typography variant="body">
         Empty state component for displaying empty content states with icon,
         title, description, and optional action.

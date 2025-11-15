@@ -8,7 +8,7 @@ import { codeHighlightSnippets } from "./code-snippets/code-highlight-snippets";
 export const CodeHighlightDocs: Component = () => {
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">CodeHighlight</Typography>
+      <Typography variant="h1">Code Highlight</Typography>
       <Typography variant="body">
         Syntax highlighting component for displaying code blocks with copy
         functionality.

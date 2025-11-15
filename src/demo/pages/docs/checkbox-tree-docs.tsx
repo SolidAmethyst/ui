@@ -26,7 +26,7 @@ const mockTree: CheckboxTreeNode[] = [
 export const CheckboxTreeDocs: Component = () => {
   return (
     <article style={docsStyles.article()}>
-      <Typography variant="h1">CheckboxTree</Typography>
+      <Typography variant="h1">Checkbox Tree</Typography>
       <Typography variant="body">
         Hierarchical checkbox tree component with nested checkboxes and
         automatic parent-child state propagation.
