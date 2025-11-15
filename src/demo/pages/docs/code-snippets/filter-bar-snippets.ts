@@ -105,38 +105,16 @@ const [maxFileSize, setMaxFileSize] = createSignal(0)
 
   customization: `@layer base {
   :root {
+    /* FilterBar component spacing and sizing */
     --filter-bar-gap: 12px;
     --filter-bar-padding: 12px 16px;
     --filter-bar-blur: 8px;
     --filter-bar-border-radius: 8px;
-    --filter-bar-item-gap: 4px;
-    --filter-bar-item-min-width: 120px;
-    --filter-bar-label-font-size: 12px;
-    --filter-bar-input-padding: 6px 10px;
-    --filter-bar-input-font-size: 14px;
-    --filter-bar-input-border-radius: 6px;
-    --filter-bar-checkbox-gap: 6px;
-    --filter-bar-button-padding: 6px 12px;
-    --filter-bar-button-font-size: 13px;
-    --filter-bar-button-border-radius: 6px;
   }
 
-  .dark,
   [data-theme="dark"] {
+    /* FilterBar uses same values in dark theme */
     --filter-bar-gap: 12px;
-    --filter-bar-padding: 12px 16px;
-    --filter-bar-blur: 8px;
-    --filter-bar-border-radius: 8px;
-    --filter-bar-item-gap: 4px;
-    --filter-bar-item-min-width: 120px;
-    --filter-bar-label-font-size: 12px;
-    --filter-bar-input-padding: 6px 10px;
-    --filter-bar-input-font-size: 14px;
-    --filter-bar-input-border-radius: 6px;
-    --filter-bar-checkbox-gap: 6px;
-    --filter-bar-button-padding: 6px 12px;
-    --filter-bar-button-font-size: 13px;
-    --filter-bar-button-border-radius: 6px;
   }
 }`,
 } as const;

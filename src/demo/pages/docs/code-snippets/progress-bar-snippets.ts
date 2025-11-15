@@ -22,20 +22,15 @@ function MyComponent() {
 
   customization: `@layer base {
   :root {
+    /* ProgressBar component styling */
     --progress-bar-height: 8px;
     --progress-bar-border-radius: 4px;
-    --progress-bar-background-light: rgba(0, 0, 0, 0.1);
-    --progress-bar-background-dark: rgba(255, 255, 255, 0.1);
-    --progress-bar-indicator-gradient: linear-gradient(90deg, hsl(271, 81%, 53%) 0%, hsl(271, 81%, 63%) 100%);
   }
 
-  .dark,
   [data-theme="dark"] {
+    /* ProgressBar uses same sizing in dark theme */
     --progress-bar-height: 8px;
     --progress-bar-border-radius: 4px;
-    --progress-bar-background-light: rgba(0, 0, 0, 0.1);
-    --progress-bar-background-dark: rgba(255, 255, 255, 0.1);
-    --progress-bar-indicator-gradient: linear-gradient(90deg, hsl(271, 81%, 53%) 0%, hsl(271, 81%, 63%) 100%);
   }
 }`,
 } as const;

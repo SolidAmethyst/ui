@@ -111,20 +111,13 @@ export function App() {
 
     customization: `@layer base {
   :root {
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
+    /* Sidebar component uses theme colors */
+    --sidebar-accent: var(--card);
   }
 
-  .dark,
   [data-theme="dark"] {
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
+    /* Sidebar accent uses theme colors in dark mode too */
+    --sidebar-accent: var(--card);
   }
 }`,
   },

@@ -35,16 +35,15 @@ export const checkboxTreeSnippets = {
 
   customization: `@layer base {
   :root {
+    /* CheckboxTree component spacing */
     --checkbox-tree-indent: 20px;
     --checkbox-tree-gap: 4px;
     --checkbox-tree-padding: 4px 8px;
   }
 
-  .dark,
   [data-theme="dark"] {
+    /* CheckboxTree uses same spacing in dark theme */
     --checkbox-tree-indent: 20px;
-    --checkbox-tree-gap: 4px;
-    --checkbox-tree-padding: 4px 8px;
   }
 }`,
 } as const;

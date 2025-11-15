@@ -39,22 +39,17 @@ export const accordionSnippets = {
 
   customization: `@layer base {
   :root {
-    --accordion-border-color-dark: rgba(255, 255, 255, 0.1);
-    --accordion-border-color-light: rgba(0, 0, 0, 0.1);
+    /* Accordion styling using library defaults */
     --accordion-header-padding: 16px;
     --accordion-content-padding: 16px;
     --accordion-border-radius: 8px;
     --accordion-gap: 4px;
   }
 
-  .dark,
+  /* Accordion uses border and background from main theme */
   [data-theme="dark"] {
-    --accordion-border-color-dark: rgba(255, 255, 255, 0.1);
-    --accordion-border-color-light: rgba(0, 0, 0, 0.1);
+    /* Overrides for dark theme (if needed) */
     --accordion-header-padding: 16px;
-    --accordion-content-padding: 16px;
-    --accordion-border-radius: 8px;
-    --accordion-gap: 4px;
   }
 }`,
 } as const;

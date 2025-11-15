@@ -29,28 +29,17 @@ export const tooltipSnippets = {
 
   customization: `@layer base {
   :root {
-    --tooltip-background-dark: hsla(240, 5.9%, 10%, 0.9);
-    --tooltip-background-light: hsla(0, 0%, 98%, 0.9);
+    /* Tooltip component styling */
     --tooltip-backdrop-blur: 8px;
     --tooltip-border-radius: 6px;
-    --tooltip-shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-    --tooltip-shadow-light: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
     --tooltip-padding: 8px 12px;
     --tooltip-font-size: 13px;
     --tooltip-z-index: 10000;
   }
 
-  .dark,
   [data-theme="dark"] {
-    --tooltip-background-dark: hsla(240, 5.9%, 10%, 0.9);
-    --tooltip-background-light: hsla(0, 0%, 98%, 0.9);
+    /* Tooltip uses same styling in dark theme */
     --tooltip-backdrop-blur: 8px;
-    --tooltip-border-radius: 6px;
-    --tooltip-shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
-    --tooltip-shadow-light: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
-    --tooltip-padding: 8px 12px;
-    --tooltip-font-size: 13px;
-    --tooltip-z-index: 10000;
   }
 }`,
 } as const;

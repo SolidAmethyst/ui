@@ -86,38 +86,17 @@ export const timelineSnippets = {
 
   customization: `@layer base {
   :root {
+    /* Timeline component sizing */
     --timeline-padding: 16px 0;
     --timeline-vertical-gap: 24px;
     --timeline-horizontal-gap: 24px;
     --timeline-event-padding-left: 40px;
-    --timeline-event-min-width: 200px;
     --timeline-icon-size: 24px;
-    --timeline-icon-font-size: 14px;
-    --timeline-content-margin-left: 16px;
-    --timeline-content-margin-top: 12px;
-    --timeline-title-font-size: 15px;
-    --timeline-description-font-size: 13px;
-    --timeline-description-margin: 4px 0 0 0;
-    --timeline-date-font-size: 12px;
-    --timeline-date-margin: 4px 0 0 0;
   }
 
-  .dark,
   [data-theme="dark"] {
+    /* Timeline uses same sizing in dark theme */
     --timeline-padding: 16px 0;
-    --timeline-vertical-gap: 24px;
-    --timeline-horizontal-gap: 24px;
-    --timeline-event-padding-left: 40px;
-    --timeline-event-min-width: 200px;
-    --timeline-icon-size: 24px;
-    --timeline-icon-font-size: 14px;
-    --timeline-content-margin-left: 16px;
-    --timeline-content-margin-top: 12px;
-    --timeline-title-font-size: 15px;
-    --timeline-description-font-size: 13px;
-    --timeline-description-margin: 4px 0 0 0;
-    --timeline-date-font-size: 12px;
-    --timeline-date-margin: 4px 0 0 0;
   }
 }`,
 } as const;

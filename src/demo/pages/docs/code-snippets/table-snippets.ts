@@ -43,26 +43,14 @@ const columns = [
 
   customization: `@layer base {
   :root {
-    --table-border-color-dark: rgba(255, 255, 255, 0.1);
-    --table-border-color-light: rgba(0, 0, 0, 0.1);
-    --table-header-background-dark: rgba(255, 255, 255, 0.05);
-    --table-header-background-light: rgba(0, 0, 0, 0.05);
-    --table-row-hover-dark: rgba(255, 255, 255, 0.05);
-    --table-row-hover-light: rgba(0, 0, 0, 0.05);
+    /* Table component styling */
     --table-cell-padding: 12px 16px;
     --table-border-radius: 8px;
   }
 
-  .dark,
   [data-theme="dark"] {
-    --table-border-color-dark: rgba(255, 255, 255, 0.1);
-    --table-border-color-light: rgba(0, 0, 0, 0.1);
-    --table-header-background-dark: rgba(255, 255, 255, 0.05);
-    --table-header-background-light: rgba(0, 0, 0, 0.05);
-    --table-row-hover-dark: rgba(255, 255, 255, 0.05);
-    --table-row-hover-light: rgba(0, 0, 0, 0.05);
+    /* Table uses same sizing in dark theme */
     --table-cell-padding: 12px 16px;
-    --table-border-radius: 8px;
   }
 }`,
 } as const;

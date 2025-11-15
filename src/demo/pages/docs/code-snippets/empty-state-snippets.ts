@@ -22,26 +22,16 @@ export const emptyStateSnippets = {
 
   customization: `@layer base {
   :root {
+    /* EmptyState component sizing */
     --empty-state-padding: 48px 24px;
     --empty-state-icon-size: 64px;
-    --empty-state-icon-color-dark: rgba(255, 255, 255, 0.3);
-    --empty-state-icon-color-light: rgba(0, 0, 0, 0.3);
     --empty-state-title-size: 18px;
-    --empty-state-title-weight: 600;
-    --empty-state-description-size: 14px;
     --empty-state-gap: 16px;
   }
 
-  .dark,
   [data-theme="dark"] {
+    /* EmptyState uses same sizing in dark theme */
     --empty-state-padding: 48px 24px;
-    --empty-state-icon-size: 64px;
-    --empty-state-icon-color-dark: rgba(255, 255, 255, 0.3);
-    --empty-state-icon-color-light: rgba(0, 0, 0, 0.3);
-    --empty-state-title-size: 18px;
-    --empty-state-title-weight: 600;
-    --empty-state-description-size: 14px;
-    --empty-state-gap: 16px;
   }
 }`,
 } as const;

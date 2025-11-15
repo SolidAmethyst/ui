@@ -31,28 +31,21 @@ export const alertSnippets = {
 />`,
   },
 
-  customization: `@layer base {
+  customization: `/* In your app's CSS file, override these variables */
+@layer base {
   :root {
-    --alert-background-dark: hsla(240, 5.9%, 10%, 0.9);
-    --alert-background-light: hsla(0, 0%, 98%, 0.9);
+    /* Alert component styling - using library defaults */
     --alert-backdrop-blur: 8px;
     --alert-border-radius: 8px;
-    --alert-shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
-    --alert-shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
-    --alert-success-color: hsl(142, 71%, 45%);
-    --alert-error-color: hsl(0, 84%, 60%);
-    --alert-warning-color: hsl(38, 92%, 50%);
-    --alert-info-color: hsl(217, 91%, 60%);
   }
 
-  .dark,
   [data-theme="dark"] {
-    --alert-background-dark: hsla(240, 5.9%, 10%, 0.9);
-    --alert-background-light: hsla(0, 0%, 98%, 0.9);
+    /* Dark theme overrides (if needed) */
     --alert-backdrop-blur: 8px;
-    --alert-border-radius: 8px;
-    --alert-shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.1);
-    --alert-shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Use component colors from main theme variables */
+  :root {
     --alert-success-color: hsl(142, 71%, 45%);
     --alert-error-color: hsl(0, 84%, 60%);
     --alert-warning-color: hsl(38, 92%, 50%);

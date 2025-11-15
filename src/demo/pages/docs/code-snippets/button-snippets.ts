@@ -75,15 +75,14 @@ export const buttonSnippets = {
 
   customization: `@layer base {
   :root {
-    /* Button hover uses primary color */
+    /* Button uses primary color for hover state */
     --button-hover: var(--primary);
     --button-close-hover: 0 84.2% 60.2%;
     --button-close-active: 0 62.8% 30.6%;
   }
 
-  .dark,
   [data-theme="dark"] {
-    /* Button hover uses primary color */
+    /* Button uses primary color for hover state in dark mode */
     --button-hover: var(--primary);
     --button-close-hover: 0 62.8% 30.6%;
     --button-close-active: 0 84.2% 60.2%;

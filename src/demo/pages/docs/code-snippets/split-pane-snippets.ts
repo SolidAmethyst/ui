@@ -42,11 +42,12 @@ export const splitPaneSnippets = {
 
   customization: `@layer base {
   :root {
+    /* SplitPane component sizing */
     --split-pane-handle-size: 4px;
   }
 
-  .dark,
   [data-theme="dark"] {
+    /* SplitPane uses same sizing in dark theme */
     --split-pane-handle-size: 4px;
   }
 }`,

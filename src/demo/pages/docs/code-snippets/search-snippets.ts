@@ -49,6 +49,7 @@ export const searchSnippets = {
 
   customization: `@layer base {
   :root {
+    /* Search component styling */
     --search-padding: 8px 12px 8px 40px;
     --search-font-size: 14px;
     --search-border-radius: 8px;
@@ -59,12 +60,9 @@ export const searchSnippets = {
     --search-clear-icon-size: 16px;
   }
 
-  .dark,
   [data-theme="dark"] {
     /* Override search variables for dark theme if needed */
     --search-padding: 8px 12px 8px 40px;
-    --search-font-size: 14px;
-    --search-border-radius: 8px;
   }
 }`,
 };

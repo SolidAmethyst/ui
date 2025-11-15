@@ -98,32 +98,21 @@ export const gridSnippets = {
 
   customization: `@layer base {
   :root {
-    /* Grid spacing */
+    /* Grid component spacing and sizing */
     --grid-gap: 12px;
-    --grid-gap-row: 16px;
-    --grid-gap-column: 12px;
     --grid-item-padding: 20px;
-
-    /* Grid transitions */
     --grid-transition-duration: 250ms;
-    --grid-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
-
-    /* Preserve area minimums */
-    --grid-preserve-area-min-row-height: 80px;
-    --grid-preserve-area-min-card-height: 250px;
   }
 
-  .dark,
   [data-theme="dark"] {
-    /* Override for dark theme if needed */
-    --grid-gap: 16px;
+    /* Grid uses same values in dark theme */
+    --grid-gap: 12px;
   }
 }
 
 /* Override for specific grid instance */
 .my-custom-grid {
   --grid-gap: 24px;
-  --grid-transition-duration: 300ms;
 }`,
 
   customizationPreserveArea: `/* Override preserve area row heights */
