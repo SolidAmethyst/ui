@@ -159,11 +159,9 @@ export const Checkbox: Component<CheckboxProps> = (props) => {
             <path
               d="M2 6L5 9L10 2"
               stroke={
-                local.material3
-                  ? checked()
-                    ? "hsl(var(--primary))"
-                    : "hsl(var(--muted-foreground) / 0.5)"
-                  : "#ffffff"
+                checked()
+                  ? "hsl(var(--primary))"
+                  : "hsl(var(--disabled))"
               }
               stroke-width="2"
               stroke-linecap="round"

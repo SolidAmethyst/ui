@@ -3,14 +3,15 @@
  * Styles for hierarchical checkbox tree
  */
 
-import type { JSX } from "solid-js";
+import type { JSX } from "solid-js"
 
 export const checkboxTreeStyles = {
   container: (): JSX.CSSProperties => ({
     display: "flex",
     "flex-direction": "column",
     gap: "4px",
-    width: "auto",
+    width: "100%",
+    "align-items": "flex-start",
   }),
 
   node: (level: number): JSX.CSSProperties => ({
