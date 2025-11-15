@@ -75,6 +75,23 @@ aside[data-sidebar] {
   max-width: 220px !important;
 }
 
+aside[data-sidebar] button {
+  position: relative;
+}
+
+aside[data-sidebar] button.active::before {
+  content: "";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 1.6em;
+  background: hsl(var(--primary));
+  border-radius: 0 2px 2px 0;
+  pointer-events: none;
+}
+
 main {
   contain: layout;
   flex: 1;

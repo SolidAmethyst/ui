@@ -1,6 +1,5 @@
-import { Component, For } from "solid-js";
-import { getThemeFromCSS } from "../../../components/ui/glass/lib/theme-utils";
-import { Scrollbar } from "../../../components/ui/scrollbar";
+import { Component, For } from "solid-js"
+import { Scrollbar } from "../../../components/ui/scrollbar"
 
 interface SidebarProps {
   currentComponent: string | null;
@@ -146,11 +145,11 @@ export const Sidebar: Component<SidebarProps> = (props) => {
                         padding:
                           props.currentComponent === item.id
                             ? itemIndex() === 0
-                              ? "0 0 8px 16px"
-                              : "8px 0 8px 16px"
+                              ? "8px 0 8px 32px"
+                              : "8px 0 8px 32px"
                             : itemIndex() === 0
-                              ? "0 0 8px 19px"
-                              : "8px 0 8px 19px",
+                              ? "8px 0 8px 35px"
+                              : "8px 0 8px 35px",
                         "text-align": "left",
                         border: "none",
                         background: "transparent",
@@ -164,12 +163,10 @@ export const Sidebar: Component<SidebarProps> = (props) => {
                           props.currentComponent === item.id ? "500" : "400",
                         "line-height": "1.6",
                         transition: "all 0.15s ease",
-                        "border-left": `3px solid ${
-                          props.currentComponent === item.id
-                            ? "hsl(var(--accent))"
-                            : "transparent"
-                        }`,
                         "box-sizing": "border-box",
+                      }}
+                      classList={{
+                        active: props.currentComponent === item.id,
                       }}
                       onMouseEnter={(e) => {
                         if (props.currentComponent !== item.id) {

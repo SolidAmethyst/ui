@@ -12,6 +12,7 @@ export const accordionStyles = {
     width: "100%",
     "border-radius": "8px",
     overflow: "hidden",
+    background: "hsl(var(--card))",
   }),
 
   item: (): JSX.CSSProperties => ({
