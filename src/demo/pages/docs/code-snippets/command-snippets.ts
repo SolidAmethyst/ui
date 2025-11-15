@@ -4,7 +4,7 @@
  */
 
 export const commandSnippets = {
-	preview: `<Command>
+  preview: `<Command>
   <CommandInput placeholder="Type a command or search..." />
   <CommandList>
     <Command.Empty>No results found.</Command.Empty>
@@ -31,9 +31,9 @@ export const commandSnippets = {
   </Command.List>
 </Command>`,
 
-	installation: `npx solidui-cli@latest add command`,
+  installation: `npx solidui-cli@latest add command`,
 
-	imports: `import {
+  imports: `import {
   Command,
   CommandDialog,
   CommandEmpty,
@@ -45,7 +45,7 @@ export const commandSnippets = {
   CommandShortcut,
 } from "@/components/ui/command"`,
 
-	usage: `<Command>
+  usage: `<Command>
   <CommandInput placeholder="Type a command or search..." />
   <CommandList>
     <CommandEmpty>No results found.</Command.Empty>
@@ -63,7 +63,7 @@ export const commandSnippets = {
   </Command.List>
 </Command>`,
 
-	withShortcuts: `<Command>
+  withShortcuts: `<Command>
   <CommandInput placeholder="Type a command or search..." />
   <CommandList>
     <CommandEmpty>No results found.</Command.Empty>
@@ -93,7 +93,7 @@ export const commandSnippets = {
   </CommandList>
 </Command>`,
 
-	dialog: `export function CommandMenu() {
+  dialog: `export function CommandMenu() {
   const [open, setOpen] = createSignal(false)
 
   createEffect(() => {
@@ -126,7 +126,7 @@ export const commandSnippets = {
   )
 }`,
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --command-background: 0 0% 100%;
     --command-foreground: 240 5.3% 10.2%;
@@ -149,5 +149,5 @@ export const commandSnippets = {
     --command-group-heading: 240 4.8% 95.9%;
     --command-empty: 240 4.8% 95.9%;
   }
-}`
-} as const
+}`,
+} as const;

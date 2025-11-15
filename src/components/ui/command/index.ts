@@ -4,22 +4,22 @@
  */
 
 // Main component
-export { Command } from './ui/command'
+export { Command } from "./ui/command";
 
 // Types
 export type {
-	CommandProps,
-	CommandDialogProps,
-	CommandInputProps,
-	CommandListProps,
-	CommandItemProps,
-	CommandGroupProps,
-	CommandSeparatorProps,
-	CommandEmptyProps,
-	CommandLoadingProps,
-	CommandShortcutProps
-} from './model/types'
+  CommandProps,
+  CommandDialogProps,
+  CommandInputProps,
+  CommandListProps,
+  CommandItemProps,
+  CommandGroupProps,
+  CommandSeparatorProps,
+  CommandEmptyProps,
+  CommandLoadingProps,
+  CommandShortcutProps,
+} from "./model/types";
 
 // Styles (for advanced usage)
-export { commandStyles } from './lib/command.styles'
-export type { CommandStyleOptions } from './lib/command.styles'
+export { commandStyles } from "./lib/command.styles";
+export type { CommandStyleOptions } from "./lib/command.styles";

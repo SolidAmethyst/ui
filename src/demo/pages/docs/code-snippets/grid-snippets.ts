@@ -4,10 +4,10 @@
  */
 
 export const gridSnippets = {
-	imports: `import { Grid } from '@sapphiresolid/ui'`,
+  imports: `import { Grid } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `<Grid columns={3} gap="16px">
+  usage: {
+    basicUsage: `<Grid columns={3} gap="16px">
   <div>
     <h3>Title</h3>
     <div>KPI 1</div>
@@ -30,7 +30,7 @@ export const gridSnippets = {
   </div>
 </Grid>`,
 
-		responsiveBreakpoints: `<Grid
+    responsiveBreakpoints: `<Grid
   columns={4}
   breakpoints={[
     { maxWidth: 768, columns: 1 },
@@ -42,7 +42,7 @@ export const gridSnippets = {
   {/* Grid items */}
 </Grid>`,
 
-		autoFitMinMax: `<Grid
+    autoFitMinMax: `<Grid
   columns={3}
   minColumnWidth="150px"
   maxColumnWidth="1fr"
@@ -52,14 +52,14 @@ export const gridSnippets = {
   {/* Grid items */}
 </Grid>`,
 
-		separateGap: `<Grid
+    separateGap: `<Grid
   columns={3}
   gap={{ row: "24px", column: "12px" }}
 >
   {/* Grid items */}
 </Grid>`,
 
-		customCSSTemplate: `<Grid
+    customCSSTemplate: `<Grid
   columns="200px 1fr auto"
   rows="auto 1fr auto"
   gap="16px"
@@ -71,7 +71,7 @@ export const gridSnippets = {
   <div style={{ gridColumn: "1 / -1" }}>Footer</div>
 </Grid>`,
 
-		preserveArea: `<Grid
+    preserveArea: `<Grid
   columns="repeat(3, minmax(0, 1fr))"
   rows="auto 1fr"
   gap="8px"
@@ -93,10 +93,10 @@ export const gridSnippets = {
 
 // CSS Variables for advanced customization:
 // --grid-row-1-height: Height of first row
-// --grid-row-2-height: Height of second row (priority element)`
-	},
+// --grid-row-2-height: Height of second row (priority element)`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     /* Grid spacing */
     --grid-gap: 12px;
@@ -126,7 +126,7 @@ export const gridSnippets = {
   --grid-transition-duration: 300ms;
 }`,
 
-	customizationPreserveArea: `/* Override preserve area row heights */
+  customizationPreserveArea: `/* Override preserve area row heights */
 .my-grid {
   --grid-row-1-height: 120px;
   --grid-row-2-height: 400px;
@@ -148,5 +148,5 @@ export const gridSnippets = {
 .smooth-grid {
   --grid-transition-duration: 400ms;
   --grid-transition-timing: cubic-bezier(0.25, 0.1, 0.25, 1);
-}`
-} as const
+}`,
+} as const;

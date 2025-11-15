@@ -16,14 +16,18 @@ export default defineConfig({
 		},
 		server: {
 			deps: {
-				inline: ['solid-js', '@solidjs/testing-library']
+				inline: ['solid-js', '@solidjs/testing-library', '@kobalte/core']
 			}
 		}
 	},
 	resolve: {
 		alias: {
 			'@': './src'
-		}
+		},
+		conditions: ['development', 'browser']
+	},
+	optimizeDeps: {
+		include: ['@kobalte/core']
 	},
 	define: {
 		'import.meta.vitest': 'undefined'

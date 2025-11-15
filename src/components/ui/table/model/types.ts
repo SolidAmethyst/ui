@@ -3,110 +3,105 @@
  * Table component with sorting and pagination
  */
 
-import type { JSX } from 'solid-js'
+import type { JSX } from "solid-js";
 
-export type SortDirection = 'asc' | 'desc' | null
+export type SortDirection = "asc" | "desc" | null;
 
 export interface TableColumn<T = unknown> {
-	/**
-	 * Unique identifier for the column
-	 */
-	id: string
+  /**
+   * Unique identifier for the column
+   */
+  id: string;
 
-	/**
-	 * Column header label
-	 */
-	header: string | JSX.Element
+  /**
+   * Column header label
+   */
+  header: string | JSX.Element;
 
-	/**
-	 * Accessor function to get cell value from row data
-	 */
-	accessor: (row: T) => string | number | JSX.Element
+  /**
+   * Accessor function or string key to get cell value from row data
+   */
+  accessor: ((row: T) => string | number | JSX.Element) | string;
 
-	/**
-	 * Whether column is sortable
-	 */
-	sortable?: boolean
+  /**
+   * Whether column is sortable
+   */
+  sortable?: boolean;
 
-	/**
-	 * Custom sort function (optional)
-	 */
-	sortFn?: (a: T, b: T) => number
+  /**
+   * Custom sort function (optional)
+   */
+  sortFn?: (a: T, b: T) => number;
 
-	/**
-	 * Column width (CSS value)
-	 */
-	width?: string
+  /**
+   * Column width (CSS value)
+   */
+  width?: string;
 
-	/**
-	 * Column alignment
-	 */
-	align?: 'left' | 'center' | 'right'
+  /**
+   * Column alignment
+   */
+  align?: "left" | "center" | "right";
 }
 
 export interface TableProps<T = unknown> {
-	/**
-	 * Table data (rows)
-	 */
-	data: T[]
+  /**
+   * Table data (rows)
+   */
+  data: T[];
 
-	/**
-	 * Column definitions
-	 */
-	columns: TableColumn<T>[]
+  /**
+   * Column definitions
+   */
+  columns: TableColumn<T>[];
 
-	/**
-	 * Whether dark theme is active
-	 */
-	isDark?: boolean
+  /**
+   * Whether to enable sorting (default: true)
+   */
+  sortable?: boolean;
 
-	/**
-	 * Whether to enable sorting (default: true)
-	 */
-	sortable?: boolean
+  /**
+   * Initial sort column ID
+   */
+  defaultSortColumn?: string;
 
-	/**
-	 * Initial sort column ID
-	 */
-	defaultSortColumn?: string
+  /**
+   * Initial sort direction
+   */
+  defaultSortDirection?: SortDirection;
 
-	/**
-	 * Initial sort direction
-	 */
-	defaultSortDirection?: SortDirection
+  /**
+   * Callback when sort changes
+   */
+  onSortChange?: (columnId: string, direction: SortDirection) => void;
 
-	/**
-	 * Callback when sort changes
-	 */
-	onSortChange?: (columnId: string, direction: SortDirection) => void
+  /**
+   * Whether to enable pagination (default: false)
+   */
+  paginated?: boolean;
 
-	/**
-	 * Whether to enable pagination (default: false)
-	 */
-	paginated?: boolean
+  /**
+   * Items per page (default: 10)
+   */
+  pageSize?: number;
 
-	/**
-	 * Items per page (default: 10)
-	 */
-	pageSize?: number
+  /**
+   * Current page (1-based, controlled)
+   */
+  page?: number;
 
-	/**
-	 * Current page (1-based, controlled)
-	 */
-	page?: number
+  /**
+   * Callback when page changes
+   */
+  onPageChange?: (page: number) => void;
 
-	/**
-	 * Callback when page changes
-	 */
-	onPageChange?: (page: number) => void
+  /**
+   * Additional CSS class names
+   */
+  class?: string;
 
-	/**
-	 * Additional CSS class names
-	 */
-	class?: string
-
-	/**
-	 * Inline CSS styles
-	 */
-	style?: JSX.CSSProperties
+  /**
+   * Inline CSS styles
+   */
+  style?: JSX.CSSProperties;
 }

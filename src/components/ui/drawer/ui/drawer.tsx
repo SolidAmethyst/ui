@@ -5,188 +5,188 @@
  */
 
 import {
-	Component,
-	Show,
-	createEffect,
-	createSignal,
-	onCleanup,
-	onMount
-} from 'solid-js'
-import { render } from 'solid-js/web'
-import { drawerStyles } from '../lib/drawer.styles'
-import type { DrawerProps } from '../model/types'
+  Component,
+  Show,
+  createEffect,
+  createSignal,
+  onCleanup,
+  onMount,
+} from "solid-js";
+import { render } from "solid-js/web";
+import { drawerStyles } from "../lib/drawer.styles";
+import type { DrawerProps } from "../model/types";
+import { getThemeFromCSS } from "../../glass/lib/theme-utils";
 
-export const Drawer: Component<DrawerProps> = props => {
-	const isDark = () => props.isDark ?? true
-	const position = () => props.position ?? 'right'
-	const showBackdrop = () => props.showBackdrop ?? true
-	const closeOnBackdropClick = () => props.closeOnBackdropClick ?? true
-	const zIndex = () => props.zIndex ?? 10000
+export const Drawer: Component<DrawerProps> = (props) => {
+  const position = () => props.position ?? "right";
+  const showBackdrop = () => props.showBackdrop ?? true;
+  const closeOnBackdropClick = () => props.closeOnBackdropClick ?? true;
+  const zIndex = () => props.zIndex ?? 10000;
 
-	// Local state for smooth animation - always starts closed
-	const [localIsOpen, setLocalIsOpen] = createSignal(false)
+  // Local state for smooth animation - always starts closed
+  const [localIsOpen, setLocalIsOpen] = createSignal(false);
 
-	// Calculate default size based on position
-	const defaultSize = (): string => {
-		const pos = position()
-		if (pos === 'left' || pos === 'right') {
-			return '320px'
-		}
-		return '50vh'
-	}
+  // Calculate default size based on position
+  const defaultSize = (): string => {
+    const pos = position();
+    if (pos === "left" || pos === "right") {
+      return "320px";
+    }
+    return "50vh";
+  };
 
-	const size = () => props.size ?? defaultSize()
+  const size = () => props.size ?? defaultSize();
 
-	const handleBackdropClick = () => {
-		if (closeOnBackdropClick() && props.isOpen) {
-			props.onClose()
-		}
-	}
+  const handleBackdropClick = () => {
+    if (closeOnBackdropClick() && props.isOpen) {
+      props.onClose();
+    }
+  };
 
-	// Create portal container in body
-	let portalContainer: HTMLDivElement | null = null
-	let dispose: (() => void) | null = null
-	let clickOutsideTimeout: number | null = null
+  // Create portal container in body
+  let portalContainer: HTMLDivElement | null = null;
+  let dispose: (() => void) | null = null;
+  let clickOutsideTimeout: number | null = null;
 
-	// Handle click outside drawer when backdrop is disabled
-	const handleClickOutside = (e: MouseEvent) => {
-		if (!localIsOpen() || showBackdrop() || !portalContainer) return
+  // Handle click outside drawer when backdrop is disabled
+  const handleClickOutside = (e: MouseEvent) => {
+    if (!localIsOpen() || showBackdrop() || !portalContainer) return;
 
-		const target = e.target as HTMLElement
-		const drawerPanel = portalContainer.querySelector(
-			'.drawer-panel'
-		) as HTMLElement
+    const target = e.target as HTMLElement;
+    const drawerPanel = portalContainer.querySelector(
+      ".drawer-panel",
+    ) as HTMLElement;
 
-		// Check if click is on a button or inside a button (to prevent closing when clicking toggle button)
-		const isButton = target.closest('button') !== null
-		if (isButton) return
+    // Check if click is on a button or inside a button (to prevent closing when clicking toggle button)
+    const isButton = target.closest("button") !== null;
+    if (isButton) return;
 
-		// Close if click is outside drawer panel
-		if (drawerPanel && !drawerPanel.contains(target)) {
-			props.onClose()
-		}
-	}
+    // Close if click is outside drawer panel
+    if (drawerPanel && !drawerPanel.contains(target)) {
+      props.onClose();
+    }
+  };
 
-	// Sync local state with props for smooth animation
-	createEffect(() => {
-		const shouldBeOpen = props.isOpen
+  // Sync local state with props for smooth animation
+  createEffect(() => {
+    const shouldBeOpen = props.isOpen;
 
-		// Use requestAnimationFrame to ensure smooth transition
-		if (shouldBeOpen) {
-			// Opening: render closed first, then open
-			if (!localIsOpen()) {
-				requestAnimationFrame(() => {
-					requestAnimationFrame(() => {
-						setLocalIsOpen(true)
-					})
-				})
-			}
-		} else {
-			// Closing: update immediately
-			setLocalIsOpen(false)
-		}
-	})
+    // Use requestAnimationFrame to ensure smooth transition
+    if (shouldBeOpen) {
+      // Opening: render closed first, then open
+      if (!localIsOpen()) {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setLocalIsOpen(true);
+          });
+        });
+      }
+    } else {
+      // Closing: update immediately
+      setLocalIsOpen(false);
+    }
+  });
 
-	// Render portal once and update styles reactively
-	const renderPortal = () => {
-		if (!portalContainer) return
+  // Render portal once and update styles reactively
+  const renderPortal = () => {
+    if (!portalContainer) return;
 
-		dispose = render(
-			() => (
-				<>
-					{/* Backdrop */}
-					<Show when={showBackdrop()}>
-						<div
-							onClick={handleBackdropClick}
-							style={drawerStyles.backdrop(
-								localIsOpen(),
-								showBackdrop(),
-								position(),
-								size()
-							)}
-						/>
-					</Show>
+    dispose = render(
+      () => (
+        <>
+          {/* Backdrop */}
+          <Show when={showBackdrop()}>
+            <div
+              onClick={handleBackdropClick}
+              style={drawerStyles.backdrop(
+                localIsOpen(),
+                showBackdrop(),
+                position(),
+                size(),
+              )}
+            />
+          </Show>
 
-					{/* Drawer Panel */}
-					<aside
-						class={`drawer-panel drawer-${position()} ${props.class || ''}`}
-						data-theme={isDark() ? 'dark' : 'light'}
-						style={{
-							...drawerStyles.panel(
-								localIsOpen(),
-								isDark(),
-								position(),
-								size(),
-								zIndex()
-							),
-							...props.style
-						}}
-					>
-						{props.children}
-					</aside>
-				</>
-			),
-			portalContainer!
-		)
-	}
+          {/* Drawer Panel */}
+          <aside
+            class={`drawer-panel drawer-${position()} ${props.class || ""}`}
+            style={{
+              ...drawerStyles.panel(
+                localIsOpen(),
+                position(),
+                size(),
+                zIndex(),
+              ),
+              ...props.style,
+            }}
+          >
+            {props.children}
+          </aside>
+        </>
+      ),
+      portalContainer!,
+    );
+  };
 
-	onMount(() => {
-		// Create container in body for portal
-		portalContainer = document.createElement('div')
-		// Set theme on portal container so CSS variables work correctly
-		portalContainer.setAttribute('data-theme', isDark() ? 'dark' : 'light')
-		document.body.appendChild(portalContainer)
+  onMount(() => {
+    // Create container in body for portal
+    portalContainer = document.createElement("div");
+    // Set theme on portal container so CSS variables work correctly
+    const theme = getThemeFromCSS() ? "dark" : "light";
+    portalContainer.setAttribute("data-theme", theme);
+    document.body.appendChild(portalContainer);
 
-		// Update theme when it changes
-		createEffect(() => {
-			if (portalContainer) {
-				portalContainer.setAttribute('data-theme', isDark() ? 'dark' : 'light')
-			}
-		})
+    // Update theme when it changes
+    createEffect(() => {
+      if (portalContainer) {
+        const currentTheme = getThemeFromCSS() ? "dark" : "light";
+        portalContainer.setAttribute("data-theme", currentTheme);
+      }
+    });
 
-		// Render once - Solid.js will handle reactive updates
-		renderPortal()
+    // Render once - Solid.js will handle reactive updates
+    renderPortal();
 
-		// Add click outside handler when backdrop is disabled
-		createEffect(() => {
-			const shouldShowBackdrop = showBackdrop()
-			const isOpen = localIsOpen()
+    // Add click outside handler when backdrop is disabled
+    createEffect(() => {
+      const shouldShowBackdrop = showBackdrop();
+      const isOpen = localIsOpen();
 
-			// Clear any pending timeout
-			if (clickOutsideTimeout !== null) {
-				clearTimeout(clickOutsideTimeout)
-				clickOutsideTimeout = null
-			}
+      // Clear any pending timeout
+      if (clickOutsideTimeout !== null) {
+        clearTimeout(clickOutsideTimeout);
+        clickOutsideTimeout = null;
+      }
 
-			// Remove handler if backdrop is enabled or drawer is closed
-			if (shouldShowBackdrop || !isOpen) {
-				document.removeEventListener('mousedown', handleClickOutside, true)
-				return
-			}
+      // Remove handler if backdrop is enabled or drawer is closed
+      if (shouldShowBackdrop || !isOpen) {
+        document.removeEventListener("mousedown", handleClickOutside, true);
+        return;
+      }
 
-			// Add handler when backdrop is disabled and drawer is open
-			// Use setTimeout to ensure drawer is rendered and avoid immediate close on open
-			clickOutsideTimeout = window.setTimeout(() => {
-				document.addEventListener('mousedown', handleClickOutside, true)
-			}, 100)
-		})
-	})
+      // Add handler when backdrop is disabled and drawer is open
+      // Use setTimeout to ensure drawer is rendered and avoid immediate close on open
+      clickOutsideTimeout = window.setTimeout(() => {
+        document.addEventListener("mousedown", handleClickOutside, true);
+      }, 100);
+    });
+  });
 
-	onCleanup(() => {
-		// Clear timeout and remove click outside handler
-		if (clickOutsideTimeout !== null) {
-			clearTimeout(clickOutsideTimeout)
-		}
-		document.removeEventListener('mousedown', handleClickOutside, true)
+  onCleanup(() => {
+    // Clear timeout and remove click outside handler
+    if (clickOutsideTimeout !== null) {
+      clearTimeout(clickOutsideTimeout);
+    }
+    document.removeEventListener("mousedown", handleClickOutside, true);
 
-		if (dispose) {
-			dispose()
-		}
-		if (portalContainer && portalContainer.parentNode) {
-			portalContainer.parentNode.removeChild(portalContainer)
-		}
-	})
+    if (dispose) {
+      dispose();
+    }
+    if (portalContainer && portalContainer.parentNode) {
+      portalContainer.parentNode.removeChild(portalContainer);
+    }
+  });
 
-	// Return empty fragment - content is rendered in portal
-	return <></>
-}
+  // Return empty fragment - content is rendered in portal
+  return <></>;
+};

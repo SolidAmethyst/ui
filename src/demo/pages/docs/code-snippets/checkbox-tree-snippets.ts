@@ -3,10 +3,10 @@
  */
 
 export const checkboxTreeSnippets = {
-	imports: `import { CheckboxTree } from '@sapphiresolid/ui'`,
+  imports: `import { CheckboxTree } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `const treeData = [
+  usage: {
+    basicUsage: `const treeData = [
   {
     id: '1',
     label: 'Documents',
@@ -19,7 +19,7 @@ export const checkboxTreeSnippets = {
 
 <CheckboxTree nodes={treeData} />`,
 
-		material3: `const treeData = [
+    material3: `const treeData = [
   {
     id: '1',
     label: 'Documents',
@@ -30,10 +30,10 @@ export const checkboxTreeSnippets = {
   }
 ]
 
-<CheckboxTree nodes={treeData} material3={true} />`
-	},
+<CheckboxTree nodes={treeData} material3={true} />`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --checkbox-tree-indent: 20px;
     --checkbox-tree-gap: 4px;
@@ -46,5 +46,5 @@ export const checkboxTreeSnippets = {
     --checkbox-tree-gap: 4px;
     --checkbox-tree-padding: 4px 8px;
   }
-}`
-} as const
+}`,
+} as const;

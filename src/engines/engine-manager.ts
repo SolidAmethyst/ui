@@ -1,6 +1,6 @@
 // Engine manager for dynamic loading and fallback
-import { mockEngine } from "./mock/mock-engine"
-import type { EngineConfig, UIEngine } from "./types/engine-interface"
+import { mockEngine } from "./mock/mock-engine";
+import type { EngineConfig, UIEngine } from "./types/engine-interface";
 
 // Extended engine interface with DLL methods
 interface ScrollbarPhysicsConfig {

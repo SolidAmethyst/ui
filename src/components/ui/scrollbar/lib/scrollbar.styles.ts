@@ -139,4 +139,4 @@ export const scrollbarStyles = `
   justify-content: center;
   z-index: 1001;
 }
-`
+`;

@@ -1,10 +1,10 @@
+import { getThemeFromCSS } from "../../components/ui/glass/lib/theme-utils";
 import { Component, Accessor } from "solid-js";
 import { Button } from "../../../components/ui/button";
 import { DemoSection } from "../common/demo-section";
 import { SubsectionTitle } from "../common/subsection-title";
 
 interface ButtonsSectionProps {
-  isDark: Accessor<boolean>;
   toggleTheme: () => void;
 }
 
@@ -12,11 +12,10 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
   <DemoSection
     title="Button Components"
     gradientColors={{ color1: "#3b82f6", color2: "#8b5cf6" }}
-    isDark={props.isDark}
   >
     {/* Control Buttons */}
     <div style={{ "margin-bottom": "12px", width: "100%" }}>
-      <SubsectionTitle title="Control buttons" isDark={props.isDark} />
+      <SubsectionTitle title="Control buttons" />
       <div
         style={{
           display: "flex",
@@ -36,10 +35,7 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
 
     {/* Small Buttons */}
     <div style={{ "margin-bottom": "12px", width: "100%" }}>
-      <SubsectionTitle
-        title="Small buttons (Title bar)"
-        isDark={props.isDark}
-      />
+      <SubsectionTitle title="Small buttons (Title bar)" />
       <div
         style={{
           display: "flex",
@@ -53,7 +49,7 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
       >
         <Button
           variant="small"
-          icon={props.isDark() ? "dark_mode" : "light_mode"}
+          icon={getThemeFromCSS() ? "dark_mode" : "light_mode"}
           iconFilled={false}
           iconPosition="only"
           title="Theme"
@@ -82,7 +78,7 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
 
     {/* Play/Pause Button */}
     <div style={{ "margin-bottom": "12px", width: "100%" }}>
-      <SubsectionTitle title="Play/Pause button" isDark={props.isDark} />
+      <SubsectionTitle title="Play/Pause button" />
       <div
         style={{
           display: "flex",
@@ -101,7 +97,7 @@ export const ButtonsSection: Component<ButtonsSectionProps> = (props) => (
 
     {/* Window Control Buttons */}
     <div style={{ "margin-bottom": "12px", width: "100%" }}>
-      <SubsectionTitle title="Window control buttons" isDark={props.isDark} />
+      <SubsectionTitle title="Window control buttons" />
       <div
         style={{
           display: "flex",

@@ -4,12 +4,11 @@
  */
 
 // Main component
-export { Typography } from './ui/typography'
+export { Typography } from "./ui/typography";
 
 // Types
-export type { TypographyProps, TypographyVariant } from './model/types'
+export type { TypographyProps, TypographyVariant } from "./model/types";
 
 // Styles (for advanced usage)
-export { typographyStyles } from './lib/typography.styles'
-export type { TypographyStyleOptions } from './lib/typography.styles'
-
+export { typographyStyles } from "./lib/typography.styles";
+export type { TypographyStyleOptions } from "./lib/typography.styles";

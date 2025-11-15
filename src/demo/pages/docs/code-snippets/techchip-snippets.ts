@@ -4,10 +4,10 @@
  */
 
 export const techchipSnippets = {
-	imports: `import { TechChip } from '@sapphiresolid/ui'`,
+  imports: `import { TechChip } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `<TechChip
+  usage: {
+    basicUsage: `<TechChip
   label="TypeScript"
   icon="code"
   status="ready"
@@ -49,7 +49,7 @@ export const techchipSnippets = {
   variant="engine"
 />`,
 
-		statusStates: `<TechChip
+    statusStates: `<TechChip
   label="Loading"
   icon="hourglass_empty"
   status="loading"
@@ -68,6 +68,6 @@ export const techchipSnippets = {
   icon="error"
   status="error"
   variant="engine"
-/>`
-	}
-} as const
+/>`,
+  },
+} as const;

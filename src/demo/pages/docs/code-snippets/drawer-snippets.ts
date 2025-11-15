@@ -3,10 +3,10 @@
  */
 
 export const drawerSnippets = {
-	imports: `import { Drawer } from '@sapphiresolid/ui'`,
+  imports: `import { Drawer } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `import { createSignal } from 'solid-js'
+  usage: {
+    basicUsage: `import { createSignal } from 'solid-js'
 import { Drawer } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -25,7 +25,7 @@ function MyComponent() {
   )
 }`,
 
-		positions: `import { createSignal } from 'solid-js'
+    positions: `import { createSignal } from 'solid-js'
 import { Drawer } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -46,7 +46,7 @@ function MyComponent() {
   )
 }`,
 
-		customSize: `import { createSignal } from 'solid-js'
+    customSize: `import { createSignal } from 'solid-js'
 import { Drawer } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -66,7 +66,7 @@ function MyComponent() {
   )
 }`,
 
-		noBackdrop: `import { createSignal } from 'solid-js'
+    noBackdrop: `import { createSignal } from 'solid-js'
 import { Drawer } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -86,7 +86,7 @@ function MyComponent() {
   )
 }`,
 
-		controlledClose: `import { createSignal } from 'solid-js'
+    controlledClose: `import { createSignal } from 'solid-js'
 import { Drawer } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -107,6 +107,6 @@ function MyComponent() {
       </Drawer>
     </>
   )
-}`
-	}
-} as const
+}`,
+  },
+} as const;

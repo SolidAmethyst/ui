@@ -4,15 +4,15 @@
  */
 
 export const appSnippets = {
-	imports: `import { App } from '@sapphiresolid/ui'
+  imports: `import { App } from '@sapphiresolid/ui'
 import type { SidebarItem } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `<App isDark={isDark} toggleTheme={toggleTheme} sidebarItems={sidebarItems}>
+  usage: {
+    basicUsage: `<App toggleTheme={toggleTheme} sidebarItems={sidebarItems}>
   {/* Your content here */}
 </App>`,
 
-		adaptiveLayout: `<App isDark={isDark} toggleTheme={toggleTheme} sidebarItems={sidebarItems}>
+    adaptiveLayout: `<App toggleTheme={toggleTheme} sidebarItems={sidebarItems}>
   <div style={{ padding: '24px', overflow: 'auto' }}>
     <h1>Welcome to My Application</h1>
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
@@ -21,13 +21,13 @@ import type { SidebarItem } from '@sapphiresolid/ui'`,
   </div>
 </App>`,
 
-		overlayMode: `<App isDark={isDark} toggleTheme={toggleTheme} sidebarItems={sidebarItems} overlayMode={true}>
+    overlayMode: `<App toggleTheme={toggleTheme} sidebarItems={sidebarItems} overlayMode={true}>
   <div style={{ padding: '24px', overflow: 'auto' }}>
     <h1>Welcome to My Application</h1>
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
       {/* Your cards here */}
     </div>
   </div>
-</App>`
-	}
-} as const
+</App>`,
+  },
+} as const;

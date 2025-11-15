@@ -4,11 +4,11 @@
  */
 
 export const sidebarSnippets = {
-	imports: `import { Sidebar } from '@sapphiresolid/ui'
+  imports: `import { Sidebar } from '@sapphiresolid/ui'
 import type { SidebarItem } from '@sapphiresolid/ui'`,
 
-	usage: {
-		yourFirstSidebarComplete: `import { createSignal } from 'solid-js'
+  usage: {
+    yourFirstSidebarComplete: `import { createSignal } from 'solid-js'
 import { Sidebar } from '@sapphiresolid/ui'
 import type { SidebarItem } from '@sapphiresolid/ui'
 import { Button } from '@sapphiresolid/ui'
@@ -34,7 +34,6 @@ export function App() {
 			<Sidebar
 				open={sidebarOpen()}
 				items={sidebarItems}
-				isDark={isDark}
 				overlayMode={false}
 				onItemClick={() => setSidebarOpen(false)}
 			/>
@@ -60,7 +59,7 @@ export function App() {
 	)
 }`,
 
-		yourFirstSidebar: `import { createSignal } from 'solid-js'
+    yourFirstSidebar: `import { createSignal } from 'solid-js'
 import { Sidebar, Button } from '@sapphiresolid/ui'
 import type { SidebarItem } from '@sapphiresolid/ui'
 
@@ -85,7 +84,6 @@ export function App() {
 			<Sidebar
 				open={sidebarOpen()}
 				items={sidebarItems}
-				isDark={isDark}
 				overlayMode={false}
 				onItemClick={() => setSidebarOpen(false)}
 			/>
@@ -111,7 +109,7 @@ export function App() {
 	)
 }`,
 
-		customization: `@layer base {
+    customization: `@layer base {
   :root {
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -128,6 +126,6 @@ export function App() {
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
   }
-}`
-	}
-} as const
+}`,
+  },
+} as const;

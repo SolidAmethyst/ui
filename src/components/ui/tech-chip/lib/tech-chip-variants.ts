@@ -4,28 +4,28 @@
  * Similar to buttonVariants pattern
  */
 
-import type { TechChipStatus, TechChipVariant } from '../model/types'
+import type { TechChipStatus, TechChipVariant } from "../model/types";
 
 export interface TechChipVariantsOptions {
-	/**
-	 * Visual variant of the chip
-	 */
-	variant?: TechChipVariant
+  /**
+   * Visual variant of the chip
+   */
+  variant?: TechChipVariant;
 
-	/**
-	 * Current status of the chip
-	 */
-	status?: TechChipStatus
+  /**
+   * Current status of the chip
+   */
+  status?: TechChipStatus;
 
-	/**
-	 * Whether the chip is clickable
-	 */
-	clickable?: boolean
+  /**
+   * Whether the chip is clickable
+   */
+  clickable?: boolean;
 
-	/**
-	 * Additional CSS class names
-	 */
-	class?: string
+  /**
+   * Additional CSS class names
+   */
+  class?: string;
 }
 
 /**
@@ -33,39 +33,40 @@ export interface TechChipVariantsOptions {
  * @param options - Tech chip variant options
  * @returns CSS class string
  */
-export const techChipVariants = (options: TechChipVariantsOptions = {}): string => {
-	const { variant, status, clickable, class: className } = options
+export const techChipVariants = (
+  options: TechChipVariantsOptions = {},
+): string => {
+  const { variant, status, clickable, class: className } = options;
 
-	let baseClass = 'tech-chip'
+  let baseClass = "tech-chip";
 
-	// Variant-based classes
-	if (variant === 'frontend') {
-		baseClass += ' tech-chip-frontend'
-	} else if (variant === 'backend') {
-		baseClass += ' tech-chip-backend'
-	} else if (variant === 'engine') {
-		baseClass += ' tech-chip-engine'
-	}
+  // Variant-based classes
+  if (variant === "frontend") {
+    baseClass += " tech-chip-frontend";
+  } else if (variant === "backend") {
+    baseClass += " tech-chip-backend";
+  } else if (variant === "engine") {
+    baseClass += " tech-chip-engine";
+  }
 
-	// Status-based classes
-	if (status === 'loading') {
-		baseClass += ' tech-chip-loading'
-	} else if (status === 'ready') {
-		baseClass += ' tech-chip-ready'
-	} else if (status === 'error') {
-		baseClass += ' tech-chip-error'
-	}
+  // Status-based classes
+  if (status === "loading") {
+    baseClass += " tech-chip-loading";
+  } else if (status === "ready") {
+    baseClass += " tech-chip-ready";
+  } else if (status === "error") {
+    baseClass += " tech-chip-error";
+  }
 
-	// Clickable state
-	if (clickable) {
-		baseClass += ' tech-chip-clickable'
-	}
+  // Clickable state
+  if (clickable) {
+    baseClass += " tech-chip-clickable";
+  }
 
-	// Additional classes
-	if (className) {
-		baseClass += ` ${className}`
-	}
+  // Additional classes
+  if (className) {
+    baseClass += ` ${className}`;
+  }
 
-	return baseClass.trim()
-}
-
+  return baseClass.trim();
+};

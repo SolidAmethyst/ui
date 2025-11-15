@@ -42,7 +42,7 @@ export interface EngineConfig {
   zoomEnabled: boolean;
 }
 
-export type GlassEffectType = 'mica' | 'acrylic' | 'blur' | 'matte';
+export type GlassEffectType = "mica" | "acrylic" | "blur" | "matte";
 
 export interface GlassEffectConfig {
   type: GlassEffectType;

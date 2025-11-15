@@ -1,109 +1,94 @@
-import { render, screen } from '@solidjs/testing-library'
-import { describe, expect, it, vi } from 'vitest'
-import type { SidebarItem } from '../model/types'
-import { Sidebar } from '../ui/sidebar'
+import { render, screen } from "@solidjs/testing-library";
+import { describe, expect, it, vi } from "vitest";
+import type { SidebarItem } from "../model/types";
+import { Sidebar } from "../ui/sidebar";
 
-describe('Sidebar', () => {
-	const mockItems: SidebarItem[] = [
-		{ label: 'Home', icon: 'home', onClick: vi.fn() },
-		{ label: 'Dashboard', icon: 'dashboard', onClick: vi.fn() },
-		{ separator: true },
-		{ label: 'Settings', icon: 'settings', onClick: vi.fn() }
-	]
+describe("Sidebar", () => {
+  const mockItems: SidebarItem[] = [
+    { label: "Home", icon: "home", onClick: vi.fn() },
+    { label: "Dashboard", icon: "dashboard", onClick: vi.fn() },
+    { separator: true },
+    { label: "Settings", icon: "settings", onClick: vi.fn() },
+  ];
 
-	it('does not render content when open is false', () => {
-		render(() => <Sidebar open={false} items={mockItems} isDark={false} />)
-		expect(screen.queryByText('Home')).not.toBeInTheDocument()
-	})
+  it("does not render content when open is false", () => {
+    render(() => <Sidebar open={false} items={mockItems} />);
+    expect(screen.queryByText("Home")).not.toBeInTheDocument();
+  });
 
-	it('renders when open is true', () => {
-		render(() => <Sidebar open={true} items={mockItems} isDark={false} />)
-		expect(screen.getByText('Home')).toBeInTheDocument()
-		expect(screen.getByText('Dashboard')).toBeInTheDocument()
-		expect(screen.getByText('Settings')).toBeInTheDocument()
-	})
+  it("renders when open is true", () => {
+    render(() => <Sidebar open={true} items={mockItems} />);
+    expect(screen.getByText("Home")).toBeInTheDocument();
+    expect(screen.getByText("Dashboard")).toBeInTheDocument();
+    expect(screen.getByText("Settings")).toBeInTheDocument();
+  });
 
-	it('renders sidebar items with icons', () => {
-		render(() => <Sidebar open={true} items={mockItems} isDark={false} />)
-		const homeButton = screen.getByText('Home').closest('button')
-		expect(homeButton).toBeInTheDocument()
-	})
+  it("renders sidebar items with icons", () => {
+    render(() => <Sidebar open={true} items={mockItems} />);
+    const homeButton = screen.getByText("Home").closest("button");
+    expect(homeButton).toBeInTheDocument();
+  });
 
-	it('renders separators', () => {
-		render(() => <Sidebar open={true} items={mockItems} isDark={false} />)
-		const listItems = screen.getByRole('list').querySelectorAll('li')
-		// Should have 4 items: Home, Dashboard, separator, Settings
-		expect(listItems.length).toBeGreaterThanOrEqual(3)
-	})
+  it("renders separators", () => {
+    render(() => <Sidebar open={true} items={mockItems} />);
+    const listItems = screen.getByRole("list").querySelectorAll("li");
+    // Should have 4 items: Home, Dashboard, separator, Settings
+    expect(listItems.length).toBeGreaterThanOrEqual(3);
+  });
 
-	it('calls onClick when item is clicked', () => {
-		const onClick = vi.fn()
-		const items: SidebarItem[] = [{ label: 'Test', onClick }]
-		render(() => <Sidebar open={true} items={items} isDark={false} />)
+  it("calls onClick when item is clicked", () => {
+    const onClick = vi.fn();
+    const items: SidebarItem[] = [{ label: "Test", onClick }];
+    render(() => <Sidebar open={true} items={items} />);
 
-		const button = screen.getByText('Test')
-		button.click()
+    const button = screen.getByText("Test");
+    button.click();
 
-		expect(onClick).toHaveBeenCalledTimes(1)
-	})
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
 
-	it('calls onItemClick callback when provided', () => {
-		const onItemClick = vi.fn()
-		const items: SidebarItem[] = [{ label: 'Test', onClick: vi.fn() }]
-		render(() => (
-			<Sidebar
-				open={true}
-				items={items}
-				isDark={false}
-				onItemClick={onItemClick}
-			/>
-		))
+  it("calls onItemClick callback when provided", () => {
+    const onItemClick = vi.fn();
+    const items: SidebarItem[] = [{ label: "Test", onClick: vi.fn() }];
+    render(() => (
+      <Sidebar open={true} items={items} onItemClick={onItemClick} />
+    ));
 
-		const button = screen.getByText('Test')
-		button.click()
+    const button = screen.getByText("Test");
+    button.click();
 
-		expect(onItemClick).toHaveBeenCalledTimes(1)
-	})
+    expect(onItemClick).toHaveBeenCalledTimes(1);
+  });
 
-	it('handles disabled items', () => {
-		const items: SidebarItem[] = [{ label: 'Disabled', disabled: true }]
-		render(() => <Sidebar open={true} items={items} isDark={false} />)
+  it("handles disabled items", () => {
+    const items: SidebarItem[] = [{ label: "Disabled", disabled: true }];
+    render(() => <Sidebar open={true} items={items} />);
 
-		const button = screen.getByText('Disabled').closest('button')
-		expect(button).toBeDisabled()
-	})
+    const button = screen.getByText("Disabled").closest("button");
+    expect(button).toBeDisabled();
+  });
 
-	it('applies overlay mode styles', () => {
-		render(() => (
-			<div style={{ position: 'relative', width: '100%', height: '100vh' }}>
-				<Sidebar
-					open={true}
-					items={mockItems}
-					isDark={false}
-					overlayMode={true}
-				/>
-			</div>
-		))
+  it("applies overlay mode styles", () => {
+    render(() => (
+      <div style={{ position: "relative", width: "100%", height: "100vh" }}>
+        <Sidebar open={true} items={mockItems} overlayMode={true} />
+      </div>
+    ));
 
-		// In overlay mode, Sidebar renders with absolute positioning inside container
-		const sidebar = document.querySelector('aside.sidebar')
-		expect(sidebar).toBeInTheDocument()
-		expect(sidebar).toHaveStyle({ position: 'absolute' })
-		// CSS variable --sidebar-width is used (defaults to 250px in production)
-		// In test environment, CSS variables may not be resolved, so we just check that position is applied
-	})
+    // In overlay mode, Sidebar renders with absolute positioning inside container
+    const sidebar = document.querySelector("aside.sidebar");
+    expect(sidebar).toBeInTheDocument();
+    expect(sidebar).toHaveStyle({ position: "absolute" });
+    // CSS variable --sidebar-width is used (defaults to 250px in production)
+    // In test environment, CSS variables may not be resolved, so we just check that position is applied
+  });
 
-	it('applies shift mode styles when overlayMode is false', () => {
-		const { container } = render(() => (
-			<Sidebar
-				open={true}
-				items={mockItems}
-				isDark={false}
-				overlayMode={false}
-			/>
-		))
+  it("applies shift mode styles when overlayMode is false", () => {
+    const { container } = render(() => (
+      <Sidebar open={true} items={mockItems} overlayMode={false} />
+    ));
 
-		const sidebar = container.querySelector('aside')
-		expect(sidebar).toHaveStyle({ position: 'relative' })
-	})
-})
+    const sidebar = container.querySelector("aside");
+    expect(sidebar).toHaveStyle({ position: "relative" });
+  });
+});

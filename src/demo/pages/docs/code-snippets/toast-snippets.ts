@@ -3,10 +3,10 @@
  */
 
 export const toastSnippets = {
-	imports: `import { ToastProvider, useToast } from '@sapphiresolid/ui'`,
+  imports: `import { ToastProvider, useToast } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `import { ToastProvider, useToast } from '@sapphiresolid/ui'
+  usage: {
+    basicUsage: `import { ToastProvider, useToast } from '@sapphiresolid/ui'
 
 function MyComponent() {
   const toast = useToast()
@@ -26,7 +26,7 @@ function MyComponent() {
   )
 }`,
 
-		variants: `toast.showToast({
+    variants: `toast.showToast({
   title: 'Success!',
   description: 'Operation completed.',
   variant: 'success'
@@ -48,10 +48,10 @@ toast.showToast({
   title: 'Info',
   description: 'Here is some information.',
   variant: 'info'
-})`
-	},
+})`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --toast-background-dark: hsla(240, 5.9%, 10%, 0.9);
     --toast-background-light: hsla(0, 0%, 98%, 0.9);
@@ -78,5 +78,5 @@ toast.showToast({
     --toast-warning-color: hsl(38, 92%, 50%);
     --toast-info-color: hsl(217, 91%, 60%);
   }
-}`
-} as const
+}`,
+} as const;

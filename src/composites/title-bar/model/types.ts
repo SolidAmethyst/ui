@@ -71,11 +71,6 @@ export interface TitleBarProps {
   pinned?: boolean;
 
   /**
-   * Whether the theme is dark (affects theme button icon)
-   */
-  isDark?: boolean;
-
-  /**
    * Additional CSS class names
    */
   class?: string;

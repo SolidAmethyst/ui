@@ -3,14 +3,14 @@
  */
 
 export const tooltipSnippets = {
-	imports: `import { Tooltip } from '@sapphiresolid/ui'`,
+  imports: `import { Tooltip } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `<Tooltip content="Tooltip text" position="top">
+  usage: {
+    basicUsage: `<Tooltip content="Tooltip text" position="top">
   <button>Hover me</button>
 </Tooltip>`,
 
-		positions: `<Tooltip content="Top" position="top">
+    positions: `<Tooltip content="Top" position="top">
   <button>Top</button>
 </Tooltip>
 
@@ -24,10 +24,10 @@ export const tooltipSnippets = {
 
 <Tooltip content="Right" position="right">
   <button>Right</button>
-</Tooltip>`
-	},
+</Tooltip>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --tooltip-background-dark: hsla(240, 5.9%, 10%, 0.9);
     --tooltip-background-light: hsla(0, 0%, 98%, 0.9);
@@ -52,5 +52,5 @@ export const tooltipSnippets = {
     --tooltip-font-size: 13px;
     --tooltip-z-index: 10000;
   }
-}`
-} as const
+}`,
+} as const;

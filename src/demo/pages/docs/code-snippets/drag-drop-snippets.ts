@@ -4,10 +4,10 @@
  */
 
 export const dragDropSnippets = {
-	imports: `import { DragDrop, type DragDropItem } from '@sapphiresolid/ui'`,
+  imports: `import { DragDrop, type DragDropItem } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `const items: DragDropItem[] = [
+  usage: {
+    basicUsage: `const items: DragDropItem[] = [
   { id: '1', content: <div>Item 1</div> },
   { id: '2', content: <div>Item 2</div> },
   { id: '3', content: <div>Item 3</div> }
@@ -15,7 +15,7 @@ export const dragDropSnippets = {
 
 <DragDrop items={items} />`,
 
-		withCallbacks: `const items: DragDropItem[] = [
+    withCallbacks: `const items: DragDropItem[] = [
   { id: '1', content: <div>Item 1</div> },
   { id: '2', content: <div>Item 2</div> }
 ]
@@ -29,7 +29,7 @@ export const dragDropSnippets = {
   onDragEnd={(item, index) => console.log('Drag ended')}
 />`,
 
-		horizontal: `const items: DragDropItem[] = [
+    horizontal: `const items: DragDropItem[] = [
   { id: '1', content: <div>Item 1</div> },
   { id: '2', content: <div>Item 2</div> },
   { id: '3', content: <div>Item 3</div> }
@@ -37,7 +37,7 @@ export const dragDropSnippets = {
 
 <DragDrop items={items} orientation="horizontal" />`,
 
-		disabled: `const items: DragDropItem[] = [
+    disabled: `const items: DragDropItem[] = [
   { id: '1', content: <div>Item 1</div> },
   { id: '2', content: <div>Item 2</div>, disabled: true },
   { id: '3', content: <div>Item 3</div> }
@@ -45,14 +45,14 @@ export const dragDropSnippets = {
 
 <DragDrop items={items} disabled={false} />`,
 
-		customGap: `const items: DragDropItem[] = [
+    customGap: `const items: DragDropItem[] = [
   { id: '1', content: <div>Item 1</div> },
   { id: '2', content: <div>Item 2</div> }
 ]
 
 <DragDrop items={items} gap="16px" />`,
 
-		customRender: `const items: DragDropItem[] = [
+    customRender: `const items: DragDropItem[] = [
   { id: '1', content: <div>Item 1</div>, data: { title: 'First' } },
   { id: '2', content: <div>Item 2</div>, data: { title: 'Second' } }
 ]
@@ -65,10 +65,10 @@ export const dragDropSnippets = {
       {item.content}
     </div>
   )}
-/>`
-	},
+/>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --drag-drop-item-padding: 12px 16px;
     --drag-drop-item-border-radius: 8px;
@@ -93,5 +93,5 @@ export const dragDropSnippets = {
     --drag-drop-indicator-color-dark: var(--primary);
     --drag-drop-handle-color-dark: var(--primary) / 0.4;
   }
-}`
-} as const
+}`,
+} as const;

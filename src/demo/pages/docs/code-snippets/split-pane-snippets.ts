@@ -3,27 +3,27 @@
  */
 
 export const splitPaneSnippets = {
-	imports: `import { SplitPane } from '@sapphiresolid/ui'`,
+  imports: `import { SplitPane } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `<SplitPane
+  usage: {
+    basicUsage: `<SplitPane
   first={<div>Left Panel</div>}
   second={<div>Right Panel</div>}
 />`,
 
-		vertical: `<SplitPane
+    vertical: `<SplitPane
   first={<div>Top Panel</div>}
   second={<div>Bottom Panel</div>}
   direction="vertical"
 />`,
 
-		customSplit: `<SplitPane
+    customSplit: `<SplitPane
   first={<div>Left Panel (30%)</div>}
   second={<div>Right Panel (70%)</div>}
   defaultSplit={30}
 />`,
 
-		controlled: `const [split, setSplit] = createSignal(50)
+    controlled: `const [split, setSplit] = createSignal(50)
 
 <SplitPane
   first={<div>Left Panel</div>}
@@ -32,15 +32,15 @@ export const splitPaneSnippets = {
   onSplitChange={setSplit}
 />`,
 
-		constraints: `<SplitPane
+    constraints: `<SplitPane
   first={<div>Left Panel</div>}
   second={<div>Right Panel</div>}
   minFirst={20}
   maxFirst={80}
-/>`
-	},
+/>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --split-pane-handle-size: 4px;
   }
@@ -49,5 +49,5 @@ export const splitPaneSnippets = {
   [data-theme="dark"] {
     --split-pane-handle-size: 4px;
   }
-}`
-} as const
+}`,
+} as const;

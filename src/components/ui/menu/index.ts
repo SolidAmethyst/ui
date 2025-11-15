@@ -4,10 +4,10 @@
  */
 
 // Main component
-export { Menu } from './ui/menu'
+export { Menu } from "./ui/menu";
 
 // Types
-export type { MenuItem, MenuProps } from './model/types'
+export type { MenuItem, MenuProps } from "./model/types";
 
 // Styles (for advanced usage)
-export { menuStyles } from './lib/menu.styles'
+export { menuStyles } from "./lib/menu.styles";

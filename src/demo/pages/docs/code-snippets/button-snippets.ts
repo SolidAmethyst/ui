@@ -4,26 +4,26 @@
  */
 
 export const buttonSnippets = {
-	imports: `import { Button } from '@sapphiresolid/ui'`,
+  imports: `import { Button } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `<Button variant="primary">Primary</Button>
+  usage: {
+    basicUsage: `<Button variant="primary">Primary</Button>
 <Button variant="secondary">Secondary</Button>
 <Button variant="danger">Danger</Button>
 <Button variant="ghost">Ghost</Button>`,
 
-		controlButtons: `<Button icon="menu">Menu</Button>
+    controlButtons: `<Button icon="menu">Menu</Button>
 <Button icon="settings">Settings</Button>
 <Button icon="bug_report">Debug</Button>`,
 
-		smallButtons: `<Button
+    smallButtons: `<Button
   variant="small"
   icon="settings"
   iconPosition="only"
   title="Settings"
 />`,
 
-		triggerButton: `<Button
+    triggerButton: `<Button
   variant="trigger"
   iconPosition="only"
   title="Toggle Sidebar"
@@ -32,10 +32,10 @@ export const buttonSnippets = {
   style={{ width: "28px", height: "28px" }}
 />`,
 
-		playPause: `<Button variant="play-pause" icon="play_arrow" title="Play" />
+    playPause: `<Button variant="play-pause" icon="play_arrow" title="Play" />
 <Button variant="play-pause" icon="pause" title="Pause" />`,
 
-		windowControls: `<Button
+    windowControls: `<Button
   variant="minimize"
   icon="remove"
   iconPosition="only"
@@ -59,21 +59,21 @@ export const buttonSnippets = {
   title="Pin"
 />`,
 
-		actionButtons: `<Button variant="back" iconPosition="only" title="Back" />
+    actionButtons: `<Button variant="back" iconPosition="only" title="Back" />
 <Button variant="save" iconPosition="only" title="Save" />
 <Button variant="delete" iconPosition="only" title="Delete" />
 <Button variant="search" iconPosition="only" title="Search" />
 <Button variant="share" iconPosition="only" title="Share" />
 <Button variant="small" icon="restart_alt" iconPosition="only" title="Reset" />`,
 
-		buttonStates: `<Button active>Active</Button>
+    buttonStates: `<Button active>Active</Button>
 <Button pinned>Pinned</Button>
 <Button maximized>Maximized</Button>
 <Button loading>Loading</Button>
-<Button disabled>Disabled</Button>`
-	},
+<Button disabled>Disabled</Button>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     /* Button hover uses primary color */
     --button-hover: var(--primary);
@@ -88,5 +88,5 @@ export const buttonSnippets = {
     --button-close-hover: 0 62.8% 30.6%;
     --button-close-active: 0 84.2% 60.2%;
   }
-}`
-} as const
+}`,
+} as const;

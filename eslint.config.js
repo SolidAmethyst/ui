@@ -2,6 +2,7 @@ import js from '@eslint/js'
 import typescript from '@typescript-eslint/eslint-plugin'
 import typescriptParser from '@typescript-eslint/parser'
 import solid from 'eslint-plugin-solid'
+import customRules from './tooling/eslint/index.js'
 
 export default [
 	js.configs.recommended,
@@ -45,7 +46,8 @@ export default [
 		},
 		plugins: {
 			'@typescript-eslint': typescript,
-			solid: solid
+			solid: solid,
+			'custom': customRules
 		},
 		rules: {
 			...typescript.configs.recommended.rules,
@@ -65,7 +67,8 @@ export default [
 			'solid/no-destructure': 'warn',
 			'solid/no-innerhtml': 'warn',
 			'solid/style-prop': 'warn',
-			'no-undef': 'off' // TypeScript handles this
+			'no-undef': 'off', // TypeScript handles this
+			'custom/no-hardcoded-theme-colors': 'error' // Custom rule for theme colors
 		}
 	},
 	{
@@ -90,6 +93,12 @@ export default [
 		},
 		rules: {
 			'no-undef': 'error'
+		}
+	},
+	{
+		files: ['**/demo/**/*.{ts,tsx}'],
+		rules: {
+			'custom/no-hardcoded-theme-colors': 'off' // Allow decorative colors in demo files
 		}
 	},
 	{

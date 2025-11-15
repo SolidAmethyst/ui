@@ -1,1 +1,1 @@
-export { AppBlock } from './app-block'
+export { AppBlock } from "./app-block";

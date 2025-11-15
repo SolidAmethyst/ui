@@ -4,28 +4,24 @@
  * Similar to buttonVariants pattern
  */
 
-import type { GlassVariant } from '../model/types'
+import type { GlassVariant } from "../model/types";
+import { getThemeFromCSS } from "./theme-utils";
 
 export interface GlassVariantsOptions {
-	/**
-	 * Glass effect variant
-	 */
-	variant?: GlassVariant
+  /**
+   * Glass effect variant
+   */
+  variant?: GlassVariant;
 
-	/**
-	 * Whether the theme is dark
-	 */
-	isDark?: boolean
+  /**
+   * Whether to use native effects
+   */
+  useNative?: boolean;
 
-	/**
-	 * Whether to use native effects
-	 */
-	useNative?: boolean
-
-	/**
-	 * Additional CSS class names
-	 */
-	class?: string
+  /**
+   * Additional CSS class names
+   */
+  class?: string;
 }
 
 /**
@@ -34,42 +30,42 @@ export interface GlassVariantsOptions {
  * @returns CSS class string
  */
 export const glassVariants = (options: GlassVariantsOptions = {}): string => {
-	const { variant, isDark, useNative, class: className } = options
+  const { variant, useNative, class: className } = options;
+  const isDark = getThemeFromCSS();
 
-	let baseClass = 'glass-container'
+  let baseClass = "glass-container";
 
-	// Variant-based classes
-	if (variant === 'mica') {
-		baseClass += ' glass-mica'
-	} else if (variant === 'acrylic') {
-		baseClass += ' glass-acrylic'
-	} else if (variant === 'blur') {
-		baseClass += ' glass-blur'
-	} else if (variant === 'matte') {
-		baseClass += ' glass-matte'
-	} else if (variant === 'auto') {
-		baseClass += ' glass-auto'
-	}
+  // Variant-based classes
+  if (variant === "mica") {
+    baseClass += " glass-mica";
+  } else if (variant === "acrylic") {
+    baseClass += " glass-acrylic";
+  } else if (variant === "blur") {
+    baseClass += " glass-blur";
+  } else if (variant === "matte") {
+    baseClass += " glass-matte";
+  } else if (variant === "auto") {
+    baseClass += " glass-auto";
+  }
 
-	// Theme-based classes
-	if (isDark) {
-		baseClass += ' glass-dark'
-	} else {
-		baseClass += ' glass-light'
-	}
+  // Theme-based classes
+  if (isDark) {
+    baseClass += " glass-dark";
+  } else {
+    baseClass += " glass-light";
+  }
 
-	// Native effects indicator
-	if (useNative) {
-		baseClass += ' glass-native'
-	} else {
-		baseClass += ' glass-css'
-	}
+  // Native effects indicator
+  if (useNative) {
+    baseClass += " glass-native";
+  } else {
+    baseClass += " glass-css";
+  }
 
-	// Additional classes
-	if (className) {
-		baseClass += ` ${className}`
-	}
+  // Additional classes
+  if (className) {
+    baseClass += ` ${className}`;
+  }
 
-	return baseClass.trim()
-}
-
+  return baseClass.trim();
+};

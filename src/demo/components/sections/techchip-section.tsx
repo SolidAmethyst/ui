@@ -1,16 +1,14 @@
+import { getThemeFromCSS } from "../../components/ui/glass/lib/theme-utils";
 import { Component, Accessor } from "solid-js";
 import { TechChip } from "../../../components/ui/tech-chip";
 import { DemoSection } from "../common/demo-section";
 
-interface TechChipSectionProps {
-  isDark: Accessor<boolean>;
-}
+interface TechChipSectionProps {}
 
 export const TechChipSection: Component<TechChipSectionProps> = (props) => (
   <DemoSection
     title="TechChip Components"
     gradientColors={{ color1: "#10b981", color2: "#06b6d4" }}
-    isDark={props.isDark}
   >
     <div
       style={{

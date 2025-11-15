@@ -3,10 +3,10 @@
  */
 
 export const timelineSnippets = {
-	imports: `import { Timeline } from '@sapphiresolid/ui'`,
+  imports: `import { Timeline } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `const events = [
+  usage: {
+    basicUsage: `const events = [
   {
     id: '1',
     title: 'Event 1',
@@ -25,7 +25,7 @@ export const timelineSnippets = {
 
 <Timeline events={events} />`,
 
-		variants: `const events = [
+    variants: `const events = [
   {
     id: '1',
     title: 'Success Event',
@@ -54,7 +54,7 @@ export const timelineSnippets = {
 
 <Timeline events={events} />`,
 
-		horizontal: `const events = [
+    horizontal: `const events = [
   {
     id: '1',
     title: 'Step 1',
@@ -71,7 +71,7 @@ export const timelineSnippets = {
 
 <Timeline events={events} orientation="horizontal" />`,
 
-		customIcons: `const events = [
+    customIcons: `const events = [
   {
     id: '1',
     title: 'Custom Event',
@@ -81,10 +81,10 @@ export const timelineSnippets = {
   }
 ]
 
-<Timeline events={events} />`
-	},
+<Timeline events={events} />`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --timeline-padding: 16px 0;
     --timeline-vertical-gap: 24px;
@@ -119,5 +119,5 @@ export const timelineSnippets = {
     --timeline-date-font-size: 12px;
     --timeline-date-margin: 4px 0 0 0;
   }
-}`
-} as const
+}`,
+} as const;

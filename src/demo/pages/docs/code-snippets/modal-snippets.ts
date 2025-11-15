@@ -3,10 +3,10 @@
  */
 
 export const modalSnippets = {
-	imports: `import { Modal } from '@sapphiresolid/ui'`,
+  imports: `import { Modal } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `import { createSignal } from 'solid-js'
+  usage: {
+    basicUsage: `import { createSignal } from 'solid-js'
 import { Modal } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -26,7 +26,7 @@ function MyComponent() {
   )
 }`,
 
-		sizes: `import { createSignal } from 'solid-js'
+    sizes: `import { createSignal } from 'solid-js'
 import { Modal } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -46,7 +46,7 @@ function MyComponent() {
   )
 }`,
 
-		noBackdrop: `import { createSignal } from 'solid-js'
+    noBackdrop: `import { createSignal } from 'solid-js'
 import { Modal } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -66,7 +66,7 @@ function MyComponent() {
   )
 }`,
 
-		controlledClose: `import { createSignal } from 'solid-js'
+    controlledClose: `import { createSignal } from 'solid-js'
 import { Modal } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -90,7 +90,7 @@ function MyComponent() {
   )
 }`,
 
-		focusTrap: `import { createSignal } from 'solid-js'
+    focusTrap: `import { createSignal } from 'solid-js'
 import { Modal } from '@sapphiresolid/ui'
 
 function MyComponent() {
@@ -112,7 +112,6 @@ function MyComponent() {
       </Modal>
     </>
   )
-}`
-	}
-} as const
-
+}`,
+  },
+} as const;

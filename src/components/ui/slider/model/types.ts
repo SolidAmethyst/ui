@@ -3,71 +3,66 @@
  * Range input slider component
  */
 
-import type { JSX } from 'solid-js'
+import type { JSX } from "solid-js";
 
 export interface SliderProps {
-	/**
-	 * Current value
-	 */
-	value: number
+  /**
+   * Current value
+   */
+  value: number;
 
-	/**
-	 * Minimum value
-	 */
-	min?: number
+  /**
+   * Minimum value
+   */
+  min?: number;
 
-	/**
-	 * Maximum value
-	 */
-	max?: number
+  /**
+   * Maximum value
+   */
+  max?: number;
 
-	/**
-	 * Step increment
-	 */
-	step?: number
+  /**
+   * Step increment
+   */
+  step?: number;
 
-	/**
-	 * Whether the slider is disabled
-	 */
-	disabled?: boolean
+  /**
+   * Whether the slider is disabled
+   */
+  disabled?: boolean;
 
-	/**
-	 * Change handler
-	 */
-	onChange?: (value: number) => void
+  /**
+   * Change handler
+   */
+  onChange?: (value: number) => void;
 
-	/**
-	 * Input handler (fires on every change)
-	 */
-	onInput?: (value: number) => void
+  /**
+   * Input handler (fires on every change)
+   */
+  onInput?: (value: number) => void;
 
-	/**
-	 * Label text
-	 */
-	label?: string
+  /**
+   * Label text
+   */
+  label?: string;
 
-	/**
-	 * Whether to show the value
-	 */
-	showValue?: boolean
+  /**
+   * Whether to show the value
+   */
+  showValue?: boolean;
 
-	/**
-	 * Value formatter function
-	 */
-	formatValue?: (value: number) => string
+  /**
+   * Value formatter function
+   */
+  formatValue?: (value: number) => string;
 
-	/**
-	 * Whether dark theme is active
-	 */
-	isDark?: boolean
+  /**
+   * Additional CSS class names
+   */
+  class?: string;
 
-	/**
-	 * Additional CSS class names
-	 */
-	class?: string
-
-	/**
-	 * Inline CSS styles
-	 */
-	style?: JSX.CSSProperties
+  /**
+   * Inline CSS styles
+   */
+  style?: JSX.CSSProperties;
 }

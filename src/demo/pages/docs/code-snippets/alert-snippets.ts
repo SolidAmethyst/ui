@@ -3,10 +3,10 @@
  */
 
 export const alertSnippets = {
-	imports: `import { Alert } from '@sapphiresolid/ui'`,
+  imports: `import { Alert } from '@sapphiresolid/ui'`,
 
-	usage: {
-		variants: `<Alert
+  usage: {
+    variants: `<Alert
   variant="success"
   title="Success!"
   description="Operation completed successfully."
@@ -28,10 +28,10 @@ export const alertSnippets = {
   variant="info"
   title="Info"
   description="Here is some information."
-/>`
-	},
+/>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --alert-background-dark: hsla(240, 5.9%, 10%, 0.9);
     --alert-background-light: hsla(0, 0%, 98%, 0.9);
@@ -58,5 +58,5 @@ export const alertSnippets = {
     --alert-warning-color: hsl(38, 92%, 50%);
     --alert-info-color: hsl(217, 91%, 60%);
   }
-}`
-} as const
+}`,
+} as const;

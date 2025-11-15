@@ -4,17 +4,17 @@
  */
 
 export const numberInputSnippets = {
-	imports: `import { NumberInput } from '@sapphiresolid/ui'`,
+  imports: `import { NumberInput } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `<NumberInput
+  usage: {
+    basicUsage: `<NumberInput
   value={3}
   step={1}
   enableWheel={true}
   onChange={(val) => setValue(val)}
 />`,
 
-		controlled: `const [value, setValue] = createSignal(3)
+    controlled: `const [value, setValue] = createSignal(3)
 
 <NumberInput
   value={value()}
@@ -30,10 +30,10 @@ export const numberInputSnippets = {
   enableWheel={true}
   showArrows={true}
   themeAware={true}
-/>`
-	},
+/>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --number-input-border: rgba(0, 0, 0, 0.1);
     --number-input-bg: rgba(0, 0, 0, 0.02);
@@ -49,5 +49,5 @@ export const numberInputSnippets = {
     /* Focus border uses primary color */
     --number-input-border-focus: hsla(var(--primary) / 0.5);
   }
-}`
-} as const
+}`,
+} as const;

@@ -3,11 +3,11 @@
  */
 
 export const filterBarSnippets = {
-	imports: `import { FilterBar, FilterPanel } from '@sapphiresolid/ui'
+  imports: `import { FilterBar, FilterPanel } from '@sapphiresolid/ui'
 import type { FileTypeFilter } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `const filters = [
+  usage: {
+    basicUsage: `const filters = [
   {
     id: 'status',
     label: 'Status',
@@ -30,7 +30,7 @@ import type { FileTypeFilter } from '@sapphiresolid/ui'`,
 
 <FilterBar filters={filters} />`,
 
-		allTypes: `const filters = [
+    allTypes: `const filters = [
   {
     id: 'status',
     label: 'Status',
@@ -72,7 +72,7 @@ import type { FileTypeFilter } from '@sapphiresolid/ui'`,
 
 <FilterBar filters={filters} />`,
 
-		filterPanel: `const [filterPanelOpen, setFilterPanelOpen] = createSignal(false)
+    filterPanel: `const [filterPanelOpen, setFilterPanelOpen] = createSignal(false)
 const [fileTypes, setFileTypes] = createSignal<FileTypeFilter[]>([
   { id: 'sql', label: '.sql', extension: 'sql', checked: true },
   { id: 'txt', label: '.txt', extension: 'txt', checked: true },
@@ -99,12 +99,11 @@ const [maxFileSize, setMaxFileSize] = createSignal(0)
     setMinFileSize(min)
     setMaxFileSize(max)
   }}
-  isDark={true}
   size="md"
-/>`
-	},
+/>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --filter-bar-gap: 12px;
     --filter-bar-padding: 12px 16px;
@@ -139,5 +138,5 @@ const [maxFileSize, setMaxFileSize] = createSignal(0)
     --filter-bar-button-font-size: 13px;
     --filter-bar-button-border-radius: 6px;
   }
-}`
-} as const
+}`,
+} as const;

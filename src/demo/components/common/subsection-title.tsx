@@ -2,7 +2,6 @@ import { Component } from "solid-js";
 
 interface SubsectionTitleProps {
   title: string;
-  isDark: () => boolean;
 }
 
 export const SubsectionTitle: Component<SubsectionTitleProps> = (props) => (

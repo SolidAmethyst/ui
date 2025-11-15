@@ -1,18 +1,14 @@
-import { Accessor, Component } from "solid-js";
+import { Component } from "solid-js";
 
-interface FooterProps {
-  isDark: Accessor<boolean>;
-}
+interface FooterProps {}
 
-export const Footer: Component<FooterProps> = (props) => (
+export const Footer: Component<FooterProps> = () => (
   <footer
     style={{
       width: "100%",
       padding: "32px 32px",
       "box-sizing": "border-box",
-      "border-top": props.isDark()
-        ? "1px solid rgba(255, 255, 255, 0.1)"
-        : "1px solid rgba(0, 0, 0, 0.1)",
+      "border-top": "1px solid hsl(var(--border))",
       "margin-top": "auto",
     }}
   >
@@ -94,9 +90,7 @@ export const Footer: Component<FooterProps> = (props) => (
       <p
         style={{
           margin: "0",
-          color: props.isDark()
-            ? "rgba(246, 246, 246, 0.6)"
-            : "rgba(26, 26, 26, 0.6)",
+          color: "hsl(var(--muted-foreground) / 0.6)",
           "font-size": "13px",
         }}
       >

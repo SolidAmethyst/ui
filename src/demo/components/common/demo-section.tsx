@@ -1,3 +1,4 @@
+import { getThemeFromCSS } from "../../components/ui/glass/lib/theme-utils";
 import { Component, JSX } from "solid-js";
 import { GlowEffect } from "../effects";
 
@@ -5,13 +6,12 @@ interface DemoSectionProps {
   children: JSX.Element;
   title: string;
   gradientColors: { color1: string; color2: string };
-  isDark: () => boolean;
 }
 
 export const DemoSection: Component<DemoSectionProps> = (props) => (
   <div
     style={{
-      background: props.isDark()
+      background: getThemeFromCSS()
         ? "rgba(0, 0, 0, 0.3)"
         : "rgba(255, 255, 255, 0.8)",
       "backdrop-filter": "blur(20px) saturate(180%)",
@@ -19,7 +19,7 @@ export const DemoSection: Component<DemoSectionProps> = (props) => (
       border: "1px solid rgba(255, 255, 255, 0.1)",
       padding: "16px",
       "border-radius": "0px",
-      "box-shadow": props.isDark()
+      "box-shadow": getThemeFromCSS()
         ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
         : "0 4px 16px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05)",
       width: "100%",
@@ -51,7 +51,7 @@ export const DemoSection: Component<DemoSectionProps> = (props) => (
           padding: "8px 16px",
           "padding-bottom": "12px",
           "border-radius": "0px",
-          "box-shadow": props.isDark()
+          "box-shadow": getThemeFromCSS()
             ? "0 8px 32px rgba(0, 0, 0, 0.4), " +
               "0 0 0 1px rgba(255, 255, 255, 0.1), " +
               "inset 0 1px 0 rgba(255, 255, 255, 0.15), " +
@@ -59,7 +59,7 @@ export const DemoSection: Component<DemoSectionProps> = (props) => (
             : "0 4px 16px rgba(0, 0, 0, 0.1), " +
               "0 0 0 1px rgba(0, 0, 0, 0.1), " +
               "inset 0 1px 0 rgba(255, 255, 255, 0.8)",
-          background: props.isDark()
+          background: getThemeFromCSS()
             ? "rgba(255, 255, 255, 0.05)"
             : "rgba(255, 255, 255, 0.3)",
           position: "relative",

@@ -1,17 +1,15 @@
+import { getThemeFromCSS } from "../../components/ui/glass/lib/theme-utils";
 import { Accessor, Component } from "solid-js";
 import { Scrollbar } from "../../../components/ui/scrollbar";
 import { DemoSection } from "../common/demo-section";
 import { ScrollbarGlowEffect } from "../effects";
 
-interface ScrollbarSectionProps {
-  isDark: Accessor<boolean>;
-}
+interface ScrollbarSectionProps {}
 
 export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
   <DemoSection
     title="Scrollbar Components"
     gradientColors={{ color1: "#f59e0b", color2: "#ec4899" }}
-    isDark={props.isDark}
   >
     <div
       style={{
@@ -47,7 +45,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
             background: "rgba(0, 0, 0, 0.4)",
             "backdrop-filter": "blur(10px) saturate(150%)",
             "-webkit-backdrop-filter": "blur(10px) saturate(150%)",
-            "box-shadow": props.isDark()
+            "box-shadow": getThemeFromCSS()
               ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
               : "0 4px 16px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05)",
           }}
@@ -71,7 +69,12 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
                     "border-bottom": "1px solid rgba(255, 255, 255, 0.1)",
                   }}
                 >
-                  <h3 style={{ color: "hsl(var(--foreground))", margin: "0 0 5px 0" }}>
+                  <h3
+                    style={{
+                      color: "hsl(var(--foreground))",
+                      margin: "0 0 5px 0",
+                    }}
+                  >
                     Item {i + 1}
                   </h3>
                   <p
@@ -115,7 +118,7 @@ export const ScrollbarSection: Component<ScrollbarSectionProps> = (props) => (
             background: "rgba(0, 0, 0, 0.4)",
             "backdrop-filter": "blur(10px) saturate(150%)",
             "-webkit-backdrop-filter": "blur(10px) saturate(150%)",
-            "box-shadow": props.isDark()
+            "box-shadow": getThemeFromCSS()
               ? "0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.1)"
               : "0 4px 16px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05)",
           }}

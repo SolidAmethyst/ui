@@ -4,7 +4,7 @@
  */
 
 // Main component
-export { App } from './ui/app'
+export { App } from "./ui/app";
 
 // Types
-export type { AppProps } from './model/types'
+export type { AppProps } from "./model/types";

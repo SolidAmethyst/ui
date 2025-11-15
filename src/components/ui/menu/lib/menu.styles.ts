@@ -3,83 +3,83 @@
  */
 
 export const menuStyles = {
-	overlay: {
-		position: 'fixed' as const,
-		top: '0',
-		left: '0',
-		right: '0',
-		bottom: '0',
-		'z-index': '9999',
-		background: 'transparent',
-		cursor: 'default'
-	},
-	container: {
-		position: 'absolute' as const,
-		'min-width': 'var(--menu-min-width)',
-		'background-color': 'rgba(30, 30, 30, 0.95)',
-		'backdrop-filter': `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
-		'-webkit-backdrop-filter': `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
-		'border-radius': 'var(--menu-border-radius)',
-		'box-shadow':
-			'0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.05) inset',
-		border: '1px solid rgba(255, 255, 255, 0.1)',
-		'box-sizing': 'border-box',
-		padding: 'var(--menu-padding)',
-		'z-index': '10000',
-		overflow: 'hidden',
-		'user-select': 'none'
-	},
-	list: {
-		display: 'flex',
-		'flex-direction': 'column' as const,
-		gap: 'var(--menu-list-gap)',
-		margin: '0',
-		padding: '0',
-		'list-style': 'none'
-	},
-	item: {
-		display: 'flex',
-		'align-items': 'center',
-		gap: 'var(--menu-item-gap)',
-		padding: 'var(--menu-item-padding)',
-		'border-radius': 'var(--menu-item-border-radius)',
-		cursor: 'pointer',
-		'font-size': 'var(--menu-item-font-size)',
-		color: 'rgba(255, 255, 255, 0.9)',
-		transition: 'background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)',
-		'background-color': 'transparent',
-		border: 'none',
-		width: '100%',
-		'text-align': 'left' as const,
-		'box-sizing': 'border-box'
-	},
-	itemHover: {
-		'background-color': 'rgba(255, 255, 255, 0.1)'
-	},
-	itemDisabled: {
-		opacity: '0.5',
-		cursor: 'not-allowed'
-	},
-	itemIcon: {
-		display: 'flex',
-		'align-items': 'center',
-		'justify-content': 'center',
-		width: 'var(--menu-item-icon-size)',
-		height: 'var(--menu-item-icon-size)',
-		'font-size': 'var(--menu-item-icon-font-size)',
-		color: 'rgba(255, 255, 255, 0.8)',
-		'flex-shrink': '0'
-	},
-	itemLabel: {
-		flex: '1',
-		'white-space': 'nowrap' as const,
-		overflow: 'hidden',
-		'text-overflow': 'ellipsis'
-	},
-	separator: {
-		height: 'var(--menu-separator-height)',
-		'background-color': 'rgba(255, 255, 255, 0.1)',
-		margin: 'var(--menu-separator-margin)',
-		'flex-shrink': '0'
-	}
-}
+  overlay: {
+    position: "fixed" as const,
+    top: "0",
+    left: "0",
+    right: "0",
+    bottom: "0",
+    "z-index": "9999",
+    background: "transparent",
+    cursor: "default",
+  },
+  container: {
+    position: "absolute" as const,
+    "min-width": "var(--menu-min-width)",
+    "background-color": "rgba(30, 30, 30, 0.95)",
+    "backdrop-filter": `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
+    "-webkit-backdrop-filter": `blur(var(--drawer-panel-blur)) saturate(var(--drawer-panel-saturate))`,
+    "border-radius": "var(--menu-border-radius)",
+    "box-shadow":
+      "0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(255, 255, 255, 0.05) inset",
+    border: "1px solid rgba(255, 255, 255, 0.1)",
+    "box-sizing": "border-box",
+    padding: "var(--menu-padding)",
+    "z-index": "10000",
+    overflow: "hidden",
+    "user-select": "none",
+  },
+  list: {
+    display: "flex",
+    "flex-direction": "column" as const,
+    gap: "var(--menu-list-gap)",
+    margin: "0",
+    padding: "0",
+    "list-style": "none",
+  },
+  item: {
+    display: "flex",
+    "align-items": "center",
+    gap: "var(--menu-item-gap)",
+    padding: "var(--menu-item-padding)",
+    "border-radius": "var(--menu-item-border-radius)",
+    cursor: "pointer",
+    "font-size": "var(--menu-item-font-size)",
+    color: "rgba(255, 255, 255, 0.9)",
+    transition: "background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)",
+    "background-color": "transparent",
+    border: "none",
+    width: "100%",
+    "text-align": "left" as const,
+    "box-sizing": "border-box",
+  },
+  itemHover: {
+    "background-color": "rgba(255, 255, 255, 0.1)",
+  },
+  itemDisabled: {
+    opacity: "0.5",
+    cursor: "not-allowed",
+  },
+  itemIcon: {
+    display: "flex",
+    "align-items": "center",
+    "justify-content": "center",
+    width: "var(--menu-item-icon-size)",
+    height: "var(--menu-item-icon-size)",
+    "font-size": "var(--menu-item-icon-font-size)",
+    color: "rgba(255, 255, 255, 0.8)",
+    "flex-shrink": "0",
+  },
+  itemLabel: {
+    flex: "1",
+    "white-space": "nowrap" as const,
+    overflow: "hidden",
+    "text-overflow": "ellipsis",
+  },
+  separator: {
+    height: "var(--menu-separator-height)",
+    "background-color": "rgba(255, 255, 255, 0.1)",
+    margin: "var(--menu-separator-margin)",
+    "flex-shrink": "0",
+  },
+};

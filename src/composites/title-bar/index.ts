@@ -11,4 +11,3 @@ export type { TitleBarProps } from "./model/types";
 
 // Styles (for advanced usage)
 export { titleBarStyles } from "./lib/title-bar.styles";
-

@@ -3,11 +3,11 @@
  */
 
 export const fileManagerSnippets = {
-	imports: `import { FileManager } from '@sapphiresolid/ui'
+  imports: `import { FileManager } from '@sapphiresolid/ui'
 import type { FileItem } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `const [files, setFiles] = createSignal<FileItem[]>([
+  usage: {
+    basicUsage: `const [files, setFiles] = createSignal<FileItem[]>([
   { name: 'Documents', path: '/Documents', isFolder: true },
   { name: 'file.txt', path: '/Documents/file.txt', isFolder: false, size: 1024 }
 ])
@@ -25,10 +25,9 @@ const handleLoadFolder = async (path: string): Promise<FileItem[]> => {
   onPathChange={setCurrentPath}
   onLoadFolder={handleLoadFolder}
   onFileSelect={(selected) => console.log('Selected:', selected)}
-  isDark={true}
 />`,
 
-		withDrives: `const handleLoadDrives = async (): Promise<string[]> => {
+    withDrives: `const handleLoadDrives = async (): Promise<string[]> => {
   return ['C:\\', 'D:\\', 'F:\\']
 }
 
@@ -38,20 +37,18 @@ const handleLoadFolder = async (path: string): Promise<FileItem[]> => {
   onPathChange={setCurrentPath}
   onLoadFolder={handleLoadFolder}
   onLoadDrives={handleLoadDrives}
-  isDark={true}
 />`,
 
-		withFilters: `<FileManager
+    withFilters: `<FileManager
   files={files()}
   currentPath={currentPath()}
   onPathChange={setCurrentPath}
   onLoadFolder={handleLoadFolder}
   allowedExtensions={['txt', 'pdf', 'doc']}
-  isDark={true}
-/>`
-	},
+/>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --file-manager-border-radius: 8px;
     --file-manager-header-padding: 8px 12px;
@@ -79,5 +76,5 @@ const handleLoadFolder = async (path: string): Promise<FileItem[]> => {
   [data-theme="dark"] {
     /* Same variables apply for dark theme */
   }
-}`
-} as const
+}`,
+} as const;

@@ -3,10 +3,10 @@
  */
 
 export const tableSnippets = {
-	imports: `import { Table } from '@sapphiresolid/ui'`,
+  imports: `import { Table } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `const data = [
+  usage: {
+    basicUsage: `const data = [
   { id: 1, name: 'Alice', email: 'alice@example.com', age: 25 },
   { id: 2, name: 'Bob', email: 'bob@example.com', age: 30 }
 ]
@@ -27,7 +27,7 @@ const columns = [
 
 <Table data={data} columns={columns} />`,
 
-		pagination: `const data = [
+    pagination: `const data = [
   { id: 1, name: 'Alice', age: 25 },
   { id: 2, name: 'Bob', age: 30 },
   // ... more items
@@ -38,10 +38,10 @@ const columns = [
   columns={columns}
   paginated={true}
   pageSize={10}
-/>`
-	},
+/>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --table-border-color-dark: rgba(255, 255, 255, 0.1);
     --table-border-color-light: rgba(0, 0, 0, 0.1);
@@ -64,5 +64,5 @@ const columns = [
     --table-cell-padding: 12px 16px;
     --table-border-radius: 8px;
   }
-}`
-} as const
+}`,
+} as const;

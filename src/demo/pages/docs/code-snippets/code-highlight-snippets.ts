@@ -3,27 +3,24 @@
  */
 
 export const codeHighlightSnippets = {
-	imports: `import { CodeHighlight } from '@sapphiresolid/ui'`,
+  imports: `import { CodeHighlight } from '@sapphiresolid/ui'`,
 
-	basicUsage: `<CodeHighlight
+  basicUsage: `<CodeHighlight
   code="const greeting = 'Hello, World!'"
-  isDark={isDark}
 />`,
 
-	withCustomClass: `<CodeHighlight
+  withCustomClass: `<CodeHighlight
   code="const x = 1"
-  isDark={isDark}
   class="custom-code"
 />`,
 
-	withCustomStyle: `<CodeHighlight
+  withCustomStyle: `<CodeHighlight
   code="const x = 1"
-  isDark={isDark}
   style={{ 'margin-top': '20px' }}
 />`,
 
-	examples: {
-		typescript: `interface User {
+  examples: {
+    typescript: `interface User {
   id: number
   name: string
   email: string
@@ -39,13 +36,13 @@ function greetUser(user: User): string {
   return \`Hello, \${user.name}!\`
 }`,
 
-		javascript: `const numbers = [1, 2, 3, 4, 5]
+    javascript: `const numbers = [1, 2, 3, 4, 5]
 const doubled = numbers.map(n => n * 2)
 const sum = doubled.reduce((a, b) => a + b, 0)
 
 console.log('Sum:', sum) // Output: 30`,
 
-		css: `.container {
+    css: `.container {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -60,6 +57,6 @@ console.log('Sum:', sum) // Output: 30`,
   color: hsl(var(--primary-foreground));
   border-radius: 4px;
   cursor: pointer;
-}`
-	}
-} as const
+}`,
+  },
+} as const;

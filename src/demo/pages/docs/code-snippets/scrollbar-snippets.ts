@@ -4,10 +4,10 @@
  */
 
 export const scrollbarSnippets = {
-	imports: `import { Scrollbar, ScrollbarProvider } from '@sapphiresolid/ui'`,
+  imports: `import { Scrollbar, ScrollbarProvider } from '@sapphiresolid/ui'`,
 
-	usage: {
-		verticalScrollbar: `<ScrollbarProvider>
+  usage: {
+    verticalScrollbar: `<ScrollbarProvider>
   <Scrollbar direction="vertical" showArrows={true}>
     <div>Item 1</div>
     <div>Item 2</div>
@@ -16,7 +16,7 @@ export const scrollbarSnippets = {
   </Scrollbar>
 </ScrollbarProvider>`,
 
-		horizontalScrollbar: `<ScrollbarProvider>
+    horizontalScrollbar: `<ScrollbarProvider>
   <Scrollbar direction="horizontal" showArrows={true}>
     <div style={{ display: 'flex', gap: '16px' }}>
       <div>Card 1</div>
@@ -25,10 +25,10 @@ export const scrollbarSnippets = {
       {/* ... more cards */}
     </div>
   </Scrollbar>
-</ScrollbarProvider>`
-	},
+</ScrollbarProvider>`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --scrollbar-thumb: 0 0% 100% / 0.3;
     --scrollbar-thumb-hover: 0 0% 100% / 0.5;
@@ -51,5 +51,5 @@ export const scrollbarSnippets = {
     --scrollbar-arrow-active: var(--primary);
     --scrollbar-arrow-disabled: 0 0% 100% / 0.3;
   }
-}`
-} as const
+}`,
+} as const;

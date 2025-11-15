@@ -1,245 +1,218 @@
-import { Accessor, Component, createEffect, createSignal } from 'solid-js'
-import { CodeHighlight } from '../../../components/ui/code-highlight'
-import { Tabs } from '../../../components/ui/tabs'
-import { Typography } from '../../../components/ui/typography'
-import { TitleBar } from '../../../composites/title-bar'
-import { docsStyles } from '../../lib/docs.styles'
-import { titleBarSnippets } from './code-snippets/title-bar-snippets'
+import { Component, createEffect, createSignal } from "solid-js";
+import { CodeHighlight } from "../../../components/ui/code-highlight";
+import { Tabs } from "../../../components/ui/tabs";
+import { Typography } from "../../../components/ui/typography";
+import { TitleBar } from "../../../composites/title-bar";
+import { docsStyles } from "../../lib/docs.styles";
+import { titleBarSnippets } from "./code-snippets/title-bar-snippets";
+import { getThemeFromCSS } from "../../../components/ui/glass/lib/theme-utils";
 
-interface TitleBarDocsProps {
-	isDark: Accessor<boolean>
-}
+export const TitleBarDocs: Component = () => {
+  const [maximized, setMaximized] = createSignal(false);
+  const [pinned, setPinned] = createSignal(false);
+  const [basicUsageDark, setBasicUsageDark] = createSignal(false);
+  const [minimalExampleDark, setMinimalExampleDark] = createSignal(false);
+  const [windowControlsDark, setWindowControlsDark] = createSignal(false);
+  const [basicUsageOverridden, setBasicUsageOverridden] = createSignal(false);
+  const [minimalExampleOverridden, setMinimalExampleOverridden] =
+    createSignal(false);
+  const [windowControlsOverridden, setWindowControlsOverridden] =
+    createSignal(false);
 
-export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
-	const [maximized, setMaximized] = createSignal(false)
-	const [pinned, setPinned] = createSignal(false)
-	const [basicUsageDark, setBasicUsageDark] = createSignal(false)
-	const [minimalExampleDark, setMinimalExampleDark] = createSignal(false)
-	const [windowControlsDark, setWindowControlsDark] = createSignal(false)
-	const [basicUsageOverridden, setBasicUsageOverridden] = createSignal(false)
-	const [minimalExampleOverridden, setMinimalExampleOverridden] =
-		createSignal(false)
-	const [windowControlsOverridden, setWindowControlsOverridden] =
-		createSignal(false)
+  // Track previous global theme value to detect changes
+  const [previousGlobalTheme, setPreviousGlobalTheme] = createSignal<
+    boolean | undefined
+  >(undefined);
 
-	// Track previous global theme value to detect changes
-	const [previousGlobalTheme, setPreviousGlobalTheme] = createSignal<
-		boolean | undefined
-	>(undefined)
+  // Get global theme
+  const globalIsDark = () => getThemeFromCSS();
 
-	// Reset all local theme overrides when global theme changes
-	createEffect(() => {
-		const currentGlobalTheme = props.isDark()
-		const prevTheme = previousGlobalTheme()
-		// Check if global theme actually changed (skip initial undefined)
-		if (prevTheme !== undefined && prevTheme !== currentGlobalTheme) {
-			// Reset all override flags
-			setBasicUsageOverridden(false)
-			setMinimalExampleOverridden(false)
-			setWindowControlsOverridden(false)
-			// Set local themes to match global theme
-			setBasicUsageDark(currentGlobalTheme)
-			setMinimalExampleDark(currentGlobalTheme)
-			setWindowControlsDark(currentGlobalTheme)
-		}
-		// Update previous value
-		setPreviousGlobalTheme(currentGlobalTheme)
-	})
+  // Reset all local theme overrides when global theme changes
+  createEffect(() => {
+    const currentGlobalTheme = globalIsDark();
+    const prevTheme = previousGlobalTheme();
+    // Check if global theme actually changed (skip initial undefined)
+    if (prevTheme !== undefined && prevTheme !== currentGlobalTheme) {
+      // Reset all override flags
+      setBasicUsageOverridden(false);
+      setMinimalExampleOverridden(false);
+      setWindowControlsOverridden(false);
+      // Set local themes to match global theme
+      setBasicUsageDark(currentGlobalTheme);
+      setMinimalExampleDark(currentGlobalTheme);
+      setWindowControlsDark(currentGlobalTheme);
+    }
+    // Update previous value
+    setPreviousGlobalTheme(currentGlobalTheme);
+  });
 
-	// Sync with global theme if not overridden locally
-	createEffect(() => {
-		if (!basicUsageOverridden()) {
-			setBasicUsageDark(props.isDark())
-		}
-		if (!minimalExampleOverridden()) {
-			setMinimalExampleDark(props.isDark())
-		}
-		if (!windowControlsOverridden()) {
-			setWindowControlsDark(props.isDark())
-		}
-	})
+  // Sync with global theme if not overridden locally
+  createEffect(() => {
+    if (!basicUsageOverridden()) {
+      setBasicUsageDark(globalIsDark());
+    }
+    if (!minimalExampleOverridden()) {
+      setMinimalExampleDark(globalIsDark());
+    }
+    if (!windowControlsOverridden()) {
+      setWindowControlsDark(globalIsDark());
+    }
+  });
 
-	const toggleBasicTheme = () => {
-		setBasicUsageOverridden(true)
-		setBasicUsageDark(!basicUsageDark())
-	}
+  const toggleBasicTheme = () => {
+    setBasicUsageOverridden(true);
+    setBasicUsageDark(!basicUsageDark());
+  };
 
-	const toggleMinimalTheme = () => {
-		setMinimalExampleOverridden(true)
-		setMinimalExampleDark(!minimalExampleDark())
-	}
+  const toggleMinimalTheme = () => {
+    setMinimalExampleOverridden(true);
+    setMinimalExampleDark(!minimalExampleDark());
+  };
 
-	const toggleWindowControlsTheme = () => {
-		setWindowControlsOverridden(true)
-		setWindowControlsDark(!windowControlsDark())
-	}
+  const toggleWindowControlsTheme = () => {
+    setWindowControlsOverridden(true);
+    setWindowControlsDark(!windowControlsDark());
+  };
 
-	const handleMinimize = () => {
-		console.log('Minimize clicked')
-	}
+  const handleMinimize = () => {
+    console.log("Minimize clicked");
+  };
 
-	const handleMaximize = () => {
-		setMaximized(!maximized())
-	}
+  const handleMaximize = () => {
+    setMaximized(!maximized());
+  };
 
-	const handleClose = () => {
-		console.log('Close clicked')
-	}
+  const handleClose = () => {
+    console.log("Close clicked");
+  };
 
-	const handlePin = () => {
-		setPinned(!pinned())
-	}
+  const handlePin = () => {
+    setPinned(!pinned());
+  };
 
-	const theme = () => ({ isDark: props.isDark() })
-
-	return (
-		<article style={docsStyles.article(theme())}>
-			<Typography variant='h1' isDark={props.isDark()}>
-				TitleBar
-			</Typography>
-			<Typography variant='body' isDark={props.isDark()}>
-				Composite component for application title bar with controls, burger
-				menu, and window management buttons.
-			</Typography>
-
-			{/* Installation */}
-			<section style={docsStyles.section()}>
-				<Typography variant='h3' as='h2' isDark={props.isDark()}>
-					Installation
-				</Typography>
-				<CodeHighlight code={titleBarSnippets.imports} isDark={props.isDark} />
-			</section>
-
-			{/* Basic Usage */}
-			<section style={docsStyles.section()}>
-				<Typography variant='h3' as='h2' isDark={props.isDark()}>
-					Basic Usage
-				</Typography>
-				<Tabs
-					isDark={props.isDark}
-					preview={
-						<div
-							style={{
-								width: '100%',
-								'box-sizing': 'border-box',
-								background: props.isDark()
-									? 'rgba(0, 0, 0, 0.3)'
-									: 'rgba(255, 255, 255, 0.3)',
-								border: `1px solid ${
-									props.isDark()
-										? 'rgba(255, 255, 255, 0.1)'
-										: 'rgba(0, 0, 0, 0.1)'
-								}`,
-								'border-radius': '8px',
-								overflow: 'hidden'
-							}}
-						>
-							<TitleBar
-								title='Physics Engine Demo'
-								onBurgerClick={() => console.log('Burger clicked')}
-								onThemeToggle={toggleBasicTheme}
-								onDebugClick={() => console.log('Debug clicked')}
-								onPinClick={handlePin}
-								onSettingsClick={() => console.log('Settings clicked')}
-								onMinimizeClick={handleMinimize}
-								onMaximizeClick={handleMaximize}
-								onCloseClick={handleClose}
-								isDark={basicUsageDark()}
-								maximized={maximized()}
-								pinned={pinned()}
-							/>
-						</div>
-					}
-					code={titleBarSnippets.usage.basicUsage}
-				/>
-			</section>
-
-			{/* Minimal Example */}
-			<section style={docsStyles.section()}>
-				<Typography variant='h3' as='h2' isDark={props.isDark()}>
-					Minimal Example
-				</Typography>
-				<Tabs
-					isDark={props.isDark}
-					preview={
-						<div
-							style={{
-								width: '100%',
-								'box-sizing': 'border-box',
-								background: props.isDark()
-									? 'rgba(0, 0, 0, 0.3)'
-									: 'rgba(255, 255, 255, 0.3)',
-								border: `1px solid ${
-									props.isDark()
-										? 'rgba(255, 255, 255, 0.1)'
-										: 'rgba(0, 0, 0, 0.1)'
-								}`,
-								'border-radius': '8px',
-								overflow: 'hidden'
-							}}
-						>
-							<TitleBar
-								title='My Application'
-								isDark={minimalExampleDark()}
-								onThemeToggle={toggleMinimalTheme}
-							/>
-						</div>
-					}
-					code={titleBarSnippets.usage.minimalExample}
-				/>
-			</section>
-
-			{/* With Window Controls Only */}
-			<section style={docsStyles.section()}>
-				<Typography variant='h3' as='h2' isDark={props.isDark()}>
-					With Window Controls
-				</Typography>
-				<Tabs
-					isDark={props.isDark}
-					preview={
-						<div
-							style={{
-								width: '100%',
-								'box-sizing': 'border-box',
-								background: props.isDark()
-									? 'rgba(0, 0, 0, 0.3)'
-									: 'rgba(255, 255, 255, 0.3)',
-								border: `1px solid ${
-									props.isDark()
-										? 'rgba(255, 255, 255, 0.1)'
-										: 'rgba(0, 0, 0, 0.1)'
-								}`,
-								'border-radius': '8px',
-								overflow: 'hidden'
-							}}
-						>
-							<TitleBar
-								title='Window Title'
-								onMinimizeClick={handleMinimize}
-								onMaximizeClick={handleMaximize}
-								onCloseClick={handleClose}
-								onThemeToggle={toggleWindowControlsTheme}
-								isDark={windowControlsDark()}
-								maximized={maximized()}
-							/>
-						</div>
-					}
-					code={titleBarSnippets.usage.windowControls}
-				/>
-			</section>
-
-			{/* Customization */}
-			<section style={docsStyles.section()}>
-				<Typography variant='h3' as='h2' isDark={props.isDark()}>
-					Customization
-				</Typography>
-				<Typography variant='body' isDark={props.isDark()}>
-					The TitleBar component uses CSS custom properties for theming. These
-					variables are already defined in the library, but you can override
-					them in your application's stylesheet to match your design system.
-				</Typography>
-				<CodeHighlight
-					code={`@layer base {
+  return (
+    <article style={docsStyles.article()}>
+      <Typography variant="h1">TitleBar</Typography>
+      <Typography variant="body">
+        Composite component for application title bar with controls, burger
+        menu, and window management buttons.
+      </Typography>
+      {/* Installation */}
+      <section style={docsStyles.section()}>
+        <Typography variant="h3" as="h2">
+          Installation
+        </Typography>
+        <CodeHighlight code={titleBarSnippets.imports} />
+      </section>
+      {/* Basic Usage */}
+      <section style={docsStyles.section()}>
+        <Typography variant="h3" as="h2">
+          Basic Usage
+        </Typography>
+        <Tabs
+          preview={
+            <div
+              style={{
+                width: "100%",
+                "box-sizing": "border-box",
+                background: globalIsDark()
+                  ? "hsl(var(--background) / 30%)"
+                  : "hsl(var(--foreground) / 30%)",
+                border: `1px solid hsl(var(--border))`,
+                "border-radius": "8px",
+                overflow: "hidden",
+              }}
+            >
+              <TitleBar
+                title="Physics Engine Demo"
+                onBurgerClick={() => console.log("Burger clicked")}
+                onThemeToggle={toggleBasicTheme}
+                onDebugClick={() => console.log("Debug clicked")}
+                onPinClick={handlePin}
+                onSettingsClick={() => console.log("Settings clicked")}
+                onMinimizeClick={handleMinimize}
+                onMaximizeClick={handleMaximize}
+                onCloseClick={handleClose}
+                maximized={maximized()}
+                pinned={pinned()}
+              />
+            </div>
+          }
+          code={titleBarSnippets.usage.basicUsage}
+        />
+      </section>
+      {/* Minimal Example */}
+      <section style={docsStyles.section()}>
+        <Typography variant="h3" as="h2">
+          Minimal Example
+        </Typography>
+        <Tabs
+          preview={
+            <div
+              style={{
+                width: "100%",
+                "box-sizing": "border-box",
+                background: globalIsDark()
+                  ? "hsl(var(--background) / 30%)"
+                  : "hsl(var(--foreground) / 30%)",
+                border: `1px solid hsl(var(--border))`,
+                "border-radius": "8px",
+                overflow: "hidden",
+              }}
+            >
+              <TitleBar
+                title="My Application"
+                onThemeToggle={toggleMinimalTheme}
+              />
+            </div>
+          }
+          code={titleBarSnippets.usage.minimalExample}
+        />
+      </section>
+      {/* With Window Controls Only */}
+      <section style={docsStyles.section()}>
+        <Typography variant="h3" as="h2">
+          With Window Controls
+        </Typography>
+        <Tabs
+          preview={
+            <div
+              style={{
+                width: "100%",
+                "box-sizing": "border-box",
+                background: globalIsDark()
+                  ? "hsl(var(--background) / 30%)"
+                  : "hsl(var(--foreground) / 30%)",
+                border: `1px solid hsl(var(--border))`,
+                "border-radius": "8px",
+                overflow: "hidden",
+              }}
+            >
+              <TitleBar
+                title="Window Title"
+                onMinimizeClick={handleMinimize}
+                onMaximizeClick={handleMaximize}
+                onCloseClick={handleClose}
+                onThemeToggle={toggleWindowControlsTheme}
+                maximized={maximized()}
+              />
+            </div>
+          }
+          code={titleBarSnippets.usage.windowControls}
+        />
+      </section>
+      {/* Customization */}
+      <section style={docsStyles.section()}>
+        <Typography variant="h3" as="h2">
+          Customization
+        </Typography>
+        <Typography variant="body">
+          The TitleBar component uses CSS custom properties for theming. These
+          variables are already defined in the library, but you can override
+          them in your application's stylesheet to match your design system.
+        </Typography>
+        <CodeHighlight
+          code={`@layer base {
   :root {
     --title-bar-background: 0 0% 100%;
     --title-bar-foreground: 222.2 84% 4.9%;
@@ -257,15 +230,14 @@ export const TitleBarDocs: Component<TitleBarDocsProps> = props => {
     --title-bar-close-hover: 0 62.8% 30.6%;
   }
 }`}
-					isDark={props.isDark}
-				/>
-				<Typography variant='body' isDark={props.isDark()}>
-					The TitleBar component automatically uses these CSS variables. You can
-					override them in your application to match your design system. All
-					colors use HSL format without the `hsl()` wrapper, allowing for easy
-					opacity adjustments.
-				</Typography>
-			</section>
-		</article>
-	)
-}
+        />
+        <Typography variant="body">
+          The TitleBar component automatically uses these CSS variables. You can
+          override them in your application to match your design system. All
+          colors use HSL format without the `hsl()` wrapper, allowing for easy
+          opacity adjustments.
+        </Typography>
+      </section>
+    </article>
+  );
+};

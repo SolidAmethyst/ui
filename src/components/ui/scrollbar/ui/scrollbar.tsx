@@ -1,12 +1,12 @@
-import { createEffect, createSignal, onCleanup, onMount } from "solid-js"
-import { ScrollbarProvider } from "../lib/scrollbar-provider"
-import { useScrollbarHandlers } from "../lib/use-scrollbar-handlers"
-import { useScrollbarLogic } from "../lib/use-scrollbar-logic"
-import { useScrollbarObservers } from "../lib/use-scrollbar-observers"
-import { useScrollbarState } from "../lib/use-scrollbar-state"
-import type { ScrollbarProps } from "../model/types"
-import { ScrollbarArrows } from "./scrollbar-arrows"
-import { ScrollbarThumb } from "./scrollbar-thumb"
+import { createEffect, createSignal, onCleanup, onMount } from "solid-js";
+import { ScrollbarProvider } from "../lib/scrollbar-provider";
+import { useScrollbarHandlers } from "../lib/use-scrollbar-handlers";
+import { useScrollbarLogic } from "../lib/use-scrollbar-logic";
+import { useScrollbarObservers } from "../lib/use-scrollbar-observers";
+import { useScrollbarState } from "../lib/use-scrollbar-state";
+import type { ScrollbarProps } from "../model/types";
+import { ScrollbarArrows } from "./scrollbar-arrows";
+import { ScrollbarThumb } from "./scrollbar-thumb";
 
 const ScrollbarComponent = (props: ScrollbarProps) => {
   // Refs
@@ -136,58 +136,58 @@ const ScrollbarComponent = (props: ScrollbarProps) => {
   });
 
   return (
-      <div
+    <div
       ref={setContainerRef}
       class={`scrollbar-container ${props.class || ""}`}
       style={props.style}
-        onMouseEnter={() => {
-          handleMouseEnter();
-          updateScrollbar(); // Check if scrollbar is needed on hover
+      onMouseEnter={() => {
+        handleMouseEnter();
+        updateScrollbar(); // Check if scrollbar is needed on hover
+      }}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        ref={setContentRef}
+        class="scrollbar-content"
+        style={{
+          "overflow-y": direction() === "vertical" ? "scroll" : "hidden",
+          "overflow-x": direction() === "horizontal" ? "scroll" : "hidden",
         }}
-        onMouseLeave={handleMouseLeave}
       >
-        <div
-          ref={setContentRef}
-          class="scrollbar-content"
-          style={{
-            "overflow-y": direction() === "vertical" ? "scroll" : "hidden",
-            "overflow-x": direction() === "horizontal" ? "scroll" : "hidden",
-          }}
-        >
-          {props.children}
-        </div>
-
-        {shouldRenderScrollbar() && (
-          <div
-            ref={setTrackRef}
-            class={`scrollbar-track ${
-              direction() === "horizontal"
-                ? "scrollbar-track-horizontal"
-                : "scrollbar-track-vertical"
-            } ${shouldBeVisible() ? "visible" : ""}`}
-            onClick={handleTrackClick}
-          >
-            {/* Arrow buttons */}
-            {state().showArrows && (
-              <ScrollbarArrows
-                direction={direction()}
-                canScrollUp={state().canScrollUp}
-                canScrollDown={state().canScrollDown}
-                onScrollBy={scrollBy}
-              />
-            )}
-
-            {/* Thumb */}
-            <ScrollbarThumb
-              direction={direction()}
-              thumbSize={state().thumbSize}
-              thumbPosition={state().thumbPosition}
-              isDragging={state().isDragging}
-              onMouseDown={handleThumbMouseDown}
-            />
-          </div>
-        )}
+        {props.children}
       </div>
+
+      {shouldRenderScrollbar() && (
+        <div
+          ref={setTrackRef}
+          class={`scrollbar-track ${
+            direction() === "horizontal"
+              ? "scrollbar-track-horizontal"
+              : "scrollbar-track-vertical"
+          } ${shouldBeVisible() ? "visible" : ""}`}
+          onClick={handleTrackClick}
+        >
+          {/* Arrow buttons */}
+          {state().showArrows && (
+            <ScrollbarArrows
+              direction={direction()}
+              canScrollUp={state().canScrollUp}
+              canScrollDown={state().canScrollDown}
+              onScrollBy={scrollBy}
+            />
+          )}
+
+          {/* Thumb */}
+          <ScrollbarThumb
+            direction={direction()}
+            thumbSize={state().thumbSize}
+            thumbPosition={state().thumbPosition}
+            isDragging={state().isDragging}
+            onMouseDown={handleThumbMouseDown}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 

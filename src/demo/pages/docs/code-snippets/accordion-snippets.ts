@@ -3,10 +3,10 @@
  */
 
 export const accordionSnippets = {
-	imports: `import { Accordion } from '@sapphiresolid/ui'`,
+  imports: `import { Accordion } from '@sapphiresolid/ui'`,
 
-	usage: {
-		basicUsage: `const items = [
+  usage: {
+    basicUsage: `const items = [
   {
     id: '1',
     header: 'Section 1',
@@ -21,7 +21,7 @@ export const accordionSnippets = {
 
 <Accordion items={items} />`,
 
-		allowMultiple: `const items = [
+    allowMultiple: `const items = [
   {
     id: '1',
     header: 'Section 1',
@@ -34,10 +34,10 @@ export const accordionSnippets = {
   }
 ]
 
-<Accordion items={items} allowMultiple={true} />`
-	},
+<Accordion items={items} allowMultiple={true} />`,
+  },
 
-	customization: `@layer base {
+  customization: `@layer base {
   :root {
     --accordion-border-color-dark: rgba(255, 255, 255, 0.1);
     --accordion-border-color-light: rgba(0, 0, 0, 0.1);
@@ -56,5 +56,5 @@ export const accordionSnippets = {
     --accordion-border-radius: 8px;
     --accordion-gap: 4px;
   }
-}`
-} as const
+}`,
+} as const;

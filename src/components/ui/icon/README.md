@@ -17,7 +17,7 @@ Material 3 SVG icon component using Google Material Symbols. Uses SVG instead of
 ### Basic Usage
 
 ```tsx
-import { Icon } from '@sapphiresolid/ui'
+import { Icon } from "@sapphiresolid/ui";
 
 function MyComponent() {
   return (
@@ -26,7 +26,7 @@ function MyComponent() {
       <Icon name="settings" size={32} />
       <Icon name="close" color="#ff0000" />
     </div>
-  )
+  );
 }
 ```
 
@@ -53,24 +53,24 @@ function MyComponent() {
 
 ## Props
 
-| Prop          | Type                      | Required | Default     | Description                           |
-| ------------- | ------------------------- | -------- | ----------- | ------------------------------------- |
-| `name`        | `string`                  | ✅       | -           | Material Symbols icon name            |
-| `size`        | `number \| string`        | ❌       | `24`        | Icon size in pixels or CSS value      |
-| `color`       | `string`                  | ❌       | `currentColor` | Icon color                           |
-| `variant`     | `'rounded' \| 'sharp' \| 'outlined'` | ❌ | `'rounded'` | Icon variant                         |
-| `filled`      | `boolean`                 | ❌       | `false`     | Whether icon is filled                |
-| `class`       | `string`                  | ❌       | -           | Additional CSS class names            |
-| `style`       | `JSX.CSSProperties`       | ❌       | -           | Inline CSS styles                     |
-| `aria-label`  | `string`                  | ❌       | -           | ARIA label for accessibility          |
-| `aria-hidden` | `boolean`                 | ❌       | `true`      | Whether icon is decorative            |
+| Prop          | Type                                 | Required | Default        | Description                      |
+| ------------- | ------------------------------------ | -------- | -------------- | -------------------------------- |
+| `name`        | `string`                             | ✅       | -              | Material Symbols icon name       |
+| `size`        | `number \| string`                   | ❌       | `24`           | Icon size in pixels or CSS value |
+| `color`       | `string`                             | ❌       | `currentColor` | Icon color                       |
+| `variant`     | `'rounded' \| 'sharp' \| 'outlined'` | ❌       | `'rounded'`    | Icon variant                     |
+| `filled`      | `boolean`                            | ❌       | `false`        | Whether icon is filled           |
+| `class`       | `string`                             | ❌       | -              | Additional CSS class names       |
+| `style`       | `JSX.CSSProperties`                  | ❌       | -              | Inline CSS styles                |
+| `aria-label`  | `string`                             | ❌       | -              | ARIA label for accessibility     |
+| `aria-hidden` | `boolean`                            | ❌       | `true`         | Whether icon is decorative       |
 
 ## Migration from Font Icons
 
 ### Before (Font Icon)
 
 ```tsx
-<span class="material-symbols-rounded" style={{ 'font-size': '24px' }}>
+<span class="material-symbols-rounded" style={{ "font-size": "24px" }}>
   home
 </span>
 ```

@@ -4,11 +4,11 @@
  */
 
 export const installationExamples = {
-	install: `npm install @sapphiresolid/ui`,
+  install: `npm install @sapphiresolid/ui`,
 
-	includeStyles: `import '@sapphiresolid/ui/styles/globals.css'`,
+  includeStyles: `import '@sapphiresolid/ui/styles/globals.css'`,
 
-	importComponents: `import { Button } from '@sapphiresolid/ui'
+  importComponents: `import { Button } from '@sapphiresolid/ui'
 import { TechChip } from '@sapphiresolid/ui'
-import { Scrollbar, ScrollbarProvider } from '@sapphiresolid/ui'`
-} as const
+import { Scrollbar, ScrollbarProvider } from '@sapphiresolid/ui'`,
+} as const;

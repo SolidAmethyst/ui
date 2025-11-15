@@ -3,7 +3,7 @@ import type {
   EngineState,
   GlassEffectConfig,
   UIEngine,
-} from "../types/engine-interface"
+} from "../types/engine-interface";
 
 // Tauri API types (will be available when @tauri-apps/api is installed)
 declare global {
