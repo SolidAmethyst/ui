@@ -57,10 +57,6 @@ const componentGroups: ComponentGroup[] = [
       { name: "Title Bar", id: "titlebar" },
     ],
   },
-  {
-    title: "Testing",
-    items: [{ name: "Test", id: "test" }],
-  },
 ];
 
 export const Sidebar: Component<SidebarProps> = (props) => {

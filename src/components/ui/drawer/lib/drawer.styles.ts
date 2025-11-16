@@ -7,6 +7,25 @@ import type { JSX } from "solid-js";
 import type { DrawerPosition } from "../model/types";
 
 export const drawerStyles = {
+  overlay: (
+    isOpen: boolean,
+    zIndex: number,
+  ): JSX.CSSProperties => {
+    return {
+      position: "fixed",
+      top: "var(--top-nav-height, 60px)",
+      left: "0",
+      right: "0",
+      bottom: "0",
+      background: "transparent",
+      "z-index": (zIndex - 1).toString(),
+      opacity: isOpen ? "1" : "0",
+      visibility: isOpen ? "visible" : "hidden",
+      "pointer-events": isOpen ? "auto" : "none",
+      transition: `opacity var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), visibility var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1)`,
+    };
+  },
+
   backdrop: (
     isOpen: boolean,
     showBackdrop: boolean,

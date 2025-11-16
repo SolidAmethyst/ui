@@ -94,6 +94,11 @@ export const Drawer: Component<DrawerProps> = (props) => {
     dispose = render(
       () => (
         <>
+          {/* Overlay - invisible pointer-events blocker */}
+          <div
+            style={drawerStyles.overlay(localIsOpen(), zIndex())}
+          />
+
           {/* Backdrop */}
           <Show when={showBackdrop()}>
             <div

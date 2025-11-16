@@ -12,7 +12,6 @@ import { SettingsComposite } from "../composites/settings"
 import "../styles/globals.css"
 import { Footer, Sidebar, TopNav } from "./components/layout"
 import { BlocksPage } from "./pages/blocks-page"
-import { TestPage } from "./pages/test-page"
 import "./styles.css"
 
 // Lazy load all docs components to reduce initial bundle size
@@ -446,9 +445,6 @@ function App() {
                           </Show>
                           <Show when={currentComponent() === "app"}>
                             <AppDocs />
-                          </Show>
-                          <Show when={currentComponent() === "test"}>
-                            <TestPage />
                           </Show>
                         </Suspense>
                       </div>
