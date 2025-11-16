@@ -163,7 +163,18 @@ function App() {
   });
 
   const toggleTheme = () => {
+    // Disable transitions before theme change
+    document.documentElement.classList.add('disable-transitions');
+
+    // Change theme
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+
+    // Re-enable transitions after DOM updates (2 animation frames to ensure CSS vars applied)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.remove('disable-transitions');
+      });
+    });
   };
 
   const handlePageChange = (page: "docs" | "blocks" | "settings") => {
