@@ -1,8 +1,9 @@
 import type { JSX } from "solid-js"
-import { createEffect, createSignal, lazy, onCleanup, onMount, Show, Suspense } from "solid-js"
+import { createEffect, createSignal, lazy, Show, Suspense } from "solid-js"
 import { HighlightContext } from "../components/ui/code-highlight/lib/highlight-context"
 import { Container } from "../components/ui/container"
 import { ScrollbarProvider } from "../components/ui/scrollbar"
+import { useScrollBoundary } from "../components/ui/scroll-boundary"
 import type {
   FontSettings,
   GlassSettings,
@@ -114,82 +115,11 @@ function App() {
     "introduction",
   );
 
-  let mainRef: HTMLElement | undefined;
-
-  // Setup wheel handler on mount
-  onMount(() => {
-    if (mainRef) {
-      const handleWheel = (e: WheelEvent) => {
-        const target = mainRef!;
-        const scrollTop = target.scrollTop;
-        const scrollHeight = target.scrollHeight;
-        const clientHeight = target.clientHeight;
-
-        const distanceFromBottom = scrollHeight - clientHeight - scrollTop;
-        const isAtBottom = distanceFromBottom < 10;
-        const isAtTop = scrollTop < 10;
-
-        console.log('Wheel event:', {
-          deltaY: e.deltaY,
-          scrollTop,
-          scrollHeight,
-          clientHeight,
-          distanceFromBottom,
-          isAtBottom,
-          windowScrollY: window.scrollY,
-          hasScroll: scrollHeight > clientHeight
-        });
-
-        // Only intercept scroll at boundaries, otherwise let main scroll normally
-
-        // Scrolling down: only intercept if no scroll or at bottom
-        if (e.deltaY > 0) {
-          const hasScroll = scrollHeight > clientHeight;
-
-          if (!hasScroll) {
-            // No scroll in main, scroll window smoothly to show entire footer
-            console.log('No scroll in main, showing footer');
-            e.preventDefault();
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            window.scrollTo({ top: maxScroll, behavior: 'smooth' });
-            return;
-          }
-
-          if (isAtBottom) {
-            // At bottom of main, scroll window smoothly to show entire footer
-            console.log('At bottom, showing footer');
-            e.preventDefault();
-            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-            window.scrollTo({ top: maxScroll, behavior: 'smooth' });
-            return;
-          }
-
-          // Has scroll and not at bottom - let main scroll naturally
-          console.log('Main scrolling naturally');
-          return;
-        }
-
-        // Scrolling up: if footer is visible (window scrolled), hide it first
-        if (e.deltaY < 0) {
-          if (window.scrollY > 0) {
-            console.log('Footer visible, hiding footer');
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            return;
-          }
-
-          // Footer hidden, let main scroll naturally
-          console.log('Main scrolling naturally (up)');
-          return;
-        }
-      };
-
-      mainRef.addEventListener('wheel', handleWheel, { passive: false });
-
-      onCleanup(() => {
-        mainRef?.removeEventListener('wheel', handleWheel);
-      });
-    }
+  // Use scroll boundary hook for smooth footer reveal
+  const mainRef = useScrollBoundary({
+    behavior: 'smooth',
+    threshold: 10,
+    enabled: true,
   });
 
   // Glass settings state
