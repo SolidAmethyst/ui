@@ -30,3 +30,32 @@ export function getThemeFromCSS(): boolean {
 
   return true; // Default to dark
 }
+
+/**
+ * Gets the local theme from the nearest parent element with data-theme attribute
+ * Falls back to getThemeFromCSS() if no local theme is found
+ * SSR-safe: returns default (dark) if document is undefined
+ * @param element - The element to start searching from (or null)
+ * @returns true if dark theme, false if light theme
+ */
+export function getLocalTheme(element: HTMLElement | null): boolean {
+  if (typeof document === "undefined" || !element) {
+    return getThemeFromCSS();
+  }
+
+  // Search up the DOM tree for data-theme attribute
+  let current: HTMLElement | null = element;
+  while (current) {
+    const theme = current.getAttribute("data-theme");
+    if (theme === "dark") {
+      return true;
+    }
+    if (theme === "light") {
+      return false;
+    }
+    current = current.parentElement;
+  }
+
+  // Fallback to global theme
+  return getThemeFromCSS();
+}

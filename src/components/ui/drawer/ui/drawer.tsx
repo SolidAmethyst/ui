@@ -132,16 +132,35 @@ export const Drawer: Component<DrawerProps> = (props) => {
     // Create container in body for portal
     portalContainer = document.createElement("div");
     // Set theme on portal container so CSS variables work correctly
-    const theme = getThemeFromCSS() ? "dark" : "light";
-    portalContainer.setAttribute("data-theme", theme);
-    document.body.appendChild(portalContainer);
-
-    // Update theme when it changes
-    createEffect(() => {
+    const updateTheme = () => {
       if (portalContainer) {
         const currentTheme = getThemeFromCSS() ? "dark" : "light";
         portalContainer.setAttribute("data-theme", currentTheme);
       }
+    };
+    updateTheme();
+    document.body.appendChild(portalContainer);
+
+    // Watch for changes to global theme on document.documentElement
+    const observer = new MutationObserver(() => {
+      updateTheme();
+    });
+
+    if (document.documentElement) {
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-theme", "class"],
+      });
+    }
+
+    // Update theme reactively as well
+    createEffect(() => {
+      updateTheme();
+    });
+
+    // Cleanup observer on unmount
+    onCleanup(() => {
+      observer.disconnect();
     });
 
     // Render once - Solid.js will handle reactive updates

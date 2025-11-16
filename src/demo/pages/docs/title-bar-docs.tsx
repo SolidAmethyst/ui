@@ -1,4 +1,4 @@
-import { Component, createEffect, createSignal } from "solid-js";
+import { Component, createEffect, createSignal, onMount, onCleanup } from "solid-js";
 import { CodeHighlight } from "../../../components/ui/code-highlight";
 import { Tabs } from "../../../components/ui/tabs";
 import { Typography } from "../../../components/ui/typography";
@@ -10,52 +10,103 @@ import { getThemeFromCSS } from "../../../components/ui/glass/lib/theme-utils";
 export const TitleBarDocs: Component = () => {
   const [maximized, setMaximized] = createSignal(false);
   const [pinned, setPinned] = createSignal(false);
-  const [basicUsageDark, setBasicUsageDark] = createSignal(false);
-  const [minimalExampleDark, setMinimalExampleDark] = createSignal(false);
-  const [windowControlsDark, setWindowControlsDark] = createSignal(false);
+  const [basicUsageDark, setBasicUsageDark] = createSignal(getThemeFromCSS());
+  const [minimalExampleDark, setMinimalExampleDark] = createSignal(getThemeFromCSS());
+  const [windowControlsDark, setWindowControlsDark] = createSignal(getThemeFromCSS());
   const [basicUsageOverridden, setBasicUsageOverridden] = createSignal(false);
   const [minimalExampleOverridden, setMinimalExampleOverridden] =
     createSignal(false);
   const [windowControlsOverridden, setWindowControlsOverridden] =
     createSignal(false);
 
-  // Track previous global theme value to detect changes
-  const [previousGlobalTheme, setPreviousGlobalTheme] = createSignal<
-    boolean | undefined
-  >(undefined);
+  // Track global theme as a signal for reactivity
+  const [globalTheme, setGlobalTheme] = createSignal(getThemeFromCSS());
+  const [previousGlobalTheme, setPreviousGlobalTheme] = createSignal<boolean | undefined>(undefined);
 
-  // Get global theme
-  const globalIsDark = () => getThemeFromCSS();
+  // Sync with global theme if not overridden locally
+  onMount(() => {
+    // Initial sync
+    const initialGlobalTheme = getThemeFromCSS();
+    setGlobalTheme(initialGlobalTheme);
+    setPreviousGlobalTheme(initialGlobalTheme);
+    if (!basicUsageOverridden()) {
+      setBasicUsageDark(initialGlobalTheme);
+    }
+    if (!minimalExampleOverridden()) {
+      setMinimalExampleDark(initialGlobalTheme);
+    }
+    if (!windowControlsOverridden()) {
+      setWindowControlsDark(initialGlobalTheme);
+    }
 
-  // Reset all local theme overrides when global theme changes
+    // Watch for changes to global theme on document.documentElement
+    const observer = new MutationObserver(() => {
+      const currentGlobalTheme = getThemeFromCSS();
+      const prevTheme = previousGlobalTheme();
+
+      // Check if global theme actually changed
+      if (prevTheme !== undefined && prevTheme !== currentGlobalTheme) {
+        // Global theme was changed - reset all overrides and sync all local themes
+        setBasicUsageOverridden(false);
+        setMinimalExampleOverridden(false);
+        setWindowControlsOverridden(false);
+        setBasicUsageDark(currentGlobalTheme);
+        setMinimalExampleDark(currentGlobalTheme);
+        setWindowControlsDark(currentGlobalTheme);
+      } else {
+        // Just update the signal, but don't force sync if not changed
+        if (!basicUsageOverridden()) {
+          setBasicUsageDark(currentGlobalTheme);
+        }
+        if (!minimalExampleOverridden()) {
+          setMinimalExampleDark(currentGlobalTheme);
+        }
+        if (!windowControlsOverridden()) {
+          setWindowControlsDark(currentGlobalTheme);
+        }
+      }
+
+      setGlobalTheme(currentGlobalTheme);
+      setPreviousGlobalTheme(currentGlobalTheme);
+    });
+
+    if (document.documentElement) {
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-theme", "class"],
+      });
+    }
+
+    onCleanup(() => {
+      observer.disconnect();
+    });
+  });
+
+  // Sync reactively when global theme changes (but only if not overridden)
   createEffect(() => {
-    const currentGlobalTheme = globalIsDark();
+    const currentGlobalTheme = globalTheme();
     const prevTheme = previousGlobalTheme();
-    // Check if global theme actually changed (skip initial undefined)
+
+    // If global theme changed, reset overrides and force sync
     if (prevTheme !== undefined && prevTheme !== currentGlobalTheme) {
-      // Reset all override flags
       setBasicUsageOverridden(false);
       setMinimalExampleOverridden(false);
       setWindowControlsOverridden(false);
-      // Set local themes to match global theme
       setBasicUsageDark(currentGlobalTheme);
       setMinimalExampleDark(currentGlobalTheme);
       setWindowControlsDark(currentGlobalTheme);
-    }
-    // Update previous value
-    setPreviousGlobalTheme(currentGlobalTheme);
-  });
-
-  // Sync with global theme if not overridden locally
-  createEffect(() => {
-    if (!basicUsageOverridden()) {
-      setBasicUsageDark(globalIsDark());
-    }
-    if (!minimalExampleOverridden()) {
-      setMinimalExampleDark(globalIsDark());
-    }
-    if (!windowControlsOverridden()) {
-      setWindowControlsDark(globalIsDark());
+      setPreviousGlobalTheme(currentGlobalTheme);
+    } else {
+      // Only sync if not overridden locally
+      if (!basicUsageOverridden()) {
+        setBasicUsageDark(currentGlobalTheme);
+      }
+      if (!minimalExampleOverridden()) {
+        setMinimalExampleDark(currentGlobalTheme);
+      }
+      if (!windowControlsOverridden()) {
+        setWindowControlsDark(currentGlobalTheme);
+      }
     }
   });
 
@@ -112,12 +163,11 @@ export const TitleBarDocs: Component = () => {
         <Tabs
           preview={
             <div
+              data-theme={basicUsageDark() ? "dark" : "light"}
               style={{
                 width: "100%",
                 "box-sizing": "border-box",
-                background: globalIsDark()
-                  ? "hsl(var(--background) / 30%)"
-                  : "hsl(var(--foreground) / 30%)",
+                background: "hsl(var(--background))",
                 border: `1px solid hsl(var(--border))`,
                 "border-radius": "8px",
                 overflow: "hidden",
@@ -149,12 +199,11 @@ export const TitleBarDocs: Component = () => {
         <Tabs
           preview={
             <div
+              data-theme={minimalExampleDark() ? "dark" : "light"}
               style={{
                 width: "100%",
                 "box-sizing": "border-box",
-                background: globalIsDark()
-                  ? "hsl(var(--background) / 30%)"
-                  : "hsl(var(--foreground) / 30%)",
+                background: "hsl(var(--background))",
                 border: `1px solid hsl(var(--border))`,
                 "border-radius": "8px",
                 overflow: "hidden",
@@ -177,12 +226,11 @@ export const TitleBarDocs: Component = () => {
         <Tabs
           preview={
             <div
+              data-theme={windowControlsDark() ? "dark" : "light"}
               style={{
                 width: "100%",
                 "box-sizing": "border-box",
-                background: globalIsDark()
-                  ? "hsl(var(--background) / 30%)"
-                  : "hsl(var(--foreground) / 30%)",
+                background: "hsl(var(--background))",
                 border: `1px solid hsl(var(--border))`,
                 "border-radius": "8px",
                 overflow: "hidden",

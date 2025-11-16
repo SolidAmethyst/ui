@@ -3,17 +3,50 @@
  * Composite component for application title bar with controls
  */
 
-import { Component, Show } from "solid-js";
+import { Component, Show, createSignal, createEffect, onMount } from "solid-js";
 import { Button } from "../../../components/ui/button";
-import { getThemeFromCSS } from "../../../components/ui/glass/lib/theme-utils";
+import { getLocalTheme } from "../../../components/ui/glass/lib/theme-utils";
 import { titleBarStyles } from "../lib/title-bar.styles";
 import type { TitleBarProps } from "../model/types";
 
 export const TitleBar: Component<TitleBarProps> = (props) => {
-  const isDark = () => getThemeFromCSS();
+  let titleBarRef: HTMLDivElement | undefined;
+  const [isDark, setIsDark] = createSignal(true);
+
+  // Update theme when component mounts and when DOM changes
+  onMount(() => {
+    setIsDark(getLocalTheme(titleBarRef || null));
+
+    // Watch for changes in data-theme attribute on parent elements
+    const observer = new MutationObserver(() => {
+      setIsDark(getLocalTheme(titleBarRef || null));
+    });
+
+    if (titleBarRef) {
+      // Observe changes in parent elements
+      let parent: HTMLElement | null = titleBarRef.parentElement;
+      while (parent) {
+        observer.observe(parent, {
+          attributes: true,
+          attributeFilter: ["data-theme"],
+        });
+        parent = parent.parentElement;
+      }
+    }
+
+    return () => observer.disconnect();
+  });
+
+  // Also check theme on each render to catch SolidJS reactivity changes
+  createEffect(() => {
+    if (titleBarRef) {
+      setIsDark(getLocalTheme(titleBarRef));
+    }
+  });
 
   return (
     <div
+      ref={titleBarRef}
       class={`title-bar ${props.class || ""}`}
       style={{
         ...titleBarStyles.container(),
@@ -58,10 +91,10 @@ export const TitleBar: Component<TitleBarProps> = (props) => {
           <Show when={props.onThemeToggle}>
             <Button
               variant="small"
-              icon={isDark() ? "light_mode" : "dark_mode"}
+              icon={isDark() ? "dark_mode" : "light_mode"}
               iconPosition="only"
               onClick={() => props.onThemeToggle?.()}
-              title={isDark() ? "Light mode" : "Dark mode"}
+              title={isDark() ? "Switch to light mode" : "Switch to dark mode"}
               class="title-bar-control-btn"
             />
           </Show>

@@ -142,17 +142,10 @@ function App() {
     | "Bebas Neue"
   >("Inter");
 
-  // Initialize theme from localStorage or system preference
+  // Initialize theme - always default to dark
   const getInitialTheme = (): "dark" | "light" => {
     if (typeof window === "undefined") return "dark";
-    const stored = localStorage.getItem("theme");
-    if (stored === "dark" || stored === "light") {
-      // Set attribute SYNCHRONOUSLY before render
-      document.documentElement.setAttribute("data-theme", stored);
-      document.body.setAttribute("data-theme", stored);
-      return stored;
-    }
-    // Default to dark theme (no system preference check)
+    // Always default to dark theme
     const defaultTheme = "dark";
     // Set attribute SYNCHRONOUSLY before render
     document.documentElement.setAttribute("data-theme", defaultTheme);

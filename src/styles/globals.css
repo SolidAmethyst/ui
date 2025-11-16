@@ -405,7 +405,7 @@
   --code-background: 240 9% 11%;
   --code-foreground: 210 40% 98%;
   /* Sidebar colors */
-  --sidebar-background: 240 5.9% 10%;
+  --sidebar-background: 222.2 84% 4.9%;
   --sidebar-foreground: 240 4.8% 95.9%;
   --sidebar-accent: 240 3.7% 15.9%;
   --sidebar-accent-foreground: 240 4.8% 95.9%;
@@ -450,6 +450,81 @@
   --page-background: 222.2 84% 4.9%;
   /* Disabled/Inactive state color for UI elements */
   --disabled: 230 13% 18%;
+}
+
+/* Light theme - explicitly defined for local theme overrides */
+[data-theme="light"] {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  /* Mace Windu Lightsaber Purple - Primary color for light theme */
+  --primary: 271 81% 53%;
+  /* Primary hover with glow effect - lighter and brighter */
+  --primary-hover: 271 81% 63%;
+  /* Unified hover color - maximum saturation for vibrant noble appearance */
+  --hover-color: 271 100% 58%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --page-background: 0 0% 100%;
+  --muted: 240 14% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 231 95% 66%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 240 14% 92%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: var(--primary);
+  /* Sidebar colors */
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  /* Button colors */
+  --button-hover: var(--primary);
+  --button-close-hover: 0 84.2% 60.2%;
+  --button-close-active: 0 62.8% 30.6%;
+  /* Scrollbar colors */
+  --scrollbar-thumb: 0 0% 100% / 0.3;
+  --scrollbar-thumb-hover: 0 0% 100% / 0.5;
+  --scrollbar-thumb-active: 0 0% 100% / 0.7;
+  --scrollbar-arrow: 0 0% 100%;
+  --scrollbar-arrow-hover: var(--primary);
+  --scrollbar-arrow-active: var(--primary);
+  --scrollbar-arrow-disabled: 0 0% 100% / 0.3;
+  /* Menu colors */
+  --menu-background: 0 0% 100%;
+  --menu-foreground: 222.2 84% 4.9%;
+  --menu-accent: 210 40% 96%;
+  --menu-border: 214.3 31.8% 91.4%;
+  --menu-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  /* TitleBar colors */
+  --title-bar-background: 0 0% 100%;
+  --title-bar-foreground: 222.2 84% 4.9%;
+  --title-bar-accent: 210 40% 96%;
+  --title-bar-separator: 214.3 31.8% 91.4%;
+  --title-bar-close-hover: 0 84.2% 60.2%;
+  /* TechChip colors */
+  --techchip-foreground: 222.2 84% 4.9%;
+  --techchip-loading: 217.2 91.2% 59.8%;
+  --techchip-ready: 142.1 76.2% 36.3%;
+  --techchip-error: 0 84.2% 60.2%;
+  /* DragDrop component variables - light theme */
+  --drag-drop-item-over-border-light: var(--primary) / 0.3;
+  --drag-drop-indicator-color-light: var(--primary);
+  /* TopNav light theme */
+  --top-nav-background: var(--card);
+  /* Shadow color - light theme */
+  --shadow: 0 0% 0%;
+  /* Page background - light theme */
+  --page-background: 0 0% 100%;
+  /* Disabled/Inactive state color for UI elements */
+  --disabled: 220 13% 76%;
 }
 
 @layer base {

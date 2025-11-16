@@ -4,7 +4,6 @@
  */
 
 import type { JSX } from "solid-js";
-import { getThemeFromCSS } from "../../glass/lib/theme-utils";
 import type { DrawerPosition } from "../model/types";
 
 export const drawerStyles = {
@@ -72,7 +71,6 @@ export const drawerStyles = {
     size: string,
     zIndex: number,
   ): JSX.CSSProperties => {
-    const isDark = getThemeFromCSS();
     const baseStyles: JSX.CSSProperties = {
       position: "fixed",
       "z-index": zIndex.toString(),
@@ -86,9 +84,7 @@ export const drawerStyles = {
       "flex-direction": "column",
       "will-change": "transform",
       "box-shadow": isOpen
-        ? isDark
-          ? "0 4px 16px rgba(0, 0, 0, 0.3), -2px 0 8px rgba(0, 0, 0, 0.2)"
-          : "0 4px 16px rgba(0, 0, 0, 0.1), -2px 0 8px rgba(0, 0, 0, 0.05)"
+        ? "0 4px 16px hsl(var(--shadow) / 0.1), -2px 0 8px hsl(var(--shadow) / 0.05)"
         : "none",
       transition: `transform var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1), box-shadow var(--drawer-transition-duration) cubic-bezier(0.4, 0, 0.2, 1)`,
     };

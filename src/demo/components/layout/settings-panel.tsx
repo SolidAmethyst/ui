@@ -1,4 +1,3 @@
-import { getThemeFromCSS } from "../../../components/ui/glass/lib/theme-utils";
 /**
  * Settings Panel
  * General settings panel with sections for different components (Glass, etc.)
@@ -48,18 +47,14 @@ export const SettingsPanel: Component<SettingsPanelProps> = (props) => {
     width: "320px",
     height: "calc(100vh - 61px)",
     "z-index": "1000",
-    background: getThemeFromCSS()
-      ? "hsla(240, 5.9%, 10%, 0.98)"
-      : "hsla(0, 0%, 98%, 0.98)",
+    background: "hsl(var(--card))",
     "backdrop-filter": "blur(10px)",
     "-webkit-backdrop-filter": "blur(10px)",
     border: "none",
     "box-sizing": "border-box" as const,
     overflow: "auto" as const,
     transition: "right 300ms cubic-bezier(0.4, 0, 0.2, 1)",
-    "box-shadow": getThemeFromCSS()
-      ? "0 4px 16px rgba(0, 0, 0, 0.3), -2px 0 8px rgba(0, 0, 0, 0.2)"
-      : "0 4px 16px rgba(0, 0, 0, 0.1), -2px 0 8px rgba(0, 0, 0, 0.05)",
+    "box-shadow": "0 4px 16px hsl(var(--shadow) / 0.1), -2px 0 8px hsl(var(--shadow) / 0.05)",
   });
 
   const sliderContainerStyles = () => ({
@@ -220,11 +215,7 @@ export const SettingsPanel: Component<SettingsPanelProps> = (props) => {
         <div
           style={{
             padding: "16px 20px",
-            "border-bottom": `1px solid ${
-              getThemeFromCSS()
-                ? "hsla(240, 3.7%, 15.9%, 1)"
-                : "hsla(220, 13%, 91%, 1)"
-            }`,
+            "border-bottom": `1px solid hsl(var(--border))`,
           }}
         >
           <h4

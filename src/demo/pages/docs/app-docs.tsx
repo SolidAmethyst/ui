@@ -1,4 +1,4 @@
-import { Component, For, createEffect, createSignal } from "solid-js";
+import { Component, For, createEffect, createSignal, onMount, onCleanup } from "solid-js";
 import { CodeHighlight } from "../../../components/ui/code-highlight";
 import type { SidebarItem } from "../../../components/ui/sidebar";
 import { Tabs } from "../../../components/ui/tabs";
@@ -9,48 +9,102 @@ import { docsStyles } from "../../lib/docs.styles";
 import { appSnippets } from "./code-snippets/app-snippets";
 
 export const AppDocs: Component = () => {
-  const [basicUsageDark, setBasicUsageDark] = createSignal(false);
-  const [adaptiveLayoutDark, setAdaptiveLayoutDark] = createSignal(false);
-  const [overlayModeDark, setOverlayModeDark] = createSignal(false);
+  const [basicUsageDark, setBasicUsageDark] = createSignal(getThemeFromCSS());
+  const [adaptiveLayoutDark, setAdaptiveLayoutDark] = createSignal(getThemeFromCSS());
+  const [overlayModeDark, setOverlayModeDark] = createSignal(getThemeFromCSS());
   const [basicUsageOverridden, setBasicUsageOverridden] = createSignal(false);
   const [adaptiveLayoutOverridden, setAdaptiveLayoutOverridden] =
     createSignal(false);
   const [overlayModeOverridden, setOverlayModeOverridden] = createSignal(false);
 
-  // Track previous global theme value to detect changes
-  const [previousGlobalTheme, setPreviousGlobalTheme] = createSignal<
-    boolean | undefined
-  >(undefined);
+  // Track global theme as a signal for reactivity
+  const [globalTheme, setGlobalTheme] = createSignal(getThemeFromCSS());
+  const [previousGlobalTheme, setPreviousGlobalTheme] = createSignal<boolean | undefined>(undefined);
 
-  // Reset all local theme overrides when global theme changes
+  // Sync with global theme if not overridden locally
+  onMount(() => {
+    // Initial sync
+    const initialGlobalTheme = getThemeFromCSS();
+    setGlobalTheme(initialGlobalTheme);
+    setPreviousGlobalTheme(initialGlobalTheme);
+    if (!basicUsageOverridden()) {
+      setBasicUsageDark(initialGlobalTheme);
+    }
+    if (!adaptiveLayoutOverridden()) {
+      setAdaptiveLayoutDark(initialGlobalTheme);
+    }
+    if (!overlayModeOverridden()) {
+      setOverlayModeDark(initialGlobalTheme);
+    }
+
+    // Watch for changes to global theme on document.documentElement
+    const observer = new MutationObserver(() => {
+      const currentGlobalTheme = getThemeFromCSS();
+      const prevTheme = previousGlobalTheme();
+
+      // Check if global theme actually changed
+      if (prevTheme !== undefined && prevTheme !== currentGlobalTheme) {
+        // Global theme was changed - reset all overrides and sync all local themes
+        setBasicUsageOverridden(false);
+        setAdaptiveLayoutOverridden(false);
+        setOverlayModeOverridden(false);
+        setBasicUsageDark(currentGlobalTheme);
+        setAdaptiveLayoutDark(currentGlobalTheme);
+        setOverlayModeDark(currentGlobalTheme);
+      } else {
+        // Just update the signal, but don't force sync if not changed
+        if (!basicUsageOverridden()) {
+          setBasicUsageDark(currentGlobalTheme);
+        }
+        if (!adaptiveLayoutOverridden()) {
+          setAdaptiveLayoutDark(currentGlobalTheme);
+        }
+        if (!overlayModeOverridden()) {
+          setOverlayModeDark(currentGlobalTheme);
+        }
+      }
+
+      setGlobalTheme(currentGlobalTheme);
+      setPreviousGlobalTheme(currentGlobalTheme);
+    });
+
+    if (document.documentElement) {
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-theme", "class"],
+      });
+    }
+
+    onCleanup(() => {
+      observer.disconnect();
+    });
+  });
+
+  // Sync reactively when global theme changes (but only if not overridden)
   createEffect(() => {
-    const currentGlobalTheme = getThemeFromCSS();
+    const currentGlobalTheme = globalTheme();
     const prevTheme = previousGlobalTheme();
-    // Check if global theme actually changed (skip initial undefined)
+
+    // If global theme changed, reset overrides and force sync
     if (prevTheme !== undefined && prevTheme !== currentGlobalTheme) {
-      // Reset all override flags
       setBasicUsageOverridden(false);
       setAdaptiveLayoutOverridden(false);
       setOverlayModeOverridden(false);
-      // Set local themes to match global theme
       setBasicUsageDark(currentGlobalTheme);
       setAdaptiveLayoutDark(currentGlobalTheme);
       setOverlayModeDark(currentGlobalTheme);
-    }
-    // Update previous value
-    setPreviousGlobalTheme(currentGlobalTheme);
-  });
-
-  // Sync with global theme if not overridden locally
-  createEffect(() => {
-    if (!basicUsageOverridden()) {
-      setBasicUsageDark(getThemeFromCSS());
-    }
-    if (!adaptiveLayoutOverridden()) {
-      setAdaptiveLayoutDark(getThemeFromCSS());
-    }
-    if (!overlayModeOverridden()) {
-      setOverlayModeDark(getThemeFromCSS());
+      setPreviousGlobalTheme(currentGlobalTheme);
+    } else {
+      // Only sync if not overridden locally
+      if (!basicUsageOverridden()) {
+        setBasicUsageDark(currentGlobalTheme);
+      }
+      if (!adaptiveLayoutOverridden()) {
+        setAdaptiveLayoutDark(currentGlobalTheme);
+      }
+      if (!overlayModeOverridden()) {
+        setOverlayModeDark(currentGlobalTheme);
+      }
     }
   });
 
@@ -120,6 +174,7 @@ export const AppDocs: Component = () => {
           preview={
             <div
               data-app-preview
+              data-theme={basicUsageDark() ? "dark" : "light"}
               style={{
                 width: "100%",
                 height: "600px",
@@ -143,9 +198,7 @@ export const AppDocs: Component = () => {
                     "max-width": "100%",
                     padding: "32px",
                     "box-sizing": "border-box",
-                    background: basicUsageDark()
-                      ? "hsl(240 20% 10%)"
-                      : "hsl(var(--card))",
+                    background: "hsl(var(--background))",
                     overflow: "auto",
                   }}
                 />
@@ -164,6 +217,7 @@ export const AppDocs: Component = () => {
           preview={
             <div
               data-app-preview
+              data-theme={adaptiveLayoutDark() ? "dark" : "light"}
               style={{
                 width: "100%",
                 height: "600px",
@@ -187,9 +241,7 @@ export const AppDocs: Component = () => {
                     "max-width": "100%",
                     padding: "32px",
                     "box-sizing": "border-box",
-                    background: adaptiveLayoutDark()
-                      ? "hsl(240 20% 10%)"
-                      : "hsl(var(--card))",
+                    background: "hsl(var(--background))",
                     overflow: "auto",
                   }}
                 >
@@ -224,13 +276,8 @@ export const AppDocs: Component = () => {
                             style={{
                               padding: "24px",
                               "border-radius": "0",
-                              background: adaptiveLayoutDark()
-                                ? "hsl(var(--muted-foreground) / 50%)"
-                                : "hsl(var(--foreground) / 80%)",
+                              background: "hsl(var(--card))",
                               border: `1px solid hsl(var(--border))`,
-                              "box-shadow": adaptiveLayoutDark()
-                                ? "hsl(var(--background) / 30%)"
-                                : "hsl(var(--background) / 10%)",
                               width: "100%",
                               "max-width": "100%",
                               "min-width": "0",
@@ -243,11 +290,20 @@ export const AppDocs: Component = () => {
                             <Typography
                               variant="h4"
                               as="h3"
-                              style={{ margin: "0 0 8px 0" }}
+                              style={{
+                                margin: "0 0 8px 0",
+                                color: "hsl(var(--card-foreground))",
+                              }}
                             >
                               Card {i() + 1}
                             </Typography>
-                            <Typography variant="small" style={{ margin: "0" }}>
+                            <Typography
+                              variant="small"
+                              style={{
+                                margin: "0",
+                                color: "hsl(var(--card-foreground))",
+                              }}
+                            >
                               This is a sample card in the main content area.
                             </Typography>
                           </div>
@@ -271,6 +327,7 @@ export const AppDocs: Component = () => {
           preview={
             <div
               data-app-preview
+              data-theme={overlayModeDark() ? "dark" : "light"}
               style={{
                 width: "100%",
                 height: "600px",
@@ -295,9 +352,7 @@ export const AppDocs: Component = () => {
                     "max-width": "100%",
                     padding: "32px",
                     "box-sizing": "border-box",
-                    background: overlayModeDark()
-                      ? "hsl(240 20% 10%)"
-                      : "hsl(var(--card))",
+                    background: "hsl(var(--background))",
                     overflow: "auto",
                   }}
                 >
@@ -332,13 +387,8 @@ export const AppDocs: Component = () => {
                             style={{
                               padding: "24px",
                               "border-radius": "0",
-                              background: overlayModeDark()
-                                ? "hsl(var(--muted-foreground) / 50%)"
-                                : "hsl(var(--foreground) / 80%)",
+                              background: "hsl(var(--card))",
                               border: `1px solid hsl(var(--border))`,
-                              "box-shadow": overlayModeDark()
-                                ? "hsl(var(--background) / 30%)"
-                                : "hsl(var(--background) / 10%)",
                               width: "100%",
                               "max-width": "100%",
                               "min-width": "0",
@@ -351,11 +401,20 @@ export const AppDocs: Component = () => {
                             <Typography
                               variant="h4"
                               as="h3"
-                              style={{ margin: "0 0 8px 0" }}
+                              style={{
+                                margin: "0 0 8px 0",
+                                color: "hsl(var(--card-foreground))",
+                              }}
                             >
                               Card {i() + 1}
                             </Typography>
-                            <Typography variant="small" style={{ margin: "0" }}>
+                            <Typography
+                              variant="small"
+                              style={{
+                                margin: "0",
+                                color: "hsl(var(--card-foreground))",
+                              }}
+                            >
                               This is a sample card in the main content area.
                             </Typography>
                           </div>
