@@ -3,9 +3,9 @@
  * Uses colord for intelligent color analysis and replacement suggestions
  */
 
-import { colord, extend } from "colord";
-import a11yPlugin from "colord/plugins/a11y";
-import valueParser from "postcss-value-parser";
+import { colord, extend } from "colord"
+import a11yPlugin from "colord/plugins/a11y"
+import valueParser from "postcss-value-parser"
 
 // Extend colord with accessibility plugin
 extend([a11yPlugin]);
@@ -42,9 +42,6 @@ export const COLOR_MAPPINGS: Record<string, string> = {
   // Common backgrounds
   "rgba(248, 248, 248, 1)": "hsl(var(--card))",
   "rgb(248, 248, 248)": "hsl(var(--card))",
-
-  // Common borders
-  "rgba(255, 255, 255, 0.1)": "hsl(var(--border))",
 };
 
 /**

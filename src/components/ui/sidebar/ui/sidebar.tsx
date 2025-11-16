@@ -77,7 +77,7 @@ export const Sidebar: Component<SidebarProps> = (props) => {
             left: "0",
             right: "0",
             bottom: "0",
-            background: "rgba(0, 0, 0, 0.3)",
+            background: "hsl(var(--background) / 30%)",
             "backdrop-filter": "blur(2px)",
             "-webkit-backdrop-filter": "blur(2px)",
             "z-index": "999",

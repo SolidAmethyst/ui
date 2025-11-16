@@ -178,7 +178,7 @@ export const Checkbox: Component<CheckboxProps> = (props) => {
               transform: "translate(-50%, -50%)",
               width: "8px",
               height: "2px",
-              background: local.material3 ? "hsl(var(--primary))" : "#ffffff",
+              background: "hsl(var(--primary))",
               "border-radius": "1px",
               "pointer-events": "none",
             }}

@@ -1,5 +1,6 @@
 import { Component } from "solid-js";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface FooterProps {}
 
 export const Footer: Component<FooterProps> = () => (

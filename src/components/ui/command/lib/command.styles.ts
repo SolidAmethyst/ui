@@ -6,6 +6,7 @@
 import type { JSX } from "solid-js";
 import { getThemeFromCSS } from "../../glass/lib/theme-utils";
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface CommandStyleOptions {
   // Removed isDark - now using getThemeFromCSS()
 }
