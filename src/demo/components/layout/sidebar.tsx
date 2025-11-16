@@ -67,12 +67,7 @@ export const Sidebar: Component<SidebarProps> = (props) => {
         width: "220px",
         "min-width": "220px",
         "max-width": "220px",
-        position: "sticky",
-        top: "0",
-        "align-self": "flex-start",
-        height: "calc(100vh - 60px)",
-        "max-height": "calc(100vh - 60px)",
-        overflow: "hidden",
+        height: "100%",
         "flex-shrink": "0",
         "box-sizing": "border-box",
         background: "transparent",
@@ -83,7 +78,7 @@ export const Sidebar: Component<SidebarProps> = (props) => {
         "margin-right": "24px",
         display: "flex",
         "flex-direction": "column",
-        "min-height": "0",
+        overflow: "hidden",
       }}
     >
       <Scrollbar

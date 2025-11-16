@@ -1,5 +1,5 @@
 import type { JSX } from "solid-js"
-import { createEffect, createSignal, lazy, Show, Suspense } from "solid-js"
+import { createEffect, createSignal, lazy, onCleanup, onMount, Show, Suspense } from "solid-js"
 import { HighlightContext } from "../components/ui/code-highlight/lib/highlight-context"
 import { Container } from "../components/ui/container"
 import { ScrollbarProvider } from "../components/ui/scrollbar"
@@ -113,6 +113,84 @@ function App() {
   const [currentComponent, setCurrentComponent] = createSignal<string | null>(
     "introduction",
   );
+
+  let mainRef: HTMLElement | undefined;
+
+  // Setup wheel handler on mount
+  onMount(() => {
+    if (mainRef) {
+      const handleWheel = (e: WheelEvent) => {
+        const target = mainRef!;
+        const scrollTop = target.scrollTop;
+        const scrollHeight = target.scrollHeight;
+        const clientHeight = target.clientHeight;
+
+        const distanceFromBottom = scrollHeight - clientHeight - scrollTop;
+        const isAtBottom = distanceFromBottom < 10;
+        const isAtTop = scrollTop < 10;
+
+        console.log('Wheel event:', {
+          deltaY: e.deltaY,
+          scrollTop,
+          scrollHeight,
+          clientHeight,
+          distanceFromBottom,
+          isAtBottom,
+          windowScrollY: window.scrollY,
+          hasScroll: scrollHeight > clientHeight
+        });
+
+        // Only intercept scroll at boundaries, otherwise let main scroll normally
+
+        // Scrolling down: only intercept if no scroll or at bottom
+        if (e.deltaY > 0) {
+          const hasScroll = scrollHeight > clientHeight;
+
+          if (!hasScroll) {
+            // No scroll in main, scroll window smoothly to show entire footer
+            console.log('No scroll in main, showing footer');
+            e.preventDefault();
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: maxScroll, behavior: 'smooth' });
+            return;
+          }
+
+          if (isAtBottom) {
+            // At bottom of main, scroll window smoothly to show entire footer
+            console.log('At bottom, showing footer');
+            e.preventDefault();
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            window.scrollTo({ top: maxScroll, behavior: 'smooth' });
+            return;
+          }
+
+          // Has scroll and not at bottom - let main scroll naturally
+          console.log('Main scrolling naturally');
+          return;
+        }
+
+        // Scrolling up: if footer is visible (window scrolled), hide it first
+        if (e.deltaY < 0) {
+          if (window.scrollY > 0) {
+            console.log('Footer visible, hiding footer');
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+          }
+
+          // Footer hidden, let main scroll naturally
+          console.log('Main scrolling naturally (up)');
+          return;
+        }
+      };
+
+      mainRef.addEventListener('wheel', handleWheel, { passive: false });
+
+      onCleanup(() => {
+        mainRef?.removeEventListener('wheel', handleWheel);
+      });
+    }
+  });
 
   // Glass settings state
   const [glassEnabled, setGlassEnabled] = createSignal(true);
@@ -293,7 +371,6 @@ function App() {
                 style={{
                   "padding-top": "60px",
                   width: "100%",
-                  "min-height": "calc(100vh - 60px)",
                   "box-sizing": "border-box",
                   position: "relative",
                   display: "flex",
@@ -303,24 +380,24 @@ function App() {
                 <Container
                   padding="0"
                   style={{
-                    flex: "1",
+                    "min-height": "calc(100vh - 60px)",
                     display: "flex",
                     "flex-direction": "column",
                   }}
                 >
-                  <div
-                    data-docs-container
-                    style={{
-                      display: "flex",
-                      width: "100%",
-                      flex: "1",
-                      "box-sizing": "border-box",
-                      gap: "0",
-                      position: "relative",
-                      padding: "24px 32px 0 32px",
-                      "align-items": "flex-start",
-                    }}
-                  >
+                    <div
+                      data-docs-container
+                      style={{
+                        display: "flex",
+                        width: "100%",
+                        height: "calc(100vh - 60px)",
+                        "box-sizing": "border-box",
+                        gap: "0",
+                        position: "relative",
+                        padding: "24px 32px 0 32px",
+                        "align-items": "stretch",
+                      }}
+                    >
                     {/* Debug line to check alignment */}
                     {/* <div
 									style={{
@@ -339,16 +416,18 @@ function App() {
                       onComponentSelect={setCurrentComponent}
                     />
                     <main
+                      ref={mainRef}
                       style={{
-                        flex: "1 1 0%",
+                        flex: "1",
                         "min-width": "0",
                         width: "100%",
+                        height: "100%",
                         "box-sizing": "border-box",
                         padding: "0",
-                        display: "flex",
-                        "flex-direction": "column",
                         position: "relative",
                         margin: "0",
+                        "overflow-y": "auto",
+                        "overflow-x": "hidden",
                       }}
                     >
                       <div
@@ -357,9 +436,6 @@ function App() {
                           "max-width": "100%",
                           "box-sizing": "border-box",
                           padding: "0",
-                          overflow: "hidden",
-                          "overflow-x": "hidden",
-                          flex: "1",
                         }}
                       >
                         <Suspense
@@ -466,14 +542,15 @@ function App() {
                         width: "220px",
                         "min-width": "220px",
                         "max-width": "220px",
+                        height: "100%",
                         "flex-shrink": "0",
                         visibility: "hidden",
                         "pointer-events": "none",
                       }}
                     />
-                  </div>
-                  <Footer />
-                </Container>
+                    </div>
+                    <Footer />
+                  </Container>
               </div>
             </Show>
           </div>
